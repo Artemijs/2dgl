@@ -1,5 +1,0 @@
-C:\Users\artem\Documents\programming\OGL_1\x64\Debug\OGL_1.exe
-C:\Users\artem\Documents\programming\TEXTURE ONLY GL\OGL_1\x64\Debug\OGL_1.exe
-C:\Users\artem\Documents\programming\HotLEadACtion\OGL_1\x64\Debug\HotLeadAction.exe
-C:\Users\artem\Documents\programming\HotLEadACtion\Project\x64\Debug\HotLeadAction.exe
-C:\Users\artem\Documents\programming\HotLEadACtion\TowerDefense\x64\Debug\TowerDefense.exe
