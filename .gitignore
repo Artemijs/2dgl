@@ -1,0 +1,2 @@
+#ignore all .opendb files and commit while running vs
+.opendb
