@@ -1,2 +1,11 @@
 #ignore all .opendb files and commit while running vs
 .opendb
+Project/.vs/2DGL/v17/
+
+
+     #   Browse.VC.db-shm
+     #   Project/.vs/2DGL/v17/Browse.VC.db-wal
+     #   Project/.vs/2DGL/v17/Browse.VC.opendb
+#modified:   Project/.vs/2DGL/v17/Browse.VC.db
+#        modified:   Project/.vs/2DGL/v17/ipch/AutoPCH/14f95636c6d2672d/GAME.ipch
+
