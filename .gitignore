@@ -1,3 +1,2 @@
-#ignore all .opendb files and commit while running vs
-.opendb
+#ignore files and commit while running vs
 Project/.vs/2DGL/v17/
