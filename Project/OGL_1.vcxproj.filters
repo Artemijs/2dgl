@@ -76,6 +76,12 @@
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{aaca6f1e-dedb-4510-a2f4-5f2436782fc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects">
+      <UniqueIdentifier>{c3f88681-f3ac-4ac0-8c38-4627012d4319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Projects\TowerDefense">
+      <UniqueIdentifier>{dc6cf74a-4953-418f-a1d0-4ee85d479a96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -156,6 +162,9 @@
     <ClCompile Include="BackEnd\FBO.cpp">
       <Filter>Source Files\BackEnd</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp">
+      <Filter>Projects\TowerDefense</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -235,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="BackEnd\FBO.h">
       <Filter>Header Files\BackEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h">
+      <Filter>Projects\TowerDefense</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

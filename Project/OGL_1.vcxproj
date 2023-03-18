@@ -169,6 +169,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math\BoxBounds.cpp" />
     <ClCompile Include="Math\Matrix4x4.cpp" />
+    <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp" />
     <ClCompile Include="UI\Basewindow.cpp" />
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="UI\Text.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Math\Bounds.h" />
     <ClInclude Include="Math\BoxBounds.h" />
     <ClInclude Include="Math\Matrix4x4.h" />
+    <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />
     <ClInclude Include="UI\Basewindow.h" />
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="UI\Element.h" />
