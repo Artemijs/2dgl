@@ -49,6 +49,7 @@ MouseEvent(new BoxBounds(), this) {
 }
 
 Button::~Button() {
+	std::cout << "deleting button\n";
 	delete _txt;
 }
 void Button::BeforeDraw() {

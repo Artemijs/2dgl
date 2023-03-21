@@ -9,7 +9,7 @@
 #include "../UI/Basewindow.h"
 
 class Game {
-private:
+protected:
 	BaseObject* _world;
 	bool _isRunning;
 public :
