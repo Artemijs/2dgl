@@ -1,6 +1,9 @@
 #include "MouseEventController.h"
 #include <iostream>
 #define uwu 0x0
+
+
+
 std::vector<MouseEvent*>*  MouseEventController::_all_events = new std::vector < MouseEvent* >();
 Vec2* MouseEventController::_prevPos = new Vec2(0, 0);
 float MouseEventController::_time = 0;
@@ -10,8 +13,16 @@ float MouseEventController::_dd_time_max = 0.2f;
 bool MouseEventController::_onHover = false;
 bool MouseEventController::_on = false;
 MouseEvent* MouseEventController::_current = uwu;
+std::vector<unsigned int>* MouseEventController::_partitions = new std::vector<unsigned int>();
+int MouseEventController::_bpi = 64;//bits per int
+
+
+
 void MouseEventController::RegisterEvent(MouseEvent* e) {
 	_all_events->push_back(e);
+	if (_all_events->size() > _partitions->size() * _bpi) {
+		_partitions->push_back(0);
+	}
 }
 
 void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float deltaTime) {
@@ -19,12 +30,14 @@ void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float de
 	//find all intersecting objects
 	//a 64 bit integer has 64 bits, 64 1 or 0s in a line, assuming i wont have more than 64 objects
 	//, assuming i wont have more than 64 objects i can bit shift to indicate which items in array are collided(1)
-	if (_all_events->size() > 64) {
+	/*if (_all_events->size() > 64) {
 		std::cout << "MORE THAN 64 EVENTS, you are fucked\n";
+		
 		return;
-	}
-	unsigned int collided = 0;
+	}*/
+	unsigned int partid = 0;
 	MouseEvent* newCurrent = uwu;
+	
 	//find all objects colliding with the mouse cursor
 	for (int i = 0; i < _all_events->size(); ++i) {
 		MouseEvent* m = _all_events->at(i);
@@ -33,16 +46,31 @@ void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float de
 
 
 		if (m->GetBounds()->CheckInside(Vec3(mousePos.x, mousePos.y, 0))) {
-			collided = (collided | (m->GetBounds()->CheckInside(Vec3(mousePos.x, mousePos.y, 0)) << i));
+			//STORE COLLIDED FLAG
+			int bitPos = i-(_bpi*(i % _bpi));
+			_partitions->at(partid) = (_partitions->at(partid )| (m->GetBounds()->CheckInside(Vec3(mousePos.x, mousePos.y, 0)) << bitPos));
+		}
+		if (i >= _bpi) {
+			partid++;
+			if (partid >= _partitions->size()) {
+				std::cout << "Error partition id longer than partition array\n";
+			}
 		}
 	}
 	//find the closest to the camera object of all collided
-	if (collided != 0) {
-		//std::cout << collided << "\n";
-		for (int i = 0; i < _all_events->size() ; ++i) {
+	for (partid = 0; partid < _partitions->size(); partid++) {
+		//check if partition iis empty
+		if (_partitions->at(partid) == 0) continue;
+		
+		
+		int endOfLoop = (partid+1)*_bpi;
+		if (endOfLoop > _all_events->size())
+			endOfLoop = _all_events->size();
+		for (int i = partid*_bpi; i < endOfLoop; ++i) {
 			MouseEvent* m = _all_events->at(i);
-			if (collided & (1 << i)) {
-				
+
+			if (_partitions->at(partid) & (1 << i)) {
+
 				if (newCurrent == uwu) {
 					newCurrent = m;
 				}
@@ -58,8 +86,8 @@ void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float de
 				}
 			}
 		}
+		
 	}
-
 
 	if (newCurrent != _current) {
 		//IF MOUSE OVER NEW THING
@@ -126,6 +154,7 @@ void MouseEventController::Delete() {
 		//delete _all_events->at(i);
 	//}
 	delete _all_events;
+	delete _partitions;
 }
 
 const Vec2* MouseEventController::GetMousePosition() {

@@ -14,6 +14,8 @@ private:
 	static bool _on;
 	static float _ddclick_time;
 	static float _dd_time_max;
+	static std::vector<unsigned int>* _partitions;
+	static int _bpi; //bits per int
 public:
 	
 	static void RegisterEvent(MouseEvent* m);
