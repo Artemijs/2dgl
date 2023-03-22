@@ -15,8 +15,14 @@ bool MouseEventController::_on = false;
 MouseEvent* MouseEventController::_current = uwu;
 std::vector<unsigned int>* MouseEventController::_partitions = new std::vector<unsigned int>();
 int MouseEventController::_bpi = 64;//bits per int
+int MouseEventController::_maxCollisions = 10;
+std::vector<MouseEvent*>* MouseEventController::_collidedCache = new std::vector<MouseEvent*>();
 
-
+void MouseEventController::Init() {
+	for (int i = 0; i < _maxCollisions; i++) {
+		_collidedCache->push_back(NULL);
+	}
+}
 
 void MouseEventController::RegisterEvent(MouseEvent* e) {
 	_all_events->push_back(e);
@@ -28,65 +34,42 @@ void MouseEventController::RegisterEvent(MouseEvent* e) {
 void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float deltaTime) {
 	//call OnHover 3 25 6 08 59 1 7  iti is real
 	//find all intersecting objects
-	//a 64 bit integer has 64 bits, 64 1 or 0s in a line, assuming i wont have more than 64 objects
-	//, assuming i wont have more than 64 objects i can bit shift to indicate which items in array are collided(1)
-	/*if (_all_events->size() > 64) {
-		std::cout << "MORE THAN 64 EVENTS, you are fucked\n";
-		
-		return;
-	}*/
-	unsigned int partid = 0;
+
 	MouseEvent* newCurrent = uwu;
-	
+	unsigned int count = 0;
 	//find all objects colliding with the mouse cursor
 	for (int i = 0; i < _all_events->size(); ++i) {
 		MouseEvent* m = _all_events->at(i);
 		
 		//CHECK IF OBJECT IS ON OR OFF 
 
-
 		if (m->GetBounds()->CheckInside(Vec3(mousePos.x, mousePos.y, 0))) {
 			//STORE COLLIDED FLAG
-			int bitPos = i-(_bpi*(i % _bpi));
-			_partitions->at(partid) = (_partitions->at(partid )| (m->GetBounds()->CheckInside(Vec3(mousePos.x, mousePos.y, 0)) << bitPos));
-		}
-		if (i >= _bpi) {
-			partid++;
-			if (partid >= _partitions->size()) {
-				std::cout << "Error partition id longer than partition array\n";
+			_collidedCache->at(count)= m;
+			count++;
+			if (count >= _maxCollisions) {
+				std::cout << "MORE THAN 10 COLLISIONS DETECTED, YOU ARE FUCKED\n";
 			}
 		}
+		
 	}
 	//find the closest to the camera object of all collided
-	for (partid = 0; partid < _partitions->size(); partid++) {
-		//check if partition iis empty
-		if (_partitions->at(partid) == 0) continue;
-		
-		
-		int endOfLoop = (partid+1)*_bpi;
-		if (endOfLoop > _all_events->size())
-			endOfLoop = _all_events->size();
-		for (int i = partid*_bpi; i < endOfLoop; ++i) {
-			MouseEvent* m = _all_events->at(i);
-
-			if (_partitions->at(partid) & (1 << i)) {
-
-				if (newCurrent == uwu) {
-					newCurrent = m;
-				}
-				else
-				{
-					float a = m->GetBounds()->GetZ() * 10;
-					float b = newCurrent->GetBounds()->GetZ() * 10;
-					if (a > b)
-					{
-						newCurrent = m;
-						//_current->OnMouseEnter(&mousePos);
-					}
-				}
+	for (int i = 0; i < count; i++) {
+		MouseEvent* m = _collidedCache->at(i);
+		if (newCurrent == uwu) {
+			newCurrent = m;
+		}
+		else
+		{
+			float a = m->GetBounds()->GetZ() * 10;
+			float b = newCurrent->GetBounds()->GetZ() * 10;
+			if (a > b)
+			{
+				newCurrent = m;
+				
 			}
 		}
-		
+		_collidedCache->at(i) = NULL;
 	}
 
 	if (newCurrent != _current) {
@@ -150,6 +133,7 @@ void MouseEventController::Update(const float deltaTime) {
 }
 void MouseEventController::Delete() {
 	delete _prevPos;
+	delete _collidedCache;
 	//for (int i = 0; i < _all_events->size(); ++i) {
 		//delete _all_events->at(i);
 	//}

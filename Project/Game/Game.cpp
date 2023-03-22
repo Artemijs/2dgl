@@ -3,6 +3,7 @@
 #include "../Input/MouseEventController.h"
 #include <iostream>
 Game::Game() {
+	MouseEventController::Init();
 	Text::Init();
 	_isRunning = true;
 

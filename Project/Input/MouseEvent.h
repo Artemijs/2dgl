@@ -10,6 +10,7 @@ protected:
 	
 
 public:
+	MouseEvent() {}
 	MouseEvent(Bounds* bounds, BaseObject* bo);
 	virtual void OnMouseEnter(const Vec2* mPos) = 0;
 	virtual void OnMouseLeave(const Vec2* mPos) = 0;

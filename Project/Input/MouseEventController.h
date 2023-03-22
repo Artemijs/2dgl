@@ -14,10 +14,13 @@ private:
 	static bool _on;
 	static float _ddclick_time;
 	static float _dd_time_max;
+	static std::vector<MouseEvent*>* _collidedCache;
+	static int _maxCollisions;
+
 	static std::vector<unsigned int>* _partitions;
 	static int _bpi; //bits per int
 public:
-	
+	static void Init();
 	static void RegisterEvent(MouseEvent* m);
 	static void HandleMouseMoving(const Vec2 mousePos, const float deltaTime);
 	static void HandleMouseClick(const bool on);

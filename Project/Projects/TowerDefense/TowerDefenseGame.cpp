@@ -15,7 +15,7 @@ Tile::~Tile() {
 
 
 TowerDefenseGame::TowerDefenseGame():Game() {
-	_t = new Tile("", Vec3(-400,-400, 0), Vec3(100, 100, 1), 0);
+	_t = new Tile("", Vec3(400,400, 0), Vec3(100, 100, 1), 0);
 	_world->AddChild(_t);
 	MakeGrid();
 }
@@ -53,7 +53,7 @@ void TowerDefenseGame::MakeGrid() {
 
 	Vec3 tileSize = Vec3(Renderer::instance()->GetWindowSize().x / _gridSize.x, Renderer::instance()->GetWindowSize().y / _gridSize.y, 0);
 	_tiles = new std::vector<std::vector<Tile*>*>();
-	Vec3 pos = Vec3();
+	Vec3 pos = Vec3(0,0, -1);
 
 	for (int y = 0; y < _gridSize.y; y++) {
 
