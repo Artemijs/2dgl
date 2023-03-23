@@ -8,6 +8,8 @@ Game::Game() {
 	_isRunning = true;
 
 	_world = new BaseObject(Vec3(0, 0, -10), Vec3(1, 1, 1), Vec3(0,0,0));
+
+	MouseEventController::Init(_world);
 }
 Game::~Game() {
 	std::cout << "deleting game\n";

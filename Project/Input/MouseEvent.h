@@ -7,7 +7,7 @@
 class MouseEvent{
 protected:
 	Bounds* _bounds;
-	
+	BaseObject* _baseObject;
 
 public:
 	MouseEvent() {}
@@ -23,6 +23,8 @@ public:
 	virtual void OnHover(const Vec2* mPos) = 0;
 	virtual void OnEndHover(const Vec2* mPos) = 0;
 	Bounds* GetBounds() { return _bounds; }
+	BaseObject* GetBaseObject();
+	void SetBaseObject(BaseObject* bo);
 
 };
 #endif

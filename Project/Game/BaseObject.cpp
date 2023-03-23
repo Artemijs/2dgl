@@ -9,9 +9,10 @@ BaseObject::BaseObject() {
 	_parent = NULL;
 	_children = new std::vector<BaseObject*>();
 	_onMakeModelCalls = new std::vector<BaseCall*>();
+	_nodeType = 0;
 }
 
-BaseObject::BaseObject(Vec3 pos, Vec3 scale, Vec3 ang) {
+BaseObject::BaseObject(Vec3 pos, Vec3 scale, Vec3 ang, int nodeType) {
 	_transform = { pos, scale, ang };
 	_enabled = true;
 	_visible = true;
@@ -19,6 +20,7 @@ BaseObject::BaseObject(Vec3 pos, Vec3 scale, Vec3 ang) {
 	_parent = NULL;
 	_children = new std::vector<BaseObject*>();
 	_onMakeModelCalls = new std::vector<BaseCall*>();
+	_nodeType = nodeType;
 }
 
 BaseObject::~BaseObject() {
@@ -124,7 +126,20 @@ void BaseObject::AddCallback(BaseCall* call, int type ) {
 	_onMakeModelCalls->push_back(call);
 }
 Matrix4x4* BaseObject::GetModelMatrix() { return &_model; }
-
+/// <summary>
+	/// t : 0 render ndoe 
+	/// t : 1 graphic node  
+	/// t : 2 a node that does not get rendered
+	/// </summary>
+	/// <param name="t"></param>
+int BaseObject::GetNodeType() { return _nodeType; }
+/// <summary>
+/// t : 0 render ndoe
+/// t : 1 graphic node 
+/// t : 2 a node that does not get rendered
+/// </summary>
+/// <param name="t"></param>
+void BaseObject::SetNodeType(int t) { _nodeType = t; }
 
 
 BaseUpdate::BaseUpdate() {

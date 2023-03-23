@@ -4,7 +4,8 @@
 
 
 
-std::vector<MouseEvent*>*  MouseEventController::_all_events = new std::vector < MouseEvent* >();
+//std::vector<MouseEvent*>*  MouseEventController::_all_events = new std::vector < MouseEvent* >();
+std::vector< std::pair<BaseObject*, std::vector<MouseEvent*>* >* >* MouseEventController::_all_events = new std::vector< std::pair<BaseObject*, std::vector<MouseEvent*>* >* >();
 Vec2* MouseEventController::_prevPos = new Vec2(0, 0);
 float MouseEventController::_time = 0;
 float MouseEventController::_hover_time = 1.5f;
@@ -15,11 +16,40 @@ bool MouseEventController::_on = false;
 MouseEvent* MouseEventController::_current = uwu;
 
 
-void MouseEventController::Init() {
-	
+void MouseEventController::Init(BaseObject* worldNode) {
+
+	//add ZA WARUDO node at position 0
+	std::pair<BaseObject*, std::vector<MouseEvent*>*>* list = new std::pair<BaseObject*, std::vector<MouseEvent*>*>();
+
+	list->first = worldNode;
+	list->second = new std::vector<MouseEvent*>();
+	_all_events->push_back(list);
 }
 
 void MouseEventController::RegisterEvent(MouseEvent* e) {
+
+	//find events parent render node
+	BaseObject* bo =  e->GetBaseObject();
+	BaseObject* parent = bo->GetParent();
+	if (parent == NULL)
+		std::cout << "MOUSE EVENT PARENT IS NULL, something wrong with the baseobject graph\n";
+	while (parent != NULL){
+		//check if parent node is of type RENDER NODE
+		if (parent->GetNodeType() == 2) {
+			//found the render node 
+			//CHECK IF PARENT RENDER NODE EXISTS IN _all_events
+
+			
+
+
+			break;
+		}
+		parent = parent->GetParent();
+
+	}
+	
+	//add event e to the array that belongs to parent render node
+
 	_all_events->push_back(e);
 	
 }
@@ -118,11 +148,16 @@ void MouseEventController::Update(const float deltaTime) {
 }
 void MouseEventController::Delete() {
 	delete _prevPos;
+	for (int i = 0; i < _all_events->size(); i++) {
+		auto list = _all_events->at(i);
+		delete list->second;
+		delete  list;
+	}
+	delete _all_events;
 	//delete _collidedCache;
 	//for (int i = 0; i < _all_events->size(); ++i) {
 		//delete _all_events->at(i);
 	//}
-	delete _all_events;
 	//delete _partitions;
 }
 

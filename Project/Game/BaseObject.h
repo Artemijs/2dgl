@@ -32,6 +32,7 @@ public :
 
 class BaseObject : public BaseUpdate{
 protected:
+	int _nodeType;
 	bool _inheritTransform[3]{ true, true, true };
 	bool _visible;
 	Transform _transform;
@@ -44,7 +45,7 @@ private:
 	void Update(float deltaTime);
 public :
 	BaseObject();
-	BaseObject(Vec3 pos, Vec3 scale, Vec3 ang);
+	BaseObject(Vec3 pos, Vec3 scale, Vec3 ang, int nodeType = 0);
 	~BaseObject();
 	void TryUpdate(float deltaTime);
 	/// <summary>
@@ -73,6 +74,20 @@ public :
 	void SetEnabled(bool on);
 	void AddCallback(BaseCall* call, int type = 0);
 	Matrix4x4* GetModelMatrix();
+	/// <summary>
+	/// t : 0 a node that does not get rendered
+	/// t : 1 graphic node  
+	/// t : 2 render ndoe 
+	/// </summary>
+	/// <param name="t"></param>
+	int GetNodeType();
+	/// <summary>
+	/// t : 0 a node that does not get rendered
+	/// t : 1 graphic node 
+	/// t : 2 render ndoe
+	/// </summary>
+	/// <param name="t"></param>
+	void SetNodeType(int t);
 	template<class T> T* GetComponent() {
 		return dynamic_cast<T*>(this);
 	}
