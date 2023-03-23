@@ -13,22 +13,15 @@ float MouseEventController::_dd_time_max = 0.2f;
 bool MouseEventController::_onHover = false;
 bool MouseEventController::_on = false;
 MouseEvent* MouseEventController::_current = uwu;
-std::vector<unsigned int>* MouseEventController::_partitions = new std::vector<unsigned int>();
-int MouseEventController::_bpi = 64;//bits per int
-int MouseEventController::_maxCollisions = 10;
-std::vector<MouseEvent*>* MouseEventController::_collidedCache = new std::vector<MouseEvent*>();
+
 
 void MouseEventController::Init() {
-	for (int i = 0; i < _maxCollisions; i++) {
-		_collidedCache->push_back(NULL);
-	}
+	
 }
 
 void MouseEventController::RegisterEvent(MouseEvent* e) {
 	_all_events->push_back(e);
-	if (_all_events->size() > _partitions->size() * _bpi) {
-		_partitions->push_back(0);
-	}
+	
 }
 
 void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float deltaTime) {
@@ -44,33 +37,25 @@ void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float de
 		//CHECK IF OBJECT IS ON OR OFF 
 
 		if (m->GetBounds()->CheckInside(Vec3(mousePos.x, mousePos.y, 0))) {
-			//STORE COLLIDED FLAG
-			_collidedCache->at(count)= m;
-			count++;
-			if (count >= _maxCollisions) {
-				std::cout << "MORE THAN 10 COLLISIONS DETECTED, YOU ARE FUCKED\n";
+			//CHECK IF ITS CLOSER TO THE CAMERA THAN PREVIOUS OBJ
+			if (newCurrent == uwu) {
+				newCurrent = m;
+			}
+			else
+			{
+				float a = m->GetBounds()->GetZ() * 10;
+				float b = newCurrent->GetBounds()->GetZ() * 10;
+				if (a > b)
+				{
+					newCurrent = m;
+
+				}
 			}
 		}
 		
 	}
-	//find the closest to the camera object of all collided
-	for (int i = 0; i < count; i++) {
-		MouseEvent* m = _collidedCache->at(i);
-		if (newCurrent == uwu) {
-			newCurrent = m;
-		}
-		else
-		{
-			float a = m->GetBounds()->GetZ() * 10;
-			float b = newCurrent->GetBounds()->GetZ() * 10;
-			if (a > b)
-			{
-				newCurrent = m;
-				
-			}
-		}
-		_collidedCache->at(i) = NULL;
-	}
+	//IF NOTHING FOUND
+	if (newCurrent == NULL) return;
 
 	if (newCurrent != _current) {
 		//IF MOUSE OVER NEW THING
@@ -133,12 +118,12 @@ void MouseEventController::Update(const float deltaTime) {
 }
 void MouseEventController::Delete() {
 	delete _prevPos;
-	delete _collidedCache;
+	//delete _collidedCache;
 	//for (int i = 0; i < _all_events->size(); ++i) {
 		//delete _all_events->at(i);
 	//}
 	delete _all_events;
-	delete _partitions;
+	//delete _partitions;
 }
 
 const Vec2* MouseEventController::GetMousePosition() {
