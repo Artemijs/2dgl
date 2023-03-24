@@ -172,6 +172,7 @@
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp" />
     <ClCompile Include="UI\Basewindow.cpp" />
     <ClCompile Include="UI\Button.cpp" />
+    <ClCompile Include="UI\RenderNode.cpp" />
     <ClCompile Include="UI\Text.cpp" />
     <ClCompile Include="UI\UIFactory.cpp" />
     <ClCompile Include="Util\Callback.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="UI\Basewindow.h" />
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="UI\Element.h" />
+    <ClInclude Include="UI\RenderNode.h" />
     <ClInclude Include="UI\Text.h" />
     <ClInclude Include="UI\UIFactory.h" />
     <ClInclude Include="UI\UISlider.h" />

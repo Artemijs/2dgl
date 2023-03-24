@@ -165,6 +165,9 @@
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp">
       <Filter>Projects\TowerDefense</Filter>
     </ClCompile>
+    <ClCompile Include="UI\RenderNode.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h">
       <Filter>Projects\TowerDefense</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RenderNode.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

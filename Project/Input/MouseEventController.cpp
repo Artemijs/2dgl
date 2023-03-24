@@ -31,38 +31,60 @@ void MouseEventController::RegisterEvent(MouseEvent* e) {
 	//find events parent render node
 	BaseObject* bo =  e->GetBaseObject();
 	BaseObject* parent = bo->GetParent();
+	
+	
 	if (parent == NULL)
 		std::cout << "MOUSE EVENT PARENT IS NULL, something wrong with the baseobject graph\n";
+	
+	
 	while (parent != NULL){
+		
 		//check if parent node is of type RENDER NODE
 		if (parent->GetNodeType() == 2) {
 			//found the render node 
-			//CHECK IF PARENT RENDER NODE EXISTS IN _all_events
-
 			
-
+			//CHECK IF PARENT RENDER NODE EXISTS IN _all_events
+			bool found = false;
+			int i = 0;
+			for (; i < _all_events->size(); ++i) {
+				if (_all_events->at(i)->first == parent) {
+					found = true;
+					break;
+				}
+			}
+			if (found) {
+				_all_events->at(i)->second->push_back(e);
+			}
+			else {
+				std::pair<BaseObject*, std::vector<MouseEvent*>*>* list = new std::pair<BaseObject*, std::vector<MouseEvent*>*>();
+				list->first = parent;
+				list->second = new std::vector<MouseEvent*>();
+				list->second->push_back(e);
+				_all_events->push_back(list);
+			}
 
 			break;
 		}
+
 		parent = parent->GetParent();
 
 	}
 	
 	//add event e to the array that belongs to parent render node
 
-	_all_events->push_back(e);
+	//_all_events->push_back(e);
 	
 }
 
 void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float deltaTime) {
 	//call OnHover 3 25 6 08 59 1 7  iti is real
 	//find all intersecting objects
-
+	/*
 	MouseEvent* newCurrent = uwu;
 	unsigned int count = 0;
 	//find all objects colliding with the mouse cursor
 	for (int i = 0; i < _all_events->size(); ++i) {
-		MouseEvent* m = _all_events->at(i);
+		MouseEvent* m = NULL;// _all_events->at(i);
 		
 		//CHECK IF OBJECT IS ON OR OFF 
 
@@ -115,7 +137,7 @@ void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float de
 				_onHover = false;
 			}
 		}
-	}
+	}*/
 	(*_prevPos) = mousePos;
 }
 void MouseEventController::HandleMouseClick(const bool on) {

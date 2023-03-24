@@ -3,12 +3,14 @@
 #include "../Input/MouseEventController.h"
 #include <iostream>
 Game::Game() {
-	MouseEventController::Init();
+	
 	Text::Init();
 	_isRunning = true;
 
-	_world = new BaseObject(Vec3(0, 0, -10), Vec3(1, 1, 1), Vec3(0,0,0));
-
+	_world = new BaseObject(Vec3(0, 0, -10), Vec3(10, 10, 1), Vec3(0, 0, 0));
+	_world->SetInheritTransform(0, false);
+	_world->SetInheritTransform(1, false);
+	_world->SetInheritTransform(2, false);
 	MouseEventController::Init(_world);
 }
 Game::~Game() {

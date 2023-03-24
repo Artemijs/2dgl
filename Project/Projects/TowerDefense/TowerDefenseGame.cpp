@@ -19,6 +19,8 @@ TowerDefenseGame::TowerDefenseGame():Game() {
 	_world->AddChild(_t);
 	MakeGrid();
 }
+
+
 TowerDefenseGame::~TowerDefenseGame() {
 	std::cout << "deleting tower defense game\n";
 	if(_tiles != NULL)
@@ -31,6 +33,8 @@ TowerDefenseGame::~TowerDefenseGame() {
 	delete _tiles;
 	delete _t;
 }
+
+
 void TowerDefenseGame::HandleKeyInputs(int key, int action, int mods) {
 	if (action == 2) return;
 	std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
