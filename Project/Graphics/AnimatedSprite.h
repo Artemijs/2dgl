@@ -16,7 +16,7 @@ private:
 public:
 	AnimatedSprite();
 	~AnimatedSprite();
-	AnimatedSprite(const char* path, Vec3 pos, Vec3 size, float ang);
+	AnimatedSprite(const char* path, Vec3 pos, Vec3 size, float ang, BaseObject* parent);
 	void SetAnimationData(int startFrame, int length, int maxXframes, int maxYframes, float timePerFrame, bool looping);
 	void Update(float deltaTime);
 	void BeforeDraw();

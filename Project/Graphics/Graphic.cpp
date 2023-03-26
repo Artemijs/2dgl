@@ -6,7 +6,7 @@ Graphic::Graphic():BaseObject(){
 	Renderer::instance()->AddGraphic(this);
 
 }
-Graphic::Graphic(const char* path, Vec3 pos, Vec3 size, float ang) : BaseObject(pos, size, Vec3(0, ang, 0), 1){
+Graphic::Graphic(const char* path, Vec3 pos, Vec3 size, float ang, BaseObject* parent) : BaseObject(pos, size, Vec3(0, ang, 0), parent, 1){
 	_texId = Renderer::instance()->LoadTexture(path);
 	_shader = Renderer::instance()->GetShader(0);
 	Renderer::instance()->AddGraphic(this);

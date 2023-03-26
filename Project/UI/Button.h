@@ -15,7 +15,7 @@ private :
 	//void CalculateUVs();
 public  :
 	Button();
-	Button(const char* txt, Vec3 pos, Vec3 size, float ang);
+	Button(const char* txt, Vec3 pos, Vec3 size, float ang, BaseObject* parent);
 	~Button();
 	void BeforeDraw();
 	void Draw();

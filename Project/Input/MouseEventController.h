@@ -24,7 +24,7 @@ private:
 
 
 public:
-	static void Init(BaseObject* worldNode);
+	static void Init();
 	static void RegisterEvent(MouseEvent* m);
 	static void HandleMouseMoving(const Vec2 mousePos, const float deltaTime);
 	static void HandleMouseClick(const bool on);

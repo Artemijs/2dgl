@@ -45,7 +45,7 @@ private:
 	void Update(float deltaTime);
 public :
 	BaseObject();
-	BaseObject(Vec3 pos, Vec3 scale, Vec3 ang, int nodeType = 0);
+	BaseObject(Vec3 pos, Vec3 scale, Vec3 ang, BaseObject* parent = NULL, int nodeType = 0);
 	~BaseObject();
 	void TryUpdate(float deltaTime);
 	/// <summary>
@@ -54,7 +54,7 @@ public :
 	/// <param name="id"> int, 0 : position, 1 : scale, 2 : ang</param>
 	/// <param name="on">true/false</param>
 	void SetInheritTransform(int id, bool on);
-	void MakeModelMatrix(Matrix4x4 trans, Matrix4x4 scale, Matrix4x4 rot);
+	virtual void MakeModelMatrix(Matrix4x4 trans, Matrix4x4 scale, Matrix4x4 rot);
 	//returns global positions rotation and scale
 	Transform GetTransform();
 	//set local posiion unless inherit transform of parent is off

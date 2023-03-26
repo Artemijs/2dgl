@@ -8,7 +8,7 @@ private:
 
 public :
 	Sprite();
-	Sprite(const char* path, Vec3 pos, Vec3 size, float ang);
+	Sprite(const char* path, Vec3 pos, Vec3 size, float ang, BaseObject* parent);
 	~Sprite();
 	void BeforeDraw();
 	void Draw();

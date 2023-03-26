@@ -2,7 +2,8 @@
 #include "../Graphics/Renderer.h"
 #include "../Math/BoxBounds.h"
 #include "../Audio/SoundController.h"
-Button::Button() : Sprite("Assets/Textures/btn.png", Vec3( 0,0,0), Vec3(50,50,1), 0), 
+#include "../Game/Game.h"
+Button::Button() : Sprite("Assets/Textures/btn.png", Vec3( 0,0,0), Vec3(50,50,1), 0, Game::_world), 
 MouseEvent(new BoxBounds(
 	Vec3(-1, 1, 0),
 	Vec3(1, 1, 0),
@@ -29,7 +30,7 @@ MouseEvent(new BoxBounds(
 	pos + Vec3(-size.x * 0.5f, -size.y * 0.5f, 0),
 	pos + Vec3(size.x * 0.5f, -size.y * 0.5f, 0) ), this) {
 */
-Button::Button(const char* text, Vec3 pos, Vec3 size, float ang): Sprite("Assets/Textures/btn.png", pos, size, ang),
+Button::Button(const char* text, Vec3 pos, Vec3 size, float ang, BaseObject* parent): Sprite("Assets/Textures/btn.png", pos, size, ang, parent),
 MouseEvent(new BoxBounds(), this) {
 
 	Vec3 texPos = pos;

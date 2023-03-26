@@ -2,7 +2,7 @@
 #include "../../Graphics/Renderer.h"
 //TILE
 
-Tile::Tile(const char* btnTxt, Vec3 pos, Vec3 size, float ang):Button(btnTxt, pos, size, ang) {
+Tile::Tile(const char* btnTxt, Vec3 pos, Vec3 size, float ang, BaseObject* parent):Button(btnTxt, pos, size, ang, parent) {
 	
 }
 Tile::~Tile() {
@@ -15,7 +15,7 @@ Tile::~Tile() {
 
 
 TowerDefenseGame::TowerDefenseGame():Game() {
-	_t = new Tile("", Vec3(400,400, 0), Vec3(100, 100, 1), 0);
+	_t = new Tile("", Vec3(400,400, 0), Vec3(100, 100, 1), 0, _world);
 	_world->AddChild(_t);
 	MakeGrid();
 }
@@ -67,7 +67,7 @@ void TowerDefenseGame::MakeGrid() {
 		for (int x = 0; x < _gridSize.x; x++) {
 
 			pos.x = x * tileSize.x;
-			Tile* t = new Tile("", pos, tileSize, 0);
+			Tile* t = new Tile("", pos, tileSize, 0, _world);
 			_world->AddChild(t);
 
 			row->push_back(t);

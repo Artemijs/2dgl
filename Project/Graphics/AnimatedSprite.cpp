@@ -14,8 +14,8 @@ AnimatedSprite::AnimatedSprite():
 	_on = true;
 }
 AnimatedSprite::~AnimatedSprite() {}
-AnimatedSprite::AnimatedSprite(const char* path, Vec3 pos, Vec3 size, float ang) :
-	Sprite(path,  pos,  size,  ang),
+AnimatedSprite::AnimatedSprite(const char* path, Vec3 pos, Vec3 size, float ang, BaseObject* parent) :
+	Sprite(path,  pos,  size,  ang, parent),
 	_texScale(Vec2()),
 	_looping(false),
 	_currentFrame(0),

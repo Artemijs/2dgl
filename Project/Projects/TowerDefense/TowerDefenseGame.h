@@ -6,7 +6,7 @@ class Tile : public Button {
 private:
 
 public:
-	Tile(const char* btnTxt, Vec3 pos, Vec3 size, float ang);
+	Tile(const char* btnTxt, Vec3 pos, Vec3 size, float ang, BaseObject* parent);
 	~Tile();
 };
 

@@ -1,5 +1,6 @@
 #include "MouseEventController.h"
 #include <iostream>
+#include "../Game/Game.h"
 #define uwu 0x0
 
 
@@ -16,12 +17,12 @@ bool MouseEventController::_on = false;
 MouseEvent* MouseEventController::_current = uwu;
 
 
-void MouseEventController::Init(BaseObject* worldNode) {
+void MouseEventController::Init() {
 
 	//add ZA WARUDO node at position 0
 	std::pair<BaseObject*, std::vector<MouseEvent*>*>* list = new std::pair<BaseObject*, std::vector<MouseEvent*>*>();
 
-	list->first = worldNode;
+	list->first = Game::_world;
 	list->second = new std::vector<MouseEvent*>();
 	_all_events->push_back(list);
 }
@@ -33,8 +34,8 @@ void MouseEventController::RegisterEvent(MouseEvent* e) {
 	BaseObject* parent = bo->GetParent();
 	
 	
-	if (parent == NULL)
-		std::cout << "MOUSE EVENT PARENT IS NULL, something wrong with the baseobject graph\n";
+	//if (parent == NULL)
+		//std::cout << "MOUSE EVENT PARENT IS NULL, something wrong with the baseobject graph\n";
 	
 	
 	while (parent != NULL){

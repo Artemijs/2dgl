@@ -3,8 +3,8 @@
 #include <fstream>
 #include "../Graphics/Renderer.h"
  std::vector<CharData>* Text::_allData = new std::vector<CharData>();
-Text::Text(Vec3 position, float angle, int fontSize, std::string txt, int maxCharPerLine):
-	Graphic("Assets/Fonts/arial.png", position, Vec3 (1,1,1), angle), _text(txt), _maxCharsPerLine(maxCharPerLine), _fontSize(fontSize) {
+Text::Text(Vec3 position, float angle, int fontSize, std::string txt, BaseObject* parent, int maxCharPerLine):
+	Graphic("Assets/Fonts/arial.png", position, Vec3 (1,1,1), angle, parent), _text(txt), _maxCharsPerLine(maxCharPerLine), _fontSize(fontSize) {
 	if (txt.length() == 0) {
 		_text = " ";
 	}

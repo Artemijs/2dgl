@@ -12,12 +12,12 @@ BaseObject::BaseObject() {
 	_nodeType = 0;
 }
 
-BaseObject::BaseObject(Vec3 pos, Vec3 scale, Vec3 ang, int nodeType) {
+BaseObject::BaseObject(Vec3 pos, Vec3 scale, Vec3 ang,BaseObject* parent, int nodeType) {
 	_transform = { pos, scale, ang };
 	_enabled = true;
 	_visible = true;
 	_model = Matrix4x4(1.0f);
-	_parent = NULL;
+	_parent = parent;
 	_children = new std::vector<BaseObject*>();
 	_onMakeModelCalls = new std::vector<BaseCall*>();
 	_nodeType = nodeType;

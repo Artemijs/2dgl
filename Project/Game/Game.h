@@ -10,9 +10,10 @@
 
 class Game {
 protected:
-	BaseObject* _world;
+	
 	bool _isRunning;
 public :
+	static BaseObject* _world;
 	Game();
 	virtual ~Game();
 	virtual void Update(float deltaTime);

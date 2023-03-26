@@ -3,7 +3,7 @@
 #include "Renderer.h"
 Sprite::Sprite(): Graphic() {
 }
-Sprite::Sprite(const char* path, Vec3 pos, Vec3 size, float ang): Graphic(path, pos, size, ang) {}
+Sprite::Sprite(const char* path, Vec3 pos, Vec3 size, float ang, BaseObject* parent): Graphic(path, pos, size, ang, parent) {}
 Sprite::~Sprite() {
 	
 }

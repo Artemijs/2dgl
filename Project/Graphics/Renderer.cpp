@@ -141,6 +141,7 @@ VAO* Renderer::GetVAO() {
 }
 GLFWwindow* Renderer::GetWindow() { return _window; }
 Vec2 Renderer::GetWindowSize() { return _windowSize; }
+Vec3 Renderer::WindowSizeVec3() { return Vec3(_windowSize.x, _windowSize.y, 1.0f); }
 /// <summary>
 /// set projection and camera view matrix
 /// </summary>

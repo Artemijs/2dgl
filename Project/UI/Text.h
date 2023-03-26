@@ -47,7 +47,7 @@ private:
 	void CenterText(Vec2 size, int vArrSize);
 public :
 
-	Text(Vec3 pos, float angle, int fontSize, std::string txt, int maxCharPerLine = 0);
+	Text(Vec3 pos, float angle, int fontSize, std::string txt, BaseObject* parent = NULL, int maxCharPerLine = 0);
 	~Text();
 	static void Init();
 	static void GetCd(char c, CharData* cd);

@@ -14,7 +14,7 @@ protected:
 public:
 	Graphic();
 	~Graphic();
-	Graphic(const char* path, Vec3 pos, Vec3 size, float ang);
+	Graphic(const char* path, Vec3 pos, Vec3 size, float ang, BaseObject* parent = NULL);
 	Shader* GetShader() { return _shader; }
 	void SetShader(Shader* s) { _shader = s; }
 

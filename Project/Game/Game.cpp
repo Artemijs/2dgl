@@ -1,17 +1,17 @@
 #include "Game.h"
 #include "../Graphics/Renderer.h"
 #include "../Input/MouseEventController.h"
+#include "../UI/RenderNode.h"
 #include <iostream>
+
+ BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
+
 Game::Game() {
-	
 	Text::Init();
 	_isRunning = true;
 
-	_world = new BaseObject(Vec3(0, 0, -10), Vec3(10, 10, 1), Vec3(0, 0, 0));
-	_world->SetInheritTransform(0, false);
-	_world->SetInheritTransform(1, false);
-	_world->SetInheritTransform(2, false);
-	MouseEventController::Init(_world);
+
+	MouseEventController::Init();
 }
 Game::~Game() {
 	std::cout << "deleting game\n";
@@ -26,8 +26,8 @@ Game::~Game() {
 
 void Game::Update(float deltaTime) {
 	//translate children 
-	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
-	_world->TryUpdate(deltaTime);
+	Game::_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
+	Game:: _world->TryUpdate(deltaTime);
 	
 	
 	double xpos, ypos;
