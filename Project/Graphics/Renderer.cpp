@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include <iostream>
 #include "SDL_mixer.h"
+#include "../UI/RenderNode.h"
 Renderer* Renderer::_instance = 0x0;
 Renderer* Renderer::instance() {
 	if (_instance == 0x0) {
@@ -110,6 +111,7 @@ void Renderer::Draw() {
 	*/
 
 	glBindFramebuffer(GL_FRAMEBUFFER, _fbo->_fbo);
+	
 	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
@@ -117,6 +119,7 @@ void Renderer::Draw() {
 
 	for (int i = 0; i < _all_graphics->size(); ++i) {
 		_all_graphics->at(i)->TryDraw();
+	
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	
@@ -128,7 +131,6 @@ void Renderer::Draw() {
 	glBindTexture(GL_TEXTURE_2D, _fbo->_fboTex);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	_fRect->Unbind();
-	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	
 	
@@ -176,4 +178,63 @@ int Renderer::LoadTexture(const char* path) {
 	_all_textures->push_back(
 		std::pair<const char*, Texture*>{path, new Texture(path, GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE)});
 	return _all_textures->size() - 1;
+}
+
+void Renderer::DrawNodes(BaseObject* node, BaseObject* last) {
+	/*
+	drawNode(node, last){
+
+		if(node == renderNode){
+			bind node;
+		}
+
+		if (children =! null)
+			for(int i = 0; i < children.size(); ++i){
+				drawNode(children[i], NODE);
+			}
+
+		if(node == renderNode)
+			BIND LAST
+		if(parent == null)
+			//DRAW ROOT TO FINAL RECT
+		node->draw();
+	}
+	*/
+	bool renderNode = (node->GetNodeType() == 2);
+	RenderNode* rn = NULL;
+	if (renderNode) {
+		//bind node fbo
+		rn = node->GetComponent<RenderNode>();
+		glBindFramebuffer(GL_FRAMEBUFFER, rn->GetFBO()._fbo);
+		
+	}
+	const std::vector<BaseObject*>* children = node->GetAllChildren();
+	if (children != NULL)
+		for (int i = 0; i < children->size(); ++i) {
+		
+		}
+	if (renderNode) {
+		//bind last fbo
+		glBindFramebuffer(GL_FRAMEBUFFER, last->GetComponent<RenderNode>()->GetFBO()._fbo);
+	}
+	if(node->GetParent() == NULL){
+		//DRAW ROOT TO FINLal RECT
+	}
+	if (node->GetNodeType() == 1) {
+		node->GetComponent<Graphic>()->TryDraw();
+	}
+	else if (renderNode) {
+		//bind vao
+		_vao->Bind();
+		//activate shader
+		//set shader vars
+		//bind texture from FBO
+		// 
+		//draw triangles
+		// 
+		//unbind vao
+		//deactivate shader
+		//unbind texture
+	}
+
 }

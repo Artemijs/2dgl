@@ -92,5 +92,7 @@ public :
 		return dynamic_cast<T*>(this);
 	}
 
+	const std::vector<BaseObject*>* GetAllChildren();
+
 };
 #endif

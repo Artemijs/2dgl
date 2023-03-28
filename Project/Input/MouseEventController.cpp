@@ -101,7 +101,7 @@ void MouseEventController::HandleMouseMoving(const Vec2 mousePos, const float de
 				if (a > b)
 				{
 					newCurrent = m;
-
+ x 
 				}
 			}
 		}

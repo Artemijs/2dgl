@@ -57,6 +57,7 @@ public :
 	Vec3 WindowSizeVec3();
 	GLFWwindow* GetWindow();
 	void Draw();
+	void DrawNodes(BaseObject* node, BaseObject* last);
 	VAO* GetVAO();
 	void AddGraphic(Graphic* g) {
 		_all_graphics->push_back(g);

@@ -2,26 +2,15 @@
   Game.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(42,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(42,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  AnimatedSprite.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\AnimatedSprite.cpp(37,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\AnimatedSprite.cpp(38,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\AnimatedSprite.cpp(60,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  MouseEventController.cpp
-  Main.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Main.cpp(31,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  TowerDefenseGame.cpp
-  Basewindow.cpp
-  Button.cpp
+  Renderer.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(29,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(29,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(84,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(84,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(93,45): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(93,30): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(180,34): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   RenderNode.cpp
-  Text.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(12,34): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(126,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(136,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(146,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(156,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(166,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(175,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(184,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(244,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  PseudoCode.cpp
   Generating Code...
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

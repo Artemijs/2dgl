@@ -176,6 +176,7 @@
     <ClCompile Include="UI\Text.cpp" />
     <ClCompile Include="UI\UIFactory.cpp" />
     <ClCompile Include="Util\Callback.cpp" />
+    <ClCompile Include="Util\PseudoCode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\SoundController.h" />

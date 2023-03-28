@@ -140,7 +140,9 @@ int BaseObject::GetNodeType() { return _nodeType; }
 /// </summary>
 /// <param name="t"></param>
 void BaseObject::SetNodeType(int t) { _nodeType = t; }
-
+const std::vector<BaseObject*>* BaseObject::GetAllChildren() {
+	return _children;
+}
 
 BaseUpdate::BaseUpdate() {
 	_enabled = true;
