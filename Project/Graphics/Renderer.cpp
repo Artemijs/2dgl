@@ -180,7 +180,7 @@ int Renderer::LoadTexture(const char* path) {
 	return _all_textures->size() - 1;
 }
 
-void Renderer::DrawNodes(BaseObject* node, BaseObject* last) {
+void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 	/*
 	drawNode(node, last){
 
@@ -211,14 +211,20 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* last) {
 	const std::vector<BaseObject*>* children = node->GetAllChildren();
 	if (children != NULL)
 		for (int i = 0; i < children->size(); ++i) {
-		
+			DrawNodes(children->at(i), node);
 		}
 	if (renderNode) {
 		//bind last fbo
-		glBindFramebuffer(GL_FRAMEBUFFER, last->GetComponent<RenderNode>()->GetFBO()._fbo);
+		glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()._fbo);
 	}
 	if(node->GetParent() == NULL){
 		//DRAW ROOT TO FINLal RECT
+		_fRect->Bind();
+		glDisable(GL_DEPTH_TEST);
+		glBindTexture(GL_TEXTURE_2D, parent->GetComponent<RenderNode>()->GetFBO()._fboTex);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		_fRect->Unbind();
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	if (node->GetNodeType() == 1) {
 		node->GetComponent<Graphic>()->TryDraw();
@@ -226,15 +232,27 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* last) {
 	else if (renderNode) {
 		//bind vao
 		_vao->Bind();
-		//activate shader
+		//activate shader	USING DEFAULT FOR NOW
+		Shader* s = _all_shaders->at(0);
+		s->Activate();
 		//set shader vars
+			//model projecttion texture
+		Renderer::SetShaderVariables(s);
+		glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
 		//bind texture from FBO
-		// 
+		glBindTexture(GL_TEXTURE_2D, rn->GetFBO()._fboTex);
+		//maybe this part is optioNAL because in the example above he doesnt use this
+		glUniform1i(glGetUniformLocation(s->ID, "tex0"), rn->GetFBO()._fboTex); //maybe this part is optioNAL
+
 		//draw triangles
-		// 
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		
 		//unbind vao
+		_vao->Unbind();
 		//deactivate shader
+		glUseProgram(0);
 		//unbind texture
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
 }
