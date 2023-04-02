@@ -15,12 +15,16 @@ Tile::~Tile() {
 
 
 TowerDefenseGame::TowerDefenseGame():Game() {
+
+	_speed = 0.4;
 	_t = new Tile("", Vec3(400,400, 0), Vec3(100, 100, 1), 0, _world);
 	//_world->AddChild(_t);
 	_s = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _world);
 	_world->AddChild(_s);
-	
 	_rn1 = new RenderNode(Vec3(0, 0, 0), Vec3(100, 400, 1), 0, _world);
+	_world->AddChild(_rn1);
+	
+	//_world->AddChild(_rn1);
 	//_s1 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _rn1);
 	//_s2 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _world);
 
@@ -50,11 +54,27 @@ TowerDefenseGame::~TowerDefenseGame() {
 
 void TowerDefenseGame::HandleKeyInputs(int key, int action, int mods) {
 	if (action == 2) return;
-	std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
+	//Game::HandleKeyInputs(key, action, mods);
+	//std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
+	if (action == 0) {
+		std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
+		_switch = !_switch;
+	}
 }
 void TowerDefenseGame::Update(float deltaTime) {
 	Game::Update(deltaTime);
+	Vec3 pos = _s->GetTransform()._position;
+	Vec3 size = _s->GetTransform()._scale;
 	
+
+	if (pos.x > 800 - size.x) {
+		_speed = -0.4;
+	}
+	else if (pos.x < size.x) {
+		_speed = 0.4;
+	}
+	pos.x += _speed;
+	_s->SetPosition(pos);
 }
 
 

@@ -20,6 +20,7 @@ private:
 	Sprite* _s1;
 	Sprite* _s2;
 	RenderNode* _rn1;
+	float _speed;
 public :
 	TowerDefenseGame();
 	~TowerDefenseGame() override;

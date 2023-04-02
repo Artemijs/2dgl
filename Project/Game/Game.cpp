@@ -8,6 +8,7 @@
 BaseObject* Game::_world = NULL;
  Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
 Game::Game() {
+	_switch = true;
 	_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	//_world = new RenderNode(Vec3(0, 0, -10), Vec3(400, 400, 1), 0);
 	Text::Init();
@@ -58,11 +59,16 @@ void Game::Draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 
-	//Renderer::instance()->Draw();
-	Renderer::instance()->DrawNodes(_world, _world);
+	if (_switch) {
+		Renderer::instance()->Draw();
+	}
+	else {
+		Renderer::instance()->DrawNodes(_world, _world);
+
+		glfwSwapBuffers(Renderer::instance()->GetWindow());
+		glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
+	}
 	
-	glfwSwapBuffers(Renderer::instance()->GetWindow());
-	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 }
 
 

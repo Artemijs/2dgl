@@ -30,8 +30,8 @@ FBO::FBO(int width, int height) {
 	CreateTexture(width, height);
 	CreateRenderBuffer(width, height);
 	AttachFboAttachments();
-
-
+	
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 
 	auto fboStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);

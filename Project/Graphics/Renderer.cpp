@@ -114,8 +114,10 @@ void Renderer::Draw() {
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
 	*/
+	//FBO* fbo = _fbo;
+	const FBO* fbo = Game::_world->GetComponent<RenderNode>()->GetFBO();
 
-	glBindFramebuffer(GL_FRAMEBUFFER, _fbo->_fbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
 	
 	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -133,7 +135,7 @@ void Renderer::Draw() {
 	
 	_fRect->Bind();
 	glDisable(GL_DEPTH_TEST);
-	glBindTexture(GL_TEXTURE_2D, _fbo->_fboTex);
+	glBindTexture(GL_TEXTURE_2D, fbo->_fboTex);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	_fRect->Unbind();
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -190,16 +192,22 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 	bool renderNode = (node->GetNodeType() == 2);
 	bool isRoot = (node->GetParent() == NULL);
 	RenderNode* rn = NULL;
+
 	if (renderNode) {
+		//unbind prev fbo
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		//bind node fbo
 		rn = node->GetComponent<RenderNode>();
+
 		glBindFramebuffer(GL_FRAMEBUFFER, rn->GetFBO()->_fbo);
 	}
+
 	const std::vector<BaseObject*>* children = node->GetAllChildren();
 	if (children != NULL) {
 		for (int i = 0; i < children->size(); ++i) {
-			//DrawNodes(children->at(i), node);
-			children->at(i)->GetComponent<Graphic>()->TryDraw();
+			//WHAT IF A CHILD IS A RENDER NODE ?????????????????????????
+			//children->at(i)->GetComponent<Graphic>()->TryDraw();
+			DrawNodes(children->at(i), parent);
 		}
 	}
 
@@ -226,6 +234,8 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 			//glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
 		else if (renderNode) {
+			/*//unbind prev FBO
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 			//ifi t is a render node but not the root node bind the FBO of the last FBO node
 			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
 			//bind vao
@@ -250,10 +260,14 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 			//deactivate shader
 			glUseProgram(0);
 			//unbind texture
-			glBindTexture(GL_TEXTURE_2D, 0);
+			glBindTexture(GL_TEXTURE_2D, 0);*/
 		}
 	}
 	
 	
 
 }
+
+
+
+
