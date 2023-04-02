@@ -14,6 +14,7 @@ protected:
 	bool _isRunning;
 public :
 	static BaseObject* _world;
+	static Graphic* _testG;
 	Game();
 	virtual ~Game();
 	virtual void Update(float deltaTime);

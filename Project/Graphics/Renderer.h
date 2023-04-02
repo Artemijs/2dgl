@@ -49,6 +49,7 @@ private:
 	std::vector<std::pair<const char*, Texture*>>* _all_textures;
 	Renderer();
 	static Renderer* _instance;
+	//Graphic* _testG;
 
 public :
 	~Renderer();

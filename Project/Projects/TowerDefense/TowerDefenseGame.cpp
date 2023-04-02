@@ -16,8 +16,17 @@ Tile::~Tile() {
 
 TowerDefenseGame::TowerDefenseGame():Game() {
 	_t = new Tile("", Vec3(400,400, 0), Vec3(100, 100, 1), 0, _world);
-	_world->AddChild(_t);
-	MakeGrid();
+	//_world->AddChild(_t);
+	_s = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _world);
+	_world->AddChild(_s);
+	
+	_rn1 = new RenderNode(Vec3(0, 0, 0), Vec3(100, 400, 1), 0, _world);
+	//_s1 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _rn1);
+	//_s2 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _world);
+
+
+	// 
+	//MakeGrid();
 }
 
 
@@ -32,6 +41,10 @@ TowerDefenseGame::~TowerDefenseGame() {
 	}
 	delete _tiles;
 	delete _t;
+	delete _s;
+	delete _rn1;
+	delete _s1;
+	delete _s2;
 }
 
 

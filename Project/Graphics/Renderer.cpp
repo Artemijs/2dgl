@@ -2,6 +2,8 @@
 #include <iostream>
 #include "SDL_mixer.h"
 #include "../UI/RenderNode.h"
+#include "../Graphics/Sprite.h"
+#include "../Game/Game.h"
 Renderer* Renderer::_instance = 0x0;
 Renderer* Renderer::instance() {
 	if (_instance == 0x0) {
@@ -30,6 +32,8 @@ Renderer::Renderer() {
 	
 	_fRect = new FinalRect();
 
+	//_testG = new Sprite("./Assets/Textures/default.png", Vec3(), Vec3(50, 50, 1), 0, NULL);
+
 }
 Renderer::~Renderer() {
 
@@ -57,6 +61,7 @@ Renderer::~Renderer() {
 	glfwDestroyWindow(_window);
 	glfwTerminate();
 	delete _fRect;
+	//edelete _testG;
 	//glDeleteFramebuffers(1, &_fbo);
 	//glDeleteTextures(1, &_fboTex);
 	//glDeleteRenderbuffers(1, _
@@ -181,78 +186,74 @@ int Renderer::LoadTexture(const char* path) {
 }
 
 void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
-	/*
-	drawNode(node, last){
-
-		if(node == renderNode){
-			bind node;
-		}
-
-		if (children =! null)
-			for(int i = 0; i < children.size(); ++i){
-				drawNode(children[i], NODE);
-			}
-
-		if(node == renderNode)
-			BIND LAST
-		if(parent == null)
-			//DRAW ROOT TO FINAL RECT
-		node->draw();
-	}
-	*/
+	
 	bool renderNode = (node->GetNodeType() == 2);
+	bool isRoot = (node->GetParent() == NULL);
 	RenderNode* rn = NULL;
 	if (renderNode) {
 		//bind node fbo
 		rn = node->GetComponent<RenderNode>();
-		glBindFramebuffer(GL_FRAMEBUFFER, rn->GetFBO()._fbo);
-		
+		glBindFramebuffer(GL_FRAMEBUFFER, rn->GetFBO()->_fbo);
 	}
 	const std::vector<BaseObject*>* children = node->GetAllChildren();
-	if (children != NULL)
+	if (children != NULL) {
 		for (int i = 0; i < children->size(); ++i) {
-			DrawNodes(children->at(i), node);
+			//DrawNodes(children->at(i), node);
+			children->at(i)->GetComponent<Graphic>()->TryDraw();
 		}
-	if (renderNode) {
-		//bind last fbo
-		glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()._fbo);
 	}
-	if(node->GetParent() == NULL){
+
+	if (isRoot) {
+
 		//DRAW ROOT TO FINLal RECT
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		_fRect->Bind();
 		glDisable(GL_DEPTH_TEST);
-		glBindTexture(GL_TEXTURE_2D, parent->GetComponent<RenderNode>()->GetFBO()._fboTex);
+		glBindTexture(GL_TEXTURE_2D, rn->GetFBO()->_fboTex);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		_fRect->Unbind();
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	if (node->GetNodeType() == 1) {
-		node->GetComponent<Graphic>()->TryDraw();
-	}
-	else if (renderNode) {
-		//bind vao
-		_vao->Bind();
-		//activate shader	USING DEFAULT FOR NOW
-		Shader* s = _all_shaders->at(0);
-		s->Activate();
-		//set shader vars
-			//model projecttion texture
-		Renderer::SetShaderVariables(s);
-		glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
-		//bind texture from FBO
-		glBindTexture(GL_TEXTURE_2D, rn->GetFBO()._fboTex);
-		//maybe this part is optioNAL because in the example above he doesnt use this
-		glUniform1i(glGetUniformLocation(s->ID, "tex0"), rn->GetFBO()._fboTex); //maybe this part is optioNAL
+	else {
+		/*if (renderNode) {
+			//bind last fbo
+			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
+		}*/
 
-		//draw triangles
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		
-		//unbind vao
-		_vao->Unbind();
-		//deactivate shader
-		glUseProgram(0);
-		//unbind texture
-		glBindTexture(GL_TEXTURE_2D, 0);
+		if (node->GetNodeType() == 1) {
+			//glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
+			node->GetComponent<Graphic>()->TryDraw();
+			//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		}
+		else if (renderNode) {
+			//ifi t is a render node but not the root node bind the FBO of the last FBO node
+			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
+			//bind vao
+			_vao->Bind();
+			//activate shader	USING DEFAULT FOR NOW
+			Shader* s = _all_shaders->at(0);
+			s->Activate();
+			//set shader vars
+				//model projecttion texture
+			Renderer::SetShaderVariables(s);
+			glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
+			//bind texture from FBO
+			glBindTexture(GL_TEXTURE_2D, rn->GetFBO()->_fboTex);
+			//maybe this part is optioNAL because in the example above he doesnt use this
+			glUniform1i(glGetUniformLocation(s->ID, "tex0"), rn->GetFBO()->_fboTex); //maybe this part is optioNAL
+
+			//draw triangles
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+			//unbind vao
+			_vao->Unbind();
+			//deactivate shader
+			glUseProgram(0);
+			//unbind texture
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
 	}
+	
+	
 
 }
