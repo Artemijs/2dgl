@@ -29,7 +29,17 @@ TowerDefenseGame::TowerDefenseGame():Game() {
 	_s2 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 740, 0), Vec3(130, 20, 1), 0, _world);
 	_rn1->AddChild(_s2);
 
-	// 
+	_rn2 = new RenderNode(Vec3(650, 400, 0), Vec3(150, 750, 1), 0, _world);
+	_world->AddChild(_rn2);
+	_s3 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 740, 0), Vec3(130, 20, 1), 0, _rn2);
+	_rn2->AddChild(_s3);
+	_s4 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 715, 0), Vec3(130, 20, 1), 0, _rn2);
+	_rn2->AddChild(_s4);
+	_s5 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 690, 0), Vec3(130, 20, 1), 0, _rn2);
+	_rn2->AddChild(_s5);
+	
+
+	
 	//MakeGrid();
 }
 
@@ -49,6 +59,10 @@ TowerDefenseGame::~TowerDefenseGame() {
 	delete _rn1;
 	delete _s1;
 	delete _s2;
+	delete _s3;
+	delete _s4;
+	delete _s5;
+	delete _rn2;
 }
 
 

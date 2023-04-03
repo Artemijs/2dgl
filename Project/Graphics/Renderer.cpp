@@ -187,6 +187,28 @@ int Renderer::LoadTexture(const char* path) {
 	return _all_textures->size() - 1;
 }
 
+
+
+/*
+	root{
+			sprite
+			rn1{
+				sprite
+				sprtie
+			}
+			rn2{
+				sprite
+				sprite
+
+				rn3{
+					sprite
+				}
+			}
+		}
+
+*/
+
+
 void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 	
 	bool renderNode = (node->GetNodeType() == 2);
@@ -278,9 +300,6 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 	}
-	
-	
-
 }
 
 

@@ -20,6 +20,11 @@ private:
 	Sprite* _s1;
 	Sprite* _s2;
 	RenderNode* _rn1;
+	
+	Sprite* _s3;
+	Sprite* _s4;
+	Sprite* _s5;
+	RenderNode* _rn2;
 	float _speed;
 public :
 	TowerDefenseGame();
