@@ -8,7 +8,7 @@
 BaseObject* Game::_world = NULL;
  Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
 Game::Game() {
-	_switch = true;
+	_switch = false;
 	_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	//_world = new RenderNode(Vec3(0, 0, -10), Vec3(400, 400, 1), 0);
 	Text::Init();

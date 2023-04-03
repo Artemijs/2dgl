@@ -21,13 +21,13 @@ TowerDefenseGame::TowerDefenseGame():Game() {
 	//_world->AddChild(_t);
 	_s = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _world);
 	_world->AddChild(_s);
-	_rn1 = new RenderNode(Vec3(0, 0, 0), Vec3(100, 400, 1), 0, _world);
+	_rn1 = new RenderNode(Vec3(85, 400, 0), Vec3(150, 750, 1), 0, _world);
 	_world->AddChild(_rn1);
 	
-	//_world->AddChild(_rn1);
-	//_s1 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _rn1);
-	//_s2 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _world);
-
+	_s1 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _rn1);
+	_rn1->AddChild(_s1);
+	_s2 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 740, 0), Vec3(130, 20, 1), 0, _world);
+	_rn1->AddChild(_s2);
 
 	// 
 	//MakeGrid();
@@ -63,15 +63,27 @@ void TowerDefenseGame::HandleKeyInputs(int key, int action, int mods) {
 }
 void TowerDefenseGame::Update(float deltaTime) {
 	Game::Update(deltaTime);
+	/*Vec3 pos = _rn1->GetTransform()._position;
+	Vec3 size = _rn1->GetTransform()._scale;
+	float s = 0.1f;
+
+	if (pos.y > 800 - size.y) {
+		_speed = -s;
+	}
+	else if (pos.y < size.y) {
+		_speed = s;
+	}
+	pos.y += _speed;
+	_rn1->SetPosition(pos);*/
 	Vec3 pos = _s->GetTransform()._position;
 	Vec3 size = _s->GetTransform()._scale;
-	
+	float s = 0.2f;
 
 	if (pos.x > 800 - size.x) {
-		_speed = -0.4;
+		_speed = -s;
 	}
 	else if (pos.x < size.x) {
-		_speed = 0.4;
+		_speed = s;
 	}
 	pos.x += _speed;
 	_s->SetPosition(pos);

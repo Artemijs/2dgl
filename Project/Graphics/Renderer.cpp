@@ -192,14 +192,24 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 	bool renderNode = (node->GetNodeType() == 2);
 	bool isRoot = (node->GetParent() == NULL);
 	RenderNode* rn = NULL;
-
+	
+	
 	if (renderNode) {
 		//unbind prev fbo
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		//bind node fbo
 		rn = node->GetComponent<RenderNode>();
-
 		glBindFramebuffer(GL_FRAMEBUFFER, rn->GetFBO()->_fbo);
+		if (isRoot) {
+			glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glEnable(GL_DEPTH_TEST);
+		}
+		else {
+			glClearColor(0.2f, 0.13f, 0.17f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glEnable(GL_DEPTH_TEST);
+		}
 	}
 
 	const std::vector<BaseObject*>* children = node->GetAllChildren();
@@ -212,9 +222,10 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 	}
 
 	if (isRoot) {
-
-		//DRAW ROOT TO FINLal RECT
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		
+		//DRAW ROOT TO FINLal RECT
+		
 		_fRect->Bind();
 		glDisable(GL_DEPTH_TEST);
 		glBindTexture(GL_TEXTURE_2D, rn->GetFBO()->_fboTex);
@@ -229,17 +240,18 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 		}*/
 
 		if (node->GetNodeType() == 1) {
+			
 			//glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
 			node->GetComponent<Graphic>()->TryDraw();
-			//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+			//glBindFramebuffer(GL_FRAMEBUFFER, 0); 
 		}
 		else if (renderNode) {
-			/*//unbind prev FBO
+			//unbind prev FBO
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 			//ifi t is a render node but not the root node bind the FBO of the last FBO node
 			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
-			//bind vao
-			_vao->Bind();
+			//bind vao 
+			_vao->Bind(); 
 			//activate shader	USING DEFAULT FOR NOW
 			Shader* s = _all_shaders->at(0);
 			s->Activate();
@@ -248,19 +260,22 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 			Renderer::SetShaderVariables(s);
 			glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
 			//bind texture from FBO
-			glBindTexture(GL_TEXTURE_2D, rn->GetFBO()->_fboTex);
+			unsigned int tId = node->GetComponent<RenderNode>()->GetFBO()->_fboTex;
+			//unsigned int tId = Game::_testG->GetTexture()->ID;
+			glBindTexture(GL_TEXTURE_2D, tId);
 			//maybe this part is optioNAL because in the example above he doesnt use this
-			glUniform1i(glGetUniformLocation(s->ID, "tex0"), rn->GetFBO()->_fboTex); //maybe this part is optioNAL
+			//glUniform1i(glGetUniformLocation(s->ID, "tex0"), rn->GetFBO()->_fboTex); //maybe this part is optioNAL
+			//glUniform1i(glGetUniformLocation(s->ID, "tex0"), tId); //maybe this part is optioNAL
 
 			//draw triangles
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);  
 
 			//unbind vao
 			_vao->Unbind();
 			//deactivate shader
 			glUseProgram(0);
 			//unbind texture
-			glBindTexture(GL_TEXTURE_2D, 0);*/
+			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 	}
 	
