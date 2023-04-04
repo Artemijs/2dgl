@@ -239,7 +239,7 @@ void Renderer::DrawNodes(BaseObject* node, BaseObject* parent) {
 		for (int i = 0; i < children->size(); ++i) {
 			//WHAT IF A CHILD IS A RENDER NODE ?????????????????????????
 			//children->at(i)->GetComponent<Graphic>()->TryDraw();
-			DrawNodes(children->at(i), parent);
+			DrawNodes(children->at(i), node);
 		}
 	}
 

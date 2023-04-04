@@ -21,12 +21,12 @@ TowerDefenseGame::TowerDefenseGame():Game() {
 	//_world->AddChild(_t);
 	_s = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _world);
 	_world->AddChild(_s);
-	_rn1 = new RenderNode(Vec3(85, 400, 0), Vec3(150, 750, 1), 0, _world);
+	_rn1 = new RenderNode(Vec3(85, 400, 0), Vec3(150, 300, 1), 0, _world);
 	_world->AddChild(_rn1);
 	
 	_s1 = new Sprite("./Assets/Textures/default.png", Vec3(100, 50, 0), Vec3(100, 40, 1), 0, _rn1);
 	_rn1->AddChild(_s1);
-	_s2 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 740, 0), Vec3(130, 20, 1), 0, _world);
+	_s2 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 100, 0), Vec3(130, 20, 1), 0, _world);
 	_rn1->AddChild(_s2);
 
 	_rn2 = new RenderNode(Vec3(650, 400, 0), Vec3(150, 750, 1), 0, _world);
@@ -35,10 +35,12 @@ TowerDefenseGame::TowerDefenseGame():Game() {
 	_rn2->AddChild(_s3);
 	_s4 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 715, 0), Vec3(130, 20, 1), 0, _rn2);
 	_rn2->AddChild(_s4);
-	_s5 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(80, 690, 0), Vec3(130, 20, 1), 0, _rn2);
-	_rn2->AddChild(_s5);
 	
-
+	
+	_rn3 = new RenderNode(Vec3(0, 150, 0), Vec3(150, 300, 1), 0, _rn2);
+	_rn2->AddChild(_rn3);
+	_s5 = new Sprite("./Assets/Textures/sliderBGdefault.png", Vec3(75, 150, 0), Vec3(150, 300, 1), 0, _rn3);
+	_rn3->AddChild(_s5);
 	
 	//MakeGrid();
 }
@@ -63,6 +65,7 @@ TowerDefenseGame::~TowerDefenseGame() {
 	delete _s4;
 	delete _s5;
 	delete _rn2;
+	delete _rn3;
 }
 
 
