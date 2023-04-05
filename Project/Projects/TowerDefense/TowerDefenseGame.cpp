@@ -2,7 +2,8 @@
 #include "../../Graphics/Renderer.h"
 //TILE
 
-Tile::Tile(const char* btnTxt, Vec3 pos, Vec3 size, float ang, BaseObject* parent):Button(btnTxt, pos, size, ang, parent) {
+Tile::Tile(const char* btnTxt, Vec3 pos, Vec3 size, float ang, BaseObject* parent):
+	Button(btnTxt, pos, size, ang, parent) {
 	
 }
 Tile::~Tile() {

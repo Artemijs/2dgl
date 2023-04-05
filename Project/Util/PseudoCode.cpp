@@ -195,5 +195,128 @@
 	rn1[s, s, s,[s]]
 	rn3[s, s]
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////COLLISION DETECTION/////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	BUTTON inherits from MOUSE EVENT
+	MOUSE EVENT constructor registers the event in MOUSE EVENT CONTROLLER
+	MouseEvent controller need PARENT RENDER NODE
+
+	BUTTON is created
+	BUTTON is added as child to RENDER NODE and BUTTONS prent is set
+
+	the algorythm checks if window is collided with
+	then if window contents are collided with
+
+	I HAVE TO USE THE TREE SOMEHOW
+
+	for each window in tree
+		if(mouse in window):
+			for each ui in all_ui
+				check if mosue in ui
+
+	i can store window nodes in a list and if it has collided then use it as the root of a recursive algorythm
+
+	problem is that i cant check if the object has or does not have collision enabled
+
+	for rendernode rn in allrendernodes:
+		if collided with rn:
+			CheckCollision(rn);
+
+	CheckCollision(Node* n){
+		if (n->GetBB()->collided){
+			n->GetMouseEvent()->OnEnter();
+		}
+		for(child c in children):
+			CheckCollision(c);
+
+	}
+	THE TWO BIG PROBLEMS HERE ARE NODE NOT HAVING A GETBB FUNCTION BECASUE BEASEOBJECT DOES NOT CONTAIN THAT FUNCTIONALITY
+		AND NODE NOT HAVING A MOUSE EVENT FOR SAME REASON
+
+	n->GetComponent<BBox>();
+
+	BaseComponent{};
+
+	BasseObject{
+		vector<pair<uint,BaseComponent*>*> components;
+		
+		template<T> void AddComponent(t){
+			uint size = sizeof(t);
+			bool exists = CheckIfComponentExists(size);
+			
+			if(exists) return;
+
+			pair* p = new pair<uint, BaseComponent*>();
+			p.first = size;
+			p.second = t;
+
+			components->add(t);
+		}
+
+		bool CheckCheckIfComponentExists(uint){
+			foreach pair p in components:
+				if p->first == uint:
+					return true;
+
+			return false;
+		}
+
+		template<T>  t GetComponent(){
+			uint size = sizeof(T);
+			foreach pair p in components:
+				if p.first == size
+					return p.second;
+
+			return NULL;
+		}
+
+		template<T>  t GetComponent(uint size){
+			foreach pair p in components:
+				if p.first == size
+					return p.second;
+
+			return NULL;
+		}
+		void Update(float deltaTime){}
+		void Draw(){}
+	};
+
+	LETS TRY TO APPROACH THE PROBLEM WITH THE COMPONENTS BEING OBJECTS ADN NOT INHERITED
+
+	
+	for rendernode rn in allrendernodes:
+		if collided with rn:
+			CheckCollision(rn);
+
+	CheckCollision(Node* n){
+
+		uint size = sizeof(BBox);
+		BBox bb = n->GeteComponent<BBox>(size);
+		if (bb->collided){
+			 n->GeteComponent<MouseEvent>();
+		}
+
+		for(child c in children):
+			CheckCollision(c);
+
+		
+
+	}
+
+
+	HOW DOES THE MOUSE EVENT WORK NOW ??
+
+
+
+	I NEED TO RECURSIVELLY FIND THE OBJECT THAT MOUSE INTERSECTSS WITH CLOSEST TO THE CAMERA
+
+	CheckCollided(Node, mousePos, Node* closest){
+		
+	}
+
+
+
 
 */
