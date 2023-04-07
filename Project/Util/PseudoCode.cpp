@@ -300,9 +300,6 @@
 
 		for(child c in children):
 			CheckCollision(c);
-
-		
-
 	}
 
 
@@ -312,7 +309,51 @@
 
 	I NEED TO RECURSIVELLY FIND THE OBJECT THAT MOUSE INTERSECTSS WITH CLOSEST TO THE CAMERA
 
-	CheckCollided(Node, mousePos, Node* closest){
+	HandleMouseEvent(vec3 mousepos){
+		//find rneder node closest to the camera that intersects with the mouse
+		renderNode old = NULL;
+		for (rendernode new in allrendernodes){
+			uint size = sizeof(BBox);
+			BBox bb = new->GeteComponent<BBox>(size);
+			if (bb->collided){
+				if(old == null)
+					old = new;
+					else if(new.z > old.z){
+						old = new;
+					}
+			}
+		}
+		
+		if(old == NULL){
+			//not colliding with anything 
+			return;
+		}
+
+		Node* n = CheckCollided(old, mousePos)
+	}
+
+
+	CheckCollided(Node* n, mousePos, ){
+		uint size = sizeof(BBox);
+		BBox bb = n->GeteComponent<BBox>(size);
+		Node* closest = NULL;
+		
+
+		fpr(int i =0; i < _children->size(); ++i){
+			
+			Node* childN = CheckCollision(_children->at(i), mousepos);
+			
+			if(n->position.z > closest->position->z){
+				closest = childN;
+			}
+		}
+		if(closest == NULL){
+			if (bb->collided){
+				//compare with closest
+				closest = n;
+			}
+		}
+		return closest;
 		
 	}
 
