@@ -7,13 +7,14 @@
 #include "../UI/Text.h"
 #include "../UI/Button.h"
 #include "../UI/Basewindow.h"
-
+#include "BaseNode.h"
 class Game {
 protected:
 	bool _switch;
 	bool _isRunning;
 public :
 	static BaseObject* _world;
+	static BaseNode* test;
 	static Graphic* _testG;
 	
 	Game();

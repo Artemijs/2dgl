@@ -3,9 +3,10 @@
 #include "../Input/MouseEventController.h"
 #include "../UI/RenderNode.h"
 #include <iostream>
-
+#include "../Math/BoxBounds.h"
 //BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 BaseObject* Game::_world = NULL;
+BaseNode* Game::test = new BaseNode();
  Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
 Game::Game() {
 	_switch = false;
@@ -14,7 +15,9 @@ Game::Game() {
 	Text::Init();
 	_isRunning = true;
 	//_world->AddChild(_testG);
-
+	test->AddComponent<BaseComponent>( new const BaseComponent());
+	
+	test->GetComponent<BaseComponent>()->TestFunc();
 	MouseEventController::Init();
 }
 Game::~Game() {
@@ -22,6 +25,7 @@ Game::~Game() {
 	delete _world;
 	delete Renderer::instance();
 	delete _testG;
+	delete test;
 	MouseEventController::Delete();
 }
 //remove all ui code
