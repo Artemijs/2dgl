@@ -1,20 +1,26 @@
-#ifndef BASEOBJECT_H
-#define BASEOBJECT_H
 #include "../Math/Matrix4x4.h"
-#include "../Util/Callback.h"
-#include <vector>
-
-
+#ifndef TRANSFORM_H
+#define TRANSFORM_H
 struct Transform {
 public:
 	Vec3 _position;
 	Vec3 _scale;
 	Vec3 _angle;
 };
+#endif
+#ifndef BASEOBJECT_H
+#define BASEOBJECT_H
+
+#include "../Util/Callback.h"
+#include <vector>
 
 
 
 
+
+
+#ifndef BASEUPDATE_H
+#define BASEUPDATE_H
 
 class BaseUpdate {
 protected:
@@ -28,7 +34,7 @@ public :
 	bool GetEnabled();
 };
 
-
+#endif
 
 class BaseObject : public BaseUpdate{
 protected:

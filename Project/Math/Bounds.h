@@ -1,10 +1,12 @@
 #ifndef BOUNDS_H
 #define BOUNDS_H
 #include "Matrix4x4.h"
-//#include "../Game/BaseComponent.h"
-class Bounds {
+#include "../Game/BaseComponent.h"
+class Bounds: public BaseComponent {
 	
 public :
+	//Bounds():BaseComponent() {}
+	
 	//BaseComponent* comp;
 	virtual bool CheckInside(Vec3 pos) = 0;
 	virtual float GetZ() = 0;

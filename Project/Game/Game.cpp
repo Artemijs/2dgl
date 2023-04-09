@@ -17,7 +17,7 @@ Game::Game() {
 	//_world->AddChild(_testG);
 	test->AddComponent<BaseComponent>( new const BaseComponent());
 	
-	test->GetComponent<BaseComponent>()->TestFunc();
+	//test->GetComponent<BaseComponent>()->TestFunc();
 	MouseEventController::Init();
 }
 Game::~Game() {

@@ -1,23 +1,94 @@
-#ifndef BASENODE_H
-#define BASENODE_H
-#include "../Math/Matrix4x4.h"
-#include "../Util/Callback.h"
-#include <vector>
-#include "BaseComponent.h"
 
-/*struct Transform {
+#include "../Math/Matrix4x4.h"
+#ifndef TRANSFORM_H
+#define TRANSFORM_H
+struct Transform {
 public:
 	Vec3 _position;
 	Vec3 _scale;
 	Vec3 _angle;
-};*/
+};
+#endif
+
+#ifndef BASEUPDATE_H
+#define BASEUPDATE_H
+class BaseUpdate {
+protected:
+	bool _enabled;
+public:
+	BaseUpdate() {
+		_enabled = true;
+	}
+	virtual void TryUpdate(float deltaTime) = 0;
+	virtual void Update(float deltaTime) = 0;
+	//turns the object on/off, if off then it does not draw or update
+	virtual void SetEnabled(bool enabled) = 0;
+	bool GetEnabled() {
+		return _enabled;
+	}
+};
+
+#endif
+
+#ifndef BASENODE_H
+#define BASENODE_H
+
+#include "../Util/Callback.h"
+#include <vector>
+#include "BaseComponent.h"
+
+
 	
-class BaseNode {
-private:
+class BaseNode : public BaseUpdate{
+protected:
+	Transform _transform;				
 	std::vector< std::pair< const unsigned int, const BaseComponent*>*>* _components;
+	BaseNode* _parent;					
+	std::vector<BaseNode*>* _children;
+	bool _inheritTransform[3]{ true, true, true };
+	bool _visible;
+	Matrix4x4 _model;
+	void Update(float deltaTime);
 public :
 	BaseNode();
+	BaseNode(Vec3 pos, Vec3 size, float ang);
 	~BaseNode();
+
+	//updates the object if visible and enabled
+	void TryUpdate(float deltaTime);
+
+	/// <summary>
+	/// sets _inheritTransform[id] to on/off, if on it does not move/scale/rotate with parent, nor do the children of this obj
+	/// </summary>
+	/// <param name="id"> int, 0 : position, 1 : scale, 2 : ang</param>
+	/// <param name="on">true/false</param>
+	void SetInheritTransform(int id, bool on);
+
+	virtual void MakeModelMatrix(Matrix4x4 trans, Matrix4x4 scale, Matrix4x4 rot);
+	
+	//returns global positions rotation and scale
+	Transform GetTransform();
+	
+	//set local posiion unless inherit transform of parent is off
+	void SetPosition(Vec3 pos);
+	
+	//set local sale unless inherit transform of parent is off
+	void SetScale(Vec3 scale);
+	
+	//set local angle unless inherit transform of parent is off
+	void SetAngle(Vec3 angle);
+
+	//turns the objects visibility on/off, if off then it does not draw
+	void SetVisible(bool visible);
+	Matrix4x4* GetModelMatrix();
+	void SetEnabled(bool on);
+
+	const unsigned int AddChild(BaseNode* child);
+	BaseNode* GetChild(const unsigned int id);
+	void SetParent(BaseNode* parent);
+	BaseNode* GetParent();
+	const std::vector<BaseNode*>* GetAllChildren();
+
 
 	template<class T> void AddComponent(const T* comp) const {
 		const unsigned int size = sizeof(T);
@@ -101,5 +172,13 @@ public :
 		void Update(float deltaTime){}
 		void Draw(){}
 	};
+
+*/
+
+/*
+
+	- ITS A MIRACLE YOU HEARD THAT.
+	- dIDDNT HEAR WHEN IT HAPPENS THOUGH
+	- THIS YEAR
 
 */
