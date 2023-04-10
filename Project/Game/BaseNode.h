@@ -10,8 +10,6 @@ public:
 };
 #endif
 
-#ifndef BASEUPDATE_H
-#define BASEUPDATE_H
 class BaseUpdate {
 protected:
 	bool _enabled;
@@ -28,12 +26,10 @@ public:
 	}
 };
 
-#endif
+
 
 #ifndef BASENODE_H
 #define BASENODE_H
-
-#include "../Util/Callback.h"
 #include <vector>
 #include "BaseComponent.h"
 

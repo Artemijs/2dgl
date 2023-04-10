@@ -1,6 +1,7 @@
 #include "MouseEvent.h"
 #include "MouseEventController.h"
 #include "../Util/Callback.h"
+using namespace v1_5;
 MouseEvent::MouseEvent(Bounds* bounds, BaseObject * bo) {
 	_bounds = bounds;
 	_baseObject = bo;

@@ -13,9 +13,9 @@ protected:
 	bool _switch;
 	bool _isRunning;
 public :
-	static BaseObject* _world;
+	static v1_5::BaseObject* _world;
 	static BaseNode* test;
-	static Graphic* _testG;
+	//static v1_5::Graphic* _testG;
 	
 	Game();
 	virtual ~Game();

@@ -4,15 +4,15 @@
 #include "../UI/RenderNode.h"
 #include <iostream>
 #include "../Math/BoxBounds.h"
-//BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
-BaseObject* Game::_world = NULL;
+BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
+//BaseObject* Game::_world = NULL;
 BaseNode* Game::test = new BaseNode();
- Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
+ //Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
 Game::Game() {
 	_switch = false;
 	_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	//_world = new RenderNode(Vec3(0, 0, -10), Vec3(400, 400, 1), 0);
-	Text::Init();
+	v1_5::Text::Init();
 	_isRunning = true;
 	//_world->AddChild(_testG);
 	test->AddComponent<BaseComponent>( new const BaseComponent());
@@ -22,9 +22,9 @@ Game::Game() {
 }
 Game::~Game() {
 	std::cout << "deleting game\n";
-	delete _world;
+	//delete _world;
 	delete Renderer::instance();
-	delete _testG;
+	//delete _testG;
 	delete test;
 	MouseEventController::Delete();
 }
@@ -35,8 +35,8 @@ Game::~Game() {
 
 void Game::Update(float deltaTime) {
 	//translate children 
-	Game::_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
-	Game:: _world->TryUpdate(deltaTime);
+	//Game::_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
+	//Game:: _world->TryUpdate(deltaTime);
 	
 	
 	double xpos, ypos;
@@ -67,7 +67,7 @@ void Game::Draw() {
 		Renderer::instance()->Draw();
 	}
 	else {
-		Renderer::instance()->DrawNodes(_world, _world);
+		//Renderer::instance()->DrawNodes(_world, _world);
 
 		glfwSwapBuffers(Renderer::instance()->GetWindow());
 		glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?

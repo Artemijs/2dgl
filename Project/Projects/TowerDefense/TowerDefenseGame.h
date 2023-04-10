@@ -2,6 +2,7 @@
 #define TOWERDEFENSEGAME_H
 #include "../../Game/Game.h"
 #include "../../UI/RenderNode.h"
+using namespace v1_5;
 class Tile : public Button {
 private:
 

@@ -2,6 +2,7 @@
 #define RENDERNODE_H
 #include "../Game/BaseObject.h"
 #include "../BackEnd/FBO.h"
+using namespace v1_5;
 class RenderNode : public BaseObject{
 private:
 	const FBO* _fbo;
