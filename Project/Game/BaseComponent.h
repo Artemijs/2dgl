@@ -7,7 +7,7 @@ private:
 
 public :
 	BaseComponent();
-	~BaseComponent();
+	virtual ~BaseComponent();
 };
 
 #endif

@@ -16,7 +16,7 @@ Game::Game() {
 	v1_5::Text::Init();
 	_isRunning = true;
 	//_world->AddChild(_testG);
-	world->AddComponent<Sprite>( new const Sprite());
+	world->AddComponent<v1_6::Sprite>( new const v1_6::Sprite());
 	
 	//test->GetComponent<BaseComponent>()->TestFunc();
 	MouseEventController::Init();

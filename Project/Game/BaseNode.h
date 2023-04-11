@@ -91,10 +91,10 @@ public :
 		const bool exists = CheckIfComponentExists(size);
 
 		if (exists) return;
-		const BaseComponent* b = new v1_6::Sprite();
-		const BaseComponent* b = comp;
+		//const BaseComponent* b = new v1_6::Sprite();
+		const BaseComponent* b = dynamic_cast<const BaseComponent*> (comp);
 		std::pair<const  unsigned int, const BaseComponent*>* pair 
-			= new std::pair< const unsigned int, const BaseComponent*>({ size, comp });
+			= new std::pair< const unsigned int, const BaseComponent*>({ size, b });
 		_components->push_back(pair);
 	}
 	const bool CheckIfComponentExists(const unsigned int id) const {
