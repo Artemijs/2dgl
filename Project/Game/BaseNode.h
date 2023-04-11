@@ -32,7 +32,7 @@ public:
 #define BASENODE_H
 #include <vector>
 #include "BaseComponent.h"
-
+#include "../Graphics/Sprite.h"
 
 	
 class BaseNode : public BaseUpdate{
@@ -91,8 +91,10 @@ public :
 		const bool exists = CheckIfComponentExists(size);
 
 		if (exists) return;
-
-		std::pair<const  unsigned int, const BaseComponent*>* pair = new std::pair< const unsigned int, const BaseComponent*>(size, NULL );
+		const BaseComponent* b = new v1_6::Sprite();
+		const BaseComponent* b = comp;
+		std::pair<const  unsigned int, const BaseComponent*>* pair 
+			= new std::pair< const unsigned int, const BaseComponent*>({ size, comp });
 		_components->push_back(pair);
 	}
 	const bool CheckIfComponentExists(const unsigned int id) const {

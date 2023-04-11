@@ -14,4 +14,17 @@ namespace v1_5 {
 		void Draw();
 	};
 }
+namespace v1_6 {
+	class Sprite : public Graphic {
+	private:
+
+	public:
+		Sprite();
+		Sprite(const char* path);
+		~Sprite();
+		void Bind(Matrix4x4* model) const;
+	};
+
+};
+
 #endif // !SPRITE_H

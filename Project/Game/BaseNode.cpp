@@ -22,6 +22,7 @@ BaseNode::BaseNode(Vec3 pos, Vec3 size, float ang) {
 }
 
 BaseNode::~BaseNode() {
+	printf("deleting basenode\n");
 	for (int i = 0; i < _components->size(); i++) {
 		delete _components->at(i)->second;
 		delete _components->at(i);

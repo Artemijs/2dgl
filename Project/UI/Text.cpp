@@ -229,7 +229,7 @@ namespace v1_5 {
 		_shader->Activate();
 		glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &_model.buff[0]);
 
-		Renderer::instance()->SetShaderVariables(_shader);
+		Renderer::instance()->SetShaderVariables(_shader->ID);
 		Renderer::instance()->GetTexture(_texId)->Bind();
 		Renderer::instance()->GetTexture(_texId)->texUni(_shader, "tex0", 0);
 		glUniform1f(glGetUniformLocation(_shader->ID, "borderWidth"), _borderWidth);

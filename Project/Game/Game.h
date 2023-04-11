@@ -14,7 +14,7 @@ protected:
 	bool _isRunning;
 public :
 	static v1_5::BaseObject* _world;
-	static BaseNode* test;
+	static BaseNode* world;
 	//static v1_5::Graphic* _testG;
 	
 	Game();

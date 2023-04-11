@@ -14,8 +14,8 @@ namespace v1_5{
 
 	public:
 		Graphic();
-		~Graphic();
 		Graphic(const char* path, Vec3 pos, Vec3 size, float ang, BaseObject* parent = NULL);
+		~Graphic();
 		Shader* GetShader() { return _shader; }
 		void SetShader(Shader* s) { _shader = s; }
 
@@ -32,26 +32,32 @@ namespace v1_5{
 
 	};
 }
+
+namespace v1_6 {
+	class Graphic : public BaseComponent{
+	protected:
+		const unsigned int _textureId;
+		const Shader* _shader;
+	private:
+		virtual void Bind(Matrix4x4* model) const = 0;
+		void Unbind() const;
+	public:
+		Graphic();
+		Graphic(const char* path);
+		~Graphic();
+
+		void Draw(Matrix4x4* model) const;
+
+	};
+}
+
+
 #endif
-class Graphic {
-private:
-	const unsigned int _textureId;
-	const Shader* _shader;
-public:
-	Graphic();
-	~Graphic();
-	Graphic(const char* path);
-	void Bind();
-	void Draw();
-	void Unbind();
-};
+
 /*
 
 	int texId
 	int shaderId
-	transform
-	Matrix4x4 _model
-
 
 	Bind
 	Draw

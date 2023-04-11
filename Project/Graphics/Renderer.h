@@ -64,7 +64,7 @@ namespace v1_5 {
 		void AddGraphic(v1_5::Graphic* g) {
 			_all_graphics->push_back(g);
 		}
-		void SetShaderVariables(Shader* s);
+		void SetShaderVariables(const unsigned int shaderID);
 		Shader* GetShader(int id);
 		Texture* GetTexture(int id);
 		const unsigned int LoadTexture(const char* path);

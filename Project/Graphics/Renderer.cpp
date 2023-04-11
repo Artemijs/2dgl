@@ -156,8 +156,8 @@ namespace v1_5 {
 	/// set projection and camera view matrix
 	/// </summary>
 	/// <param name="s"></param>
-	void Renderer::SetShaderVariables(Shader* s) {
-		glUniformMatrix4fv(glGetUniformLocation(s->ID, "proj"), 1, GL_TRUE, &_projection.buff[0]);
+	void Renderer::SetShaderVariables(const unsigned int shaderID) {
+		glUniformMatrix4fv(glGetUniformLocation(shaderID, "proj"), 1, GL_TRUE, &_projection.buff[0]);
 
 	}
 	Shader* Renderer::GetShader(int id) {
@@ -280,7 +280,7 @@ namespace v1_5 {
 				s->Activate();
 				//set shader vars
 					//model projecttion texture
-				Renderer::SetShaderVariables(s);
+				Renderer::SetShaderVariables(s->ID);
 				glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
 				//bind texture from FBO
 				unsigned int tId = node->GetComponent<RenderNode>()->GetFBO()->_fboTex;

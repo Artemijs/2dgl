@@ -4,5 +4,5 @@ BaseComponent::BaseComponent() {
 	
 }
 BaseComponent::~BaseComponent() {
-
+	printf("deleting base comonent\n");
 }
