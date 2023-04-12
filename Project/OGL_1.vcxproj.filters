@@ -120,41 +120,17 @@
     <ClCompile Include="Game\Game.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\AnimatedSprite.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics\Sprite.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Math\BoxBounds.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Input\MouseEventController.cpp">
-      <Filter>Source Files\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Input\MouseEvent.cpp">
-      <Filter>Source Files\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Audio\SoundController.cpp">
       <Filter>Resource Files\Assets\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Game\BaseObject.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Button.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Text.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Util\Callback.cpp">
       <Filter>Source Files\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UIFactory.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Basewindow.cpp">
-      <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="BackEnd\FinalRect.cpp">
       <Filter>Source Files\BackEnd</Filter>
@@ -206,9 +182,6 @@
     <ClInclude Include="Game\Game.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\AnimatedSprite.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\Sprite.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
@@ -218,38 +191,11 @@
     <ClInclude Include="Math\BoxBounds.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Input\MouseEventController.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Input\MouseEvent.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Audio\SoundController.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Element.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UISlider.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\BaseObject.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Button.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Text.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Util\Callback.h">
       <Filter>Header Files\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIFactory.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Basewindow.h">
-      <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="BackEnd\FinalRect.h">
       <Filter>Header Files\BackEnd</Filter>

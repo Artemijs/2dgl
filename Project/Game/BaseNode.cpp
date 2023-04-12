@@ -1,7 +1,7 @@
 #include "BaseNode.h"
 #include <iostream>
 
-BaseNode::BaseNode() {
+BaseNode::BaseNode():_size(0) {
 	_components = new std::vector<std::pair<const unsigned int, const BaseComponent*>*>();
 	_transform = { Vec3(), Vec3(), Vec3() };
 	_parent = NULL;
@@ -11,7 +11,8 @@ BaseNode::BaseNode() {
 	_model = Matrix4x4(1.0f);
 }
 
-BaseNode::BaseNode(Vec3 pos, Vec3 size, float ang) {
+BaseNode::BaseNode(Vec3 pos, Vec3 size, float ang):_size(0) {
+	printf("creaating basenode\n");
 	_components = new std::vector<std::pair<const unsigned int, const BaseComponent*>*>();
 	_transform = { pos, size, Vec3(0, ang, 0) };
 	_parent = NULL;
@@ -20,7 +21,10 @@ BaseNode::BaseNode(Vec3 pos, Vec3 size, float ang) {
 	_visible = true;
 	_model = Matrix4x4(1.0f);
 }
+void BaseNode::SetSize() {
+	printf("setting size in base\n");
 
+}
 BaseNode::~BaseNode() {
 	printf("deleting basenode\n");
 	for (int i = 0; i < _components->size(); i++) {

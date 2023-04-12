@@ -1,33 +1,34 @@
 #include "Game.h"
 #include "../Graphics/Renderer.h"
 #include "../Graphics/Sprite.h"
-#include "../Input/MouseEventController.h"
+
 #include "../UI/RenderNode.h"
 #include <iostream>
 #include "../Math/BoxBounds.h"
-BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
+
+//BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 //BaseObject* Game::_world = NULL;
-BaseNode* Game::world = new BaseNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
+BaseNode* Game::_world = new BaseNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
  //Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
 Game::Game() {
 	_switch = false;
-	_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
+	//_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	//_world = new RenderNode(Vec3(0, 0, -10), Vec3(400, 400, 1), 0);
-	v1_5::Text::Init();
+	//v1_5::Text::Init();
 	_isRunning = true;
 	//_world->AddChild(_testG);
-	world->AddComponent<v1_6::Sprite>( new const v1_6::Sprite());
+	//world->AddComponent<v1_6::Sprite>( new const v1_6::Sprite());
 	
 	//test->GetComponent<BaseComponent>()->TestFunc();
-	MouseEventController::Init();
+	//MouseEventController::Init();
 }
 Game::~Game() {
 	std::cout << "deleting game\n";
 	//delete _world;
 	delete Renderer::instance();
 	//delete _testG;
-	delete world;
-	MouseEventController::Delete();
+	delete _world;
+	//MouseEventController::Delete();
 }
 //remove all ui code
 //add UpdateModelMatrix(parentPos, parentScale, parentRot)
@@ -37,7 +38,9 @@ Game::~Game() {
 void Game::Update(float deltaTime) {
 	//translate children 
 	//Game::_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
+	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
 	//Game:: _world->TryUpdate(deltaTime);
+	_world->TryUpdate(deltaTime);
 	
 	
 	double xpos, ypos;
@@ -49,8 +52,8 @@ void Game::Update(float deltaTime) {
 	//MOUSE EVENTS
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
 	ypos = Renderer::instance()->GetWindowSize().y - ypos;
-	MouseEventController::HandleMouseMoving(Vec2(xpos, ypos), deltaTime);
-	MouseEventController::Update(deltaTime);
+	//MouseEventController::HandleMouseMoving(Vec2(xpos, ypos), deltaTime);
+	//MouseEventController::Update(deltaTime);
 
 	//KEYBOARD EVENTS
 	//std::cout << "game update\n";
@@ -68,7 +71,7 @@ void Game::Draw() {
 		Renderer::instance()->Draw();
 	}
 	else {
-		//Renderer::instance()->DrawNodes(_world, _world);
+		//v1_5::Renderer::instance()->DrawNodes(_world, _world);
 
 		glfwSwapBuffers(Renderer::instance()->GetWindow());
 		glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
@@ -89,10 +92,10 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 }
 void Game::HandleMouseInputs(int btn, int action) {
 	std::cout << "btn event called \n";
-	if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
-		MouseEventController::HandleMouseClick(true);
-	else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
-		MouseEventController::HandleMouseClick(false);
-	}
+	//if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
+		//MouseEventController::HandleMouseClick(true);
+	//else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
+		//MouseEventController::HandleMouseClick(false);
+	//}
 }
 bool Game::IsRunning() { return _isRunning; }

@@ -1,21 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
-
+#include "BaseNode.h"
 #include "../Graphics/Graphic.h"
 #include "../Graphics/Sprite.h"
-#include "../Graphics/AnimatedSprite.h"
-#include "../UI/Text.h"
-#include "../UI/Button.h"
-#include "../UI/Basewindow.h"
-#include "BaseNode.h"
+
 class Game {
 protected:
 	bool _switch;
 	bool _isRunning;
 public :
-	static v1_5::BaseObject* _world;
-	static BaseNode* world;
-	//static v1_5::Graphic* _testG;
+
+	static BaseNode* _world;
 	
 	Game();
 	virtual ~Game();

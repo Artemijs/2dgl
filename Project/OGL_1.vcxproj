@@ -158,25 +158,17 @@
     <ClCompile Include="BackEnd\VBO.cpp" />
     <ClCompile Include="Game\BaseComponent.cpp" />
     <ClCompile Include="Game\BaseNode.cpp" />
-    <ClCompile Include="Game\BaseObject.cpp" />
     <ClCompile Include="Game\Game.cpp" />
-    <ClCompile Include="Graphics\AnimatedSprite.cpp" />
     <ClCompile Include="Graphics\Graphic.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\ShaderClass.cpp" />
     <ClCompile Include="Graphics\Sprite.cpp" />
     <ClCompile Include="Graphics\Texture.cpp" />
-    <ClCompile Include="Input\MouseEvent.cpp" />
-    <ClCompile Include="Input\MouseEventController.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math\BoxBounds.cpp" />
     <ClCompile Include="Math\Matrix4x4.cpp" />
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp" />
-    <ClCompile Include="UI\Basewindow.cpp" />
-    <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="UI\RenderNode.cpp" />
-    <ClCompile Include="UI\Text.cpp" />
-    <ClCompile Include="UI\UIFactory.cpp" />
     <ClCompile Include="Util\Callback.cpp" />
     <ClCompile Include="Util\PseudoCode.cpp" />
   </ItemGroup>
@@ -189,27 +181,17 @@
     <ClInclude Include="BackEnd\VBO.h" />
     <ClInclude Include="Game\BaseComponent.h" />
     <ClInclude Include="Game\BaseNode.h" />
-    <ClInclude Include="Game\BaseObject.h" />
     <ClInclude Include="Game\Game.h" />
-    <ClInclude Include="Graphics\AnimatedSprite.h" />
     <ClInclude Include="Graphics\Graphic.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\ShaderClass.h" />
     <ClInclude Include="Graphics\Sprite.h" />
     <ClInclude Include="Graphics\Texture.h" />
-    <ClInclude Include="Input\MouseEvent.h" />
-    <ClInclude Include="Input\MouseEventController.h" />
     <ClInclude Include="Math\Bounds.h" />
     <ClInclude Include="Math\BoxBounds.h" />
     <ClInclude Include="Math\Matrix4x4.h" />
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />
-    <ClInclude Include="UI\Basewindow.h" />
-    <ClInclude Include="UI\Button.h" />
-    <ClInclude Include="UI\Element.h" />
     <ClInclude Include="UI\RenderNode.h" />
-    <ClInclude Include="UI\Text.h" />
-    <ClInclude Include="UI\UIFactory.h" />
-    <ClInclude Include="UI\UISlider.h" />
     <ClInclude Include="Util\Callback.h" />
   </ItemGroup>
   <ItemGroup>

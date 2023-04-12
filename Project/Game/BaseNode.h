@@ -1,14 +1,14 @@
-
+#ifndef BASENODE_H
+#define BASENODE_H
 #include "../Math/Matrix4x4.h"
-#ifndef TRANSFORM_H
-#define TRANSFORM_H
+
 struct Transform {
 public:
 	Vec3 _position;
 	Vec3 _scale;
 	Vec3 _angle;
 };
-#endif
+
 
 class BaseUpdate {
 protected:
@@ -28,28 +28,28 @@ public:
 
 
 
-#ifndef BASENODE_H
-#define BASENODE_H
+
 #include <vector>
 #include "BaseComponent.h"
 #include "../Graphics/Sprite.h"
 
-	
-class BaseNode : public BaseUpdate{
+
+class BaseNode : public BaseUpdate {
 protected:
-	Transform _transform;				
+	Transform _transform;
 	std::vector< std::pair< const unsigned int, const BaseComponent*>*>* _components;
-	BaseNode* _parent;					
+	BaseNode* _parent;
 	std::vector<BaseNode*>* _children;
 	bool _inheritTransform[3]{ true, true, true };
 	bool _visible;
 	Matrix4x4 _model;
 	void Update(float deltaTime);
-public :
+	const unsigned int _size;
+public:
 	BaseNode();
 	BaseNode(Vec3 pos, Vec3 size, float ang);
 	~BaseNode();
-
+	virtual void SetSize();
 	//updates the object if visible and enabled
 	void TryUpdate(float deltaTime);
 
@@ -61,16 +61,16 @@ public :
 	void SetInheritTransform(int id, bool on);
 
 	virtual void MakeModelMatrix(Matrix4x4 trans, Matrix4x4 scale, Matrix4x4 rot);
-	
+
 	//returns global positions rotation and scale
 	Transform GetTransform();
-	
+
 	//set local posiion unless inherit transform of parent is off
 	void SetPosition(Vec3 pos);
-	
+
 	//set local sale unless inherit transform of parent is off
 	void SetScale(Vec3 scale);
-	
+
 	//set local angle unless inherit transform of parent is off
 	void SetAngle(Vec3 angle);
 
@@ -93,7 +93,7 @@ public :
 		if (exists) return;
 		//const BaseComponent* b = new v1_6::Sprite();
 		const BaseComponent* b = dynamic_cast<const BaseComponent*> (comp);
-		std::pair<const  unsigned int, const BaseComponent*>* pair 
+		std::pair<const  unsigned int, const BaseComponent*>* pair
 			= new std::pair< const unsigned int, const BaseComponent*>({ size, b });
 		_components->push_back(pair);
 	}

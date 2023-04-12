@@ -5,5 +5,5 @@ BBCall::BBCall(Bounds* b, Matrix4x4* m) {
 	_model = m;
 }
 void BBCall::Execute() {
-	_bounds->Translate2World((*_model));
+	//_bounds->Translate2World((*_model));
 }

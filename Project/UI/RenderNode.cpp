@@ -1,15 +1,19 @@
 #include "RenderNode.h"
 #include "../Graphics/Renderer.h"
 #include "../Game/Game.h"
-RenderNode::RenderNode():
-	BaseObject(Vec3(), Renderer::instance()->WindowSizeVec3(), Vec3(0, 0, 0), Game::_world, 2) , _fbo(new FBO(Renderer::instance()->WindowSizeVec3().x, Renderer::instance()->WindowSizeVec3().y)){
+#include "../Game/BaseNode.h"
+
+
+RenderNode::RenderNode() :
+	BaseNode(Vec3(), Renderer::instance()->WindowSizeVec3(), 0),
+	_fbo(new FBO(Renderer::instance()->WindowSizeVec3().x, Renderer::instance()->WindowSizeVec3().y)) {
 	//_fbo = FBO();
 
 }
 
 //uses default image as background
-RenderNode::RenderNode(Vec3 pos, Vec3 size, float ang, BaseObject* parent): 
-	BaseObject(pos, size, Vec3(0,ang,0), parent, 2), _fbo(new FBO(size.x, size.y)) {
+RenderNode::RenderNode(Vec3 pos, Vec3 size, float ang) :
+	BaseNode(pos, size,  ang), _fbo(new FBO(size.x, size.y)) {
 	//_fbo = FBO();
 }
 RenderNode::~RenderNode() {
@@ -39,13 +43,13 @@ void RenderNode::MakeModelMatrix(Matrix4x4 trans, Matrix4x4 scale, Matrix4x4 rot
 	}
 
 	_model = nt * nr * ns;
-	for (int i = 0; i < _onMakeModelCalls->size(); ++i) {
-		_onMakeModelCalls->at(i)->Execute();
-	}
 }
 const FBO* RenderNode::GetFBO()const {
 	return _fbo;
 }
+
+
+
 
 /*
 	when FBOs texture is smaller than the screen
