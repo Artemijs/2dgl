@@ -18,6 +18,5 @@ public :
 	~FBO();
 	//void Bind();
 	//void Unbind();
-
 };
 #endif

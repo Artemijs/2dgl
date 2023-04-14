@@ -158,6 +158,7 @@
     <ClCompile Include="BackEnd\VBO.cpp" />
     <ClCompile Include="Game\BaseComponent.cpp" />
     <ClCompile Include="Game\BaseNode.cpp" />
+    <ClCompile Include="Game\FBOComponent.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Graphics\Graphic.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="BackEnd\VBO.h" />
     <ClInclude Include="Game\BaseComponent.h" />
     <ClInclude Include="Game\BaseNode.h" />
+    <ClInclude Include="Game\FBOComponent.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Graphics\Graphic.h" />
     <ClInclude Include="Graphics\Renderer.h" />

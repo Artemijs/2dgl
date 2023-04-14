@@ -52,6 +52,7 @@ private:
 	Renderer();
 	static Renderer* _instance;
 	//Graphic* _testG;
+	//const unsigned int fb
 
 public:
 	~Renderer();

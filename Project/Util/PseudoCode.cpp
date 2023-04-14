@@ -359,5 +359,10 @@
 
 
 
+	a render node doesnt need to be a different type of node
+	it can have an FBO as a component
+	to check isRenderNode i can check if compobnents len == 1 
+	and component type size == renNodeSize
+
 
 */

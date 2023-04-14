@@ -110,7 +110,7 @@ public:
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {
 			if (_components->at(i)->first == size) {
-				return _components->at(i)->second;
+				return  dynamic_cast<const T*>(_components->at(i)->second);
 			}
 		}
 		return comp;
@@ -119,7 +119,7 @@ public:
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {
 			if (_components->at(i)->first == size) {
-				return _components->at(i)->second;
+				return  dynamic_cast<const T*>(_components->at(i)->second);
 			}
 		}
 		return comp;
