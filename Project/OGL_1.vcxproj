@@ -172,6 +172,7 @@
     <ClCompile Include="UI\RenderNode.cpp" />
     <ClCompile Include="Util\Callback.cpp" />
     <ClCompile Include="Util\PseudoCode.cpp" />
+    <ClCompile Include="Util\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\SoundController.h" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />
     <ClInclude Include="UI\RenderNode.h" />
     <ClInclude Include="Util\Callback.h" />
+    <ClInclude Include="Util\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\AFX\btn_press.wav" />

@@ -5,17 +5,24 @@
 #include "../UI/RenderNode.h"
 #include <iostream>
 #include "../Math/BoxBounds.h"
-
+#include "FBOComponent.h"
 //BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 //BaseObject* Game::_world = NULL;
 BaseNode* Game::_world = new BaseNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
  //Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
 Game::Game() {
+	printf("size of FBOcomponent %d \n", sizeof(FBOComponent));
+	printf("size of Sprite %d \n", sizeof(Sprite));
+	printf("size of BaseNode %d \n", sizeof(BaseNode));
 	_switch = false;
 	//_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	//_world = new RenderNode(Vec3(0, 0, -10), Vec3(400, 400, 1), 0);
 	//v1_5::Text::Init();
 	_isRunning = true;
+	_world->AddComponent(new FBOComponent(_world->GetTransform()._scale.x, _world->GetTransform()._scale.y));
+	BaseNode* bn = new BaseNode(Vec3(), Vec3(100, 100, 1), 0);
+	bn->AddComponent(new Sprite("./Assets/Textures/default.png"));
+	_world->AddChild(bn);
 	//_world->AddChild(_testG);
 	//world->AddComponent<v1_6::Sprite>( new const v1_6::Sprite());
 	
@@ -63,16 +70,16 @@ void Game::Update(float deltaTime) {
 }
 void Game::Draw() {
 	//Renderer::instance()->Draw();
-	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+	/*glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);*/
 
 	if (_switch) {
 		Renderer::instance()->Draw();
 	}
 	else {
 		//v1_5::Renderer::instance()->DrawNodes(_world, _world);
-
+		Renderer::instance()->DrawNodes(_world, _world);
 		glfwSwapBuffers(Renderer::instance()->GetWindow());
 		glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 	}

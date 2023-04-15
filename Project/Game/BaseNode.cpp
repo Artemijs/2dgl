@@ -132,4 +132,8 @@ void BaseNode::SetParent(BaseNode* parent) {
 BaseNode* BaseNode::GetParent() {
 	return _parent;
 }
+
+std::vector< std::pair< const unsigned int, const BaseComponent*>*>* BaseNode::Components() const {
+	return _components;
+}
 //28 

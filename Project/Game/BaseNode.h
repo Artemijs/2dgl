@@ -85,6 +85,7 @@ public:
 	BaseNode* GetParent();
 	const std::vector<BaseNode*>* GetAllChildren();
 
+	std::vector< std::pair< const unsigned int, const BaseComponent*>*>* Components() const ;
 
 	template<class T> void AddComponent(const T* comp) const {
 		const unsigned int size = sizeof(T);
@@ -97,6 +98,7 @@ public:
 			= new std::pair< const unsigned int, const BaseComponent*>({ size, b });
 		_components->push_back(pair);
 	}
+
 	const bool CheckIfComponentExists(const unsigned int id) const {
 		for (int i = 0; i < _components->size(); ++i) {
 			if (_components->at(i)->first == id) {
@@ -179,4 +181,12 @@ public:
 	- dIDDNT HEAR WHEN IT HAPPENS THOUGH
 	- THIS YEAR
 
+*/
+
+/*
+	class Memory{
+	static 
+	
+	};
+	
 */

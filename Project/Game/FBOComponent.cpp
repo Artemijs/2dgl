@@ -1,5 +1,6 @@
 #include "FBOComponent.h"
 #include <iostream>
+
 FBOComponent::FBOComponent()  {
 	int width = 0;
 	int height = 0;
@@ -24,6 +25,7 @@ FBOComponent::FBOComponent()  {
 	glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _fboTexture, 0);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _rbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 }
 FBOComponent::~FBOComponent() {

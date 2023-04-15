@@ -2,7 +2,8 @@
 #define FBOCOMPONENT_H
 #include <vector>
 #include <glad/glad.h>
-class FBOComponent{
+#include "BaseComponent.h"
+class FBOComponent: public BaseComponent{
 private:
 	unsigned int _rbo;
 public :

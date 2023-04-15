@@ -209,20 +209,23 @@ const unsigned int Renderer::LoadTexture(const char* path) {
 
 */
 
-
+#include "../Util/Utility.h"
+#include "../Game/FBOComponent.h"
 void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 
-	/*bool renderNode = (node->GetNodeType() == 2);
+	bool renderNode = Utility::IsRenderNode(node);
 	bool isRoot = (node->GetParent() == NULL);
-	RenderNode* rn = NULL;
+	//RenderNode* rn = NULL;
+	const FBOComponent* fbo = NULL;
 
 
 	if (renderNode) {
 		//unbind prev fbo
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		//bind node fbo
-		rn = node->GetComponent<RenderNode>();
-		glBindFramebuffer(GL_FRAMEBUFFER, rn->GetFBO()->_fbo);
+		//rn = node->GetComponent<RenderNode>();
+		fbo = node->GetComponent<FBOComponent>();
+		glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
 		if (isRoot) {
 			glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -251,18 +254,24 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 
 		_fRect->Bind();
 		glDisable(GL_DEPTH_TEST);
-		glBindTexture(GL_TEXTURE_2D, rn->GetFBO()->_fboTex);
+		glBindTexture(GL_TEXTURE_2D, fbo->_fboTexture);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		_fRect->Unbind();
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	else {
 		
+		//check if it is a drawable type 
+		//check if node has a graphic component 
+		//if (node->GetNodeType() == 1) {
+		if(!renderNode){
+			const Graphic* g = node->GetComponent<Graphic>();
 
-		if (node->GetNodeType() == 1) {
-
+			//if it does, cast it to graphic and draw it
+			if(g !=NULL)
+				g->Draw(node->GetModelMatrix());
 			//glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
-			node->GetComponent<Graphic>()->TryDraw();
+			//node->GetComponent<Graphic>()->TryDraw();
 			//glBindFramebuffer(GL_FRAMEBUFFER, 0); 
 		}
 		else if (renderNode) {
@@ -297,5 +306,5 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 			//unbind texture
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
-	}*/
+	}
 }
