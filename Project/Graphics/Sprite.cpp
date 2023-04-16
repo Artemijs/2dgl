@@ -1,6 +1,8 @@
 
 #include "Sprite.h"
 #include "Renderer.h"
+#include "../Util/Utility.h"
+const unsigned int Sprite::_id = Utility::_idCount;
 
 Sprite::Sprite() : Graphic() {
 }
@@ -18,3 +20,4 @@ void Sprite::Bind(Matrix4x4* model) const {
 	//Renderer::instance()->GetTexture(_texId)->texUni(_shader, "tex0", 0);
 	Renderer::instance()->GetVAO()->Bind();
 }
+const unsigned int Sprite::ID() { return _id; }

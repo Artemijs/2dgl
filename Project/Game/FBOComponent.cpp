@@ -1,6 +1,7 @@
 #include "FBOComponent.h"
 #include <iostream>
-
+#include "../Util/Utility.h"
+const unsigned int FBOComponent::_id = Utility::GetID<FBOComponent>();
 FBOComponent::FBOComponent()  {
 	int width = 0;
 	int height = 0;
@@ -58,3 +59,4 @@ FBOComponent::FBOComponent(const unsigned int width, const unsigned int height) 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _fboTexture, 0);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _rbo);
 }
+const unsigned int FBOComponent::ID() { return _id; }

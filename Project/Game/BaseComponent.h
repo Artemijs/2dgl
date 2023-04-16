@@ -3,11 +3,11 @@
 #include <vector>
 	
 class BaseComponent{
-private:
-
+protected:
 public :
 	BaseComponent();
 	virtual ~BaseComponent();
+	virtual const unsigned int ID() = 0;
 };
 
 #endif

@@ -5,6 +5,7 @@
 #include "BaseComponent.h"
 class FBOComponent: public BaseComponent{
 private:
+	static const unsigned int _id;
 	unsigned int _rbo;
 public :
 	unsigned int _fbo;
@@ -12,6 +13,7 @@ public :
 	FBOComponent();
 	FBOComponent(const unsigned int width, const unsigned int height);
 	~FBOComponent();
+	const unsigned int ID() override;
 };
 
 #endif

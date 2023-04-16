@@ -5,12 +5,13 @@
 
 	class Sprite : public Graphic {
 	private:
-
+		static const unsigned int _id;
 	public:
 		Sprite();
 		Sprite(const char* path);
 		~Sprite();
 		void Bind(Matrix4x4* model) const;
+		const unsigned int ID();
 	};
 
 
