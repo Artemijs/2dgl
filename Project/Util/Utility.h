@@ -4,7 +4,7 @@
 class Utility {
 public:
 	static unsigned int _idCount;
-	const static unsigned int _fboCompSize;
+	
 	template<class T> static const unsigned int GetID() {
 		return _idCount+=1;
 	}

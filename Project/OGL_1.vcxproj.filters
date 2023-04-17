@@ -141,9 +141,6 @@
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp">
       <Filter>Projects\TowerDefense</Filter>
     </ClCompile>
-    <ClCompile Include="UI\RenderNode.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Util\PseudoCode.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
@@ -211,9 +208,6 @@
     </ClInclude>
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h">
       <Filter>Projects\TowerDefense</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\RenderNode.h">
-      <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="Game\BaseNode.h">
       <Filter>Header Files\Game</Filter>

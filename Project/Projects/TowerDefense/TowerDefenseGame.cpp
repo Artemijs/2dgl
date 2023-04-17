@@ -42,14 +42,14 @@ TowerDefenseGame::~TowerDefenseGame() {
 	//delete _tiles;
 	//delete _t;
 	delete _s;
-	delete _rn1;
+	//delete _rn1;
 	delete _s1;
 	delete _s2;
 	delete _s3;
 	delete _s4;
 	delete _s5;
-	delete _rn2;
-	delete _rn3;
+	//delete _rn2;
+	//delete _rn3;
 }
 
 

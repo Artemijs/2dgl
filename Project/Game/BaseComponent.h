@@ -4,10 +4,12 @@
 	
 class BaseComponent{
 protected:
+	const bool _isGraphic;
 public :
 	BaseComponent();
 	virtual ~BaseComponent();
-	virtual const unsigned int ID() = 0;
+	virtual const unsigned int ID() const = 0;
+	const bool IsGraphic();
 };
 
 #endif

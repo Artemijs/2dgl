@@ -2,7 +2,7 @@
 #include "../Graphics/Renderer.h"
 #include "../Graphics/Sprite.h"
 
-#include "../UI/RenderNode.h"
+//#include "../UI/RenderNode.h"
 #include <iostream>
 #include "../Math/BoxBounds.h"
 #include "FBOComponent.h"
@@ -11,9 +11,9 @@
 BaseNode* Game::_world = new BaseNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
  //Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
 Game::Game() {
-	printf("size of FBOcomponent %d \n", sizeof(FBOComponent));
-	printf("size of Sprite %d \n", sizeof(Sprite));
-	printf("size of BaseNode %d \n", sizeof(BaseNode));
+	//printf("size of FBOcomponent %d \n", sizeof(FBOComponent));
+	//printf("size of Sprite %d \n", sizeof(Sprite));
+	//printf("size of BaseNode %d \n", sizeof(BaseNode));
 	_switch = false;
 	//_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	//_world = new RenderNode(Vec3(0, 0, -10), Vec3(400, 400, 1), 0);

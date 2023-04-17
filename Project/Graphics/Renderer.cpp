@@ -1,7 +1,7 @@
 #include "Renderer.h"
 #include <iostream>
 #include "SDL_mixer.h"
-#include "../UI/RenderNode.h"
+//#include "../UI/RenderNode.h"
 #include "../Graphics/Sprite.h"
 #include "../Game/Game.h"
 
@@ -116,7 +116,7 @@ void Renderer::Draw() {
 	glfwPollEvents();
 	*/
 	//FBO* fbo = _fbo;
-	const FBO* fbo = Game::_world->GetComponent<RenderNode>()->GetFBO();
+	/*const FBO* fbo = Game::_world->GetComponent<RenderNode>()->GetFBO();
 
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
 
@@ -143,7 +143,7 @@ void Renderer::Draw() {
 
 
 	glfwSwapBuffers(_window);
-	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
+	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?*/
 }
 
 VAO* Renderer::GetVAO() {
@@ -224,7 +224,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		//bind node fbo
 		//rn = node->GetComponent<RenderNode>();
-		fbo = node->GetComponent<FBOComponent>();
+		fbo = node->GetComponent<FBOComponent>(FBOComponent::_id);
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
 		if (isRoot) {
 			glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
@@ -278,7 +278,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 			//unbind prev FBO
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 			//ifi t is a render node but not the root node bind the FBO of the last FBO node
-			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
+			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<FBOComponent>(FBOComponent::_id)->_fbo);
 			//bind vao 
 			_vao->Bind();
 			//activate shader	USING DEFAULT FOR NOW
@@ -289,7 +289,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 			Renderer::SetShaderVariables(s->ID);
 			glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
 			//bind texture from FBO
-			unsigned int tId = node->GetComponent<RenderNode>()->GetFBO()->_fboTex;
+			unsigned int tId = node->GetComponent<FBOComponent>(FBOComponent::_id)->_fboTexture;
 			//unsigned int tId = Game::_testG->GetTexture()->ID;
 			glBindTexture(GL_TEXTURE_2D, tId);
 			//maybe this part is optioNAL because in the example above he doesnt use this

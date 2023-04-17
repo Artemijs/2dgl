@@ -88,14 +88,15 @@ public:
 	std::vector< std::pair< const unsigned int, const BaseComponent*>*>* Components() const ;
 
 	template<class T> void AddComponent(const T* comp) const {
-		const unsigned int size = sizeof(T);
-		const bool exists = CheckIfComponentExists(size);
+		
+		const bool exists = CheckIfComponentExists(T::_id);
 
 		if (exists) return;
 		//const BaseComponent* b = new v1_6::Sprite();
 		const BaseComponent* b = dynamic_cast<const BaseComponent*> (comp);
+		const unsigned int id = b->ID();
 		std::pair<const  unsigned int, const BaseComponent*>* pair
-			= new std::pair< const unsigned int, const BaseComponent*>({ size, b });
+			= new std::pair< const unsigned int, const BaseComponent*>({ id, b });
 		_components->push_back(pair);
 	}
 
@@ -107,20 +108,20 @@ public:
 		}
 		return false;
 	}
-	template<class T> const T* GetComponent() const {
-		unsigned int size = sizeof(T);
+	/*template<class T> const T* GetComponent() const {
+		unsigned int id = T::_id;
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {
-			if (_components->at(i)->first == size) {
+			if (_components->at(i)->first == id) {
 				return  dynamic_cast<const T*>(_components->at(i)->second);
 			}
 		}
 		return comp;
-	}
-	template<class T> const T* GetComponent(const unsigned int size) const {
+	}*/
+	template<class T> const T* GetComponent(const unsigned int id) const {
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {
-			if (_components->at(i)->first == size) {
+			if (_components->at(i)->first == id) {
 				return  dynamic_cast<const T*>(_components->at(i)->second);
 			}
 		}

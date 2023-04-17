@@ -20,4 +20,4 @@ void Sprite::Bind(Matrix4x4* model) const {
 	//Renderer::instance()->GetTexture(_texId)->texUni(_shader, "tex0", 0);
 	Renderer::instance()->GetVAO()->Bind();
 }
-const unsigned int Sprite::ID() { return _id; }
+const unsigned int Sprite::ID()const { return _id; }
