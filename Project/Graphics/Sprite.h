@@ -11,7 +11,7 @@
 		Sprite();
 		Sprite(const char* path);
 		~Sprite();
-		void Bind(Matrix4x4* model) const;
+		void Bind(const Matrix4x4* model) const;
 		const unsigned int ID() const override;
 	};
 

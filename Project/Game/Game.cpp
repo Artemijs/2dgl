@@ -9,7 +9,7 @@
 //BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 //BaseObject* Game::_world = NULL;
 BaseNode* Game::_world = new BaseNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
- //Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png", Vec3(400, 400, -10), Vec3(50, 50, 1), 0, NULL);
+ Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
 Game::Game() {
 	//printf("size of FBOcomponent %d \n", sizeof(FBOComponent));
 	//printf("size of Sprite %d \n", sizeof(Sprite));
@@ -35,6 +35,7 @@ Game::~Game() {
 	delete Renderer::instance();
 	//delete _testG;
 	delete _world;
+	delete _testG;
 	//MouseEventController::Delete();
 }
 //remove all ui code
@@ -73,7 +74,8 @@ void Game::Draw() {
 	/*glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);*/
-
+	Renderer::instance()->Draw(_world);
+	/*
 	if (_switch) {
 		Renderer::instance()->Draw();
 	}
@@ -82,7 +84,9 @@ void Game::Draw() {
 		Renderer::instance()->DrawNodes(_world, _world);
 		glfwSwapBuffers(Renderer::instance()->GetWindow());
 		glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
-	}
+	}*/
+	glfwSwapBuffers(Renderer::instance()->GetWindow());
+	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 	
 }
 

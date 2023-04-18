@@ -8,10 +8,11 @@ class Game {
 protected:
 	bool _switch;
 	bool _isRunning;
+	
 public :
 
 	static BaseNode* _world;
-	
+	static Graphic* _testG;
 	Game();
 	virtual ~Game();
 	virtual void Update(float deltaTime);

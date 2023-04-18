@@ -41,7 +41,7 @@ private:
 		0, 3, 2 //lower triangle
 	};
 
-
+	
 	Matrix4x4 _projection;
 	std::vector<Shader*>* _all_shaders;
 	FinalRect* _fRect;
@@ -51,6 +51,7 @@ private:
 	std::vector<std::pair<const char*, Texture*>>* _all_textures;
 	Renderer();
 	static Renderer* _instance;
+
 	//Graphic* _testG;
 	//const unsigned int fb
 
@@ -60,7 +61,7 @@ public:
 	Vec2 GetWindowSize();
 	Vec3 WindowSizeVec3();
 	GLFWwindow* GetWindow();
-	void Draw();
+	void Draw(const BaseNode* n);
 	void DrawNodes(BaseNode* node, BaseNode* last);
 	VAO* GetVAO();
 	void AddGraphic(Graphic* g) {

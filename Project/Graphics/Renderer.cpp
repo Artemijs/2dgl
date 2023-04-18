@@ -15,6 +15,7 @@ Renderer* Renderer::instance() {
 
 
 Renderer::Renderer() {
+
 	_windowSize = Vec2(800, 800);
 	CreateWindow();
 	CreateGeometry();
@@ -32,7 +33,7 @@ Renderer::Renderer() {
 	_fbo = new FBO(_windowSize.x, _windowSize.y);
 
 	_fRect = new FinalRect();
-
+	//_g = new Sprite("./Assets/Textures/default.png");
 	//_testG = new Sprite("./Assets/Textures/default.png", Vec3(), Vec3(50, 50, 1), 0, NULL);
 
 }
@@ -62,6 +63,7 @@ Renderer::~Renderer() {
 	glfwDestroyWindow(_window);
 	glfwTerminate();
 	delete _fRect;
+	//delete _g;
 	//edelete _testG;
 	//glDeleteFramebuffers(1, &_fbo);
 	//glDeleteTextures(1, &_fboTex);
@@ -102,48 +104,83 @@ void Renderer::CreateWindow() {
 
 }
 
-void Renderer::Draw() {
+void Renderer::Draw(const BaseNode* n) {
+	bool isRoot = (n->GetParent() == NULL);
+	
+	
 
-	/*glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-	glClearDepth(1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	if (isRoot) {
+		glBindFramebuffer(GL_FRAMEBUFFER, _fbo->_fbo);
+		
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
+		//Sprite s = Sprite("./Assets/Textures/default.png");
+		//Game::_testG->Draw(n->GetModelMatrix());
+		Shader* s = _all_shaders->at(0);
+		Texture* t = _all_textures->at(0).second;
+		s->Activate();
+		//glUseProgram(_all_shaders->at(0)->ID);
+		glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, &Matrix4x4(1).buff[0]);
+		Renderer::instance()->SetShaderVariables(0);
+		t->Bind();
+		t->texUni(s, "tex0", t->ID);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glBindTexture(GL_TEXTURE_2D, tID);
+		//glUniform1i(glGetUniformLocation(_shader->ID, "tex0"), tID); //maybe this part is optioNAL
+		Renderer::instance()->GetVAO()->Bind();
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	for (int i = 0; i < _all_graphics->size(); ++i) {
-		_all_graphics->at(i)->Draw();
+		//DRAW THE FINAL SCREEN RECTANGLE
+
+
+		_fRect->Bind();
+		glDisable(GL_DEPTH_TEST);
+		glBindTexture(GL_TEXTURE_2D, _fbo->_fboTex);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		_fRect->Unbind();
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+	}
+	/*bool isRoot = (n->GetParent() == NULL);
+	auto children = n->GetAllChildren();
+	auto graphic = n->GetGraphic();
+	if (isRoot) {
+		//const FBO* fbo = _fbo;
+		//const FBO* fbo = Game::_world->GetComponent<RenderNode>()->GetFBO();
+
+		glBindFramebuffer(GL_FRAMEBUFFER, _fbo->_fbo);
+
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
+	}
+	
+	if (graphic != NULL) {
+		graphic->Draw(n->GetModelMatrix());
 	}
 
-	glfwSwapBuffers(_window);
-	glfwPollEvents();
-	*/
-	//FBO* fbo = _fbo;
-	/*const FBO* fbo = Game::_world->GetComponent<RenderNode>()->GetFBO();
-
-	glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
-
-	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
-
-
-	for (int i = 0; i < _all_graphics->size(); ++i) {
-		_all_graphics->at(i)->Draw(NULL);
+	for (int i = 0; i < children->size(); ++i) {
+		auto child = children->at(i);
+		Draw(child);
 
 	}
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	if (isRoot) {
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	//DRAW THE FINAL SCREEN RECTANGLE
-
-
-	_fRect->Bind();
-	glDisable(GL_DEPTH_TEST);
-	glBindTexture(GL_TEXTURE_2D, fbo->_fboTex);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-	_fRect->Unbind();
-	glBindTexture(GL_TEXTURE_2D, 0);
+		//DRAW THE FINAL SCREEN RECTANGLE
 
 
-	glfwSwapBuffers(_window);
-	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?*/
+		_fRect->Bind();
+		glDisable(GL_DEPTH_TEST);
+		glBindTexture(GL_TEXTURE_2D, _fbo->_fboTex);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		_fRect->Unbind();
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+	}*/
+	//glfwSwapBuffers(_window);
+	//glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 }
 
 VAO* Renderer::GetVAO() {
@@ -265,14 +302,12 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 		//check if node has a graphic component 
 		//if (node->GetNodeType() == 1) {
 		if(!renderNode){
-			const Graphic* g = node->GetComponent<Graphic>();
+			const Graphic* g = node->GetGraphic();
 
 			//if it does, cast it to graphic and draw it
-			if(g !=NULL)
+			if (g != NULL) {
 				g->Draw(node->GetModelMatrix());
-			//glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<RenderNode>()->GetFBO()->_fbo);
-			//node->GetComponent<Graphic>()->TryDraw();
-			//glBindFramebuffer(GL_FRAMEBUFFER, 0); 
+			}
 		}
 		else if (renderNode) {
 			//unbind prev FBO

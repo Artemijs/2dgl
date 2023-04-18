@@ -11,13 +11,14 @@ Sprite::Sprite(const char* path) : Graphic(path) {}
 Sprite::~Sprite() {
 	std::cout << "Deleting sprite\n";
 }
-void Sprite::Bind(Matrix4x4* model) const {
+void Sprite::Bind(const Matrix4x4* model) const {
 	const unsigned int id = _shader->ID;
+	const unsigned int tID = Renderer::instance()->GetTexture(_textureId)->ID;
 	glUseProgram(id);
 	glUniformMatrix4fv(glGetUniformLocation(id, "model"), 1, GL_TRUE, &model->buff[0]);
 	Renderer::instance()->SetShaderVariables(id);
-	glBindTexture(GL_TEXTURE_2D, _textureId);
-	//Renderer::instance()->GetTexture(_texId)->texUni(_shader, "tex0", 0);
+	glBindTexture(GL_TEXTURE_2D, tID);
+	glUniform1i(glGetUniformLocation(_shader->ID, "tex0"), tID); //maybe this part is optioNAL
 	Renderer::instance()->GetVAO()->Bind();
 }
 const unsigned int Sprite::ID()const { return _id; }

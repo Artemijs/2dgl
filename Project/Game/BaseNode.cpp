@@ -114,7 +114,7 @@ void BaseNode::SetEnabled(bool enabled) {
 		_children->at(i)->SetEnabled(enabled);
 	}
 }
-Matrix4x4* BaseNode::GetModelMatrix() { return &_model; }
+const Matrix4x4* BaseNode::GetModelMatrix() const { return &_model; }
 const unsigned int BaseNode::AddChild(BaseNode* child) {
 	const unsigned int id = _children->size();
 	_children->push_back(child);
@@ -123,17 +123,30 @@ const unsigned int BaseNode::AddChild(BaseNode* child) {
 BaseNode* BaseNode::GetChild(const unsigned int id) {
 	return _children->at(id);
 }
-const std::vector<BaseNode*>* BaseNode::GetAllChildren() {
+const std::vector<BaseNode*>* BaseNode::GetAllChildren()const {
 	return _children;
 }
 void BaseNode::SetParent(BaseNode* parent) {
 	_parent = parent;
 }
-BaseNode* BaseNode::GetParent() {
+const BaseNode* BaseNode::GetParent() const{
 	return _parent;
 }
 
 std::vector< std::pair< const unsigned int, const BaseComponent*>*>* BaseNode::Components() const {
 	return _components;
+}
+/// <summary>
+/// returns a component base class Graphic or nulll if that component is not attached
+/// </summary>
+/// <returns></returns>
+const Graphic* BaseNode::GetGraphic() const {
+	for (int i = 0; i < _components->size(); ++i) {
+		
+		if (_components->at(i)->second->IsGraphic()) {
+			return dynamic_cast<const Graphic*>(_components->at(i)->second);
+		}
+	}
+	return NULL;
 }
 //28 

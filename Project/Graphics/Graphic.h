@@ -11,14 +11,14 @@ protected:
 	const unsigned int _textureId;
 	const Shader* _shader;
 private:
-	virtual void Bind(Matrix4x4* model) const = 0;
+	virtual void Bind(const Matrix4x4* model) const = 0;
 	void Unbind() const;
 public:
 	Graphic();
 	Graphic(const char* path);
 	~Graphic();
 
-	void Draw(Matrix4x4* model) const;
+	void Draw(const Matrix4x4* model) const;
 
 };
 

@@ -37,7 +37,7 @@ FBOComponent::~FBOComponent() {
 
 }
 FBOComponent::FBOComponent(const unsigned int width, const unsigned int height) {
-	printf("width height not set of frame buffer component\n");
+	//printf("width height not set of frame buffer component\n");
 	//create the fbo
 	glGenFramebuffers(1, &_fbo);
 	//create the texture that is drawn to

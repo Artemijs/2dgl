@@ -1,22 +1,11 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Renderer.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(32,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(32,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(90,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(90,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(99,45): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(99,30): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(188,34): warning C4267: 'return': conversion from 'size_t' to 'const unsigned int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(268,27): error C2672: 'BaseNode::GetComponent': no matching overloaded function found
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(268,51): error C2780: 'const T *BaseNode::GetComponent(const unsigned int) const': expects 1 arguments - 0 provided
-C:\Users\artem\Documents\programming\2dgl\Project\Game\BaseNode.h(121): message : see declaration of 'BaseNode::GetComponent'
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(281,44): error C2672: 'BaseNode::GetComponent': no matching overloaded function found
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(281,73): error C2780: 'const T *BaseNode::GetComponent(const unsigned int) const': expects 1 arguments - 0 provided
-C:\Users\artem\Documents\programming\2dgl\Project\Game\BaseNode.h(121): message : see declaration of 'BaseNode::GetComponent'
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(281,80): error C2198: 'PFNGLBINDFRAMEBUFFERPROC': too few arguments for call
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(292,27): error C2672: 'BaseNode::GetComponent': no matching overloaded function found
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(292,56): error C2780: 'const T *BaseNode::GetComponent(const unsigned int) const': expects 1 arguments - 0 provided
-C:\Users\artem\Documents\programming\2dgl\Project\Game\BaseNode.h(121): message : see declaration of 'BaseNode::GetComponent'
-  Sprite.cpp
-  Utility.cpp
-  Generating Code...
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(92,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(92,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(101,45): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(101,30): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(225,34): warning C4267: 'return': conversion from 'size_t' to 'const unsigned int', possible loss of data
+  LINK : C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe not found or not built by the last incremental link; performing full link
+  OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

@@ -76,14 +76,14 @@ public:
 
 	//turns the objects visibility on/off, if off then it does not draw
 	void SetVisible(bool visible);
-	Matrix4x4* GetModelMatrix();
+	const Matrix4x4* GetModelMatrix() const;
 	void SetEnabled(bool on);
 
 	const unsigned int AddChild(BaseNode* child);
 	BaseNode* GetChild(const unsigned int id);
 	void SetParent(BaseNode* parent);
-	BaseNode* GetParent();
-	const std::vector<BaseNode*>* GetAllChildren();
+	const BaseNode* GetParent() const;
+	const std::vector<BaseNode*>* GetAllChildren() const;
 
 	std::vector< std::pair< const unsigned int, const BaseComponent*>*>* Components() const ;
 
@@ -108,16 +108,16 @@ public:
 		}
 		return false;
 	}
-	/*template<class T> const T* GetComponent() const {
-		unsigned int id = T::_id;
-		T* comp = NULL;
-		for (int i = 0; i < _components->size(); ++i) {
-			if (_components->at(i)->first == id) {
-				return  dynamic_cast<const T*>(_components->at(i)->second);
-			}
-		}
-		return comp;
-	}*/
+	//template<class T> const T* GetComponent() const {
+	//	unsigned int id = T::_id;
+	//	T* comp = NULL;
+	//	for (int i = 0; i < _components->size(); ++i) {
+	//		if (_components->at(i)->first == id) {
+	//			return  dynamic_cast<const T*>(_components->at(i)->second);
+	//		}
+	//	}
+	//	return comp;
+	//}
 	template<class T> const T* GetComponent(const unsigned int id) const {
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {
@@ -127,6 +127,7 @@ public:
 		}
 		return comp;
 	}
+	const Graphic* GetGraphic() const;
 };
 
 #endif

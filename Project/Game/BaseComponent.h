@@ -7,9 +7,10 @@ protected:
 	const bool _isGraphic;
 public :
 	BaseComponent();
+	BaseComponent(bool isGraphic);
 	virtual ~BaseComponent();
 	virtual const unsigned int ID() const = 0;
-	const bool IsGraphic();
+	const bool IsGraphic() const;
 };
 
 #endif
