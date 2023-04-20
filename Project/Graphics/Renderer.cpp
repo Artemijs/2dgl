@@ -103,7 +103,31 @@ void Renderer::CreateWindow() {
 
 
 }
+/*
+//Sprite s = Sprite("./Assets/Textures/default.png");
+		//Game::_testG->Draw(n->GetModelMatrix());
+		_vao->Bind();
+		Shader* s = _all_shaders->at(0);
+		Texture* t = _all_textures->at(0).second;
+		s->Activate();
+		//glUseProgram(_all_shaders->at(0)->ID);
+		glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, &Matrix4x4(1).buff[0]);
+		SetShaderVariables(0);
+		t->Bind();
+		t->texUni(s, "tex0", t->ID);
 
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glBindTexture(GL_TEXTURE_2D, tID);
+		//glUniform1i(glGetUniformLocation(_shader->ID, "tex0"), tID); //maybe this part is optioNAL
+		//Renderer::instance()->GetVAO()->Bind();
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		_vao->Unbind();
+		glUseProgram(0);
+		t->Unbind();
+*/
+///debug function that draws everything to _fbo with root model matrix
 void Renderer::Draw(const BaseNode* n) {
 	bool isRoot = (n->GetParent() == NULL);
 	
@@ -115,22 +139,16 @@ void Renderer::Draw(const BaseNode* n) {
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glEnable(GL_DEPTH_TEST);
-		//Sprite s = Sprite("./Assets/Textures/default.png");
-		//Game::_testG->Draw(n->GetModelMatrix());
-		Shader* s = _all_shaders->at(0);
-		Texture* t = _all_textures->at(0).second;
-		s->Activate();
-		//glUseProgram(_all_shaders->at(0)->ID);
-		glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, &Matrix4x4(1).buff[0]);
-		Renderer::instance()->SetShaderVariables(0);
-		t->Bind();
-		t->texUni(s, "tex0", t->ID);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+
+		Game::_testG->Draw(n->GetModelMatrix());
+		
 		//glBindTexture(GL_TEXTURE_2D, tID);
 		//glUniform1i(glGetUniformLocation(_shader->ID, "tex0"), tID); //maybe this part is optioNAL
-		Renderer::instance()->GetVAO()->Bind();
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		//Renderer::instance()->GetVAO()->Bind();
 
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		
 		//DRAW THE FINAL SCREEN RECTANGLE
 
 

@@ -25,15 +25,15 @@ Texture::Texture(const char* image, GLenum textType, GLenum slot, GLenum format,
 	
 	stbi_image_free(bytes);
 }
-void Texture::texUni(Shader* shader, const char* name, GLuint unit) {
+void Texture::texUni(const Shader* shader, const char* name, const GLuint unit) const {
 	shader->Activate();
 	GLuint tex0Uni = glGetUniformLocation(shader->ID, name);
 	glUniform1i(tex0Uni, unit);
 }
-void Texture::Bind() {
+void Texture::Bind()const {
 	glBindTexture(type, ID);
 }
-void Texture::Unbind() {
+void Texture::Unbind() const {
 	glBindTexture(type, 0);
 }
 void Texture::Delete() {

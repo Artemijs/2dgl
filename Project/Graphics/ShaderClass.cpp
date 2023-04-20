@@ -40,11 +40,11 @@ Shader::Shader(const char* vertexFile, const char* fragFile) {
 	glDeleteShader(fragShader);
 
 }
-void Shader::Activate() {
+void Shader::Activate() const {
 	glUseProgram(ID);
 }
 
-void Shader::Delete() {
+void Shader::Delete() const {
 	glDeleteProgram(ID);
 }
 void Shader::compileErrors(unsigned int shader, const char* type) {

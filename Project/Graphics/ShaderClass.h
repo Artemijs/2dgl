@@ -17,8 +17,8 @@ public :
 	GLuint ID;
 	Shader(const char* vertexFile, const char* fragmentFile);
 
-	void Activate();
-	void Delete();
+	void Activate()const;
+	void Delete() const;
 };
 
 
