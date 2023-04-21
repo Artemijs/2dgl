@@ -2,7 +2,7 @@
 #include "Sprite.h"
 #include "Renderer.h"
 #include "../Util/Utility.h"
-const unsigned int Sprite::_id = Utility::_idCount;
+const unsigned int Sprite::_id = Utility::GetID();
 
 Sprite::Sprite() : Graphic() {
 }

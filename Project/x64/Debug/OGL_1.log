@@ -1,3 +1,10 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Sprite.cpp
+  Renderer.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(92,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(92,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(101,45): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(101,30): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(243,34): warning C4267: 'return': conversion from 'size_t' to 'const unsigned int', possible loss of data
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

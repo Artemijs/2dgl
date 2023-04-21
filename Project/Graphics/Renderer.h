@@ -59,7 +59,7 @@ public:
 	~Renderer();
 	static Renderer* instance();
 	Vec2 GetWindowSize();
-	Vec3 WindowSizeVec3();
+	const Vec3 WindowSizeVec3();
 	GLFWwindow* GetWindow();
 	void Draw(const BaseNode* n);
 	void DrawNodes(BaseNode* node, BaseNode* last);

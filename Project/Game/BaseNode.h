@@ -47,7 +47,7 @@ protected:
 	const unsigned int _size;
 public:
 	BaseNode();
-	BaseNode(Vec3 pos, Vec3 size, float ang);
+	BaseNode(const Vec3 pos, const Vec3 size, const float ang);
 	~BaseNode();
 	virtual void SetSize();
 	//updates the object if visible and enabled
@@ -60,7 +60,7 @@ public:
 	/// <param name="on">true/false</param>
 	void SetInheritTransform(int id, bool on);
 
-	virtual void MakeModelMatrix(Matrix4x4 trans, Matrix4x4 scale, Matrix4x4 rot);
+	virtual void MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot) ;
 
 	//returns global positions rotation and scale
 	Transform GetTransform();

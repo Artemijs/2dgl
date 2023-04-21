@@ -20,6 +20,7 @@ Game::Game() {
 	//v1_5::Text::Init();
 	_isRunning = true;
 	_world->AddComponent(new FBOComponent(_world->GetTransform()._scale.x, _world->GetTransform()._scale.y));
+
 	BaseNode* bn = new BaseNode(Vec3(), Vec3(100, 100, 1), 0);
 	bn->AddComponent(new Sprite("./Assets/Textures/default.png"));
 	_world->AddChild(bn);
@@ -74,17 +75,16 @@ void Game::Draw() {
 	/*glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);*/
-	Renderer::instance()->Draw(_world);
-	/*
+	//Renderer::instance()->Draw(_world);
+	
+	
 	if (_switch) {
-		Renderer::instance()->Draw();
+		Renderer::instance()->Draw(_world);
 	}
 	else {
 		//v1_5::Renderer::instance()->DrawNodes(_world, _world);
 		Renderer::instance()->DrawNodes(_world, _world);
-		glfwSwapBuffers(Renderer::instance()->GetWindow());
-		glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
-	}*/
+	}
 	glfwSwapBuffers(Renderer::instance()->GetWindow());
 	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 	
@@ -95,7 +95,7 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 	if (action == GLFW_REPEAT) return;
 	std::cout << " key event called "<<"aaction "<<action<<" key "<<key<<" mods "<<mods<<"\n";
 	if (action == GLFW_PRESS) {
-		
+		_switch = !_switch;
 	}
 	else if (action == GLFW_RELEASE) {
 		

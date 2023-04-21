@@ -11,7 +11,7 @@ BaseNode::BaseNode():_size(0) {
 	_model = Matrix4x4(1.0f);
 }
 
-BaseNode::BaseNode(Vec3 pos, Vec3 size, float ang):_size(0) {
+BaseNode::BaseNode(const Vec3 pos, const Vec3 size, const float ang):_size(0) {
 	printf("creaating basenode\n");
 	_components = new std::vector<std::pair<const unsigned int, const BaseComponent*>*>();
 	_transform = { pos, size, Vec3(0, ang, 0) };
@@ -55,7 +55,7 @@ void BaseNode::SetInheritTransform(int id, bool on) {
 	_inheritTransform[id] = on;
 }
 
-void BaseNode::MakeModelMatrix(Matrix4x4 trans, Matrix4x4 scale, Matrix4x4 rot) {
+void BaseNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot)  {
 	Matrix4x4 nt, ns, nr;
 	if (_inheritTransform[0])
 		nt = Matrix4x4::TranslationMatrix(_transform._position) * trans;
@@ -118,6 +118,7 @@ const Matrix4x4* BaseNode::GetModelMatrix() const { return &_model; }
 const unsigned int BaseNode::AddChild(BaseNode* child) {
 	const unsigned int id = _children->size();
 	_children->push_back(child);
+	child->SetParent(this);
 	return id;
 }
 BaseNode* BaseNode::GetChild(const unsigned int id) {
