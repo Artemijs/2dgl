@@ -19,7 +19,7 @@ RenderNode::~RenderNode() {
 	std::cout << "RENDER NODE DELETED\n";
 }
 void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot) {
-	std::cout << "MMM from render node\n";
+	//std::cout << "MMM from render node\n";
 	Matrix4x4 nt, ns, nr;
 	if (_inheritTransform[0])
 		nt = Matrix4x4::TranslationMatrix(_transform._position) * trans;

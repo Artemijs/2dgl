@@ -7,17 +7,13 @@
 #include "../Math/BoxBounds.h"
 #include "FBOComponent.h"
 #include "RenderNode.h"
-//BaseObject* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
-//BaseObject* Game::_world = NULL;
+
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
- Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
+Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
 Game::Game() {
-	//printf("size of FBOcomponent %d \n", sizeof(FBOComponent));
-	//printf("size of Sprite %d \n", sizeof(Sprite));
-	//printf("size of BaseNode %d \n", sizeof(BaseNode));
+	
 	_switch = false;
-	//_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
-	//_world = new RenderNode(Vec3(0, 0, -10), Vec3(400, 400, 1), 0);
+	
 	//v1_5::Text::Init();
 	_isRunning = true;
 	_world->AddComponent(new FBOComponent(_world->GetTransform()._scale.x, _world->GetTransform()._scale.y));
@@ -25,10 +21,14 @@ Game::Game() {
 	BaseNode* bn = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
 	bn->AddComponent(new Sprite("./Assets/Textures/default.png"));
 	_world->AddChild(bn);
-	//_world->AddChild(_testG);
-	//world->AddComponent<v1_6::Sprite>( new const v1_6::Sprite());
 	
-	//test->GetComponent<BaseComponent>()->TestFunc();
+	BaseNode* rn = new RenderNode(Vec3(400, 400, 0), Vec3(400, 400, 1), 0);
+	_world->AddChild(rn);
+	
+	BaseNode* bn1 = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
+	bn1->AddComponent(new Sprite("./Assets/Textures/default.png"));
+	rn->AddChild(bn1);
+	
 	//MouseEventController::Init();
 }
 Game::~Game() {
