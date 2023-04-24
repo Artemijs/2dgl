@@ -160,6 +160,7 @@
     <ClCompile Include="Game\BaseNode.cpp" />
     <ClCompile Include="Game\FBOComponent.cpp" />
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\RenderNode.cpp" />
     <ClCompile Include="Graphics\Graphic.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\ShaderClass.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Game\BaseNode.h" />
     <ClInclude Include="Game\FBOComponent.h" />
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\RenderNode.h" />
     <ClInclude Include="Graphics\Graphic.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\ShaderClass.h" />

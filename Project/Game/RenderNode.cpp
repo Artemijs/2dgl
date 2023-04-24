@@ -1,19 +1,22 @@
 #include "RenderNode.h"
 #include "../Graphics/Renderer.h"
+#include "FBOComponent.h"
 RenderNode::RenderNode() :
-	BaseNode(const Vec3(),  Renderer::instance()->WindowSizeVec3(), 0) {
-	//_fbo = FBO();
+	BaseNode( Vec3(),  Renderer::instance()->WindowSizeVec3(), 0) {
+	AddFBO();
 
 }
 
 //uses default image as background
 RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	BaseNode(pos, size, ang){
-	//_fbo = FBO();
+	AddFBO();
+}
+void RenderNode::AddFBO() const {
+	BaseNode::AddComponent<const FBOComponent>( new FBOComponent(_transform._scale.x, _transform._scale.y));
 }
 RenderNode::~RenderNode() {
 	std::cout << "RENDER NODE DELETED\n";
-	//_fbo.~FBO();
 }
 void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot) {
 	std::cout << "MMM from render node\n";
@@ -39,6 +42,3 @@ void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, c
 
 	_model = nt * nr * ns;
 }
-//const FBO RenderNode::GetFBO()const {
-//	return _fbo;
-//}
