@@ -3,12 +3,12 @@
 #include "BaseNode.h"
 #include "../Graphics/Graphic.h"
 #include "../Graphics/Sprite.h"
-
+#include "MouseEventComponent.h"
 class Game {
 protected:
 	bool _switch;
 	bool _isRunning;
-	
+	MouseEvent<Game>* m;
 public :
 
 	static BaseNode* _world;
@@ -20,5 +20,7 @@ public :
 	void HandleMouseInputs(int btn, int action);
 	virtual void HandleKeyInputs(int key, int action, int mods);
 	bool IsRunning();
+	void Test();
+
 };
 #endif

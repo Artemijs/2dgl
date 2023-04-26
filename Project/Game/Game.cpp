@@ -13,6 +13,8 @@ Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
 Game::Game() {
 	
 	_switch = false;
+	m = new MouseEvent<Game>(this);
+	m->SetCallBack(&Game::Test);
 	
 	//v1_5::Text::Init();
 	_isRunning = true;
@@ -37,6 +39,7 @@ Game::~Game() {
 	delete Renderer::instance();
 	//delete _testG;
 	delete _world;
+	delete m;
 	delete _testG;
 	//MouseEventController::Delete();
 }
@@ -44,14 +47,15 @@ Game::~Game() {
 //add UpdateModelMatrix(parentPos, parentScale, parentRot)
 //make every graphic object inherit from element
 
-
+void Game::Test() {
+	printf("HELLO FROM BLACK mAGIC PORTAL\n");
+}
 void Game::Update(float deltaTime) {
 	//translate children 
-	//Game::_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
 	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
-	//Game:: _world->TryUpdate(deltaTime);
+	//update the world
 	_world->TryUpdate(deltaTime);
-	
+	//check collision
 	
 	double xpos, ypos;
 
@@ -97,6 +101,7 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 	std::cout << " key event called "<<"aaction "<<action<<" key "<<key<<" mods "<<mods<<"\n";
 	if (action == GLFW_PRESS) {
 		_switch = !_switch;
+	
 	}
 	else if (action == GLFW_RELEASE) {
 		
@@ -104,6 +109,7 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 }
 void Game::HandleMouseInputs(int btn, int action) {
 	std::cout << "btn event called \n";
+	m->OnPress();
 	//if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
 		//MouseEventController::HandleMouseClick(true);
 	//else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
