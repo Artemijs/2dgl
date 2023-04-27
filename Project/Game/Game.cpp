@@ -14,7 +14,7 @@ Game::Game() {
 	
 	_switch = false;
 	m = new MouseEvent<Game>(this);
-	m->SetCallBack(&Game::Test);
+	//m->SetCallBack(&Game::Test);
 	
 	//v1_5::Text::Init();
 	_isRunning = true;

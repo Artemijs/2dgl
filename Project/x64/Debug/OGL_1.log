@@ -2,6 +2,20 @@
   Game.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(21,102): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
 C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(21,69): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(35,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(34): message : while compiling class template member function 'MouseEvent<Game>::~MouseEvent(void)'
+C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(16): message : see reference to class template instantiation 'MouseEvent<Game>' being compiled
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(30,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(28): message : while compiling class template member function 'MouseEvent<Game>::MouseEvent(T *)'
+          with
+          [
+              T=Game
+          ]
+C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(16): message : see reference to function template instantiation 'MouseEvent<Game>::MouseEvent(T *)' being compiled
+          with
+          [
+              T=Game
+          ]
   MouseEventComponent.cpp
   Renderer.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
