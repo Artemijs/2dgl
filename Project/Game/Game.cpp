@@ -109,7 +109,7 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 }
 void Game::HandleMouseInputs(int btn, int action) {
 	std::cout << "btn event called \n";
-	m->OnPress();
+	//m->OnPress();
 	//if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
 		//MouseEventController::HandleMouseClick(true);
 	//else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {

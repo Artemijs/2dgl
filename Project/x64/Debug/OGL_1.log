@@ -1,12 +1,16 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  BaseNode.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Game\BaseNode.cpp(119,43): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Game\BaseNode.cpp(119,43): warning C4267: 'initializing': conversion from 'size_t' to 'const unsigned int', possible loss of data
+  FBOComponent.cpp
   Game.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(21,102): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
 C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(21,69): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(35,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(34): message : while compiling class template member function 'MouseEvent<Game>::~MouseEvent(void)'
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(34,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(33): message : while compiling class template member function 'MouseEvent<Game>::~MouseEvent(void)'
 C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(16): message : see reference to class template instantiation 'MouseEvent<Game>' being compiled
-C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(30,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(28): message : while compiling class template member function 'MouseEvent<Game>::MouseEvent(T *)'
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(29,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(27): message : while compiling class template member function 'MouseEvent<Game>::MouseEvent(T *)'
           with
           [
               T=Game
@@ -17,6 +21,10 @@ C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(16): message : s
               T=Game
           ]
   MouseEventComponent.cpp
+  RenderNode.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Game\RenderNode.cpp(16,101): warning C4244: 'argument': conversion from 'const float' to 'const unsigned int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Game\RenderNode.cpp(16,80): warning C4244: 'argument': conversion from 'const float' to 'const unsigned int', possible loss of data
+  Graphic.cpp
   Renderer.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
@@ -25,9 +33,12 @@ C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(92,40): 
 C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(101,45): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
 C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(101,30): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
 C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(243,34): warning C4267: 'return': conversion from 'size_t' to 'const unsigned int', possible loss of data
+  Sprite.cpp
+  MouseEventHandler.cpp
   Main.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Main.cpp(31,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   TowerDefenseGame.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Projects\TowerDefense\TowerDefenseGame.cpp(9,14): warning C4305: '=': truncation from 'double' to 'float'
+  Utility.cpp
   Generating Code...
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe
