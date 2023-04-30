@@ -22,7 +22,7 @@ BaseNode::BaseNode(const Vec3 pos, const Vec3 size, const float ang):_size(0) {
 	_model = Matrix4x4(1.0f);
 }
 void BaseNode::SetSize() {
-	printf("setting size in base\n");
+	printf("function not implementeedd and should be deleted\n");
 
 }
 BaseNode::~BaseNode() {

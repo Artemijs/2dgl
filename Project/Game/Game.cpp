@@ -1,13 +1,13 @@
 #include "Game.h"
 #include "../Graphics/Renderer.h"
 #include "../Graphics/Sprite.h"
-
+#include "../Input/MouseEventHandler.h"
 //#include "../UI/RenderNode.h"
 #include <iostream>
 #include "../Math/BoxBounds.h"
 #include "FBOComponent.h"
 #include "RenderNode.h"
-
+#include "../UI/Button.h"
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
 Game::Game() {
@@ -19,9 +19,11 @@ Game::Game() {
 	//v1_5::Text::Init();
 	_isRunning = true;
 	_world->AddComponent(new FBOComponent(_world->GetTransform()._scale.x, _world->GetTransform()._scale.y));
+	_world->AddChild(new Button(Vec3(100, 200, 0), Vec3(200, 100, 1), 0));
+
 
 	BaseNode* bn = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
-	bn->AddComponent(new Sprite("./Assets/Textures/default.png"));
+	bn->AddComponent(new Sprite());
 	_world->AddChild(bn);
 	
 	BaseNode* rn = new RenderNode(Vec3(400, 400, 0), Vec3(400, 400, 1), 0);
@@ -66,8 +68,8 @@ void Game::Update(float deltaTime) {
 	//MOUSE EVENTS
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
 	ypos = Renderer::instance()->GetWindowSize().y - ypos;
-	//MouseEventController::HandleMouseMoving(Vec2(xpos, ypos), deltaTime);
-	//MouseEventController::Update(deltaTime);
+	MouseEventHandler::HandleMouseMoving(Vec2(xpos, ypos), deltaTime);
+	MouseEventHandler::Update(deltaTime);
 
 	//KEYBOARD EVENTS
 	//std::cout << "game update\n";
@@ -110,10 +112,10 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 void Game::HandleMouseInputs(int btn, int action) {
 	std::cout << "btn event called \n";
 	//m->OnPress();
-	//if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
-		//MouseEventController::HandleMouseClick(true);
-	//else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
-		//MouseEventController::HandleMouseClick(false);
-	//}
+	if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
+		MouseEventHandler::HandleMouseClick(true);
+	else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
+		MouseEventHandler::HandleMouseClick(false);
+	}
 }
 bool Game::IsRunning() { return _isRunning; }

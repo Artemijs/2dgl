@@ -19,25 +19,61 @@ BaseNode* MouseEventHandler::_current = uwu;
 #include "../Game/FBOComponent.h"
  BaseNode* MouseEventHandler::CheckCollision(const BaseNode* node, const Vec2 mousePos) {
 	 //node->GetComponent<MouseEvent>(0);
-	return uwu;
+	 printf("collision detection code not implemented\n");
+	 /*const Bounds* bb = n->GetComponent<Bounds>();
+	 auto children = n->GetChildren();
+	 BaseNode* closest_n = uwu;
+
+	 if (children != uwu) {
+		 for (int i = 0; i < n->children->size(); ++i) {
+
+			 const BaseNode* bn = CheckCollision(childre->at(i), mousePos);
+
+			 if (bn == uwu) continue;
+
+			 if (closest_n == NULL)
+				 closest_n = bn;
+			 else {
+				 //buf[11] is the world space z value
+				 if (bn->_model->buff[11] > closest_n->_model->buff[11])
+					 closest_n = bn;
+			 }
+		 }
+	 }
+	 if (bb != uwu) {
+
+		 if (closest_n == NULL)	return n;
+
+		 else if (bb->CheckInside(mousePos)) {
+			 if (n->_model->buff[11] > closest_n->_model->buff[11]) {
+				 closest_n = n;
+			 }
+		 }
+	 }*/
+	// return closest_n;
+	 return uwu;
 }
 
 void MouseEventHandler::HandleMouseMoving(const Vec2 mousePos, const float deltaTime) {
 	//call OnHover 3 25 6 08 59 1 7  iti is real
-	
+	//if(mousePos == (*_prevPos)
 	BaseNode* newCurrent = CheckCollision(Game::_world, mousePos);
-	
+	if (newCurrent != NULL) printf("COLLIDED WITH SONETHING\n");
 	if (newCurrent != _current) {
 		//IF MOUSE OVER NEW THING
 		if (_current != uwu) {
 			//_current->OnMouseLeave(&mousePos);
 			//MouseEvent<BaseComponent>::_id
-			_current->GetComponent<MouseEvent<Graphic>>(0);
-			_current = uwu;
+			const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+			m->CallEvents(BtnEvent::ON_LEAVE);
+			newCurrent = _current;
+			//_current = uwu;
 		}
 		if (newCurrent != uwu) {
-			_current = &(*newCurrent);
+			_current = newCurrent;
 			//_current->OnMouseEnter(&mousePos);
+			const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+			m->CallEvents(BtnEvent::ON_ENTER);
 		}
 
 	}
@@ -47,6 +83,8 @@ void MouseEventHandler::HandleMouseMoving(const Vec2 mousePos, const float delta
 			_time += deltaTime;
 			if (_time >= _hover_time && !_onHover) {
 				//_current->OnHover(&mousePos);
+				const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+				m->CallEvents(BtnEvent::ON_HOVER);
 				_onHover = true;
 			}
 		}
@@ -54,6 +92,8 @@ void MouseEventHandler::HandleMouseMoving(const Vec2 mousePos, const float delta
 			_time = 0;
 			if (_onHover) {
 				//_current->OnEndHover(&mousePos);
+				const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+				m->CallEvents(BtnEvent::ON_END_HOVER);
 				_onHover = false;
 			}
 		}

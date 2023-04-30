@@ -12,6 +12,7 @@ enum BtnEvent {
 	ON_ENTER,
 	ON_LEAVE,
 	ON_HOVER,
+	ON_END_HOVER
 };
 template <typename T>class MouseEvent : public BaseComponent {
 	
@@ -24,7 +25,7 @@ private:
 
 public:
 	static const unsigned int _id;
-	MouseEvent(T* owner): _owner(owner), _maxcalls(6) {
+	MouseEvent(T* owner): _owner(owner), _maxcalls(7) {
 		_callbacks = new std::vector<std::vector<fptr>*>();
 		for (int i = 0; i < _maxcalls; i++) {
 			_callbacks->push_back(new std::vector<fptr>());
@@ -39,13 +40,14 @@ public:
 	const unsigned int ID() const override {
 		return _id;
 	}
-	void CallEvents(BtnEvent e) {
+	void CallEvents(BtnEvent e) const {
 		auto events = _callbacks->at((int)(e));
 		for (int i = 0; i < events->size(); i++) {
-			events->at(i)();
+			//fptr func = ;
+			(_owner->*events->at(i))();
 		}
 	}
-	void SetEventCallBack(void(T::* call)(), BtnEvent e) {
+	void SetEventCallBack(fptr call, BtnEvent e) {
 		//method = call;
 		_callbacks->at((int)(e))->push_back(call);
 	}
