@@ -9,7 +9,7 @@ private:
 	static BaseNode* _current;
 	static float _time;
 	static float _hover_time;
-	static Vec2* _prevPos;
+	static Vec3 _prevPos;
 	static bool _onHover;
 	static bool _on;
 	static float _ddclick_time;
@@ -17,13 +17,13 @@ private:
 public:
 
 	//static void RegisterEvent(MouseEvent* m);
-	static void HandleMouseMoving(const Vec2 mousePos, const float deltaTime);
+	static void HandleMouseMoving(const Vec3 mousePos, const float deltaTime);
 	static void HandleMouseClick(const bool on);
 	static void Update(const float deltaTime);
 	static void Delete();
-	static const Vec2* GetMousePosition();
+	static const Vec3 GetMousePosition();
 
-	static BaseNode* CheckCollision(const BaseNode* n, const Vec2 mousePos);
+	static BaseNode* CheckCollision(BaseNode* n, const Vec3 mousePos);
 
 	/*
 	A RECURSIVE COLLISION CHECK

@@ -12,8 +12,8 @@ RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	BaseNode(pos, size, ang){
 	AddFBO();
 }
-void RenderNode::AddFBO() const {
-	BaseNode::AddComponent<const FBOComponent>( new FBOComponent(_transform._scale.x, _transform._scale.y));
+void RenderNode::AddFBO() {
+	AddComponent<FBOComponent>( new FBOComponent(_transform._scale.x, _transform._scale.y));
 }
 RenderNode::~RenderNode() {
 	std::cout << "RENDER NODE DELETED\n";

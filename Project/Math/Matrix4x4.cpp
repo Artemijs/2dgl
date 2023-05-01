@@ -9,7 +9,7 @@ Vec2::Vec2(float mx, float my) {
 	x = mx;
 	y = my;
 }
-bool Vec2::operator==(const Vec2& v) {
+bool Vec2::operator==(const Vec2& v) const{
 	return (v.x == x && v.y == y);
 }
 void Vec2::operator=(const Vec2& v) {
@@ -22,7 +22,7 @@ Vec2 Vec2::operator-(const Vec2& v) {
 Vec2 Vec2::operator+(const Vec2& v) {
 	return Vec2(x + v.x, y + v.y);
 }
-Vec2 Vec2::operator*(float f) {
+Vec2 Vec2::operator*(const float f) {
 	return Vec2(x * f, y * f);
 }
 void Vec2::operator+=(const Vec2& v) {
@@ -38,7 +38,7 @@ Vec2Int::Vec2Int(int mx, int my) {
 	x = mx;
 	y = my;
 }
-bool Vec2Int::operator==(const Vec2Int& v) {
+bool Vec2Int::operator==(const Vec2Int& v)const {
 	return (v.x == x && v.y == y);
 }
 void Vec2Int::operator=(const Vec2Int& v) {
@@ -100,8 +100,16 @@ void Vec3::operator/=(const float& v) {
 	y /= v;
 	z /= v;
 }
+void Vec3::operator=(const Vec3& v) {
+	x = v.x;
+	y = v.y;
+	z = v.z;
+}
 Vec3 Vec3::operator/(const float f) {
 	return Vec3(x / f, y / f, z / f);
+}
+const bool Vec3::operator==(const Vec3& v) const {
+	return (v.x == x && v.y == y && v.z == z);
 }
 float Vec3::Lenght() {
 	return std::sqrt((x * x + y * y + z * z));
@@ -231,6 +239,16 @@ Vec4 Matrix4x4::operator* (const Vec4& v) {
 }
 
 Vec3 Matrix4x4::operator* (const Vec3& v) {
+	Vec3 v3 = Vec3();
+	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z + buff[3] * 1;
+	//r2 x c1
+	v3.y = buff[4] * v.x + buff[5] * v.y + buff[6] * v.z + buff[7] * 1;
+	//r3 x c1
+	v3.z = buff[8] * v.x + buff[9] * v.y + buff[10] * v.z + buff[11] * 1;
+	//r4 x c1
+	return v3;
+}
+const Vec3 Matrix4x4::operator* (const Vec3& v) const {
 	Vec3 v3 = Vec3();
 	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z + buff[3] * 1;
 	//r2 x c1

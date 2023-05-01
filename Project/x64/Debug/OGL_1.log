@@ -2,5 +2,5 @@
   MouseEventHandler.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(35,21): warning C4018: '<': signed/unsigned mismatch
 C:\Users\artem\Documents\programming\2dgl\Project\Game\MouseEventComponent.h(34): message : while compiling class template member function 'MouseEvent<Graphic>::~MouseEvent(void)'
-C:\Users\artem\Documents\programming\2dgl\Project\Input\MouseEventHandler.cpp(36): message : see reference to class template instantiation 'MouseEvent<Graphic>' being compiled
+C:\Users\artem\Documents\programming\2dgl\Project\Input\MouseEventHandler.cpp(76): message : see reference to class template instantiation 'MouseEvent<Graphic>' being compiled
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

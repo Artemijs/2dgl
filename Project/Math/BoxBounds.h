@@ -11,8 +11,8 @@ private:
 public :
 	BoxBounds();
 	BoxBounds(Vec3 topLeft, Vec3 topRight, Vec3 botLeft, Vec3 botRight);
-	bool CheckInside(Vec3 pos);
-	float GetZ();
-	void Translate2World(Matrix4x4 model);
+	const bool CheckInside(Vec3 pos)const ;
+	const float GetZ()const ;
+	void Translate2World(const Matrix4x4* model) ;
 };
 #endif

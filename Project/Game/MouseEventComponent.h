@@ -40,14 +40,15 @@ public:
 	const unsigned int ID() const override {
 		return _id;
 	}
-	void CallEvents(BtnEvent e) const {
+	void CallEvents(const BtnEvent e) {
+		std::vector<fptr>* t = _callbacks->at((int)(e));
 		auto events = _callbacks->at((int)(e));
 		for (int i = 0; i < events->size(); i++) {
 			//fptr func = ;
 			(_owner->*events->at(i))();
 		}
 	}
-	void SetEventCallBack(fptr call, BtnEvent e) {
+	void SetEventCallBack(fptr call, const BtnEvent e) {
 		//method = call;
 		_callbacks->at((int)(e))->push_back(call);
 	}

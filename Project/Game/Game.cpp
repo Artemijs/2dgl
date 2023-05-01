@@ -68,7 +68,7 @@ void Game::Update(float deltaTime) {
 	//MOUSE EVENTS
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
 	ypos = Renderer::instance()->GetWindowSize().y - ypos;
-	MouseEventHandler::HandleMouseMoving(Vec2(xpos, ypos), deltaTime);
+	MouseEventHandler::HandleMouseMoving(Vec3(xpos, ypos, 0), deltaTime);
 	MouseEventHandler::Update(deltaTime);
 
 	//KEYBOARD EVENTS

@@ -13,7 +13,7 @@ public:
 	Vec2 operator-(const Vec2& v);
 	Vec2 operator*(const float f);
 	void operator+=(const  Vec2& v);
-	bool operator==(const Vec2& v);
+	bool operator==(const Vec2& v) const;
 	void operator=(const Vec2& v);
 
 };
@@ -28,7 +28,7 @@ public:
 	Vec2Int operator+(const Vec2Int& v);
 	Vec2Int operator*(const int f);
 	void operator+=(const  Vec2Int& v);
-	bool operator==(const Vec2Int& v);
+	bool operator==(const Vec2Int& v)const;
 	void operator=(const Vec2Int& v);
 
 };
@@ -49,7 +49,8 @@ public:
 	void operator+=(const  Vec3& v);
 	void operator-=(const  Vec3& v);
 	void operator/=(const  float& v);
-	
+	const bool operator==(const Vec3& v) const;
+	void operator=(const Vec3& v) ;
 	float Lenght();
 	void Normalize();
 	static void Normalize( Vec3& vec);
@@ -88,6 +89,7 @@ public:
 	Vec4 operator*(const Vec4& v);
 	//technically uses a vec4 here i just hard code a 1 for the 4th position in the vector
 	Vec3 operator*(const Vec3& v);
+	const Vec3 operator*(const Vec3& v)const ;
 	void SetRotation(float ang);
 	static Matrix4x4 Ortho(float left, float right, float bot, float top, float near, float far);
 	static Matrix4x4 RotationMatrix(float ang);

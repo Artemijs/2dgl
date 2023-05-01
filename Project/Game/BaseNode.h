@@ -37,7 +37,7 @@ public:
 class BaseNode : public BaseUpdate {
 protected:
 	Transform _transform;
-	std::vector< std::pair< const unsigned int, const BaseComponent*>*>* _components;
+	std::vector< std::pair< const unsigned int, BaseComponent*>*>* _components;
 	BaseNode* _parent;
 	std::vector<BaseNode*>* _children;
 	bool _inheritTransform[3]{ true, true, true };
@@ -85,18 +85,18 @@ public:
 	const BaseNode* GetParent() const;
 	const std::vector<BaseNode*>* GetAllChildren() const;
 
-	std::vector< std::pair< const unsigned int, const BaseComponent*>*>* Components() const ;
+	std::vector< std::pair< const unsigned int, BaseComponent*>*>* Components() const ;
 
-	template<class T> void AddComponent(const T* comp) const {
+	template<class T> void AddComponent( T* comp) {
 		
 		const bool exists = CheckIfComponentExists(T::_id);
 
 		if (exists) return;
 		//const BaseComponent* b = new v1_6::Sprite();
-		const BaseComponent* b = dynamic_cast<const BaseComponent*> (comp);
+		BaseComponent* b = dynamic_cast<BaseComponent*> (comp);
 		const unsigned int id = b->ID();
-		std::pair<const  unsigned int, const BaseComponent*>* pair
-			= new std::pair< const unsigned int, const BaseComponent*>({ id, b });
+		std::pair<const  unsigned int, BaseComponent*>* pair
+			= new std::pair< const unsigned int, BaseComponent*>({ id, b });
 		_components->push_back(pair);
 	}
 
@@ -108,26 +108,26 @@ public:
 		}
 		return false;
 	}
-	//template<class T> const T* GetComponent() const {
-	//	unsigned int id = T::_id;
-	//	T* comp = NULL;
-	//	for (int i = 0; i < _components->size(); ++i) {
-	//		if (_components->at(i)->first == id) {
-	//			return  dynamic_cast<const T*>(_components->at(i)->second);
-	//		}
-	//	}
-	//	return comp;
-	//}
+	template<class T> T* GetComponent() const {
+		const unsigned int id = T::_id;
+		T* comp = NULL;
+		for (int i = 0; i < _components->size(); ++i) {
+			if (_components->at(i)->first == id) {
+				return  dynamic_cast<T*>(_components->at(i)->second);
+			}
+		}
+		return comp;
+	}
 
 
 
 	//pass the type it needs for it to cast base comp to the obj you want
 	//id is the static id every component has MouseEvent::_id
-	template<class T> const T* GetComponent(const  unsigned int id) const {
+	template<class T> T* GetComponent(const  unsigned int id) const {
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {
 			if (_components->at(i)->first == id) {
-				return  dynamic_cast<const T*>(_components->at(i)->second);
+				return  dynamic_cast<T*>(_components->at(i)->second);
 			}
 		}
 		return comp;

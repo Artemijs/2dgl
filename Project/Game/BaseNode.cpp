@@ -2,7 +2,7 @@
 #include <iostream>
 
 BaseNode::BaseNode():_size(0) {
-	_components = new std::vector<std::pair<const unsigned int, const BaseComponent*>*>();
+	_components = new std::vector<std::pair<const unsigned int,  BaseComponent*>*>();
 	_transform = { Vec3(), Vec3(), Vec3() };
 	_parent = NULL;
 	_children = new std::vector<BaseNode*>();
@@ -13,7 +13,7 @@ BaseNode::BaseNode():_size(0) {
 
 BaseNode::BaseNode(const Vec3 pos, const Vec3 size, const float ang):_size(0) {
 	printf("creaating basenode\n");
-	_components = new std::vector<std::pair<const unsigned int, const BaseComponent*>*>();
+	_components = new std::vector<std::pair<const unsigned int,  BaseComponent*>*>();
 	_transform = { pos, size, Vec3(0, ang, 0) };
 	_parent = NULL;
 	_children = new std::vector<BaseNode*>();
@@ -134,7 +134,7 @@ const BaseNode* BaseNode::GetParent() const{
 	return _parent;
 }
 
-std::vector< std::pair< const unsigned int, const BaseComponent*>*>* BaseNode::Components() const {
+std::vector< std::pair< const unsigned int,  BaseComponent*>*>* BaseNode::Components() const {
 	return _components;
 }
 /// <summary>
@@ -145,7 +145,7 @@ const Graphic* BaseNode::GetGraphic() const {
 	for (int i = 0; i < _components->size(); ++i) {
 		
 		if (_components->at(i)->second->IsGraphic()) {
-			return dynamic_cast<const Graphic*>(_components->at(i)->second);
+			return dynamic_cast<Graphic*>(_components->at(i)->second);
 		}
 	}
 	return NULL;

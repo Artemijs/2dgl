@@ -2,14 +2,15 @@
 #include "../Game/Game.h"
 #include "../Game/MouseEventComponent.h"
 #include <iostream>
+#include "../Math/Bounds.h"
 #define uwu 0x0
 //std::vector<MouseEvent*>* MouseEventHandler::_all_events = new std::vector < MouseEvent* >();
-Vec2* MouseEventHandler::_prevPos = new Vec2(0, 0);
+Vec3 MouseEventHandler::_prevPos = Vec3(0, 0, 0);
 float MouseEventHandler::_time = 0;
 float MouseEventHandler::_hover_time = 1.5f;
 float MouseEventHandler::_ddclick_time = 0.5f;
 float MouseEventHandler::_dd_time_max = 0.2f;
-bool MouseEventHandler::_onHover = false;
+bool MouseEventHandler::_onHover = false;		
 bool MouseEventHandler::_on = false;
 BaseNode* MouseEventHandler::_current = uwu;
 /*void MouseEventHandler::RegisterEvent(MouseEvent* e) {
@@ -17,17 +18,17 @@ BaseNode* MouseEventHandler::_current = uwu;
 }
 */
 #include "../Game/FBOComponent.h"
- BaseNode* MouseEventHandler::CheckCollision(const BaseNode* node, const Vec2 mousePos) {
+BaseNode* MouseEventHandler::CheckCollision(BaseNode* node, const Vec3 mousePos) {
 	 //node->GetComponent<MouseEvent>(0);
-	 printf("collision detection code not implemented\n");
-	 /*const Bounds* bb = n->GetComponent<Bounds>();
-	 auto children = n->GetChildren();
+	// printf("collision detection code not implemented\n");
+	 Bounds* bb = node->GetComponent<Bounds>();
+	 auto children = node->GetAllChildren();
 	 BaseNode* closest_n = uwu;
 
 	 if (children != uwu) {
-		 for (int i = 0; i < n->children->size(); ++i) {
+		 for (int i = 0; i < children->size(); ++i) {
 
-			 const BaseNode* bn = CheckCollision(childre->at(i), mousePos);
+			  BaseNode* bn = CheckCollision(children->at(i), mousePos);
 
 			 if (bn == uwu) continue;
 
@@ -35,26 +36,34 @@ BaseNode* MouseEventHandler::_current = uwu;
 				 closest_n = bn;
 			 else {
 				 //buf[11] is the world space z value
-				 if (bn->_model->buff[11] > closest_n->_model->buff[11])
+				 
+				 if (bn->GetModelMatrix()->buff[11] > closest_n->GetModelMatrix()->buff[11])
 					 closest_n = bn;
 			 }
 		 }
 	 }
 	 if (bb != uwu) {
-
-		 if (closest_n == NULL)	return n;
-
-		 else if (bb->CheckInside(mousePos)) {
-			 if (n->_model->buff[11] > closest_n->_model->buff[11]) {
-				 closest_n = n;
+		 bb->Translate2World(node->GetModelMatrix());
+		 if (bb->CheckInside(mousePos) ){
+			 if (closest_n == uwu) {
+				 return node;
+			 }
+			 else {
+				 if (node->GetModelMatrix()->buff[11] > closest_n->GetModelMatrix()->buff[11]) {
+					 //closest_n = node;
+					 return node;
+				 }		
 			 }
 		 }
-	 }*/
-	// return closest_n;
-	 return uwu;
+		 else {
+			 if (closest_n == uwu)	return uwu;
+		 }
+	 }
+	 return closest_n;
+	 //return uwu;
 }
 
-void MouseEventHandler::HandleMouseMoving(const Vec2 mousePos, const float deltaTime) {
+void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float deltaTime) {
 	//call OnHover 3 25 6 08 59 1 7  iti is real
 	//if(mousePos == (*_prevPos)
 	BaseNode* newCurrent = CheckCollision(Game::_world, mousePos);
@@ -64,7 +73,7 @@ void MouseEventHandler::HandleMouseMoving(const Vec2 mousePos, const float delta
 		if (_current != uwu) {
 			//_current->OnMouseLeave(&mousePos);
 			//MouseEvent<BaseComponent>::_id
-			const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+			MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
 			m->CallEvents(BtnEvent::ON_LEAVE);
 			newCurrent = _current;
 			//_current = uwu;
@@ -72,18 +81,21 @@ void MouseEventHandler::HandleMouseMoving(const Vec2 mousePos, const float delta
 		if (newCurrent != uwu) {
 			_current = newCurrent;
 			//_current->OnMouseEnter(&mousePos);
-			const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+
+			//THIS RETURNS NULL MOUSE EVENT ID AND MOUSE EVENT COMPONENT VARIABLE ID DO NOT MATCH?
+			printf("mouse event id is %d , %d\n" );
+			 MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
 			m->CallEvents(BtnEvent::ON_ENTER);
 		}
 
 	}
 	else if (newCurrent == _current && _current != uwu) {
 		//IF MOUSE STILL OVER OLD THING
-		if ((*_prevPos) == mousePos) {
+		if (_prevPos == mousePos) {
 			_time += deltaTime;
 			if (_time >= _hover_time && !_onHover) {
 				//_current->OnHover(&mousePos);
-				const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+				 MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
 				m->CallEvents(BtnEvent::ON_HOVER);
 				_onHover = true;
 			}
@@ -92,13 +104,13 @@ void MouseEventHandler::HandleMouseMoving(const Vec2 mousePos, const float delta
 			_time = 0;
 			if (_onHover) {
 				//_current->OnEndHover(&mousePos);
-				const MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+				 MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
 				m->CallEvents(BtnEvent::ON_END_HOVER);
 				_onHover = false;
 			}
 		}
 	}
-	(*_prevPos) = mousePos;
+	_prevPos = mousePos;
 }
 void MouseEventHandler::HandleMouseClick(const bool on) {
 	if (_current == uwu) return;
@@ -129,13 +141,13 @@ void MouseEventHandler::Update(const float deltaTime) {
 
 }
 void MouseEventHandler::Delete() {
-	delete _prevPos;
+	//delete _prevPos;
 	//for (int i = 0; i < _all_events->size(); ++i) {
 		//delete _all_events->at(i);
 	//}
 	//delete _all_events;
 }
 
-const Vec2* MouseEventHandler::GetMousePosition() {
+const Vec3 MouseEventHandler::GetMousePosition() {
 	return _prevPos;
 }
