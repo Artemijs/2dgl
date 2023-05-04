@@ -3,6 +3,7 @@
 #include "../Game/MouseEventComponent.h"
 #include <iostream>
 #include "../Math/Bounds.h"
+#include "../UI/Button.h"
 #define uwu 0x0
 //std::vector<MouseEvent*>* MouseEventHandler::_all_events = new std::vector < MouseEvent* >();
 Vec3 MouseEventHandler::_prevPos = Vec3(0, 0, 0);
@@ -73,7 +74,7 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 		if (_current != uwu) {
 			//_current->OnMouseLeave(&mousePos);
 			//MouseEvent<BaseComponent>::_id
-			MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+			MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
 			m->CallEvents(BtnEvent::ON_LEAVE);
 			newCurrent = _current;
 			//_current = uwu;
@@ -84,7 +85,7 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 
 			//THIS RETURNS NULL MOUSE EVENT ID AND MOUSE EVENT COMPONENT VARIABLE ID DO NOT MATCH?
 			printf("mouse event id is %d , %d\n" );
-			 MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+			 MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
 			m->CallEvents(BtnEvent::ON_ENTER);
 		}
 
@@ -95,7 +96,7 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 			_time += deltaTime;
 			if (_time >= _hover_time && !_onHover) {
 				//_current->OnHover(&mousePos);
-				 MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+				 MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
 				m->CallEvents(BtnEvent::ON_HOVER);
 				_onHover = true;
 			}
@@ -104,7 +105,7 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 			_time = 0;
 			if (_onHover) {
 				//_current->OnEndHover(&mousePos);
-				 MouseEvent<Graphic>* m = _current->GetComponent<MouseEvent<Graphic>>(MouseEvent<Graphic>::_id);
+				 MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
 				m->CallEvents(BtnEvent::ON_END_HOVER);
 				_onHover = false;
 			}

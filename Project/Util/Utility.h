@@ -1,16 +1,26 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 #include "../Game/BaseNode.h"
+
 class Utility {
 public:
 	static unsigned int _idCount;
 	
+	
 	template<class T> static const unsigned int GetID() {
-		return _idCount+=1;
+		
+		int sum = 0;
+		const char* c = typeid(T).name();
+		char cv = *(c);
+		while (*(c) != '\0') {
+			std::cout << *(c) << "\n";
+			sum += (int)*(c);
+			c += sizeof(*(c));
+		}
+		return sum;
 	}
-	static const unsigned int GetID() {
-		return _idCount += 1;
-	}
+	static const unsigned int GetID();
+	static const unsigned int GetMouseEventID();
 	static bool IsRenderNode(const BaseNode* node) ;
 };
 

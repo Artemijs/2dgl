@@ -54,5 +54,5 @@ public:
 	}
 };
 template <class T>
-const unsigned int MouseEvent<T>::_id = Utility::GetID();
+const unsigned int MouseEvent<T>::_id = Utility::GetMouseEventID();
 #endif

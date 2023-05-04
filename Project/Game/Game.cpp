@@ -8,6 +8,7 @@
 #include "FBOComponent.h"
 #include "RenderNode.h"
 #include "../UI/Button.h"
+#include <typeinfo>
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
 Game::Game() {
@@ -15,7 +16,8 @@ Game::Game() {
 	_switch = false;
 	m = new MouseEvent<Game>(this);
 	//m->SetCallBack(&Game::Test);
-	
+	//printf("type infoe test %d\n", typeid(int));
+	//std::cout << "type id test " << typeid(MouseEvent<Game>).name() << "\n";
 	//v1_5::Text::Init();
 	_isRunning = true;
 	_world->AddComponent(new FBOComponent(_world->GetTransform()._scale.x, _world->GetTransform()._scale.y));
