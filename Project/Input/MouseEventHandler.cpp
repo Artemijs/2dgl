@@ -74,8 +74,8 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 		if (_current != uwu) {
 			//_current->OnMouseLeave(&mousePos);
 			//MouseEvent<BaseComponent>::_id
-			MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
-			m->CallEvents(BtnEvent::ON_LEAVE);
+			MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
+			m->CallEvents(BtnEvent::ON_LEAVE, mousePos);
 			newCurrent = _current;
 			//_current = uwu;
 		}
@@ -85,8 +85,8 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 
 			//THIS RETURNS NULL MOUSE EVENT ID AND MOUSE EVENT COMPONENT VARIABLE ID DO NOT MATCH?
 			printf("mouse event id is %d , %d\n" );
-			 MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
-			m->CallEvents(BtnEvent::ON_ENTER);
+			MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
+			m->CallEvents(BtnEvent::ON_ENTER, mousePos);
 		}
 
 	}
@@ -96,8 +96,8 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 			_time += deltaTime;
 			if (_time >= _hover_time && !_onHover) {
 				//_current->OnHover(&mousePos);
-				 MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
-				m->CallEvents(BtnEvent::ON_HOVER);
+				MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
+				m->CallEvents(BtnEvent::ON_HOVER, mousePos);
 				_onHover = true;
 			}
 		}
@@ -105,8 +105,8 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 			_time = 0;
 			if (_onHover) {
 				//_current->OnEndHover(&mousePos);
-				 MouseEvent<Button>* m = _current->GetComponent<MouseEvent<Button>>(MouseEvent<Button>::_id);
-				m->CallEvents(BtnEvent::ON_END_HOVER);
+				MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
+				m->CallEvents(BtnEvent::ON_END_HOVER, mousePos);
 				_onHover = false;
 			}
 		}

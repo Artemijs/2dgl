@@ -279,7 +279,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		//bind node fbo
 		//rn = node->GetComponent<RenderNode>();
-		fbo = node->GetComponent<FBOComponent>(FBOComponent::_id);
+		fbo = node->GetComponent<FBOComponent>(FBOComponent::_component_id);
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
 		if (isRoot) {
 			glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
@@ -331,7 +331,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 			//unbind prev FBO
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 			//ifi t is a render node but not the root node bind the FBO of the last FBO node
-			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<FBOComponent>(FBOComponent::_id)->_fbo);
+			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fbo);
 			//bind vao 
 			_vao->Bind();
 			//activate shader	USING DEFAULT FOR NOW
@@ -342,7 +342,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 			Renderer::SetShaderVariables(s->ID);
 			glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
 			//bind texture from FBO
-			unsigned int tId = node->GetComponent<FBOComponent>(FBOComponent::_id)->_fboTexture;
+			unsigned int tId = node->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fboTexture;
 			//unsigned int tId = Game::_testG->GetTexture()->ID;
 			glBindTexture(GL_TEXTURE_2D, tId);
 			//maybe this part is optioNAL because in the example above he doesnt use this

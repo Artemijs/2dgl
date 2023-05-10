@@ -1,10 +1,12 @@
 #ifndef MOUSEEVENTCOMP_H
 #define MOUSEEVENTCOMP_H
-
+#include <functional>
 #include "BaseComponent.h"
 #include "../Util/Utility.h"
+#include "../Math/Matrix4x4.h"
+#define fpointer std::function<void(const Vec3)>
 //#define fptr void(T::* method)()
-enum BtnEvent {
+enum class BtnEvent {
 	ON_PRESS = 0,
 	ON_RELEASE,
 	ON_CLICK,
@@ -12,8 +14,24 @@ enum BtnEvent {
 	ON_ENTER,
 	ON_LEAVE,
 	ON_HOVER,
-	ON_END_HOVER
+	ON_END_HOVER,
+	end
 };
+class MouseEvent : public BaseComponent {
+private:
+	std::vector<std::vector<fpointer>*>* _callbacks;
+	
+public :
+	static const unsigned int _component_id;
+	MouseEvent();
+	~MouseEvent();
+	const unsigned int ID() const override;
+	void AddEvent(const fpointer &f, const BtnEvent eType);
+	void CallEvents(const BtnEvent be, const Vec3 mousepos) const;
+
+};
+
+/*
 template <typename T>class MouseEvent : public BaseComponent {
 	
 private:
@@ -54,5 +72,5 @@ public:
 	}
 };
 template <class T>
-const unsigned int MouseEvent<T>::_id = Utility::GetMouseEventID();
+const unsigned int MouseEvent<T>::_id = Utility::GetMouseEventID();*/
 #endif

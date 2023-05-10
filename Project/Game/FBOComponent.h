@@ -8,7 +8,7 @@ private:
 	
 	unsigned int _rbo;
 public :
-	static const unsigned int _id;
+	static const unsigned int _component_id;
 	unsigned int _fbo;
 	unsigned int _fboTexture;
 	FBOComponent();

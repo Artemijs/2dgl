@@ -89,7 +89,7 @@ public:
 
 	template<class T> void AddComponent( T* comp) {
 		
-		const bool exists = CheckIfComponentExists(T::_id);
+		const bool exists = CheckIfComponentExists(T::_component_id);
 
 		if (exists) return;
 		//const BaseComponent* b = new v1_6::Sprite();
@@ -109,7 +109,7 @@ public:
 		return false;
 	}
 	template<class T> T* GetComponent() const {
-		const unsigned int id = T::_id;
+		const unsigned int id = T::_component_id;
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {
 			if (_components->at(i)->first == id) {

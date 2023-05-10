@@ -7,7 +7,7 @@
 	private:
 		
 	public:
-		static const unsigned int _id;
+		static const unsigned int _component_id;
 		Sprite();
 		Sprite(const char* path);
 		~Sprite();

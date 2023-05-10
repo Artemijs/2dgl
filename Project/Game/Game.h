@@ -8,7 +8,7 @@ class Game {
 protected:
 	bool _switch;
 	bool _isRunning;
-	MouseEvent<Game>* m;
+	MouseEvent* m;
 public :
 
 	static BaseNode* _world;

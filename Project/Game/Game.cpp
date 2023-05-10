@@ -14,7 +14,7 @@ Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
 Game::Game() {
 	
 	_switch = false;
-	m = new MouseEvent<Game>(this);
+	m = new MouseEvent();
 	//m->SetCallBack(&Game::Test);
 	//printf("type infoe test %d\n", typeid(int));
 	//std::cout << "type id test " << typeid(MouseEvent<Game>).name() << "\n";

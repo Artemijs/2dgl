@@ -4,7 +4,7 @@
 #include "../Game/BaseComponent.h"
 class Bounds: public BaseComponent {
 public:
-	static const unsigned int _id;
+	static const unsigned int _component_id;
 	//Bounds():BaseComponent() {}
 	//BaseComponent* comp;
 	virtual const bool CheckInside(const Vec3 pos)const  = 0;

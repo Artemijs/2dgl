@@ -2,7 +2,7 @@
 #include "Sprite.h"
 #include "Renderer.h"
 #include "../Util/Utility.h"
-const unsigned int Sprite::_id = Utility::GetID();
+const unsigned int Sprite::_component_id = Utility::GetID();
 
 Sprite::Sprite() : Graphic() {
 }
@@ -20,4 +20,4 @@ void Sprite::Bind(const Matrix4x4* model) const {
 	t->texUni(_shader, "tex0", 0);									
 	Renderer::instance()->GetVAO()->Bind();						
 }
-const unsigned int Sprite::ID()const { return _id; }
+const unsigned int Sprite::ID()const { return _component_id; }
