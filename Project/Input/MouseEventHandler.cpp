@@ -68,23 +68,21 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 	//call OnHover 3 25 6 08 59 1 7  iti is real
 	//if(mousePos == (*_prevPos)
 	BaseNode* newCurrent = CheckCollision(Game::_world, mousePos);
-	if (newCurrent != NULL) printf("COLLIDED WITH SONETHING\n");
-	if (newCurrent != _current) {
-		//IF MOUSE OVER NEW THING
-		if (_current != uwu) {
-			//_current->OnMouseLeave(&mousePos);
-			//MouseEvent<BaseComponent>::_id
+
+	//if nothing found
+	if (newCurrent == uwu && _current == uwu) return;
+
+	
+	if (newCurrent != _current) {	
+		//IF MOUSE OVER NEW THING	
+		if (_current != uwu) {		
 			MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
 			m->CallEvents(BtnEvent::ON_LEAVE, mousePos);
-			newCurrent = _current;
-			//_current = uwu;
-		}
-		if (newCurrent != uwu) {
-			_current = newCurrent;
-			//_current->OnMouseEnter(&mousePos);
+			_current = uwu;		
 
-			//THIS RETURNS NULL MOUSE EVENT ID AND MOUSE EVENT COMPONENT VARIABLE ID DO NOT MATCH?
-			printf("mouse event id is %d , %d\n" );
+		}						
+		if (newCurrent != uwu) {
+			_current = newCurrent;							
 			MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
 			m->CallEvents(BtnEvent::ON_ENTER, mousePos);
 		}
@@ -95,7 +93,6 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 		if (_prevPos == mousePos) {
 			_time += deltaTime;
 			if (_time >= _hover_time && !_onHover) {
-				//_current->OnHover(&mousePos);
 				MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
 				m->CallEvents(BtnEvent::ON_HOVER, mousePos);
 				_onHover = true;
@@ -118,16 +115,19 @@ void MouseEventHandler::HandleMouseClick(const bool on) {
 
 	if (on) {
 		//_current->OnPressed(_prevPos);
+		MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
+		m->CallEvents(BtnEvent::ON_PRESS, _prevPos);
 	}
 	else if (!on) {
-		//_current->OnReleased(_prevPos);
+		MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
+		m->CallEvents(BtnEvent::ON_RELEASE, _prevPos);
 		if (_ddclick_time != -1) {
-			//_current->OnDoubleClick(_prevPos);
+			m->CallEvents(BtnEvent::ON_DOUBLE_CLICK, _prevPos);
 			_ddclick_time = -1;
 		}
 		else {
 			_ddclick_time = 0;
-			//_current->OnClick(_prevPos);
+			m->CallEvents(BtnEvent::ON_CLICK, _prevPos);
 		}
 	}
 }
