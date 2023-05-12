@@ -7,6 +7,7 @@
 #define uwu 0x0
 //std::vector<MouseEvent*>* MouseEventHandler::_all_events = new std::vector < MouseEvent* >();
 Vec3 MouseEventHandler::_prevPos = Vec3(0, 0, 0);
+MouseEvent* MouseEventHandler::_current_m = uwu;
 float MouseEventHandler::_time = 0;
 float MouseEventHandler::_hover_time = 1.5f;
 float MouseEventHandler::_ddclick_time = 0.5f;
@@ -68,9 +69,11 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 	//call OnHover 3 25 6 08 59 1 7  iti is real
 	//if(mousePos == (*_prevPos)
 	BaseNode* newCurrent = CheckCollision(Game::_world, mousePos);
-
+	
 	//if nothing found
-	if (newCurrent == uwu && _current == uwu) return;
+	if (newCurrent == uwu && _current == uwu) {
+		return;
+	}
 
 	
 	if (newCurrent != _current) {	
@@ -78,7 +81,8 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 		if (_current != uwu) {		
 			MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
 			m->CallEvents(BtnEvent::ON_LEAVE, mousePos);
-			_current = uwu;		
+			_current = uwu;
+			_current_m = uwu;
 
 		}						
 		if (newCurrent != uwu) {

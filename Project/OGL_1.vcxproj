@@ -163,6 +163,8 @@
     <ClCompile Include="Game\MouseEventComponent.cpp" />
     <ClCompile Include="Game\RenderNode.cpp" />
     <ClCompile Include="Graphics\Graphic.cpp" />
+    <ClCompile Include="Graphics\Material.cpp" />
+    <ClCompile Include="Graphics\MaterialDefault.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\ShaderClass.cpp" />
     <ClCompile Include="Graphics\Sprite.cpp" />
@@ -192,6 +194,8 @@
     <ClInclude Include="Game\MouseEventComponent.h" />
     <ClInclude Include="Game\RenderNode.h" />
     <ClInclude Include="Graphics\Graphic.h" />
+    <ClInclude Include="Graphics\Material.h" />
+    <ClInclude Include="Graphics\MaterialDefault.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\ShaderClass.h" />
     <ClInclude Include="Graphics\Sprite.h" />
