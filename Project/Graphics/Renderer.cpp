@@ -221,26 +221,23 @@ Shader* Renderer::GetShader(int id) {
 Texture* Renderer::GetTexture(int id) {
 	return _all_textures->at(id).second;
 }
-const unsigned int Renderer::LoadTexture(const char* path) {
+const Texture* Renderer::LoadTexture(const char* path) {
 	//check if exissts
-	bool found = false;
 	for (int i = 0; i < _all_textures->size(); ++i) {
 		const char* p = _all_textures->at(i).first;
+
 		for (int j = 0; p[j] == path[j]; j++) {
 			//if strings are identical
 			if (p[j] == '\0' && path[j] == '\0') {
 				//dont need to add it because it already exists
-				found = true;
-				return i;
-				break;
+				return _all_textures->at(i).second;
 			}
 		}
 	}
-	if (!found)
-		//add new if not exists
-		_all_textures->push_back(
-			std::pair<const char*, Texture*>{path, new Texture(path, GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE)});
-	return _all_textures->size() - 1;
+	//add new if not exists
+	Texture* t = new Texture(path, GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	_all_textures->push_back(std::pair<const char*, Texture*>{path, t});
+	return t;
 }
 
 

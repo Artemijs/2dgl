@@ -1,17 +1,19 @@
-#ifndef MATERIAL_H
-#define MATERIAL_H
-#include "../Math/Matrix4x4.h"
-#include "ShaderClass.h"
-class Material {
+#ifndef MATERIAL_DEFAULT_H
+#define MATERIAL_DEFAULT_H
+
+#include "Material.h"
+
+
+class MaterialDefault: public Material {
 
 private:
-	const Shader* _shader;
+	
 public :
-	Material();
-	Material(const Shader* s);
-	~Material();
-	virtual void Bind(const Matrix4x4& m) const = 0;
-	virtual void Unbind() const = 0;
+	MaterialDefault();
+	MaterialDefault(const Shader* s, const char* texturePath);
+	~MaterialDefault();
+	void Bind(const Matrix4x4* m) const override;
+	void Unbind() const override;
 
 
 };

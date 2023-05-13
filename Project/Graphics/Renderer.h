@@ -70,7 +70,7 @@ public:
 	void SetShaderVariables(const unsigned int shaderID);
 	Shader* GetShader(int id);
 	Texture* GetTexture(int id);
-	const unsigned int LoadTexture(const char* path);
+	const Texture* LoadTexture(const char* path);
 };
 
 

@@ -5,17 +5,13 @@
 #include "ShaderClass.h"
 #include <vector>
 #include "../Game/BaseComponent.h"
-
+#include "../Graphics/Material.h"
 class Graphic : public BaseComponent{
 protected:
-	const unsigned int _textureId;
-	const Shader* _shader;
-private:
-	virtual void Bind(const Matrix4x4* model) const = 0;
-	void Unbind() const;
+	const Material* _baseMaterial;
 public:
 	Graphic();
-	Graphic(const char* path);
+	Graphic(const Material* m);
 	~Graphic();
 
 	void Draw(const Matrix4x4* model) const;

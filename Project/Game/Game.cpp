@@ -20,7 +20,6 @@ Game::Game() {
 	//std::cout << "type id test " << typeid(MouseEvent<Game>).name() << "\n";
 	//v1_5::Text::Init();
 	_isRunning = true;
-	_world->AddComponent(new FBOComponent(_world->GetTransform()._scale.x, _world->GetTransform()._scale.y));
 	_world->AddChild(new Button(Vec3(100, 200, 0), Vec3(200, 100, 1), 0));
 
 
@@ -86,14 +85,14 @@ void Game::Draw() {
 	glEnable(GL_DEPTH_TEST);*/
 	//Renderer::instance()->Draw(_world);
 	
-	
-	if (_switch) {
+	Renderer::instance()->DrawNodes(_world, _world);
+	/*if (!_switch) {
 		Renderer::instance()->Draw(_world);
 	}
 	else {
 		//v1_5::Renderer::instance()->DrawNodes(_world, _world);
 		Renderer::instance()->DrawNodes(_world, _world);
-	}
+	}*/
 	glfwSwapBuffers(Renderer::instance()->GetWindow());
 	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 	
