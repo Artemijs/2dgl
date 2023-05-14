@@ -1,9 +1,22 @@
-
+#include "../Audio/SoundController.h"
 #include "Button.h"
 #include "../Game/MouseEventComponent.h"
 #include "../Math/BoxBounds.h"
-Button::Button():BaseNode() {}
-Button::Button(const Vec3 pos, const Vec3 size, const float ang) : BaseNode(pos, size, ang){
+Button::Button():
+	BaseNode(),
+	_pressedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnPress.wav")),
+	_releasedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnRelease.wav")),
+	_enterSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/enterBtn.wav")) {
+
+
+
+}
+Button::Button(const Vec3 pos, const Vec3 size, const float ang) : 
+	BaseNode(pos, size, ang),
+	_pressedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnPress.wav")),
+	_releasedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnRelease.wav")),
+	_enterSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/enterBtn.wav"))
+{
 	MouseEvent* mouse_e = new MouseEvent();
 	//mouse_e->SetEventCallBack(&Button::OnPress, BtnEvent::ON_ENTER);
 	Button* b = this;
@@ -20,17 +33,18 @@ Button::Button(const Vec3 pos, const Vec3 size, const float ang) : BaseNode(pos,
 	Sprite* btton_bg = new Sprite(_material);
 	AddComponent<Sprite>(btton_bg);		
 	AddComponent<BoxBounds>(new BoxBounds());
+	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
 	
 }
 void Button::OnPress() {							
 	printf("CALLING OnPress \n");					
 	_material->_uvOffset = Vec2(0, 1);
-	//printf("and does this have a destructor?\n");	
+	SoundCtrl::GetInstance()->PlaySfx(_pressedSfx);
 }													
 void Button::OnRelease() {							
 	printf("CALLING OnRelease \n");	
 	_material->_uvOffset = Vec2(0, 2);
-	//printf("and does this have a destructor?\n");	
+	SoundCtrl::GetInstance()->PlaySfx(_releasedSfx);;
 }													
 void Button::OnClick() {
 	printf("CALLING OnClick \n");
@@ -43,7 +57,7 @@ void Button::OnDoublClick() {
 void Button::OnEnter() {
 	printf("CALLING OnEnter \n");
 	_material->_uvOffset = Vec2(0, 2);
-	//printf("and does this have a destructor?\n");
+	SoundCtrl::GetInstance()->PlaySfx(_enterSfx);
 }
 void Button::OnLeave() {
 	printf("CALLING OnLeave \n");

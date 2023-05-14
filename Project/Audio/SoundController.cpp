@@ -28,7 +28,7 @@ void SoundCtrl::CleanUp() {
 	delete _allSFX;
 	Mix_CloseAudio();
 }
-int SoundCtrl::LoadSFX(const char* path) {
+const unsigned int SoundCtrl::LoadSFX(const char* path) {
 	//check if exissts
 	bool found = false;
 	for (int i = 0; i < _allSFX->size(); ++i) {
@@ -53,7 +53,7 @@ int SoundCtrl::LoadSFX(const char* path) {
 			std::pair<const char*, Mix_Chunk*>{path, Mix_LoadWAV(path)});
 	return _allSFX->size() - 1;
 }
-int SoundCtrl::LoadBGM(const char* path) {
+const unsigned int SoundCtrl::LoadBGM(const char* path) {
 	return 0;
 }
 void SoundCtrl::PlaySfx(int id) {
