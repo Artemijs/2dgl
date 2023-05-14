@@ -5,7 +5,7 @@
 #include "ShaderClass.h"
 #include <vector>
 #include "../Game/BaseComponent.h"
-#include "../Graphics/Material.h"
+#include "../Graphics/Materials/Material.h"
 class Graphic : public BaseComponent{
 protected:
 	const Material* _baseMaterial;
@@ -15,7 +15,7 @@ public:
 	~Graphic();
 
 	void Draw(const Matrix4x4* model) const;
-
+	const Material* GetMaterial() const ;
 };
 
 

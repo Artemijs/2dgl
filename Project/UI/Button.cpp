@@ -7,25 +7,29 @@ Button::Button(const Vec3 pos, const Vec3 size, const float ang) : BaseNode(pos,
 	MouseEvent* mouse_e = new MouseEvent();
 	//mouse_e->SetEventCallBack(&Button::OnPress, BtnEvent::ON_ENTER);
 	Button* b = this;
-	//mouse_e->AddEvent([&, b](const Vec3 v) {b->OnPress(); }, BtnEvent::ON_PRESS);			
-	//mouse_e->AddEvent([&, b](const Vec3 v) {b->OnRelease(); }, BtnEvent::ON_RELEASE);		
-	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnClick(); }, BtnEvent::ON_CLICK);			
+	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnPress(); }, BtnEvent::ON_PRESS);			
+	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnRelease(); }, BtnEvent::ON_RELEASE);		
+	//mouse_e->AddEvent([&, b](const Vec3 v) {b->OnClick(); }, BtnEvent::ON_CLICK);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnDoublClick(); }, BtnEvent::ON_DOUBLE_CLICK);
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnEnter(); }, BtnEvent::ON_ENTER);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnLeave(); }, BtnEvent::ON_LEAVE);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnHover(); }, BtnEvent::ON_HOVER);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnEndHover(); }, BtnEvent::ON_END_HOVER);	
 	AddComponent<MouseEvent>(mouse_e);	
-	Sprite* btton_bg = new Sprite();	
+	_material = new MaterialButton();
+	Sprite* btton_bg = new Sprite(_material);
 	AddComponent<Sprite>(btton_bg);		
 	AddComponent<BoxBounds>(new BoxBounds());
+	
 }
 void Button::OnPress() {							
 	printf("CALLING OnPress \n");					
+	_material->_uvOffset = Vec2(0, 1);
 	//printf("and does this have a destructor?\n");	
 }													
 void Button::OnRelease() {							
-	printf("CALLING OnRelease \n");					
+	printf("CALLING OnRelease \n");	
+	_material->_uvOffset = Vec2(0, 2);
 	//printf("and does this have a destructor?\n");	
 }													
 void Button::OnClick() {
@@ -38,10 +42,12 @@ void Button::OnDoublClick() {
 }
 void Button::OnEnter() {
 	printf("CALLING OnEnter \n");
+	_material->_uvOffset = Vec2(0, 2);
 	//printf("and does this have a destructor?\n");
 }
 void Button::OnLeave() {
 	printf("CALLING OnLeave \n");
+	_material->_uvOffset = Vec2(0, 3);
 	//printf("and does this have a destructor?\n");
 }
 void Button::OnHover() {

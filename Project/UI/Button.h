@@ -2,10 +2,10 @@
 #define BUTTON_H
 
 #include "../Game/BaseNode.h"
-
+#include "../Graphics/Materials/MaterialButton.h"
 class Button : public BaseNode {
 private:
-
+	 MaterialButton* _material;
 public :
 	Button(const Vec3 pos, const Vec3 size, const float ang);
 	Button();

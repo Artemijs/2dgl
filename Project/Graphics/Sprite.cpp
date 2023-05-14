@@ -5,16 +5,15 @@
 #include "Renderer.h"
 const unsigned int Sprite::_component_id = Utility::GetID();
 //9months of no fap
-Sprite::Sprite() : _material( new MaterialDefault()){
-	_baseMaterial = _material;
+Sprite::Sprite() : Graphic(new MaterialDefault()){
+}
+Sprite::Sprite(const Material* m ) : Graphic(m) {
 }
 
-Sprite::Sprite(const char* path) : 
-	_material(new MaterialDefault(Renderer::instance()->GetShader(0), path)){
-	_baseMaterial = _material;
+Sprite::Sprite(const char* path) : Graphic(new MaterialDefault(Renderer::instance()->GetShader(0), path)){
 }
 Sprite::~Sprite() {
 	std::cout << "Deleting sprite\n";
-	delete _material;
+	//delete _material;
 }
 const unsigned int Sprite::ID()const { return _component_id; }

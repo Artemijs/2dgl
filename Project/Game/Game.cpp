@@ -23,7 +23,7 @@ Game::Game() {
 	_world->AddChild(new Button(Vec3(100, 200, 0), Vec3(200, 100, 1), 0));
 
 
-	BaseNode* bn = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
+	/*BaseNode* bn = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
 	bn->AddComponent(new Sprite());
 	_world->AddChild(bn);
 	
@@ -33,7 +33,7 @@ Game::Game() {
 	BaseNode* bn1 = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
 	bn1->AddComponent(new Sprite("./Assets/Textures/default.png"));
 	rn->AddChild(bn1);
-	
+	*/
 	//MouseEventController::Init();
 }
 Game::~Game() {

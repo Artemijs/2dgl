@@ -82,6 +82,12 @@
     <Filter Include="Projects\TowerDefense">
       <UniqueIdentifier>{dc6cf74a-4953-418f-a1d0-4ee85d479a96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics\Materials">
+      <UniqueIdentifier>{f0a2ddc5-d7aa-4012-bb78-37dd83b2c173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Materials">
+      <UniqueIdentifier>{07700452-4fd5-4e78-b883-a04ad0f6f385}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -171,11 +177,14 @@
     <ClCompile Include="Math\Bounds.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Material.cpp">
-      <Filter>Source Files\Graphics</Filter>
+    <ClCompile Include="Graphics\Materials\MaterialDefault.cpp">
+      <Filter>Source Files\Graphics\Materials</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\MaterialDefault.cpp">
-      <Filter>Source Files\Graphics</Filter>
+    <ClCompile Include="Graphics\Materials\Material.cpp">
+      <Filter>Source Files\Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\MaterialButton.cpp">
+      <Filter>Source Files\Graphics\Materials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,11 +263,14 @@
     <ClInclude Include="UI\Button.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Material.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Graphics\Materials\Material.h">
+      <Filter>Header Files\Graphics\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\MaterialDefault.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Graphics\Materials\MaterialDefault.h">
+      <Filter>Header Files\Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Materials\MaterialButton.h">
+      <Filter>Header Files\Graphics\Materials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
