@@ -10,10 +10,10 @@ class VAO
 public :
 	GLuint ID;
 	VAO();
-	void LinkAttrib(VBO* vbo, GLuint layout, GLuint numCompnents, GLenum type, GLsizeiptr stride, void* offset);
-	void Bind();
-	void Unbind();
-	void Delete();
+	void LinkAttrib(VBO* vbo, GLuint layout, GLuint numCompnents, GLenum type, GLsizeiptr stride, void* offset) const;
+	void Bind() const ;
+	void Unbind()const ;
+	void Delete()const;
 };
 #endif
 

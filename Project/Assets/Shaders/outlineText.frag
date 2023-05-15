@@ -16,8 +16,8 @@ float borderEdge = 0.1f;
 
 uniform vec2 offset;
 
-uniform vec3 color;
-uniform vec3 outlineColor;
+uniform vec4 color;
+uniform vec4 outlineColor;
 void main(){
 	vec4 texCol = texture(tex0, uv);
 

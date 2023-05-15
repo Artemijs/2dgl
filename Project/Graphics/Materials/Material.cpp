@@ -11,3 +11,6 @@ Material::Material(const Shader* s, const char* texturePath) :
 Material::~Material() {
 	printf("deleting material base\n");
 }
+const Texture* Material::GetTexture() const {
+	return _texture;
+}

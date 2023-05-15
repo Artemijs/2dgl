@@ -9,9 +9,12 @@
 class Graphic : public BaseComponent{
 protected:
 	const Material* _baseMaterial;
+	//for the glDraw call that text also uses and has more than 6 indices
+	unsigned int _indexCount;
+
 public:
-	Graphic();
-	Graphic(const Material* m);
+	Graphic(const unsigned int indexCount = 6);
+	Graphic(const Material* m, const unsigned int indexCount = 6);
 	~Graphic();
 
 	void Draw(const Matrix4x4* model) const;

@@ -14,6 +14,7 @@ public :
 	virtual ~Material();
 	virtual void Bind(const Matrix4x4* model) const = 0;
 	virtual void Unbind() const = 0;
+	const Texture* GetTexture()const;
 
 
 };
