@@ -13,7 +13,7 @@ Graphic::~Graphic() {
 	delete _baseMaterial;
 	printf("delting graphic\n");
 }
-Graphic::Graphic(const Material* m, const unsigned int indexCount):
+Graphic::Graphic( Material* m, const unsigned int indexCount):
 	_baseMaterial(m) ,
 	_indexCount(indexCount),
 	BaseComponent(true)	{

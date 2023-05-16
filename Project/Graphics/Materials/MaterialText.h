@@ -15,8 +15,8 @@ public :
 
 	float _borderWidth;
 	Vec2 _borderDirection;
-	Vec4 _color;
-	Vec4 _outlineColor;
+	Vec3 _color;
+	Vec3 _outlineColor;
 
 	MaterialText();
 	MaterialText(const char* texturePath, const VAO** vao);

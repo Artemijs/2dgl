@@ -10,7 +10,7 @@
 		static const unsigned int _component_id;
 		Sprite();
 		Sprite(const char* path);
-		Sprite(const Material* m);
+		Sprite( Material* m);
 		~Sprite();
 		const unsigned int ID() const override;
 	};

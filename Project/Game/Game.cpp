@@ -13,7 +13,7 @@
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 Graphic* Game::_testG = new Sprite("./Assets/Textures/default.png");
 Game::Game() {
-	
+	Text::Init();
 	_switch = false;
 	m = new MouseEvent();
 	//m->SetCallBack(&Game::Test);
@@ -21,11 +21,11 @@ Game::Game() {
 	//std::cout << "type id test " << typeid(MouseEvent<Game>).name() << "\n";
 	//v1_5::Text::Init();
 	_isRunning = true;
-	_world->AddChild(new Button(Vec3(100, 200, 0), Vec3(200, 100, 1), 0));
-	_world->AddChild(new Button(Vec3(110, 210, 0), Vec3(200, 100, 1), 0));
-	BaseNode* bn = new BaseNode(Vec3(400, 400, 0), Vec3(200, 100, 1), 0);
+	//_world->AddChild(new Button(Vec3(100, 200, 0), Vec3(200, 100, 1), 0));
+	//_world->AddChild(new Button(Vec3(400, 400, 0), Vec3(200, 100, 1), 0));
+	BaseNode* bn = new BaseNode(Vec3(0, 0, 0), Vec3(1, 1, 1), 1);
 	_world->AddChild(bn);
-	Text* t = new Text(20, "Hello World!");
+	Text* t = new Text("HEllo world!", 20);
 	bn->AddComponent<Text>(t);
 
 

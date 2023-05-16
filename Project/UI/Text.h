@@ -34,7 +34,7 @@ private:
 	int _indexCount;
 	int _fontSize;
 	std::string _text;
-	const MaterialText* _material;
+	MaterialText* _material;
 	Vec2 GetUV(CharData cd, int corner);
 	void SetVert(int charCount, Vec3 pos, char c, GLfloat* verts, Vec2 uvs);
 	void SetIndices(int topRight, GLuint* indices, int indexCount);
@@ -59,14 +59,14 @@ public:
 	void SetPosition(Vec3 pos);
 	void SetAngle(float angle);
 	*/
-	void SetColor(Vec3 col);
-	Vec3 GetColor();
-	void SetOutlineColor(Vec3 col);
-	Vec3 GetOutlineColor();
-	void SetOutlineWidth(float w);
+	void SetColor(const Vec3 col);
+	const Vec3 GetColor();
+	void SetOutlineColor(const Vec3 col);
+	const Vec3 GetOutlineColor();
+	void SetOutlineWidth(const float w);
 	float GetOutlineWidth();
-	void SetBorderDirection(Vec2 dir);
-	Vec2 GetBorderDirection();
+	void SetBorderDirection(const Vec2 dir);
+	const Vec2 GetBorderDirection();
 	void SetText(std::string txt) {
 		_text = txt;
 		std::cout << "USED SET TEXT, SET TEXT NOT IMPLEMENTED\n";

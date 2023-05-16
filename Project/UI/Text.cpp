@@ -5,14 +5,14 @@
 #include "../Graphics/Materials/MaterialText.h"
 #include "../Util/Utility.h"
 std::vector<CharData>* Text::_allData = new std::vector<CharData>();
-const unsigned int Sprite::_component_id = Utility::GetID();
+const unsigned int Text::_component_id = Utility::GetID();
 
 Text::Text( std::string txt, int fontSize, int maxCharPerLine, float angle) :
-	Graphic( new MaterialText(Renderer::instance()->GetShader(2),"Assets/Fonts/arial.png", &_vao)),
+	Graphic( new MaterialText(Renderer::instance()->GetShader(2),"Assets/Fonts/arial.png", &_vao), ),
 	_text(txt),
 	_maxCharsPerLine(maxCharPerLine), 
 	_fontSize(fontSize) {
-	_material = static_cast<MaterialText>(_baseMaterial);
+	_material = static_cast<MaterialText*>(_baseMaterial);
 
 	if (txt.length() == 0) {
 		_text = " ";
@@ -324,14 +324,14 @@ void Text::SetFontSize(int size) {
 	_fontSize = size;
 	//_transform._scale = Vec3(baseSize + size * scaler, baseSize + size * scaler, 1);
 }
-void Text::SetColor(Vec3 col) { _color = col; }
-Vec3 Text::GetColor() { return _color; }
-void Text::SetOutlineColor(Vec3 col) { _borderColor = col; }
-Vec3 Text::GetOutlineColor() { return _borderColor; }
-void Text::SetOutlineWidth(float w) { _borderWidth = w; }
-float Text::GetOutlineWidth() { return _borderWidth; }
-void Text::SetBorderDirection(Vec2 dir) { _borderDirection = dir; }
-Vec2 Text::GetBorderDirection() { return _borderDirection; }
+void Text::SetColor(const Vec3 col) { _material->_color = col; }
+const Vec3 Text::GetColor() { return _material->_color; }
+void Text::SetOutlineColor(const Vec3 col) { _material->_outlineColor = col; }
+const Vec3 Text::GetOutlineColor() { return _material->_outlineColor; }
+void Text::SetOutlineWidth(const float w) { _material->_borderWidth = w; }
+float Text::GetOutlineWidth() { return _material->_borderWidth; }
+void Text::SetBorderDirection(const Vec2 dir) { _material->_borderDirection = dir; }
+const Vec2 Text::GetBorderDirection() { return _material->_borderDirection; }
 
 void Text::GetStandardText(Text* t) {
 	t->SetColor(Vec3(1, 1, 1));

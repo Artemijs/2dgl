@@ -3,14 +3,15 @@
 MaterialText::MaterialText():
 	Material(Renderer::instance()->GetShader(1), "Assets/Textures/btn.png")
 {
-
 }
 MaterialText::MaterialText(const char* texturePath, const VAO** vao):
-	Material(Renderer::instance()->GetShader(1), texturePath)
+	Material(Renderer::instance()->GetShader(1), texturePath),
+	_vao(vao)
 {
 
 }MaterialText::MaterialText(const Shader* shader, const char* texturePath, const VAO** vao) :
-	Material(Renderer::instance()->GetShader(1), texturePath)
+	Material(Renderer::instance()->GetShader(1), texturePath),
+	_vao(vao)
 {
 
 }
@@ -40,8 +41,8 @@ void MaterialText::Bind(const Matrix4x4* model)const  {
 
 	glUniform1f(glGetUniformLocation(_shader->ID, "borderWidth"), _borderWidth);
 	glUniform2f(glGetUniformLocation(_shader->ID, "offset"), _borderDirection.x, _borderDirection.y);
-	glUniform4f(glGetUniformLocation(_shader->ID, "color"), _color.x, _color.y, _color.z, _color.a);
-	glUniform4f(glGetUniformLocation(_shader->ID, "outlineColor"), _outlineColor.x, _outlineColor.y, _outlineColor.z, _outlineColor.a);
+	glUniform3f(glGetUniformLocation(_shader->ID, "color"), _color.x, _color.y, _color.z);
+	glUniform3f(glGetUniformLocation(_shader->ID, "outlineColor"), _outlineColor.x, _outlineColor.y, _outlineColor.z);
 
 	(*_vao)->Bind();
 }
