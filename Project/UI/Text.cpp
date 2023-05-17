@@ -6,9 +6,9 @@
 #include "../Util/Utility.h"
 std::vector<CharData>* Text::_allData = new std::vector<CharData>();
 const unsigned int Text::_component_id = Utility::GetID();
-
-Text::Text( std::string txt, int fontSize, int maxCharPerLine, float angle) :
-	Graphic( new MaterialText(Renderer::instance()->GetShader(2),"Assets/Fonts/arial.png", &_vao), ),
+//"Assets/Fonts/arial.png"
+Text::Text( std::string txt, int fontSize, int maxCharPerLine) :
+	Graphic( new MaterialText(Renderer::instance()->GetShader(2), "Assets/Fonts/arial.png", &_vao)),
 	_text(txt),
 	_maxCharsPerLine(maxCharPerLine), 
 	_fontSize(fontSize) {
@@ -37,6 +37,7 @@ Text::~Text() {
 		delete _allData;
 		_allData = NULL;
 	}
+	printf("DELETING TEXT\n");
 }
 void Text::CenterText(Vec2 size, int vArrSize) {
 	size.x *= 0.5f;

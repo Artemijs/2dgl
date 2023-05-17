@@ -19,7 +19,7 @@ uniform vec2 offset;
 uniform vec3 color;
 uniform vec3 outlineColor;
 void main(){
-	/*vec4 texCol = texture(tex0, uv);
+	vec4 texCol = texture(tex0, uv);
 
 	float distance = 1 - texture(tex0, uv).a;
 	float a = 1.0f - smoothstep(width, width + edge, distance);
@@ -32,6 +32,6 @@ void main(){
 	if(totalA < 0.1f){
 		discard;
 	}
-	FragColor = vec4(overallColor, totalA);*/
-	FragColor = vec4(0, 0, 0, 1);
+	FragColor = vec4(overallColor, totalA);
+	//FragColor = vec4(0, 0, 0, 1);
 }

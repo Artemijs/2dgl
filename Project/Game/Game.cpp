@@ -23,11 +23,13 @@ Game::Game() {
 	_isRunning = true;
 	//_world->AddChild(new Button(Vec3(100, 200, 0), Vec3(200, 100, 1), 0));
 	//_world->AddChild(new Button(Vec3(400, 400, 0), Vec3(200, 100, 1), 0));
-	BaseNode* bn = new BaseNode(Vec3(0, 0, 0), Vec3(1, 1, 1), 1);
+	BaseNode* bn = new BaseNode(Vec3(400, 400, 0), Vec3(1, 100, 1), 0);
 	_world->AddChild(bn);
-	Text* t = new Text("HEllo world!", 20);
+	Text* t = new Text("HEllo world!HEllo world!HEllo world!HEllo world!HEllo world!", 20);
 	bn->AddComponent<Text>(t);
-
+	
+	_world->AddChild(new BaseNode(Vec3(400, 400, -10), Vec3(100, 10, 1), 0));
+	_world->GetChild(1)->AddComponent<Sprite>(new Sprite("Assets/Textures/sliderPinDefault.png"));
 
 	/*BaseNode* bn = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
 	bn->AddComponent(new Sprite());

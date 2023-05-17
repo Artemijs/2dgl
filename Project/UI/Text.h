@@ -31,7 +31,7 @@ private:
 	GLuint* _indices;
 
 	int _maxCharsPerLine;
-	int _indexCount;
+	//int _indexCount;
 	int _fontSize;
 	std::string _text;
 	MaterialText* _material;
@@ -43,7 +43,7 @@ private:
 	void CenterText(Vec2 size, int vArrSize);
 public:
 	static const unsigned int _component_id;
-	Text( std::string txt, int fontSize = 6, int maxCharPerLine = 0, float angle = 0);
+	Text( std::string txt, int fontSize = 6, int maxCharPerLine = 0);
 	~Text();
 	static void Init();
 	static void GetCd(char c, CharData* cd);
