@@ -166,21 +166,21 @@ Matrix4x4::Matrix4x4(float n) {
 	std::cout << "deleting mat\n";
 	delete buff;
 }*/
-Matrix4x4 Matrix4x4::operator+(const Matrix4x4& m) {
+Matrix4x4 Matrix4x4::operator+(const Matrix4x4& m)const  {
 	Matrix4x4 rm = Matrix4x4();
 	for (int i = 0; i < 16; ++i) {
 		rm.buff[i] = m.buff[i] + buff[i];
 	}
 	return rm;
 }
-Matrix4x4 Matrix4x4::operator-(const Matrix4x4& m) {
+Matrix4x4 Matrix4x4::operator-(const Matrix4x4& m) const {
 	Matrix4x4 rm = Matrix4x4();
 	for (int i = 0; i < 16; ++i) {
 		rm.buff[i] = m.buff[i] - buff[i];
 	}
 	return rm;
 }
-Matrix4x4 Matrix4x4::operator*(const Matrix4x4& m) {
+Matrix4x4 Matrix4x4::operator*(const Matrix4x4& m) const {
 	Matrix4x4 rm = Matrix4x4();
 	/*
 	0  1  2  3

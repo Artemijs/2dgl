@@ -43,19 +43,13 @@ Text::~Text() {
 ///total width and height of the text mesh and total count of vertices
 void Text::CenterText(Vec2 size, int vArrSize) {
 	//scale it to be a 1x1 shape 
-	float sx = 1 / size.x;
-	float sy = 1 / size.y;
+	const float sx = 1 / size.x;
+	const float sy = 1 / size.y;
 
 	for (int i = 0; i < vArrSize; i += 5) {//5
-		_verts[i] = (_verts[i] * sx) ;
-		_verts[i + 1] = (_verts[i + 1] * sy) ;
+		_verts[i] = (_verts[i] * sx) - 0.5f;
+		_verts[i + 1] = (_verts[i + 1]) - size.y * 0.5f;
 	}
-	/*size.x *= 0.5f;
-	size.y *= 0.5f;
-	for (int i = 0; i < vArrSize; i += 5) {//5
-		_verts[i] += -size.x;   //x
-		_verts[i + 1] -= size.y;//x
-	}*/
 }
 void Text::SetVert(int charCount, Vec3 pos, char c, GLfloat* verts, Vec2 uvs) {
 

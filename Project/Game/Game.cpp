@@ -16,33 +16,17 @@ Game::Game() {
 	Text::Init();
 	_switch = false;
 	m = new MouseEvent();
-	//m->SetCallBack(&Game::Test);
-	//printf("type infoe test %d\n", typeid(int));
-	//std::cout << "type id test " << typeid(MouseEvent<Game>).name() << "\n";
-	//v1_5::Text::Init();
+	
 	_isRunning = true;
-	//_world->AddChild(new Button(Vec3(100, 200, 0), Vec3(200, 100, 1), 0));
-	//_world->AddChild(new Button(Vec3(400, 400, 0), Vec3(200, 100, 1), 0));
+	
 	BaseNode* bn = new BaseNode(Vec3(400, 400, 0), Vec3(200, 100, 1), 0);
 	_world->AddChild(bn);
 	Text* t = new Text("HEllo SUKKA!HEllo world!HEllo world!HEllo world!HEllo world!", 20, 12);
+	//Text* t = new Text("Hello World!", 20, 12);
 	bn->AddComponent<Text>(t);
 	
 	_world->AddChild(new BaseNode(Vec3(400, 400, -10), Vec3(200, 100, 1), 0));
 	_world->GetChild(1)->AddComponent<Sprite>(new Sprite("Assets/Textures/sliderPinDefault.png"));
-
-	/*BaseNode* bn = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
-	bn->AddComponent(new Sprite());
-	_world->AddChild(bn);
-	
-	BaseNode* rn = new RenderNode(Vec3(400, 400, 0), Vec3(400, 400, 1), 0);
-	_world->AddChild(rn);
-	
-	BaseNode* bn1 = new BaseNode(Vec3(100, 50, 0), Vec3(200, 100, 1), 0);
-	bn1->AddComponent(new Sprite("./Assets/Textures/default.png"));
-	rn->AddChild(bn1);
-	*/
-	//MouseEventController::Init();
 }
 Game::~Game() {
 	std::cout << "deleting game\n";
@@ -52,7 +36,7 @@ Game::~Game() {
 	delete _world;
 	delete m;
 	delete _testG;
-	//MouseEventController::Delete();
+	MouseEventHandler::Delete();
 }
 //remove all ui code
 //add UpdateModelMatrix(parentPos, parentScale, parentRot)
@@ -87,11 +71,6 @@ void Game::Update(float deltaTime) {
 	
 }
 void Game::Draw() {
-	//Renderer::instance()->Draw();
-	/*glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);*/
-	//Renderer::instance()->Draw(_world);
 	
 	Renderer::instance()->DrawNodes(_world, _world);
 	/*if (!_switch) {

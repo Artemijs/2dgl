@@ -16,7 +16,7 @@ out vec4 pos;
 void main(){
 	pos = vec4(vertPos, 1.0f);
 	gl_Position = proj * (model) * vec4(vertPos, 1.0);
-	uv = vec2(in_uv.x, 1-in_uv.y);
+	uv = vec2(in_uv.x, 1 - in_uv.y);
 
 
 }

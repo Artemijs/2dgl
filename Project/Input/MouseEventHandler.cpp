@@ -146,11 +146,7 @@ void MouseEventHandler::Update(const float deltaTime) {
 
 }
 void MouseEventHandler::Delete() {
-	//delete _prevPos;
-	//for (int i = 0; i < _all_events->size(); ++i) {
-		//delete _all_events->at(i);
-	//}
-	//delete _all_events;
+	
 }
 
 const Vec3 MouseEventHandler::GetMousePosition() {

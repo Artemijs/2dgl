@@ -8,7 +8,7 @@ class MaterialText: public Material {
 
 private:
 	const VAO** _vao;
-
+	
 
 	
 public :
@@ -17,7 +17,7 @@ public :
 	Vec2 _borderDirection;
 	Vec3 _color;
 	Vec3 _outlineColor;
-
+	Vec3 _size;
 	MaterialText();
 	MaterialText(const char* texturePath, const VAO** vao);
 	MaterialText(const Shader* shader ,const char* texturePath, const VAO** vao);

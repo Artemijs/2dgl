@@ -82,9 +82,9 @@ public:
 	//~Matrix4x4();
 	void SetTranslation(Vec3 v);
 	void SetScale(Vec3 s);
-	Matrix4x4 operator+(const Matrix4x4& m);
-	Matrix4x4 operator-(const Matrix4x4& m);
-	Matrix4x4 operator*(const Matrix4x4& m);
+	Matrix4x4 operator+(const Matrix4x4& m)const ;
+	Matrix4x4 operator-(const Matrix4x4& m)const ;
+	Matrix4x4 operator*(const Matrix4x4& m)const ;
 	//Matrix4x4 operator*=(const Matrix4x4& m);
 	Vec4 operator*(const Vec4& v);
 	//technically uses a vec4 here i just hard code a 1 for the 4th position in the vector
