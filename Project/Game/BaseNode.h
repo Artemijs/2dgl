@@ -59,6 +59,8 @@ public:
 	/// <param name="id"> int, 0 : position, 1 : scale, 2 : ang</param>
 	/// <param name="on">true/false</param>
 	void SetInheritTransform(int id, bool on);
+	//expects and array of 3 bools, 0 : position, 1 : scale, 2 : ang
+	void SetInheritTransform(const bool* three);
 
 	virtual void MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot) ;
 

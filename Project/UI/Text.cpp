@@ -7,11 +7,13 @@
 std::vector<CharData>* Text::_allData = new std::vector<CharData>();
 const unsigned int Text::_component_id = Utility::GetID();
 //"Assets/Fonts/arial.png"
-Text::Text( std::string txt, int fontSize, int maxCharPerLine) :
+Text::Text( std::string txt,  BaseNode* owner, int fontSize, int maxCharPerLine) :
 	Graphic( new MaterialText(Renderer::instance()->GetShader(2), "Assets/Fonts/arial.png", &_vao)),
 	_text(txt),
 	_maxCharsPerLine(maxCharPerLine), 
-	_fontSize(fontSize) {
+	_fontSize(fontSize),
+	_owner(owner)
+	{
 	_material = static_cast<MaterialText*>(_baseMaterial);
 
 	if (txt.length() == 0) {
@@ -50,6 +52,8 @@ void Text::CenterText(Vec2 size, int vArrSize) {
 		_verts[i] = (_verts[i] * sx) - 0.5f;
 		_verts[i + 1] = (_verts[i + 1]) - size.y * 0.5f;
 	}
+
+
 }
 void Text::SetVert(int charCount, Vec3 pos, char c, GLfloat* verts, Vec2 uvs) {
 
@@ -232,30 +236,11 @@ Vec2 Text::GetUV(CharData cd, int corner) {
 	}
 	return v;
 }
-
-/*void Text::BeforeDraw() {
-	_shader->Activate();
-	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &_model.buff[0]);
-
-	Renderer::instance()->SetShaderVariables(_shader);
-	Renderer::instance()->GetTexture(_texId)->Bind();
-	Renderer::instance()->GetTexture(_texId)->texUni(_shader, "tex0", 0);
-	glUniform1f(glGetUniformLocation(_shader->ID, "borderWidth"), _borderWidth);
-	glUniform2f(glGetUniformLocation(_shader->ID, "offset"), _borderDirection.x, _borderDirection.y);
-	glUniform3f(glGetUniformLocation(_shader->ID, "color"), _color.x, _color.y, _color.z);
-	glUniform3f(glGetUniformLocation(_shader->ID, "outlineColor"), _borderColor.x, _borderColor.y, _borderColor.z);
-	_vao->Bind();
-}*/
-/*void Text::Draw() {
-	BeforeDraw();
-	glDrawElements(GL_TRIANGLES, _indexCount, GL_UNSIGNED_INT, 0);
-	AfterDraw();
-}*/
 void Text::MakeMesh() {
-	int linesTotal = std::ceil(_text.length() / (float)_maxCharsPerLine);
+	_lineCount = std::ceil(_text.length() / (float)_maxCharsPerLine);
 
 	//set up geometry
-	int rowCount = linesTotal * 2;
+	int rowCount = _lineCount * 2;
 	int colCount = _maxCharsPerLine * 2;
 	int vCount = colCount * rowCount;
 	//pos + color + uv
@@ -263,17 +248,17 @@ void Text::MakeMesh() {
 	const int vArrSize = vCount * vSize;
 	_verts = new GLfloat[vArrSize];
 
-	const int indTotal = 6 * (_maxCharsPerLine * linesTotal);
+	const int indTotal = 6 * (_maxCharsPerLine * _lineCount);
 	_indexCount = indTotal;
 	_indices = new GLuint[indTotal];///b5 : 1
 
 
-	float ySpace = 0.17f;
+	float ySpace = 0.1f;
 	Vec3 cursor = Vec3(0, 0, -1);
 	Vec2 size = Vec2(-9999, 9999);
 
 
-	for (int j = 0; j < linesTotal; j++) {
+	for (int j = 0; j < _lineCount; j++) {
 		for (int i = 0; i < _maxCharsPerLine; i++) {
 			int charId = i + (j * _maxCharsPerLine);
 			char c = ' ';
@@ -309,11 +294,14 @@ void Text::MakeMesh() {
 				size.y = pos.y;
 			}
 		}
+		//new line 
 		cursor.y -= ySpace;
 		cursor.x = 0;
 	}
 	//size.y = linesTotal * ySpace;
 	CenterText(size, vArrSize);
+	SetFontSize(_fontSize);
+
 	_vao = new VAO();
 	_vao->Bind();
 
@@ -326,10 +314,12 @@ void Text::MakeMesh() {
 	_ebo->Unbind();
 }
 void Text::SetFontSize(int size) {
-	float baseSize = 50;
-	float scaler = 20;
 	_fontSize = size;
-	//_transform._scale = Vec3(baseSize + size * scaler, baseSize + size * scaler, 1);
+	Vec3 s = _owner->GetTransform()._scale;
+	s.x = _maxCharsPerLine * _fontSize;
+	s.y = (_fontSize * 15.0f) + (_lineCount*0.1f);
+	_owner->SetScale(s);
+
 }
 void Text::SetColor(const Vec3 col) { _material->_color = col; }
 const Vec3 Text::GetColor() { return _material->_color; }

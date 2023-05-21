@@ -21,6 +21,7 @@ BaseNode::BaseNode(const Vec3 pos, const Vec3 size, const float ang):_size(0) {
 	_visible = true;
 	_model = Matrix4x4(1.0f);
 }
+//use set scale function instead
 void BaseNode::SetSize() {
 	printf("function not implementeedd and should be deleted\n");
 
@@ -54,7 +55,11 @@ void BaseNode::Update(float deltaTime) {
 void BaseNode::SetInheritTransform(int id, bool on) {
 	_inheritTransform[id] = on;
 }
-
+void BaseNode::SetInheritTransform(const bool* three) {
+	_inheritTransform[0] = three[0];
+	_inheritTransform[1] = three[1];
+	_inheritTransform[2] = three[2];
+}
 void BaseNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot)  {
 	Matrix4x4 nt, ns, nr;
 	if (_inheritTransform[0])

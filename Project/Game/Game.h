@@ -9,6 +9,7 @@ protected:
 	bool _switch;
 	bool _isRunning;
 	MouseEvent* m;
+	float _arg;
 public :
 
 	static BaseNode* _world;

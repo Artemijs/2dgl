@@ -20,9 +20,6 @@ MaterialText::~MaterialText() {
 }
 #include "../Renderer.h"
 void MaterialText::Bind(const Matrix4x4* model)const  {
-
-	Matrix4x4  m = (*model) * Matrix4x4::ScaleMatrix(_size);
-	//(*model ) *= Matrix4x4::ScaleMatrix(_size);
 	_shader->Activate();
 	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &model->buff[0]);
 	Renderer::instance()->SetShaderVariables(_shader->ID);

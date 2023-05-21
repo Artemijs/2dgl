@@ -2,6 +2,7 @@
 #include "Button.h"
 #include "../Game/MouseEventComponent.h"
 #include "../Math/BoxBounds.h"
+#include "Text.h"
 Button::Button():
 	BaseNode(),
 	_pressedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnPress.wav")),
@@ -33,6 +34,13 @@ Button::Button(const Vec3 pos, const Vec3 size, const float ang) :
 	Sprite* btton_bg = new Sprite(_material);
 	AddComponent<Sprite>(btton_bg);		
 	AddComponent<BoxBounds>(new BoxBounds());
+	//AddComponent<Text>(new Text("BUTTON", this, 12));
+	BaseNode* bm = new BaseNode(Vec3(0, 0, 0.10f), Vec3(1,1,1), 0);
+	bool bools[3] = { true, false, true};
+	bm->SetInheritTransform(bools);
+	AddChild(bm);
+	bm->AddComponent<Text>(new Text("Button", bm, 15));
+
 	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
 	
 }

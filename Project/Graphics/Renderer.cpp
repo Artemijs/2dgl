@@ -317,12 +317,19 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 		//check if node has a graphic component 
 		//if (node->GetNodeType() == 1) {
 		if(!renderNode){
+			auto  comps = node->Components();
+			for (int i = 0; i < comps->size(); ++i) {
+				if (comps->at(i)->second->IsGraphic()) {
+					dynamic_cast<Graphic*>(comps->at(i)->second)->Draw(node->GetModelMatrix());
+				}
+			}
+			/*
 			const Graphic* g = node->GetGraphic();
 
 			//if it does, cast it to graphic and draw it
 			if (g != NULL) {
 				g->Draw(node->GetModelMatrix());
-			}
+			}*/
 		}
 		else if (renderNode) {
 			//unbind prev FBO
