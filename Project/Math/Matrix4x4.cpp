@@ -16,21 +16,47 @@ void Vec2::operator=(const Vec2& v) {
 	x = v.x;
 	y = v.y;
 }
-Vec2 Vec2::operator-(const Vec2& v) {
+Vec2 Vec2::operator-(const Vec2& v)const {
 	return Vec2(x - v.x, y - v.y);
 }
-Vec2 Vec2::operator+(const Vec2& v) {
+Vec2 Vec2::operator+(const Vec2& v) const{
 	return Vec2(x + v.x, y + v.y);
 }
-Vec2 Vec2::operator*(const float f) {
+Vec2 Vec2::operator*(const float f) const{
 	return Vec2(x * f, y * f);
+}
+Vec2 Vec2::operator/(const float f) const{
+	return Vec2(x/f, y/f);
 }
 void Vec2::operator+=(const Vec2& v) {
 	x += v.x;
 	y += v.y;
 }
-
-
+const float Vec2::Distance(const Vec2& a, const Vec2& b) {
+	return std::sqrtf(((b.x - a.x) * (b.x - a.x)) + ((b.y - a.y) * (b.y - a.y)));
+}
+const float Vec2::Distance(const float ax, const float ay, const float bx, const float by) {
+	return std::sqrtf(((bx - ax) * (bx - ax)) + ((by - ay) * (by - ay)));
+}
+const float Vec2::Lenght(const Vec2& v) {
+	return std::sqrtf((v.x * v.x) + (v.y * v.y));
+}
+void Vec2::Normalize() {
+	(*this) /= Vec2::Lenght((*this));
+}
+void Vec2::operator/=(const float f) {
+	x /= f;
+	y /= f;
+}
+const Vec2 Vec2::Normalize(const Vec2 v) {
+	return v / Vec2::Lenght(v);
+}
+const float Vec2::Dot(const Vec2& a, const Vec2& b) {
+	return (a.x * b.x) + (a.y + b.y);
+}
+const float Vec2::Dot(const float ax, const float ay, const float bx, const float by) {
+	return (ax * bx) + (ay + by);
+}
 Vec2Int::Vec2Int() {
 	x = 0; y = 0;
 }
@@ -65,13 +91,13 @@ Vec3::Vec3(float mx, float my, float mz) {
 	y = my;
 	z = mz;
 }
-Vec3 Vec3::operator+(const Vec3& v) {
+const Vec3 Vec3::operator+(const Vec3& v) const{
 	return Vec3(x + v.x, y + v.y, z + v.z);
 }
-Vec3 Vec3::operator-(const Vec3& v) {
+const Vec3 Vec3::operator-(const Vec3& v) const {
 	return Vec3(x - v.x, y - v.y, z - v.z);
 }
-Vec3 Vec3::operator*(float f) {
+const Vec3 Vec3::operator*(float f) const{
 	return Vec3(x * f, y * f, z * f);
 }
 
@@ -105,26 +131,34 @@ void Vec3::operator=(const Vec3& v) {
 	y = v.y;
 	z = v.z;
 }
-Vec3 Vec3::operator/(const float f) {
+const Vec3 Vec3::operator/(const float f) const{
 	return Vec3(x / f, y / f, z / f);
 }
 const bool Vec3::operator==(const Vec3& v) const {
 	return (v.x == x && v.y == y && v.z == z);
 }
-float Vec3::Lenght() {
+const float Vec3::Lenght() const {
 	return std::sqrt((x * x + y * y + z * z));
 }
 
 void Vec3::Normalize() {
 	(*this) /= Lenght();
 }
-void Vec3::Normalize( Vec3& vec) {
-	vec /= vec.Lenght();
+const Vec3 Vec3::Normalize( const Vec3& vec){
+	return vec/ vec.Lenght();
 }
-float Vec3::DistanceTo(const Vec3& other) {
+const float Vec3::DistanceTo(const Vec3& other) {
 	return Vec3(x - other.x, y - other.y, z - other.z).Lenght();
 }
-
+const float Vec3::Distance(const Vec3& a, const Vec3& b) {
+	return std::sqrtf(((b.x - a.x) * (b.x - a.x)) + ((b.y - a.y) * (b.y - a.y)) + ((b.z - a.z) * (b.z - a.z)));
+}
+const float Vec3::Distance(const float ax, const float ay, const float az, const float bx, const float by, const float bz) {
+	return std::sqrtf(((bx - ax) * (bx - ax)) + ((by - ay) * (by - ay)) + ((bz - az) * (bz - az)));
+}
+const float Vec3::Lenght(const Vec3& v) {
+	return std::sqrtf((v.x*v.x)+(v.y*v.y)+(v.z*v.z));
+}
 Vec4::Vec4() {
 	x = 0; y = 0; z = 0; a = 1;
 }

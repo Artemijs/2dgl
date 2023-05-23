@@ -33,8 +33,7 @@ Renderer::Renderer() {
 	_fbo = new FBO(_windowSize.x, _windowSize.y);
 
 	_fRect = new FinalRect();
-	//_g = new Sprite("./Assets/Textures/default.png");
-	//_testG = new Sprite("./Assets/Textures/default.png", Vec3(), Vec3(50, 50, 1), 0, NULL);
+
 
 }
 Renderer::~Renderer() {

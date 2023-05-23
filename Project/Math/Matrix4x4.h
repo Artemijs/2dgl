@@ -9,12 +9,22 @@ public:
 	float x, y;
 	Vec2();
 	Vec2(float x, float y);
-	Vec2 operator+(const Vec2& v);
-	Vec2 operator-(const Vec2& v);
-	Vec2 operator*(const float f);
+	Vec2 operator+(const Vec2& v)const;
+	Vec2 operator-(const Vec2& v)const;
+	Vec2 operator*(const float f) const;
+	Vec2 operator/(const float f) const;
 	void operator+=(const  Vec2& v);
 	bool operator==(const Vec2& v) const;
 	void operator=(const Vec2& v);
+	void operator/=(const float f);
+
+	void Normalize();
+	static const Vec2 Normalize(const Vec2 &v);
+	static const float Distance(const Vec2 &a, const Vec2 &b);
+	static const float Distance(const float ax, const float ay, const float bx, const float by);
+	static const float Lenght(const Vec2 &v);
+	static const float Dot(const Vec2& a, const Vec2& b);
+	static const float Dot(const float ax, const float ay, const float bx, const float by);
 
 };
 class Vec2Int
@@ -40,10 +50,10 @@ public:
 	float x, y, z;
 	Vec3();
 	Vec3(float x, float y, float z);
-	Vec3 operator+(const Vec3& v);
-	Vec3 operator-(const Vec3& v);
-	Vec3 operator/(const float f);
-	Vec3 operator*(const float f);
+	const Vec3 operator+(const Vec3& v)const ;
+	const Vec3 operator-(const Vec3& v)const;
+	const Vec3 operator/(const float f)const;
+	const Vec3 operator*(const float f)const;
 	void operator+=(const float& n);
 	void operator+=(const int& n);
 	void operator+=(const  Vec3& v);
@@ -51,10 +61,13 @@ public:
 	void operator/=(const  float& v);
 	const bool operator==(const Vec3& v) const;
 	void operator=(const Vec3& v) ;
-	float Lenght();
+	const float Lenght()const;
 	void Normalize();
-	static void Normalize( Vec3& vec);
-	float DistanceTo(const Vec3& other);
+	static const Vec3 Normalize(const Vec3& vec) ;
+	const float DistanceTo(const Vec3& other);
+	static const float Distance(const Vec3& a, const Vec3& b);
+	static const float Distance(const float ax, const float ay, const float az,const float bx, const float by, const float bz);
+	static const float Lenght(const Vec3& v);
 };
 class Vec4
 {

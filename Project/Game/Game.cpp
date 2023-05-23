@@ -20,7 +20,7 @@ Game::Game() {
 	
 	_isRunning = true;
 	
-	_world->AddChild(new Button(Vec3(400, 400, 0), Vec3(100, 50, 1), 0));
+	_world->AddChild(new Button("Start", Vec3(400, 400, 0), Vec3(100, 50, 1), 0));
 
 	BaseNode* bn = new BaseNode(Vec3(400, 400, 0), Vec3(1, 1, 1), 0);
 	_world->AddChild(bn);
@@ -57,7 +57,7 @@ void Game::Update(float deltaTime) {
 	//check collision
 	
 	double xpos, ypos;
-	_arg += 0.1f;
+	_arg += 0.01f;
 
 	//PHYSICS 
 	//- update all model matrices( parentTransform, parentScale, parentRotation)

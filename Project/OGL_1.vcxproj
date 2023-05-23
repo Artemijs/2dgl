@@ -173,9 +173,12 @@
     <ClCompile Include="Graphics\Texture.cpp" />
     <ClCompile Include="Input\MouseEventHandler.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Math\AABoxBounds.cpp" />
     <ClCompile Include="Math\Bounds.cpp" />
     <ClCompile Include="Math\BoxBounds.cpp" />
+    <ClCompile Include="Math\CollisionDetection.cpp" />
     <ClCompile Include="Math\Matrix4x4.cpp" />
+    <ClCompile Include="Math\SphereBounds.cpp" />
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp" />
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="UI\Text.cpp" />
@@ -206,9 +209,12 @@
     <ClInclude Include="Graphics\Sprite.h" />
     <ClInclude Include="Graphics\Texture.h" />
     <ClInclude Include="Input\MouseEventHandler.h" />
+    <ClInclude Include="Math\AABoxBounds.h" />
     <ClInclude Include="Math\Bounds.h" />
     <ClInclude Include="Math\BoxBounds.h" />
+    <ClInclude Include="Math\CollisionDetection.h" />
     <ClInclude Include="Math\Matrix4x4.h" />
+    <ClInclude Include="Math\SphereBounds.h" />
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="UI\Text.h" />

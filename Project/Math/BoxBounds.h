@@ -1,18 +1,17 @@
 #ifndef BOX_BOUNDS_H
 #define BOX_BOUNDS_H
 #include "Bounds.h"
+
 class BoxBounds : public Bounds{
 private:
 	//0 : top left, 1 : top right, 2 : bot left, 3: botright
 	Vec3 _localRect[4];
 	Vec3 _worldRect[4];
-	/*Vec3 _topLeft, _topRight, _botLeft, _botRight;
-	Vec3 _topLeft, _topRight, _botLeft, _botRight;*/
 public :
 	BoxBounds();
-	BoxBounds(Vec3 topLeft, Vec3 topRight, Vec3 botLeft, Vec3 botRight);
-	const bool CheckInside(Vec3 pos)const ;
-	const float GetZ()const ;
-	void Translate2World(const Matrix4x4* model) ;
+	BoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft, const Vec3 botRight);
+	const bool CheckInside(Vec3 pos) const;
+	void Translate2World(const Matrix4x4* model);
+	shape GetShape() override;
 };
 #endif
