@@ -88,6 +88,9 @@
     <Filter Include="Source Files\Graphics\Materials">
       <UniqueIdentifier>{07700452-4fd5-4e78-b883-a04ad0f6f385}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\CollisionTest">
+      <UniqueIdentifier>{804624b9-cbc3-4364-97f0-382a800562c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -201,6 +204,9 @@
     <ClCompile Include="Math\CollisionDetection.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\CollisionTest\ColliisonTestGame.cpp">
+      <Filter>Projects\CollisionTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -301,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="Math\CollisionDetection.h">
       <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\CollisionTest\ColliisonTestGame.h">
+      <Filter>Projects\CollisionTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

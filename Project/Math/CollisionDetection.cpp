@@ -7,15 +7,28 @@
 const bool CollisionDetection::SAT(shape a, shape b) {
 	bool finished = false;
 	//NEED TO FIND AXIS AV1 - AV2, AV2 - AV3, AV4 - AV1, BV1 - BV2, BBV2- BV3, BV3 - BV4, BV4 - BV1
+	int i = 0;
+	unsigned int index;
+	Vec3 *p1, *p2;
+	float smalestPenetration = 100000000000;
+	bool collisionDetected = true;
 	while (!finished) {
-		int i = 0;
-		unsigned int index;
-		if (i < a.first)
-			index = i;
-		else
-			index = i - a.first;
-		a.second[i], a.second[i + 1];
-
+		
+		if (i < a.first) {
+			//THIS NEEDS TO BE OPTIMISED TO NOT REUSE AXIS
+			p1 = &a.second[i];
+			p2 = &a.second[i+1];
+		}
+		else {
+			p1 = &b.second[i - a.first];
+			p2 = &b.second[i + 1 - a.first];
+			if (i + 1 >= a.first + b.first) {
+				finished = true;
+			}
+		}
+		
+		
+		
 
 		//IF THE PENETRATION IS TOO DEEP THE OBJECTS WILL EXPLODE IN RANDOM DIRECTIONS
 		std::function<float(float, float, float, float)> checkOverlap = [&](float minA, float maxA, float minB, float maxB) {
@@ -51,9 +64,9 @@ const bool CollisionDetection::SAT(shape a, shape b) {
 			return  dir2p2;
 		};
 
-		Vec2 axis = getAxis(a.second[0], a.second[1]);
+		Vec2 axis = getAxis((*p1), (*p2));
 
-		std::function<void(float, float, shape)> dot =
+		std::function<void(float, float, shape)> projectOnAxis =
 			[&, axis](float min, float max, shape s) {
 
 			auto points = s.second;
@@ -71,9 +84,24 @@ const bool CollisionDetection::SAT(shape a, shape b) {
 		float maxA = -11111111111;
 		float minB = 10000000000;
 		float maxB = -11111111111;
-		dot(minA, maxA, a);
-		dot(minB, maxB, b);
+		projectOnAxis(minA, maxA, a);
+		projectOnAxis(minB, maxB, b);
+
 		float penetrationDistance = checkOverlap(minA, maxA, minB, maxB);
+		//find the smallest penetration distance
+		if (penetrationDistance == 0) {
+			// no penetration at all
+			finished = true;
+			collisionDetected = false;
+			break;
+		}
+		else {
+			if (penetrationDistance < smalestPenetration) {
+				smalestPenetration = penetrationDistance;
+			}
+		}
+		i++;
 	}
+	return collisionDetected;
 }
 

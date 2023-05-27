@@ -4,18 +4,15 @@
 #include "../Graphics/Graphic.h"
 #include "../Graphics/Sprite.h"
 #include "MouseEventComponent.h"
-class Game {
-protected:
-	bool _switch;
-	bool _isRunning;
-	MouseEvent* m;
-	float _arg;
-public :
-
-	static BaseNode* _world;
-	static Graphic* _testG;
-	Game();
-	virtual ~Game();
+class Game {							
+protected:								
+	bool _switch;						
+	bool _isRunning;					
+public :								
+										
+	static BaseNode* _world;			
+	Game();								
+	virtual ~Game();					
 	virtual void Update(float deltaTime);
 	void Draw();
 	void HandleMouseInputs(int btn, int action);

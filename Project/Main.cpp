@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 #include "Graphics/Renderer.h"
-#include "Projects/TowerDefense/TowerDefenseGame.h"
+#include "Projects/CollisionTest/ColliisonTestGame.h"
 Game* g;
 
 void button_calls(GLFWwindow* window, int btn, int action, int mods) {
@@ -18,7 +18,7 @@ void button_key_calls(GLFWwindow* window, int key, int scancode, int action, int
 int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();
-	g = new TowerDefenseGame();
+	g = new CollisionTestGame();
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glfwSetMouseButtonCallback(window, button_calls);
