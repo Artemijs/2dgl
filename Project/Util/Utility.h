@@ -8,12 +8,10 @@ public:
 	
 	
 	template<class T> static const unsigned int GetID() {
-		
 		int sum = 0;
 		const char* c = typeid(T).name();
 		char cv = *(c);
 		while (*(c) != '\0') {
-			std::cout << *(c) << "\n";
 			sum += (int)*(c);
 			c += sizeof(*(c));
 		}

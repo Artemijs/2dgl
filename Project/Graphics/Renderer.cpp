@@ -140,7 +140,7 @@ void Renderer::Draw(const BaseNode* n) {
 		glEnable(GL_DEPTH_TEST);
 
 
-		Game::_testG->Draw(n->GetModelMatrix());
+		//Game::_testG->Draw(n->GetModelMatrix());
 		
 		//glBindTexture(GL_TEXTURE_2D, tID);
 		//glUniform1i(glGetUniformLocation(_shader->ID, "tex0"), tID); //maybe this part is optioNAL

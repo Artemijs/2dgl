@@ -48,7 +48,7 @@ void Vec2::operator/=(const float f) {
 	x /= f;
 	y /= f;
 }
-const Vec2 Vec2::Normalize(const Vec2 v) {
+const Vec2 Vec2::Normalize(const Vec2 &v) {
 	return v / Vec2::Lenght(v);
 }
 const float Vec2::Dot(const Vec2& a, const Vec2& b) {
