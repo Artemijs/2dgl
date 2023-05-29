@@ -1,4 +1,5 @@
 #include "BoxBounds.h"
+#include "CollisionDetection.h"
 BoxBounds::BoxBounds() {
 
 	_localRect[0] = Vec3(-0.5f, 0.5f, 0.1f);
@@ -15,6 +16,7 @@ BoxBounds::BoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft
 const bool BoxBounds::CheckInside(const Vec3 pos)const {
 	//return (pos.x >= _worldRect[0].x && pos.x <= _worldRect[1].x &&
 	//	pos.y >= _worldRect[3].y && pos.y <= _worldRect[0].y);
+	CollisionDetection::SAT();
 	return false;
 }
 

@@ -5,7 +5,7 @@ class SphereBounds : public Bounds{
 private:
 	Vec3  _localPosition;
 	Vec3  _worldPosition;
-	float _radius;
+	float _radius;		
 public :
 	SphereBounds();
 	SphereBounds( const float _radius, const Vec3 pos = Vec3());

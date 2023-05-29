@@ -8,9 +8,15 @@
 
 class CollisionDetection {
 private:
+	const bool CheckCollision(const shape& a, const shape& b);
+	static const bool SAT(const shape a, const shape b);
+	static const bool FullSAT(const shape a, const shape b);
+	static const float CheckOverlap(const float minA, const float maxA, const float minB, const float maxB);
+	static const Vec2 GetAxis(const Vec3& p1, const Vec3& p2);
+	static const void ProjectOnAxis(float& min, float& max, const Vec2 axis, const shape& s);
 
 public :
-	static const bool SAT(shape a, shape b);
+	
 };
 #endif
 

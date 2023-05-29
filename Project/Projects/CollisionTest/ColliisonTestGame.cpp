@@ -2,8 +2,48 @@
 #include "../../Graphics/Renderer.h"
 #include "../../Graphics/Sprite.h"
 #include "../../Math/BoxBounds.h"
+/*
+	beware of
+	d ne budu
+	molchim
+	so what do we do now
+	da mozhezh eto ne zapisovatj
+	esli...
+	english pls
+	tak escho eto ne otoshlo
+	so.. i remember this... 26 07 2019
+	you can hear me
+	oh ti menja slishish
+	youve got a lon way to go
+	piece oh shit should be saying the numbers
+	ne gotov li ti
+	so as you can see it has gotten very difficult to think now
+	still waiting for you to satrt screaming at me
+	i meant to say stop
+	2021 is that you
+	i dont even know who says any of these
+	write this down for me
+	I DONT GIVE A FUCK ABOUT MY PROBLEMS
+	well seems like thats you
+	that -situation- is unavoidable
+	da bljat cho vi ebetesj, pomogli emu i vsjo
+	what happened to the resy of you who were here a second ago
+	ahujejesh
+	he stopped writing it down
+	you have problems here
+	what kind of problems
+	problems here aswell
+	you heard me i said your name 
+	that might have been 21
+	zapisavai blja
+	vsio zapisivai
+	21 aprelja 2023
+	2
+	26 february 2021
+	6 12 22 29 33 6 11 million 210
 
-
+*/
+//
 
 CollisionTestGame::CollisionTestGame():Game() {
 	_tests = new std::vector<TestState*>();
