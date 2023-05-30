@@ -17,3 +17,29 @@ const unsigned int Utility::GetID()
 	return _idCount;
 	
 }
+const float Utility::Dist2CLosest(const float min, const float max, const float p) {
+	const float min_m_p = min - ((p - min) * 2);
+	const float max_m_p = max - p;
+	if (min_m_p < max_m_p) {
+		return min_m_p;
+	}
+	else
+		return max_m_p;
+}
+
+
+
+/*
+	a = 10 
+	b = 20 
+	c = 13
+	a - c =  -3
+	b - c =  7 
+
+	a = 1
+	b = 25
+	c = 23
+	a - c =  -22
+	b - c =  2
+
+*/

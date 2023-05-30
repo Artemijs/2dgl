@@ -1,5 +1,7 @@
 #include "CollisionDetection.h"
 #include <functional>
+#include "../Util/Utility.h"
+// BUY LAPTOP WIPES TO CLEAN THIS GARBAGE CAN
 
 
 
@@ -11,9 +13,7 @@
 
 
 
-
-
-const bool CollisionDetection::CheckCollision(const shape& a, const shape &b) {
+const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, const float aRad = 0, const float bRad = 0) {
 	if (a.first == 1 ) {//point
 		if (b.first == 1) {
 			return a.second == b.second;
@@ -109,7 +109,48 @@ const bool CollisionDetection::CheckCollision(const shape& a, const shape &b) {
 
 
 
+const float CollisionDetection::CheckPoint(const Vec3& p, const shape& s) {
+	bool finished = false;
+	int i = 0;
+	unsigned int index;
+	Vec3* p1, * p2;
+	float smalestPenetration = 100000000000;
+	bool collisionDetected = true;
 
+	while (!finished) {
+		p1 = &s.second[i];
+		p2 = &s.second[i + 1];
+
+		Vec2 axis = GetAxis((*p1), (*p2));
+
+		float minA = 10000000000;
+		float maxA = -11111111111;
+		
+		ProjectOnAxis(minA, maxA, axis, s);
+		float pDot = Vec2::Dot(p.x, p.y, axis.x, axis.y);
+		
+
+		//float penetrationDistance = CheckOverlap(minA, maxA, minB, maxB);
+		float penetrationDistance = Utility::Dist2CLosest(minA, maxA, pDot);
+
+		
+
+		//find the smallest penetration distance
+		if (penetrationDistance == 0) {
+			// no penetration at all
+			finished = true;
+			collisionDetected = false;
+			break;
+		}
+		else {
+			if (penetrationDistance < smalestPenetration) {
+				smalestPenetration = penetrationDistance;
+			}
+		}
+		i++;
+	}
+	return collisionDetected;
+}
 
 
 
