@@ -25,6 +25,6 @@ void SphereBounds::Translate2World(const Matrix4x4* model)  {
 	_worldPosition = (*model) * _localPosition;
 	
 }
-shape SphereBounds::GetShape() {
+ const shape SphereBounds::GetShape() const  {
 	return shape(1, &_worldPosition);//_worldRect;
 }

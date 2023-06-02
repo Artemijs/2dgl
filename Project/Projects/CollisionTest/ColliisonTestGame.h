@@ -80,11 +80,14 @@ private:
 
 	unsigned int _state;
 	bool _play;
+	float _ang;
+	float _angVel;
+	float _angChange;
 	void CreateTests(BaseNode* a, BaseNode* b);
 public :
 	CollisionTestGame();
 	~CollisionTestGame() override;
-	
+	void Rotate(const int dir);
 	void Update(float deltaTime) override;
 	void HandleKeyInputs(int key, int action, int mods) override;
 	void NextTest();

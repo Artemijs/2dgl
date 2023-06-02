@@ -1,57 +1,15 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  FBOComponent.cpp
-  Game.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(56,50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Game\Game.cpp(56,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  MouseEventComponent.cpp
-  Renderer.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(33,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(91,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(91,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(100,45): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(100,30): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
-  Sprite.cpp
-  MouseEventHandler.cpp
-  Main.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Main.cpp(31,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Bounds.cpp
-  BoxBounds.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Math\BoxBounds.cpp(19,26): error C2660: 'CollisionDetection::SAT': function does not take 0 arguments
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.h(12,20): message : see declaration of 'CollisionDetection::SAT'
   CollisionDetection.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(16,98): error C2572: 'CollisionDetection::CheckCollision': redefinition of default argument: parameter 1
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.h(11): message : see declaration of 'CollisionDetection::CheckCollision'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(16,120): error C2572: 'CollisionDetection::CheckCollision': redefinition of default argument: parameter 2
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.h(11): message : see declaration of 'CollisionDetection::CheckCollision'
 C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(117,41): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(127,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(140,7): error C2065: 'penetrationDistance': undeclared identifier
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(147,8): error C2065: 'penetrationDistance': undeclared identifier
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(148,26): error C2065: 'penetrationDistance': undeclared identifier
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(173,41): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(177,9): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(185,14): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(193,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(195,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(243,20): warning C4018: '<': signed/unsigned mismatch
-  SphereBounds.cpp
-  ColliisonTestGame.cpp
-  TowerDefenseGame.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\TowerDefense\TowerDefenseGame.cpp(9,14): warning C4305: '=': truncation from 'double' to 'float'
-  Button.cpp
-  Text.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(23,34): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(141,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(151,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(161,23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(171,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(181,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(190,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(199,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(240,24): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(261,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\UI\Text.cpp(319,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Utility.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Util\Utility.cpp(21,5): error C2059: syntax error: ')'
-  Generating Code...
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(120,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(129,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(141,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(197,41): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(201,9): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(209,14): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(217,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(219,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(195,15): warning C4101: 'index': unreferenced local variable
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(267,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(105): warning C4715: 'CollisionDetection::CheckCollision': not all control paths return a value
+  OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

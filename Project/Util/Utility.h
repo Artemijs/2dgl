@@ -23,6 +23,8 @@ public:
 
 
 	static const float Dist2CLosest(const float min, const float max, const float p);
+	static void PrintVector(const char* prefix, const Vec3& v);
+	static void PrintVector(const char* prefix, const Vec2& v);
 };
 
 #endif

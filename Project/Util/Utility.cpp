@@ -27,8 +27,12 @@ const float Utility::Dist2CLosest(const float min, const float max, const float 
 		return max_m_p;
 }
 
-
-
+void Utility::PrintVector(const char* prefix, const Vec3& v) {
+	std::cout << prefix << "(" << v.x << " ," << v.y << " ," << v.z << ")\n";
+}
+void Utility::PrintVector(const char* prefix, const Vec2& v) {
+	std::cout << prefix << "(" << v.x << " ," << v.y <<  ")\n";
+}
 /*
 	a = 10 
 	b = 20 

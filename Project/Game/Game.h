@@ -7,7 +7,8 @@
 class Game {							
 protected:								
 	bool _switch;						
-	bool _isRunning;					
+	bool _isRunning;			
+	float _ang;
 public :								
 										
 	static BaseNode* _world;			

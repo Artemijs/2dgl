@@ -72,8 +72,14 @@ public:
 
 	//set local sale unless inherit transform of parent is off
 	void SetScale(Vec3 scale);
-
+	
 	//set local angle unless inherit transform of parent is off
+	
+	/// <summary>
+	///set local angle unless inherit transform of parent is off
+	/// use the y axis 
+	/// </summary>
+	/// <param name="angle"></param>
 	void SetAngle(Vec3 angle);
 
 	//turns the objects visibility on/off, if off then it does not draw

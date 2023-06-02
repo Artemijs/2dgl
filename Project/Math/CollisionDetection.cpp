@@ -13,7 +13,7 @@
 
 
 
-const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, const float aRad = 0, const float bRad = 0) {
+const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, const float aRad , const float bRad) {
 	if (a.first == 1 ) {//point
 		if (b.first == 1) {
 			return a.second == b.second;
@@ -107,49 +107,74 @@ const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, co
 
 
 
-
+bool CollisionDetection::_print = false;
 
 const float CollisionDetection::CheckPoint(const Vec3& p, const shape& s) {
-	bool finished = false;
-	int i = 0;
-	unsigned int index;
-	Vec3* p1, * p2;
+	
+	
+	
+	const Vec3* p1, *p2;
 	float smalestPenetration = 100000000000;
-	bool collisionDetected = true;
-
-	while (!finished) {
+	if (_print) {
+		std::cout << "\n";
+		for (int i = 0; i < s.first; i++) {
+			//std::cout << "v" << i << " : " << "(" << s.second[i].x << " ," << s.second[i].y << " ," << s.second[i].z << ")\n";
+			std::cout << "v" << i;
+			Utility::PrintVector(" : ", s.second[i]);
+		}
+		Utility::PrintVector(" point : ", p);
+		std::cout << "\n";
+	
+	}
+	for( int i = 0; i < s.first; ++i) {
+		if(_print)
+			std::cout << "\n";
 		p1 = &s.second[i];
 		p2 = &s.second[i + 1];
 
 		Vec2 axis = GetAxis((*p1), (*p2));
-
+		
+		if (_print)
+			Utility::PrintVector("axis : ", axis);
+		
 		float minA = 10000000000;
 		float maxA = -11111111111;
 		
 		ProjectOnAxis(minA, maxA, axis, s);
 		float pDot = Vec2::Dot(p.x, p.y, axis.x, axis.y);
-		
-
-		//float penetrationDistance = CheckOverlap(minA, maxA, minB, maxB);
-		float penetrationDistance = Utility::Dist2CLosest(minA, maxA, pDot);
-
-		
-
-		//find the smallest penetration distance
-		if (penetrationDistance == 0) {
-			// no penetration at all
-			finished = true;
-			collisionDetected = false;
-			break;
+		if (_print) {
+			std::cout << " projections :			a " << minA << " b " << maxA << " point " << pDot << "\n";
 		}
-		else {
+
+		float penetrationDistance = 0;
+		
+		pDot += 1000000;
+		minA += 1000000;
+		maxA += 1000000;
+		if (pDot > minA && pDot < maxA) {
+			penetrationDistance = Utility::Dist2CLosest(minA, maxA, pDot);
+
 			if (penetrationDistance < smalestPenetration) {
 				smalestPenetration = penetrationDistance;
 			}
+			if (_print) {
+				std::cout << "PENETRATION	:	" << penetrationDistance<<"\n";
+				std::cout << "SMALLEST PENETRATION	:	" << smalestPenetration<<"\n";
+			}
 		}
-		i++;
+		else {
+			if(_print)
+				std::cout << "NO OVERLAP DETECTED \n";
+			_print = false;
+			return 0;
+		}
+		
 	}
-	return collisionDetected;
+	if (_print)
+	{
+		_print = false;
+	}
+	return smalestPenetration;
 }
 
 
@@ -168,7 +193,7 @@ const bool CollisionDetection::SAT(const shape a, const shape b) {
 	//NEED TO FIND AXIS AV1 - AV2, AV2 - AV3, AV4 - AV1, BV1 - BV2, BBV2- BV3, BV3 - BV4, BV4 - BV1
 	int i = 0;
 	unsigned int index;
-	Vec3 *p1, *p2;
+	const Vec3 *p1, *p2;
 	float smalestPenetration = 100000000000;
 	bool collisionDetected = true;
 	while (!finished) {

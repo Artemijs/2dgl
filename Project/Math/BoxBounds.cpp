@@ -16,8 +16,9 @@ BoxBounds::BoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft
 const bool BoxBounds::CheckInside(const Vec3 pos)const {
 	//return (pos.x >= _worldRect[0].x && pos.x <= _worldRect[1].x &&
 	//	pos.y >= _worldRect[3].y && pos.y <= _worldRect[0].y);
-	CollisionDetection::SAT();
-	return false;
+	float penDist = CollisionDetection::CheckPoint(pos, GetShape());
+	return (penDist > 0);
+	//return false;
 }
 
 /*
@@ -30,6 +31,6 @@ void BoxBounds::Translate2World(const Matrix4x4* model)  {
 		_worldRect[i] = (*model )* _localRect[i] ;
 	}
 }
-shape BoxBounds::GetShape() {
-	return shape(4, _worldRect);
+ const shape BoxBounds::GetShape() const {
+	return   shape(4, _worldRect);
 }

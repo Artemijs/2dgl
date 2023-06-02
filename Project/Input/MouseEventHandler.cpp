@@ -26,7 +26,7 @@ BaseNode* MouseEventHandler::CheckCollision(BaseNode* node, const Vec3 mousePos)
 	 Bounds* bb = node->GetComponent<Bounds>();
 	 auto children = node->GetAllChildren();
 	 BaseNode* closest_n = uwu;
-
+	 //there is np check if there are mouse events or not
 	 if (children != uwu) {
 		 for (int i = 0; i < children->size(); ++i) {
 

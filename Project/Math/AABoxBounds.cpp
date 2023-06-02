@@ -21,6 +21,8 @@ void AABoxBounds::Translate2World(const Matrix4x4* model)  {
 	for (int i = 0; i < 4; ++i) {
 		_worldRect[i] = (*model )* _localRect[i] ;
 	}
-}shape AABoxBounds::GetShape() {
+}
+
+const shape AABoxBounds::GetShape() const {
 	return shape(4, _worldRect);
 }

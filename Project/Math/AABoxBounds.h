@@ -12,6 +12,6 @@ public :
 	AABoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft, const Vec3 botRight);
 	const bool CheckInside(const Vec3 pos) const ;
 	void Translate2World(const Matrix4x4* model) ;
-	shape GetShape() override;
+	const shape GetShape() const override;
 };
 #endif

@@ -44,16 +44,17 @@
 
 */
 //
+#include "../../UI/Button.h"
 
 CollisionTestGame::CollisionTestGame():Game() {
 	_tests = new std::vector<TestState*>();
-	BaseNode* a = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
-	a->AddComponent(new Sprite("Assets/Textures/default.png"));
-	a->AddComponent(new BoxBounds());
+	BaseNode* a = new Button("a" ,Vec3(450, 400, 0), Vec3(200, 50, 1), 0);
+	//a->AddComponent(new Sprite("Assets/Textures/default.png"));
+	//a->AddComponent(new BoxBounds());
 
-	BaseNode* b = new BaseNode(Vec3(400, 400, 0), Vec3(50, 50, 1), 0);
-	b->AddComponent(new Sprite("Assets/Textures/default.png"));
-	b->AddComponent(new BoxBounds());
+	BaseNode* b = new Button("b", Vec3(0, 0, 0), Vec3(50, 50, 1), 0);
+	//b->AddComponent(new Sprite("Assets/Textures/default.png"));
+	//b->AddComponent(new BoxBounds());
 	
 	
 	_world->AddChild(a);
@@ -64,6 +65,9 @@ CollisionTestGame::CollisionTestGame():Game() {
 	_state = 0;
 	_play = false;
 	_current = _tests->at(_state);
+	_angVel = 0;
+	_ang = 0;
+	_angChange = 2;
 }
 
 
@@ -77,24 +81,32 @@ CollisionTestGame::~CollisionTestGame() {
 //263 left
 //262 right 
 // 32 space 
+#include "../../Math/CollisionDetection.h"
 void CollisionTestGame::HandleKeyInputs(int key, int action, int mods) {
 	if (action == 2) return;
 	if (action == 0) {
 		std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
 		switch (key)
 		{
-
+		case 49:
+			CollisionDetection::_print = true;
 			//left
 		case 263:
-			PrevTest();
+			Rotate(1);
 			break;
 			//right
 		case 262:
-			NextTest();
+			Rotate(-1);
 			break;
 			//space
 		case 32:
 			Play(!_play);
+			break;
+		case 78:
+			PrevTest();
+			break;
+		case 80:
+			NextTest();
 			break;
 		default:
 			break;
@@ -102,10 +114,24 @@ void CollisionTestGame::HandleKeyInputs(int key, int action, int mods) {
 		
 	}
 }
+
+void CollisionTestGame::Rotate(const int dir) {
+	_angVel += _angChange* dir;
+}
+
 void CollisionTestGame::Update(float deltaTime) {
 	Game::Update(deltaTime);
 	if (!_play) return;
 	_current->Update(deltaTime);
+
+	if (_angVel != 0) {
+		_ang += _angVel * deltaTime;
+
+		_world->GetChild(0)->SetAngle(Vec3(0, _ang, 0));
+
+
+	}
+
 }
 
 void CollisionTestGame::NextTest() {
@@ -136,6 +162,24 @@ void CollisionTestGame::CreateTests(BaseNode* a, BaseNode* b) {
 	_tests->push_back(new TestFour(a, b));
 	//_tests->push_back(new TestFive(a, b));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

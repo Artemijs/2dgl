@@ -2,21 +2,23 @@
 #define COLLISIONDETECTION_H
 #include "Matrix4x4.h"
 #include <utility>
-#ifndef shape
-#define shape std::pair<const unsigned int, Vec3*>
-#endif
+
+#define shape std::pair<const unsigned int, const Vec3*>
+
 
 class CollisionDetection {
 private:
-	const bool CheckCollision(const shape& a, const shape& b, const float aRad = 0, const float bRad = 0);
+	
 	static const bool SAT(const shape a, const shape b);
 	static const bool FullSAT(const shape a, const shape b);
 	static const float CheckOverlap(const float minA, const float maxA, const float minB, const float maxB);
 	static const Vec2 GetAxis(const Vec3& p1, const Vec3& p2);
 	static const void ProjectOnAxis(float& min, float& max, const Vec2 axis, const shape& s);
-	static const float CheckPoint(const Vec3 &p, const shape &s);
-public :
 	
+public :
+	static bool _print;
+	const bool CheckCollision(const shape& a, const shape& b, const float aRad = 0, const float bRad = 0);
+	static const float CheckPoint(const Vec3& p, const shape& s);
 };
 #endif
 
