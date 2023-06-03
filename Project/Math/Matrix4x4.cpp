@@ -52,10 +52,10 @@ const Vec2 Vec2::Normalize(const Vec2 &v) {
 	return v / Vec2::Lenght(v);
 }
 const float Vec2::Dot(const Vec2& a, const Vec2& b) {
-	return (a.x * b.x) + (a.y + b.y);
+	return (a.x * b.x) + (a.y * b.y);
 }
 const float Vec2::Dot(const float ax, const float ay, const float bx, const float by) {
-	return (ax * bx) + (ay + by);
+	return (ax * bx) + (ay * by);
 }
 Vec2Int::Vec2Int() {
 	x = 0; y = 0;

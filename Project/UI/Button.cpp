@@ -74,38 +74,38 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 	
 }
 void Button::OnPress() {							
-	printf("CALLING OnPress \n");					
+	//printf("CALLING OnPress \n");					
 	_material->_uvOffset = Vec2(0, 1);
 	SoundCtrl::GetInstance()->PlaySfx(_pressedSfx);
 }													
 void Button::OnRelease() {							
-	printf("CALLING OnRelease \n");	
+	//printf("CALLING OnRelease \n");	
 	_material->_uvOffset = Vec2(0, 2);
 	SoundCtrl::GetInstance()->PlaySfx(_releasedSfx);;
 }													
 void Button::OnClick() {
-	printf("CALLING OnClick \n");
+	//printf("CALLING OnClick \n");
 	//printf("and does this have a destructor?\n");
 }
 void Button::OnDoublClick() {
-	printf("CALLING OnDoublClick \n");
+	//printf("CALLING OnDoublClick \n");
 	//printf("and does this have a destructor?\n");
 }
 void Button::OnEnter() {
-	printf("CALLING OnEnter \n");
+	//printf("CALLING OnEnter \n");
 	_material->_uvOffset = Vec2(0, 2);
 	SoundCtrl::GetInstance()->PlaySfx(_enterSfx);
 }
 void Button::OnLeave() {
-	printf("CALLING OnLeave \n");
+	//printf("CALLING OnLeave \n");
 	_material->_uvOffset = Vec2(0, 3);
 	//printf("and does this have a destructor?\n");
 }
 void Button::OnHover() {
-	printf("CALLING OnHover \n");
+	//printf("CALLING OnHover \n");
 	//printf("and does this have a destructor?\n");
 }
 void Button::OnEndHover() {
-	printf("CALLING OnEndHover \n");
+	//printf("CALLING OnEndHover \n");
 	//printf("and does this have a destructor?\n");
 }

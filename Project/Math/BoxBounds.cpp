@@ -2,10 +2,10 @@
 #include "CollisionDetection.h"
 BoxBounds::BoxBounds() {
 
-	_localRect[0] = Vec3(-0.5f, 0.5f, 0.1f);
-	_localRect[1] = Vec3(0.5f, 0.5f, 0.1f);
-	_localRect[2] = Vec3(-0.5f, -0.5f, 0.1f);
-	_localRect[3] = Vec3(0.5f, -0.5f, 0.1f);
+	_localRect[0] = Vec3(-0.5f, 0.5f, 0.1f);//top left 
+	_localRect[1] = Vec3(0.5f, 0.5f, 0.1f);//top right
+	_localRect[2] = Vec3(0.5f, -0.5f, 0.1f);// bot right
+	_localRect[3] = Vec3(-0.5f, -0.5f, 0.1f);//bot left
 }
 BoxBounds::BoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft, const Vec3 botRight) {
 	_localRect[0] = topLeft;	

@@ -111,8 +111,6 @@ bool CollisionDetection::_print = false;
 
 const float CollisionDetection::CheckPoint(const Vec3& p, const shape& s) {
 	
-	
-	
 	const Vec3* p1, *p2;
 	float smalestPenetration = 100000000000;
 	if (_print) {
@@ -126,7 +124,7 @@ const float CollisionDetection::CheckPoint(const Vec3& p, const shape& s) {
 		std::cout << "\n";
 	
 	}
-	for( int i = 0; i < s.first; ++i) {
+	for( int i = 0; i < s.first-1; ++i) {
 		if(_print)
 			std::cout << "\n";
 		p1 = &s.second[i];
@@ -134,8 +132,12 @@ const float CollisionDetection::CheckPoint(const Vec3& p, const shape& s) {
 
 		Vec2 axis = GetAxis((*p1), (*p2));
 		
-		if (_print)
+		if (_print) {
+			Utility::PrintVector("v1 : ", (*p1)); 
+			Utility::PrintVector("v2 : ", (*p2)); 
 			Utility::PrintVector("axis : ", axis);
+		
+		}
 		
 		float minA = 10000000000;
 		float maxA = -11111111111;
