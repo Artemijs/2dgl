@@ -10,10 +10,11 @@
 #include "../UI/Button.h"
 #include <typeinfo>
 #include "../UI/Text.h"
+#include "../Math/CollisionHandler.h"
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 
 Game::Game() {
-
+	
 	Text::Init();
 	_switch = false;
 	//_world->AddChild(new Button("LOL", Vec3(400, 400, 0), Vec3(100, 50, 1), 0));
@@ -27,6 +28,7 @@ Game::~Game() {
 	delete Renderer::instance();
 	delete _world;
 	MouseEventHandler::Delete();
+	CollisionHandler::Delete();
 }
 //remove all ui code
 //add UpdateModelMatrix(parentPos, parentScale, parentRot)
@@ -48,7 +50,7 @@ void Game::Update(float deltaTime) {
 
 	//PHYSICS 
 	//- update all model matrices( parentTransform, parentScale, parentRotation)
-		
+	CollisionHandler::Update(deltaTime);
 		
 	//MOUSE EVENTS
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);

@@ -14,10 +14,10 @@ SphereBounds::SphereBounds(const float rad, const Vec3 pos):
 {
 	
 }
-const bool SphereBounds::CheckInside(Vec3 pos)const {
+/*const bool SphereBounds::CheckInside(Vec3 pos)const {
 	//distance formula is needed 
 	return (Vec3::Distance(_worldPosition, pos) <= _radius);
-}
+}*/
 /*
 todo I DONT THINK THIS NEEDS TO BE VIRTUAL
 */

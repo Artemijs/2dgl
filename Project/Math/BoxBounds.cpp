@@ -13,13 +13,7 @@ BoxBounds::BoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft
 	_localRect[2] = botLeft;	
 	_localRect[3] = botRight;	
 }
-const bool BoxBounds::CheckInside(const Vec3 pos)const {
-	//return (pos.x >= _worldRect[0].x && pos.x <= _worldRect[1].x &&
-	//	pos.y >= _worldRect[3].y && pos.y <= _worldRect[0].y);
-	float penDist = CollisionDetection::CheckPoint(pos, GetShape());
-	return (penDist > 0);
-	//return false;
-}
+
 
 /*
 todo I DONT THINK THIS NEEDS TO BE VIRTUAL

@@ -18,7 +18,14 @@ private:
 public :
 	static bool _print;
 	const bool CheckCollision(const shape& a, const shape& b, const float aRad = 0, const float bRad = 0);
-	static const float CheckPoint(const Vec3& p, const shape& s);
+	static const float CheckPointSAT(const Vec3& p, const shape& s);
+	/// <summary>
+	/// collision between boxes that have not rotated
+	/// </summary>
+	/// <param name="a">vertices of first bounds</param>
+	/// <param name="b">vertices of second bounds</param>
+	/// <returns></returns>
+	static const bool CheckAABBCollision(const shape& a, const shape& b);
 };
 #endif
 

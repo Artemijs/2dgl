@@ -10,7 +10,7 @@ public:
 	static const unsigned int _component_id;
 	//Bounds():BaseComponent() {}
 	//BaseComponent* comp;
-	virtual const bool CheckInside(const Vec3 pos)const  = 0;
+	//virtual const bool CheckInside(const Vec3 pos)const  = 0;
 	virtual void Translate2World(const Matrix4x4* model)  = 0;
 	const unsigned int ID() const override;
 	virtual const  shape GetShape() const  = 0 ;

@@ -9,7 +9,7 @@ private:
 public :
 	SphereBounds();
 	SphereBounds( const float _radius, const Vec3 pos = Vec3());
-	const bool CheckInside(const Vec3 pos)const ;
+	//const bool CheckInside(const Vec3 pos)const ;
 	void Translate2World(const Matrix4x4* model) ;
 	const shape GetShape() const override;
 };

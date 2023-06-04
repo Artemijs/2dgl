@@ -1,7 +1,7 @@
 #include "CollisionDetection.h"
 #include <functional>
 #include "../Util/Utility.h"
-// BUY LAPTOP WIPES TO CLEAN THIS GARBAGE CAN
+
 
 
 
@@ -109,7 +109,13 @@ const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, co
 
 bool CollisionDetection::_print = false;
 
-const float CollisionDetection::CheckPoint(const Vec3& p, const shape& s) {
+/// <summary>
+/// Check if a point is inside a bounds using separatin axis theorum
+/// </summary>
+/// <param name="p"> vec3 point </param>
+/// <param name="s"> pair of int array len, vec3* array start</param>
+/// <returns></returns>
+const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 	
 	const Vec3* p1, *p2;
 	float smalestPenetration = 100000000000;
@@ -275,3 +281,25 @@ const void CollisionDetection::ProjectOnAxis(float& min, float& max, const Vec2 
 	}
 }
 
+
+
+const bool CollisionDetection::CheckAABBCollision(const shape& a, const shape& b) {
+	
+	for (int i = 0; i < a.first; ++i) {
+		
+		const Vec3* v1 = &a.second[i];
+		if (v1->x > b.second[0].x && v1->x < b.second[1].x &&
+			v1->y > b.second[0].y && v1->y < b.second[2].y) {
+			return true;
+		}
+	}
+	for (int i = 0; i < b.first; ++i) {
+
+		const Vec3* v1 = &b.second[i];
+		if (v1->x > a.second[0].x && v1->x < a.second[1].x &&
+			v1->y > a.second[0].y && v1->y < a.second[2].y) {
+			return true;
+		}
+	}
+	return false;
+}

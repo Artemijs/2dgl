@@ -20,6 +20,8 @@ BaseNode* MouseEventHandler::_current = uwu;
 }
 */
 #include "../Game/FBOComponent.h"
+#include "../Math/CollisionDetection.h"
+//48 39 46 
 BaseNode* MouseEventHandler::CheckCollision(BaseNode* node, const Vec3 mousePos) {
 	 //node->GetComponent<MouseEvent>(0);
 	// printf("collision detection code not implemented\n");
@@ -46,7 +48,8 @@ BaseNode* MouseEventHandler::CheckCollision(BaseNode* node, const Vec3 mousePos)
 	 }
 	 if (bb != uwu) {
 		 bb->Translate2World(node->GetModelMatrix());
-		 if (bb->CheckInside(mousePos) ){
+		 if(CollisionDetection::CheckPoint(mousePos, bb->GetShape()) != 0){
+		 //if (bb->CheckInside(mousePos) ){
 			 if (closest_n == uwu) {
 				 return node;
 			 }
