@@ -2,6 +2,7 @@
 #define COLLISION_HANDLER_H
 #include "Bounds.h"
 #include <vector>
+#include "CollisionDetection.h"
 /*
 	write this down 4 jun - mas at work
 
@@ -13,6 +14,7 @@ public :
 	static std::vector<const Bounds*>* _all_bounds;
 	static void RegisterBounds(const Bounds* b);
 	static void Update(const float deltaTime);
+	static void CollisionSeparation(const Bounds* a, const Bounds* b, SeparationData& sd);
 	static void Delete();
 };
 

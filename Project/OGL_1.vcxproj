@@ -177,6 +177,7 @@
     <ClCompile Include="Math\Bounds.cpp" />
     <ClCompile Include="Math\BoxBounds.cpp" />
     <ClCompile Include="Math\CollisionDetection.cpp" />
+    <ClCompile Include="Math\CollisionHandler.cpp" />
     <ClCompile Include="Math\Matrix4x4.cpp" />
     <ClCompile Include="Math\SphereBounds.cpp" />
     <ClCompile Include="Projects\CollisionTest\ColliisonTestGame.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="Math\Bounds.h" />
     <ClInclude Include="Math\BoxBounds.h" />
     <ClInclude Include="Math\CollisionDetection.h" />
+    <ClInclude Include="Math\CollisionHandler.h" />
     <ClInclude Include="Math\Matrix4x4.h" />
     <ClInclude Include="Math\SphereBounds.h" />
     <ClInclude Include="Projects\CollisionTest\ColliisonTestGame.h" />

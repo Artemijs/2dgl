@@ -3,8 +3,9 @@
 #include "Bounds.h"
 class SphereBounds : public Bounds{
 private:
+	//the second position is used in the collision algorythm
 	Vec3  _localPosition;
-	Vec3  _worldPosition;
+	Vec3  _worldPosition[2];
 	float _radius;		
 public :
 	SphereBounds();

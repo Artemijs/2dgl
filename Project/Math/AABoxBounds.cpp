@@ -1,12 +1,13 @@
 #include "AABoxBounds.h"
-AABoxBounds::AABoxBounds() {
+AABoxBounds::AABoxBounds() : Bounds(BoundsType::AABB) {
 
 	_localRect[0] = Vec3(-0.5f, 0.5f, 0.1f);
 	_localRect[1] = Vec3(0.5f, 0.5f, 0.1f);
 	_localRect[2] = Vec3(-0.5f, -0.5f, 0.1f);
 	_localRect[3] = Vec3(0.5f, -0.5f, 0.1f);
 }
-AABoxBounds::AABoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft, const Vec3 botRight) {
+AABoxBounds::AABoxBounds(const Vec3 topLeft, const Vec3 topRight, const Vec3 botLeft, const Vec3 botRight):
+	Bounds(BoundsType::AABB) {
 	_localRect[0] = topLeft;
 	_localRect[1] = topRight;
 	_localRect[2] = botLeft;
@@ -21,6 +22,7 @@ void AABoxBounds::Translate2World(const Matrix4x4* model)  {
 	for (int i = 0; i < 4; ++i) {
 		_worldRect[i] = (*model )* _localRect[i] ;
 	}
+	_centerOfMass = (*model) * _centerOfMass;
 }
 
 const shape AABoxBounds::GetShape() const {

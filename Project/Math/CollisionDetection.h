@@ -2,13 +2,22 @@
 #define COLLISIONDETECTION_H
 #include "Matrix4x4.h"
 #include <utility>
-
-#define shape std::pair<const unsigned int, const Vec3*>
-
+#include "Bounds.h"
+#define shape std::pair<const unsigned int,  Vec3*>
+struct SeparationData {
+public :
+	float _penetrationDistance;
+	Vec3 _separationVector;
+};
 
 class CollisionDetection {
 private:
 	
+	static  SeparationData CheckAABB(const Bounds* a, const Bounds* b);
+	static  SeparationData CheckCircle(const Bounds* a, const Bounds* b);
+	static  SeparationData CheckBB(const Bounds* a, const Bounds* b);
+
+
 	static const bool SAT(const shape a, const shape b);
 	static const bool FullSAT(const shape a, const shape b);
 	static const float CheckOverlap(const float minA, const float maxA, const float minB, const float maxB);
@@ -17,15 +26,35 @@ private:
 	
 public :
 	static bool _print;
-	const bool CheckCollision(const shape& a, const shape& b, const float aRad = 0, const float bRad = 0);
+	
+	static SeparationData CheckCollision(const Bounds *a, const Bounds *b);
+
+	/// <summary>
+	/// Calls the appropriate collision detection function depending on bound types
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <param name="aRad">radius of a if a is a circle, default to 0 if a is not circle</param>
+	/// <param name="bRad">radius of b if b is a circle, default to 0 if b is not circle</param>
+	/// <returns></returns>
+	static SeparationData CheckCollision(const shape& a, const shape& b, const float aRad = 0, const float bRad = 0);
+	/// <summary>
+	/// collision between a point and any shape, currently only box
+	/// </summary>
+	/// <param name="p">vec3</param>
+	/// <param name="s">pair of int and vec3* to array of vertices</param>
+	/// <returns></returns>
 	static const float CheckPointSAT(const Vec3& p, const shape& s);
+	
+	
+	
 	/// <summary>
 	/// collision between boxes that have not rotated
 	/// </summary>
 	/// <param name="a">vertices of first bounds</param>
 	/// <param name="b">vertices of second bounds</param>
 	/// <returns></returns>
-	static const bool CheckAABBCollision(const shape& a, const shape& b);
+	static const SeparationData CheckAABBCollision(const shape& a, const shape& b);
 };
 #endif
 

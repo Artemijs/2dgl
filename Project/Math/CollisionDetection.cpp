@@ -7,16 +7,108 @@
 
 
 
+SeparationData CollisionDetection::CheckAABB(const Bounds* a, const Bounds* b) {
+	SeparationData sd;
+	if (b->_type == BoundsType::AABB) {
+		return CheckAABBCollision(a->GetShape(), b->GetShape());
+	}
+	else if (b->_type == BoundsType::BB) {
+		SAT(a->GetShape(), b->GetShape());
+		return sd;//
+	}
+	else if (b->_type == BoundsType::CIRCLE) {
+		auto bs = b->GetShape();
+		//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
+		//this gets the second point to create the axis with
+		//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
+		bs.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass)* bs.second[1].x;
+		SAT(a->GetShape(), bs);
+		return sd;
+	}
+	else if (b->_type == BoundsType::TRIANGLE) {
+		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
+		return sd;
+	}
+	
+}
+SeparationData CollisionDetection::CheckCircle(const Bounds* a, const Bounds* b) {
+	SeparationData sd;
+	auto as = b->GetShape();
+	//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
+	//this gets the second point to create the axis with
+	//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
+	as.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * as.second[1].x;
+	//SAT(a.GetShape(), a);
+	if (b->_type == BoundsType::AABB) {
+		SAT(as, b->GetShape());
+		return sd;
+	}
+	else if (b->_type == BoundsType::BB) {
+		SAT(as, b->GetShape());
+		return sd;//
+	}
+	else if (b->_type == BoundsType::CIRCLE) {
+		//COllisionDetection Circle Circle
+		return sd;
+	}
+	else if (b->_type == BoundsType::TRIANGLE) {
+		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
+		return sd;
+	}
+
+}
+SeparationData CollisionDetection::CheckBB(const Bounds* a, const Bounds* b) {
+	SeparationData sd;
+	if (b->_type == BoundsType::AABB) {
+		return CheckAABBCollision(a->GetShape(), b->GetShape());
+	}
+	else if (b->_type == BoundsType::BB) {
+		SAT(a->GetShape(), b->GetShape());
+		return sd;//
+	}
+	else if (b->_type == BoundsType::CIRCLE) {
+		auto bs = b->GetShape();
+		//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
+		//this gets the second point to create the axis with
+		//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
+		bs.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * bs.second[1].x;
+		SAT(a->GetShape(), bs);
+		return sd;
+	}
+	else if (b->_type == BoundsType::TRIANGLE) {
+		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
+		return sd;
+	}
+
+}
+
+
+SeparationData CollisionDetection::CheckCollision(const Bounds* a, const Bounds* b) {
+	//the idea here is that i will call a function in an array based on type using 
+	
+	if (a->_type == BoundsType::AABB) {
+		return CheckAABB(a, b);
+	}
+	else if (a->_type == BoundsType::BB) {
+		return CheckBB(a, b);
+	}
+	else if (a->_type == BoundsType::CIRCLE) {
+		return CheckCircle(a, b);
+	}
+	else {
+		
+	}
+}
 
 
 
 
-
-
-const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, const float aRad , const float bRad) {
+SeparationData CollisionDetection::CheckCollision(const shape& a, const shape &b, const float aRad , const float bRad) {
+	
+	SeparationData s; 
 	if (a.first == 1 ) {//point
 		if (b.first == 1) {
-			return a.second == b.second;
+			return s;// a.second == b.second;
 		}
 		else if (b.first == 2) {
 			//radius and position
@@ -51,7 +143,7 @@ const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, co
 	}
 	else if (a.first == 3) {//triangle
 		if (b.first == 1) {
-			return a.second == b.second;
+			return s;//a.second == b.second;
 		}
 		else if (b.first == 2) {
 			//point circle
@@ -68,7 +160,7 @@ const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, co
 	}
 	else if (a.first == 4) {//square
 		if (b.first == 1) {
-			return a.second == b.second;
+			return s; //a.second == b.second;
 		}
 		else if (b.first == 2) {
 			//point circle
@@ -85,7 +177,7 @@ const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, co
 	}
 	else {
 		if (b.first == 1) {
-			return a.second == b.second;
+			return s;// a.second == b.second;
 		}
 		else if (b.first == 2) {
 			//point circle
@@ -100,7 +192,7 @@ const bool CollisionDetection::CheckCollision(const shape& a, const shape &b, co
 			//other shapes
 		}
 	}
-
+	return s;
 
 }
 
@@ -283,14 +375,14 @@ const void CollisionDetection::ProjectOnAxis(float& min, float& max, const Vec2 
 
 
 
-const bool CollisionDetection::CheckAABBCollision(const shape& a, const shape& b) {
-	
+const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, const shape& b) {
+	SeparationData sd;
 	for (int i = 0; i < a.first; ++i) {
 		
 		const Vec3* v1 = &a.second[i];
 		if (v1->x > b.second[0].x && v1->x < b.second[1].x &&
 			v1->y > b.second[0].y && v1->y < b.second[2].y) {
-			return true;
+			return sd;
 		}
 	}
 	for (int i = 0; i < b.first; ++i) {
@@ -298,8 +390,8 @@ const bool CollisionDetection::CheckAABBCollision(const shape& a, const shape& b
 		const Vec3* v1 = &b.second[i];
 		if (v1->x > a.second[0].x && v1->x < a.second[1].x &&
 			v1->y > a.second[0].y && v1->y < a.second[2].y) {
-			return true;
+			return sd;
 		}
 	}
-	return false;
+	return sd;
 }

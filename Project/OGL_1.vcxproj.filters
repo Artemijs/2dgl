@@ -207,6 +207,9 @@
     <ClCompile Include="Projects\CollisionTest\ColliisonTestGame.cpp">
       <Filter>Projects\CollisionTest</Filter>
     </ClCompile>
+    <ClCompile Include="Math\CollisionHandler.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="Projects\CollisionTest\ColliisonTestGame.h">
       <Filter>Projects\CollisionTest</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\CollisionHandler.h">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
