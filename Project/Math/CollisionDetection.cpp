@@ -29,7 +29,6 @@ SeparationData CollisionDetection::CheckAABB(const Bounds* a, const Bounds* b) {
 		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
 		return sd;
 	}
-	
 }
 SeparationData CollisionDetection::CheckCircle(const Bounds* a, const Bounds* b) {
 	SeparationData sd;
@@ -38,7 +37,6 @@ SeparationData CollisionDetection::CheckCircle(const Bounds* a, const Bounds* b)
 	//this gets the second point to create the axis with
 	//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
 	as.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * as.second[1].x;
-	//SAT(a.GetShape(), a);
 	if (b->_type == BoundsType::AABB) {
 		SAT(as, b->GetShape());
 		return sd;
@@ -49,7 +47,7 @@ SeparationData CollisionDetection::CheckCircle(const Bounds* a, const Bounds* b)
 	}
 	else if (b->_type == BoundsType::CIRCLE) {
 		//COllisionDetection Circle Circle
-		return sd;
+		return CircleCircleCollision(a->GetShape(), b->GetShape());
 	}
 	else if (b->_type == BoundsType::TRIANGLE) {
 		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
@@ -289,6 +287,7 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 //I THINK I NEED TO UPDATE SHAPE NORMAL VECTORS AS I UPDATE MODEL MATRIX
 
 const bool CollisionDetection::SAT(const shape a, const shape b) {
+	SeparationData sd;
 	bool finished = false;
 	//NEED TO FIND AXIS AV1 - AV2, AV2 - AV3, AV4 - AV1, BV1 - BV2, BBV2- BV3, BV3 - BV4, BV4 - BV1
 	int i = 0;
@@ -394,4 +393,16 @@ const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, cons
 		}
 	}
 	return sd;
+}
+const SeparationData CollisionDetection::CircleCircleCollision(const shape& a, const shape& b) {
+	//direction between one and the other 
+	Vec3 dist = (b.second[0] - a.second[0]);
+	const float distLen = dist.Lenght();
+	const float totalCircleDist = (a.second[1].x + b.second[1].x);
+	SeparationData sd;
+	sd._penetrationDistance = totalCircleDist - distLen;
+	dist.Normalize();
+	sd._separationVector = dist;
+	return sd;
+
 }

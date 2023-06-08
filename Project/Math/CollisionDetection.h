@@ -17,12 +17,20 @@ private:
 	static  SeparationData CheckCircle(const Bounds* a, const Bounds* b);
 	static  SeparationData CheckBB(const Bounds* a, const Bounds* b);
 
+	/// <summary>
+	/// collision between 2 circles
+	/// </summary>
+	/// <param name="a">vertices of first bounds</param>
+	/// <param name="b">vertices of second bounds</param>
+	/// <returns></returns>
+	static const SeparationData CircleCircleCollision(const shape& a, const shape& b);
 
 	static const bool SAT(const shape a, const shape b);
 	static const bool FullSAT(const shape a, const shape b);
 	static const float CheckOverlap(const float minA, const float maxA, const float minB, const float maxB);
 	static const Vec2 GetAxis(const Vec3& p1, const Vec3& p2);
 	static const void ProjectOnAxis(float& min, float& max, const Vec2 axis, const shape& s);
+
 	
 public :
 	static bool _print;
@@ -55,6 +63,8 @@ public :
 	/// <param name="b">vertices of second bounds</param>
 	/// <returns></returns>
 	static const SeparationData CheckAABBCollision(const shape& a, const shape& b);
+	
+	
 };
 #endif
 
