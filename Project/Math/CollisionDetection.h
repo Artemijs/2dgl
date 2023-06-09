@@ -25,7 +25,7 @@ private:
 	/// <returns></returns>
 	static const SeparationData CircleCircleCollision(const shape& a, const shape& b);
 
-	static const bool SAT(const shape a, const shape b);
+	static const SeparationData SAT(const shape a, const shape b);
 	static const bool FullSAT(const shape a, const shape b);
 	static const float CheckOverlap(const float minA, const float maxA, const float minB, const float maxB);
 	static const Vec2 GetAxis(const Vec3& p1, const Vec3& p2);

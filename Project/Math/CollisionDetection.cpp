@@ -84,7 +84,7 @@ SeparationData CollisionDetection::CheckBB(const Bounds* a, const Bounds* b) {
 SeparationData CollisionDetection::CheckCollision(const Bounds* a, const Bounds* b) {
 	//the idea here is that i will call a function in an array based on type using 
 	
-	if (a->_type == BoundsType::AABB) {
+	/*if (a->_type == BoundsType::AABB) {
 		return CheckAABB(a, b);
 	}
 	else if (a->_type == BoundsType::BB) {
@@ -95,7 +95,36 @@ SeparationData CollisionDetection::CheckCollision(const Bounds* a, const Bounds*
 	}
 	else {
 		
+	}*/
+
+	if (a->_type == BoundsType::CIRCLE && b->_type == BoundsType::CIRCLE) {
+		return CircleCircleCollision(a->GetShape(), b->GetShape());
 	}
+	else if(a->_type == BoundsType::AABB && b->_type == BoundsType::AABB) {
+		return CheckAABBCollision(a->GetShape(), b->GetShape());
+	}
+	else {
+		auto as = a->GetShape();
+		auto bs = b->GetShape();
+		if (a->_type == BoundsType::CIRCLE) {
+			
+			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
+			//this gets the second point to create the axis with
+			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
+			as.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * as.second[1].x;
+			//SAT(a->GetShape(), bs);
+		}
+		if ( b->_type == BoundsType::CIRCLE) {
+			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
+			//this gets the second point to create the axis with
+			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
+			bs.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * bs.second[1].x;
+		}
+		return SAT(as, bs);
+
+	}
+
+
 }
 
 
@@ -286,7 +315,7 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 
 //I THINK I NEED TO UPDATE SHAPE NORMAL VECTORS AS I UPDATE MODEL MATRIX
 
-const bool CollisionDetection::SAT(const shape a, const shape b) {
+const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 	SeparationData sd;
 	bool finished = false;
 	//NEED TO FIND AXIS AV1 - AV2, AV2 - AV3, AV4 - AV1, BV1 - BV2, BBV2- BV3, BV3 - BV4, BV4 - BV1
@@ -334,7 +363,7 @@ const bool CollisionDetection::SAT(const shape a, const shape b) {
 		}
 		i++;
 	}
-	return collisionDetected;
+	return sd;
 }
 //IF THE PENETRATION IS TOO DEEP THE OBJECTS WILL EXPLODE IN RANDOM DIRECTIONS
 const float CollisionDetection::CheckOverlap(const float minA, const float maxA, const float minB, const float maxB) {
