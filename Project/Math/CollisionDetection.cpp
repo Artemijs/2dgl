@@ -2,101 +2,17 @@
 #include <functional>
 #include "../Util/Utility.h"
 
+/// THINGS THAT CAN BE OPTIMISED 
+/// passing SEPARATION DATA pointer instead of copying that data every function call
+/// Point to AABB a nd POINT to Circle
+/// 
 
-
-
-
-
-SeparationData CollisionDetection::CheckAABB(const Bounds* a, const Bounds* b) {
-	SeparationData sd;
-	if (b->_type == BoundsType::AABB) {
-		return CheckAABBCollision(a->GetShape(), b->GetShape());
-	}
-	else if (b->_type == BoundsType::BB) {
-		SAT(a->GetShape(), b->GetShape());
-		return sd;//
-	}
-	else if (b->_type == BoundsType::CIRCLE) {
-		auto bs = b->GetShape();
-		//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
-		//this gets the second point to create the axis with
-		//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-		bs.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass)* bs.second[1].x;
-		SAT(a->GetShape(), bs);
-		return sd;
-	}
-	else if (b->_type == BoundsType::TRIANGLE) {
-		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
-		return sd;
-	}
-}
-SeparationData CollisionDetection::CheckCircle(const Bounds* a, const Bounds* b) {
-	SeparationData sd;
-	auto as = b->GetShape();
-	//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
-	//this gets the second point to create the axis with
-	//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-	as.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * as.second[1].x;
-	if (b->_type == BoundsType::AABB) {
-		SAT(as, b->GetShape());
-		return sd;
-	}
-	else if (b->_type == BoundsType::BB) {
-		SAT(as, b->GetShape());
-		return sd;//
-	}
-	else if (b->_type == BoundsType::CIRCLE) {
-		//COllisionDetection Circle Circle
-		return CircleCircleCollision(a->GetShape(), b->GetShape());
-	}
-	else if (b->_type == BoundsType::TRIANGLE) {
-		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
-		return sd;
-	}
-
-}
-SeparationData CollisionDetection::CheckBB(const Bounds* a, const Bounds* b) {
-	SeparationData sd;
-	if (b->_type == BoundsType::AABB) {
-		return CheckAABBCollision(a->GetShape(), b->GetShape());
-	}
-	else if (b->_type == BoundsType::BB) {
-		SAT(a->GetShape(), b->GetShape());
-		return sd;//
-	}
-	else if (b->_type == BoundsType::CIRCLE) {
-		auto bs = b->GetShape();
-		//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
-		//this gets the second point to create the axis with
-		//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-		bs.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * bs.second[1].x;
-		SAT(a->GetShape(), bs);
-		return sd;
-	}
-	else if (b->_type == BoundsType::TRIANGLE) {
-		std::cout << " TRAINGLES NOT REALLY SUPPORTED\n";
-		return sd;
-	}
-
-}
+bool CollisionDetection::_print = false;
 
 
 SeparationData CollisionDetection::CheckCollision(const Bounds* a, const Bounds* b) {
 	//the idea here is that i will call a function in an array based on type using 
 	
-	/*if (a->_type == BoundsType::AABB) {
-		return CheckAABB(a, b);
-	}
-	else if (a->_type == BoundsType::BB) {
-		return CheckBB(a, b);
-	}
-	else if (a->_type == BoundsType::CIRCLE) {
-		return CheckCircle(a, b);
-	}
-	else {
-		
-	}*/
-
 	if (a->_type == BoundsType::CIRCLE && b->_type == BoundsType::CIRCLE) {
 		return CircleCircleCollision(a->GetShape(), b->GetShape());
 	}
@@ -130,103 +46,9 @@ SeparationData CollisionDetection::CheckCollision(const Bounds* a, const Bounds*
 
 
 
-SeparationData CollisionDetection::CheckCollision(const shape& a, const shape &b, const float aRad , const float bRad) {
-	
-	SeparationData s; 
-	if (a.first == 1 ) {//point
-		if (b.first == 1) {
-			return s;// a.second == b.second;
-		}
-		else if (b.first == 2) {
-			//radius and position
-			// circle
-		}
-		else if (b.first == 3) {
-			//triangle
-		}
-		else if (b.first == 4) {
-			//square		
-		}
-		else {
-			//other shapes
-		}
-	}
-	else if (a.first == 2) {//circle
-		if (b.first == 1) {
-			//point
-		}
-		else if (b.first == 2) {
-			// circle
-		}
-		else if (b.first == 3) {
-			//triangle
-		}
-		else if (b.first == 4) {
-			//square		
-		}
-		else {
-			//other shapes
-		}
-	}
-	else if (a.first == 3) {//triangle
-		if (b.first == 1) {
-			return s;//a.second == b.second;
-		}
-		else if (b.first == 2) {
-			//point circle
-		}
-		else if (b.first == 3) {
-			//triangle
-		}
-		else if (b.first == 4) {
-			//square		
-		}
-		else {
-			//other shapes
-		}
-	}
-	else if (a.first == 4) {//square
-		if (b.first == 1) {
-			return s; //a.second == b.second;
-		}
-		else if (b.first == 2) {
-			//point circle
-		}
-		else if (b.first == 3) {
-			//triangle
-		}
-		else if (b.first == 4) {
-			//square		
-		}
-		else {
-			//other shapes
-		}
-	}
-	else {
-		if (b.first == 1) {
-			return s;// a.second == b.second;
-		}
-		else if (b.first == 2) {
-			//point circle
-		}
-		else if (b.first == 3) {
-			//triangle
-		}
-		else if (b.first == 4) {
-			//square		
-		}
-		else {
-			//other shapes
-		}
-	}
-	return s;
-
-}
 
 
 
-
-bool CollisionDetection::_print = false;
 
 /// <summary>
 /// Check if a point is inside a bounds using separatin axis theorum
@@ -317,26 +139,30 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 
 const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 	SeparationData sd;
+	sd._penetrationDistance = 0;
+
 	bool finished = false;
-	//NEED TO FIND AXIS AV1 - AV2, AV2 - AV3, AV4 - AV1, BV1 - BV2, BBV2- BV3, BV3 - BV4, BV4 - BV1
 	int i = 0;
-	unsigned int index;
 	const Vec3 *p1, *p2;
-	float smalestPenetration = 100000000000;
-	bool collisionDetected = true;
+	
+	const shape* s = &a;
 	while (!finished) {
 		
-		if (i < a.first) {
+		if (i < s->first-1) {
 			//THIS NEEDS TO BE OPTIMISED TO NOT REUSE AXIS
-			p1 = &a.second[i];
-			p2 = &a.second[i+1];
+			p1 = &s->second[i];
+			p2 = &s->second[i + 1];
+
 		}
 		else {
-			p1 = &b.second[i - a.first];
-			p2 = &b.second[i + 1 - a.first];
-			if (i + 1 >= a.first + b.first) {
+			if (s != &b) {
+				s = &b;
+				i = 0;
+			}
+			else {
 				finished = true;
 			}
+
 		}
 		
 		Vec2 axis = GetAxis((*p1), (*p2));
@@ -353,12 +179,13 @@ const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 		if (penetrationDistance == 0) {
 			// no penetration at all
 			finished = true;
-			collisionDetected = false;
 			break;
 		}
 		else {
-			if (penetrationDistance < smalestPenetration) {
-				smalestPenetration = penetrationDistance;
+			if (penetrationDistance < sd._penetrationDistance) {
+				sd._penetrationDistance = penetrationDistance;
+				sd._separationVector = Vec3(-axis.y, axis.x, 0);
+				
 			}
 		}
 		i++;

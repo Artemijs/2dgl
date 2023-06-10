@@ -13,10 +13,7 @@ public :
 class CollisionDetection {
 private:
 	
-	static  SeparationData CheckAABB(const Bounds* a, const Bounds* b);
-	static  SeparationData CheckCircle(const Bounds* a, const Bounds* b);
-	static  SeparationData CheckBB(const Bounds* a, const Bounds* b);
-
+	
 	/// <summary>
 	/// collision between 2 circles
 	/// </summary>
