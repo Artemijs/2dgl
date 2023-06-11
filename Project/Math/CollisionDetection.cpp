@@ -10,7 +10,7 @@
 bool CollisionDetection::_print = false;
 
 
-SeparationData CollisionDetection::CheckCollision(const Bounds* a, const Bounds* b) {
+SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 	//the idea here is that i will call a function in an array based on type using 
 	
 	if (a->_type == BoundsType::CIRCLE && b->_type == BoundsType::CIRCLE) {
@@ -42,13 +42,6 @@ SeparationData CollisionDetection::CheckCollision(const Bounds* a, const Bounds*
 
 
 }
-
-
-
-
-
-
-
 
 /// <summary>
 /// Check if a point is inside a bounds using separatin axis theorum
@@ -139,11 +132,11 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 
 const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 	SeparationData sd;
-	sd._penetrationDistance = 0;
+	sd._penetrationDistance = 10000000000;
 
 	bool finished = false;
 	int i = 0;
-	const Vec3 *p1, *p2;
+	Vec3 *p1 = NULL, *p2 = NULL;
 	
 	const shape* s = &a;
 	while (!finished) {
@@ -178,6 +171,7 @@ const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 		//find the smallest penetration distance
 		if (penetrationDistance == 0) {
 			// no penetration at all
+			sd._penetrationDistance = 0;
 			finished = true;
 			break;
 		}

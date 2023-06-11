@@ -1,4 +1,4 @@
-#ifndef SPHERE_BOUNDS_H
+/*#ifndef SPHERE_BOUNDS_H
 #define SPHERE_BOUNDS_H
 #include "Bounds.h"
 class SphereBounds : public Bounds{
@@ -15,3 +15,4 @@ public :
 	const shape GetShape() const override;
 };
 #endif
+*/

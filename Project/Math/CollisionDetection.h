@@ -3,7 +3,7 @@
 #include "Matrix4x4.h"
 #include <utility>
 #include "Bounds.h"
-#define shape std::pair<const unsigned int,  Vec3*>
+#define shape std::pair<const unsigned int, Vec3*>
 struct SeparationData {
 public :
 	float _penetrationDistance;
@@ -32,7 +32,7 @@ private:
 public :
 	static bool _print;
 	
-	static SeparationData CheckCollision(const Bounds *a, const Bounds *b);
+	static SeparationData CheckCollision( Bounds *a,  Bounds *b);
 
 	/// <summary>
 	/// Calls the appropriate collision detection function depending on bound types

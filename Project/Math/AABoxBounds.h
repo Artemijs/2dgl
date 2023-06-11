@@ -1,4 +1,4 @@
-#ifndef AABOX_BOUNDS_H
+/*#ifndef AABOX_BOUNDS_H
 #define AABOX_BOUNDS_H
 #include "Bounds.h"
 class AABoxBounds : public Bounds{
@@ -15,3 +15,5 @@ public :
 	const shape GetShape() const override;
 };
 #endif
+
+*/

@@ -27,6 +27,8 @@ void BoxBounds::Translate2World(const Matrix4x4* model)  {
 	}
 	_centerOfMass = (*model) * _centerOfMass;
 }
- const shape BoxBounds::GetShape() const {
-	return   shape(4, _worldRect);
+  shape BoxBounds::GetShape()  {
+	// std::pair<const unsigned int, const Vec3*> p(four, &_worldRect[0]);
+	// shape s(4, &_worldRect[0]);
+	return  shape(4, _worldRect);
 }

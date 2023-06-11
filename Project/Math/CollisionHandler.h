@@ -11,8 +11,8 @@ class CollisionHandler {
 private:
 
 public :
-	static std::vector<const Bounds*>* _all_bounds;
-	static void RegisterBounds(const Bounds* b);
+	static std::vector< Bounds*>* _all_bounds;
+	static void RegisterBounds( Bounds* b);
 	static void Update(const float deltaTime);
 	static void CollisionSeparation(const Bounds* a, const Bounds* b, SeparationData& sd);
 	static void Delete();

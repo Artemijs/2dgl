@@ -1,4 +1,4 @@
-#include "AABoxBounds.h"
+/*#include "AABoxBounds.h"
 AABoxBounds::AABoxBounds() : Bounds(BoundsType::AABB) {
 
 	_localRect[0] = Vec3(-0.5f, 0.5f, 0.1f);
@@ -28,3 +28,4 @@ void AABoxBounds::Translate2World(const Matrix4x4* model)  {
 const shape AABoxBounds::GetShape() const {
 	return shape(4, _worldRect);
 }
+*/
