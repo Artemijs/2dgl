@@ -9,13 +9,15 @@
 */
 class CollisionHandler {
 private:
-
+	//collsiion data maybe?
+	static void CallEvents(Bounds* a, Bounds* b, const SeparationData* sd);
 public :
 	static std::vector< Bounds*>* _all_bounds;
 	static void RegisterBounds( Bounds* b);
 	static void Update(const float deltaTime);
 	static void CollisionSeparation(const Bounds* a, const Bounds* b, SeparationData& sd);
 	static void Delete();
+	
 };
 
 

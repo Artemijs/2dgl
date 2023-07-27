@@ -2,9 +2,13 @@
 #define BOUNDS_H
 
 #define shape std::pair<const unsigned int, Vec3*>
-
+//#include "CollisionDetection.h"
 #include "Matrix4x4.h"
 #include "../Game/BaseComponent.h"
+#include <functional>
+#include <utility>
+#include "SeparationData.h"
+
 /// <summary>
 /// total of 4 types, used to call different collision detection calls based on type
 /// </summary>
@@ -15,19 +19,91 @@ enum class BoundsType{
 	TRIANGLE,
 };
 
-
 class Bounds: public BaseComponent {
+protected:
+	std::vector< Bounds*>* _activeCollisions;
+	//all events
+	std::vector<std::pair < Bounds*, std::function<void(Bounds* a, Bounds* b, SeparationData& sd)> >*>* _allEnterEvents;
+	std::vector<std::pair < Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd )> >*>* _allExitEvents;
+
+	std::pair <   Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd)> >* FindEvent( Bounds* b, const bool enter);
+	void CallEvent(const bool enter,  Bounds* b, SeparationData& sd);
+
+
 public:
 	static const unsigned int _component_id;
 	bool _solid;
+	bool _colliding;
 	Vec3 _centerOfMass;
 	const BoundsType _type;
+	
 	Bounds(BoundsType bt);
-	//BaseComponent* comp;
-	//virtual const bool CheckInside(const Vec3 pos)const  = 0;
+	virtual ~Bounds();
 	virtual void Translate2World(const Matrix4x4* model)  = 0;
 	const unsigned int ID() const override;
-	virtual   shape GetShape()   = 0 ;
+	virtual   shape GetShape() = 0;
 	const Vec3* GetCenterOfMass();
+	
+	const unsigned int IsColliding( Bounds* b);
+	void AddActiveCollision( Bounds* b, SeparationData& sd);
+	void RemoveActiveCollision( Bounds* b);
+	void AddEvent(const bool enter, std::pair < Bounds*, std::function<void( Bounds* a, Bounds* b, SeparationData& sd)> >* e);
+
+
+	
 };
+#define CollisionEvent std::pair < Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd)> >
 #endif // !BOUNDS_H
+
+/*
+	_allCollisions[0, 1, ... 45]
+	AddCollidingWith(Bounds* b){
+		_allCollisions->pushBack(b);
+		if new bounds
+		CallEvent(enter ,b);
+	}
+	pair<Bounds*, func_ptr> events;
+	
+	
+	std::pair<Bounds*, func_ptr>* FindEvent(type, Bounds* b){
+		eventsPtr = enterEvents;
+		if(type == exit){
+			eventsPtr = exitEvents;
+		}
+		for( int i =0; i < eventsPtr->Size(); ++i){
+			pair<Bounds*, func_ptr>* e = events[i];
+			if(e->first == b){
+				return e;
+			}
+		}
+	}
+
+	CallEvent(type, b){
+		if( type == enter){
+			pair<Bounds*, func_ptr> e = FindEvent(type, b);
+			if(e != null)
+				e.second(data);
+		}
+	}
+
+	EndCollision(Bound* b){
+		remove b from the list of allCollisions
+		CallEvent(exit, b);
+	}
+
+	OnColisionEnter(){
+		for new events
+			newEvent.OnEnter
+			
+	}
+	//returns index of the data in all current stored collisions array or -1 if not found
+	const unsigned int IsColliding(Bounds* b){
+		for(int i =0; i < collisionSize; ++i){
+			if(b == collisions->at(i))
+				return i;
+		}
+		return -1;
+	}
+
+
+*/

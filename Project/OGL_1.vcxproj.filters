@@ -317,6 +317,9 @@
     <ClInclude Include="Math\CollisionHandler.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Math\SeparationData.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\AFX\btn_press.wav">

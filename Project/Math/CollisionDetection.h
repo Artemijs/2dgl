@@ -4,11 +4,6 @@
 #include <utility>
 #include "Bounds.h"
 #define shape std::pair<const unsigned int, Vec3*>
-struct SeparationData {
-public :
-	float _penetrationDistance;
-	Vec3 _separationVector;
-};
 
 class CollisionDetection {
 private:

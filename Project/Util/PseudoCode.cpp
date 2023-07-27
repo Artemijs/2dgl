@@ -412,4 +412,50 @@
 
 
 
+
+	for a in all
+		for b in all
+			if a == b
+				continue
+
+			collision = Check(a, b)
+			
+			if collisionAB does not exist:
+				create collisionAB
+			
+			if collisionAB existed and !collision
+				clear collisionAB	
+	
+
+
+	addCollision(obj){
+		OnEnter();
+
+	}
+	remove collision(obj){
+		OnLEave()
+	}
+
+	for a in all
+		for b in all
+			if a == b
+				continue
+
+			collision = Check(a, b)
+
+			if collision 
+				a.addCollidingWith(b)
+				b.addCollision(a)
+
+
+
+
+
+
+
+
+
+
+
+
 */

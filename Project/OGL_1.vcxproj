@@ -217,6 +217,7 @@
     <ClInclude Include="Math\CollisionDetection.h" />
     <ClInclude Include="Math\CollisionHandler.h" />
     <ClInclude Include="Math\Matrix4x4.h" />
+    <ClInclude Include="Math\SeparationData.h" />
     <ClInclude Include="Math\SphereBounds.h" />
     <ClInclude Include="Projects\CollisionTest\ColliisonTestGame.h" />
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />

@@ -2,47 +2,7 @@
 #include "../../Graphics/Renderer.h"
 #include "../../Graphics/Sprite.h"
 #include "../../Math/BoxBounds.h"
-/*
-	beware of
-	d ne budu
-	molchim
-	so what do we do now
-	da mozhezh eto ne zapisovatj
-	esli...
-	english pls
-	tak escho eto ne otoshlo
-	so.. i remember this... 26 07 2019
-	you can hear me
-	oh ti menja slishish
-	youve got a lon way to go
-	piece oh shit should be saying the numbers
-	ne gotov li ti
-	so as you can see it has gotten very difficult to think now
-	still waiting for you to satrt screaming at me
-	i meant to say stop
-	2021 is that you
-	i dont even know who says any of these
-	write this down for me
-	I DONT GIVE A FUCK ABOUT MY PROBLEMS
-	well seems like thats you
-	that -situation- is unavoidable
-	da bljat cho vi ebetesj, pomogli emu i vsjo
-	what happened to the resy of you who were here a second ago
-	ahujejesh
-	he stopped writing it down
-	you have problems here
-	what kind of problems
-	problems here aswell
-	you heard me i said your name 
-	that might have been 21
-	zapisavai blja
-	vsio zapisivai
-	21 aprelja 2023
-	2
-	26 february 2021
-	6 12 22 29 33 6 11 million 210
 
-*/
 //
 #include "../../UI/Button.h"
 
@@ -52,7 +12,16 @@ CollisionTestGame::CollisionTestGame():Game() {
 	//a->AddComponent(new Sprite("Assets/Textures/default.png"));
 	//a->AddComponent(new BoxBounds());
 
+
 	BaseNode* b = new Button("b", Vec3(0, 0, 0), Vec3(50, 50, 1), 0);
+
+	Bounds* aBox = a->GetComponent<Bounds>();
+	aBox->AddEvent(true, new CollisionEvent(b->GetComponent<Bounds>(), []( Bounds* a,  Bounds* b, SeparationData& sd) {
+		printf("HELLO WORLD from a collisiion event\n");
+		}));
+	aBox->AddEvent(false, new CollisionEvent(b->GetComponent<Bounds>(), [](Bounds* a, Bounds* b, SeparationData& sd) {
+		printf("EXIT COLLISION EVENTO\n");
+		}));
 	//b->AddComponent(new Sprite("Assets/Textures/default.png"));
 	//b->AddComponent(new BoxBounds());
 	
@@ -102,10 +71,10 @@ void CollisionTestGame::HandleKeyInputs(int key, int action, int mods) {
 		case 32:
 			Play(!_play);
 			break;
-		case 78:
+		case 80://n
 			PrevTest();
 			break;
-		case 80:
+		case 78://p
 			NextTest();
 			break;
 		default:
@@ -116,7 +85,8 @@ void CollisionTestGame::HandleKeyInputs(int key, int action, int mods) {
 }
 
 void CollisionTestGame::Rotate(const int dir) {
-	_angVel += _angChange* dir;
+	_angVel += _angChange* dir*5;
+	_world->GetChild(0)->SetAngle(Vec3(0, _angVel, 0));
 }
 
 void CollisionTestGame::Update(float deltaTime) {
@@ -124,13 +94,10 @@ void CollisionTestGame::Update(float deltaTime) {
 	if (!_play) return;
 	_current->Update(deltaTime);
 
-	if (_angVel != 0) {
-		_ang += _angVel * deltaTime;
-
-		_world->GetChild(0)->SetAngle(Vec3(0, _ang, 0));
-
-
-	}
+/*if (_angVel != 0) {
+	_ang += _angVel * deltaTime;
+	_world->GetChild(0)->SetAngle(Vec3(0, _ang, 0));
+}*/
 
 }
 
@@ -307,3 +274,46 @@ void TestFive::Update(float deltaTime) {
 
 
 
+
+
+/*
+	beware of
+	d ne budu
+	molchim
+	so what do we do now
+	da mozhezh eto ne zapisovatj
+	esli...
+	english pls
+	tak escho eto ne otoshlo
+	so.. i remember this... 26 07 2019
+	you can hear me
+	oh ti menja slishish
+	youve got a lon way to go
+	piece oh shit should be saying the numbers
+	ne gotov li ti
+	so as you can see it has gotten very difficult to think now
+	still waiting for you to satrt screaming at me
+	i meant to say stop
+	2021 is that you
+	i dont even know who says any of these
+	write this down for me
+	I DONT GIVE A FUCK ABOUT MY PROBLEMS
+	well seems like thats you
+	that -situation- is unavoidable
+	da bljat cho vi ebetesj, pomogli emu i vsjo
+	what happened to the resy of you who were here a second ago
+	ahujejesh
+	he stopped writing it down
+	you have problems here
+	what kind of problems
+	problems here aswell
+	you heard me i said your name
+	that might have been 21
+	zapisavai blja
+	vsio zapisivai
+	21 aprelja 2023
+	2
+	26 february 2021
+	6 12 22 29 33 6 11 million 210
+
+*/

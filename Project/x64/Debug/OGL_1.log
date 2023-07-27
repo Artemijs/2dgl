@@ -1,13 +1,13 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   CollisionDetection.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(55,41): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(58,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(67,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(83,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(144,9): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(164,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(166,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(216,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(229,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(237,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(56,41): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(59,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(68,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(84,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(147,9): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(169,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(171,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(275,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(291,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(299,20): warning C4018: '<': signed/unsigned mismatch
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

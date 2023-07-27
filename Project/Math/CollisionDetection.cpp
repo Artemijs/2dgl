@@ -50,7 +50,8 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 /// <param name="s"> pair of int array len, vec3* array start</param>
 /// <returns></returns>
 const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
-	
+	if(_print)
+		printf("\nchecking point sat\n");
 	const Vec3* p1, *p2;
 	float smalestPenetration = 100000000000;
 	if (_print) {
@@ -107,7 +108,7 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 		else {
 			if(_print)
 				std::cout << "NO OVERLAP DETECTED \n";
-			_print = false;
+			//_print = false;
 			return 0;
 		}
 		
@@ -131,6 +132,8 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 //I THINK I NEED TO UPDATE SHAPE NORMAL VECTORS AS I UPDATE MODEL MATRIX
 
 const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
+	if (_print)
+		printf("\nSTARTING COLLISION SAT\n");
 	SeparationData sd;
 	sd._penetrationDistance = 10000000000;
 
@@ -159,15 +162,26 @@ const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 		}
 		
 		Vec2 axis = GetAxis((*p1), (*p2));
-
+		if (_print) {
+			printf("\nAXIS : x %.3f, y %.3f, \n", axis.x, axis.y);
+		}
 		float minA = 10000000000;
 		float maxA = -11111111111;
 		float minB = 10000000000;
 		float maxB = -11111111111;
+		if (_print) 
+			printf("PROJECTING ON AXIS SHAPE A\n");
 		ProjectOnAxis(minA, maxA, axis, a);
+		if (_print)
+			printf("PROJECTING ON AXIS SHAPE B\n");
 		ProjectOnAxis(minB, maxB, axis, b);
-
+		if (_print)
+			printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n" , minA ,maxA, minB, maxB);
+		
 		float penetrationDistance = CheckOverlap(minA, maxA, minB, maxB);
+		if (_print) {
+			printf("Penetration Distance : %f\n", penetrationDistance);
+		}
 		//find the smallest penetration distance
 		if (penetrationDistance == 0) {
 			// no penetration at all
@@ -184,20 +198,65 @@ const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 		}
 		i++;
 	}
+	if (_print)
+		printf("\n ending SAT penDistance : %f \n", sd._penetrationDistance);
 	return sd;
 }
 //IF THE PENETRATION IS TOO DEEP THE OBJECTS WILL EXPLODE IN RANDOM DIRECTIONS
-const float CollisionDetection::CheckOverlap(const float minA, const float maxA, const float minB, const float maxB) {
+const float CollisionDetection::CheckOverlap(const float x1, const float y1, const float x2, const float y2) {
 	float penDist = 0.0f;
-	//if  the right side of b collides with the left side of a
+	/*//if  the right side of b collides with the left side of a
 	if (maxB > minA && maxB < maxA) {
 		penDist = maxB - minA;
 	}
 	//if the left side of b collidees with the irhgt side of a
 	else if (minB < maxA && minB > minA) {
 		penDist = maxA - minB;
-	}
+	}*/
 	//I ALSO AM IN GREATEST OF NEEDS FOR THE SMALLEST PENETRATION DISTANCE OF ALL THE PENETRATIONS ON EVERY AXIS
+
+	/*float a = 0 , b = 0 , c = 0 , d = 0;
+	if (x1 > x2 && x1 < y2) {
+		a = Utility::Dist2CLosest(x2, y2, x1);
+	}
+	if (y1 > x2 && y1 < y2) {
+		b = Utility::Dist2CLosest(x2, y2, y1);
+	}
+	if (x2 > x1 && x2 < y1) {
+		c = Utility::Dist2CLosest(x1, y1, x2);
+	}	
+	if (y2 > x1 && y2 < y2) {
+		d = Utility::Dist2CLosest(x1, y1, y2);
+	}
+	if (a + b + c + d == 0) return 0;*/
+	float centre1 = x1 + y1 * 0.5f;
+	float centre2 = x2 + y2 * 0.5f;
+	
+	if (centre1 > centre2) {
+		//object is to the right
+
+		//check if objects are intersecting at all
+		if (centre1 - centre2 > ((y1 - x1) * 0.5f) + ((y2 - x2) * 0.5f)) {
+			//if distance from cnters is greater than the 2  half widths combined
+			//not intersecting
+			penDist = 0;
+		}
+		else
+			penDist = y2 - x1;
+	}
+	else {
+		//object is to the left
+
+		//check if objects are intersecting at all
+		if (centre2 - centre1 > ((y1 - x1) * 0.5f) + ((y2 - x2) * 0.5f)) {
+			//if distance from cnters is greater than the 2  half widths combined
+			//not intersecting
+			penDist = 0;
+		}
+		else
+			penDist = y1 - x2;
+	}
+
 	return penDist;
 }
 const Vec2 CollisionDetection::GetAxis(const Vec3& p1, const Vec3& p2) {
@@ -215,6 +274,9 @@ const void CollisionDetection::ProjectOnAxis(float& min, float& max, const Vec2 
 
 	for (int i = 0; i < s.first; ++i) {
 		float d = Vec2::Dot(points[i].x, points[i].y, axis.x, axis.y);
+		if (_print) {
+			printf("position : x %.3f, y %.3f     projection : %.3f\n", points[i].x, points[i].y, d);
+		}
 		if (d < min)
 			min = d;
 		if (d > max)
