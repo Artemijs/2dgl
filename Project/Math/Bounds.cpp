@@ -1,19 +1,20 @@
 #include "Bounds.h"
 #include "../Util/Utility.h"
 #include "CollisionHandler.h"
+
 const unsigned int Bounds::_component_id = Utility::GetID();
 const unsigned int Bounds::ID()const {
 	return _component_id;
 }
-Bounds::Bounds(BoundsType bt):
+Bounds::Bounds(BoundsType bt, BaseNode* bn ):
 	_solid(true), _type(bt), _colliding(false),
 	_activeCollisions(new std::vector< Bounds*>()),
 	_allEnterEvents(new std::vector<CollisionEvent*>()),
 	_allExitEvents(new std::vector<CollisionEvent*>()),
 	BaseComponent()  {
 	_centerOfMass = Vec3();
-
-	CollisionHandler::RegisterBounds(this);
+	_isFixed = false;
+	CollisionHandler::RegisterBounds(this, bn);
 }
 
 Bounds::~Bounds() {

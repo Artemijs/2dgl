@@ -8,7 +8,7 @@
 #include <functional>
 #include <utility>
 #include "SeparationData.h"
-
+#include "../Game/BaseNode.h"
 /// <summary>
 /// total of 4 types, used to call different collision detection calls based on type
 /// </summary>
@@ -26,7 +26,7 @@ protected:
 	std::vector<std::pair < Bounds*, std::function<void(Bounds* a, Bounds* b, SeparationData& sd)> >*>* _allEnterEvents;
 	std::vector<std::pair < Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd )> >*>* _allExitEvents;
 
-	std::pair <   Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd)> >* FindEvent( Bounds* b, const bool enter);
+	std::pair < Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd)> >* FindEvent( Bounds* b, const bool enter);
 	void CallEvent(const bool enter,  Bounds* b, SeparationData& sd);
 
 
@@ -36,8 +36,14 @@ public:
 	bool _colliding;
 	Vec3 _centerOfMass;
 	const BoundsType _type;
+	bool _isFixed;
 	
-	Bounds(BoundsType bt);
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="bt">Bounds Type used in algorythms when working with generic Bounds and not inherited BoxBounds, Sphere, Etc</param>
+	/// <param name="bn">Owner of the Bounds object, used for collision separation</param>
+	Bounds(BoundsType bt, BaseNode* bn);
 	virtual ~Bounds();
 	virtual void Translate2World(const Matrix4x4* model)  = 0;
 	const unsigned int ID() const override;

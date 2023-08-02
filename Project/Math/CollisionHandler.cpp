@@ -1,9 +1,9 @@
 #include "CollisionHandler.h"
 #include "CollisionDetection.h"
-std::vector< Bounds*>*  CollisionHandler::_all_bounds = new std::vector< Bounds*>();
+std::vector< std::pair<Bounds*, BaseNode*>>*  CollisionHandler::_all_bounds = new std::vector< std::pair<Bounds*, BaseNode*>>();
 
-void CollisionHandler::RegisterBounds( Bounds* b) {
-	_all_bounds->push_back(b);
+void CollisionHandler::RegisterBounds( Bounds* b, BaseNode* bn) {
+	_all_bounds->push_back(std::pair<Bounds*, BaseNode*>(b,bn));
 }
 /// <summary>
 /// TO DO: COLLISION LAYERS
@@ -12,20 +12,24 @@ void CollisionHandler::RegisterBounds( Bounds* b) {
 void CollisionHandler::Update(const float deltaTime) {
 	//check every bounds against every other bounds
 	for (int i = 0; i < _all_bounds->size(); ++i) {
-		  Bounds* a = _all_bounds->at(i);
+		  Bounds* a = _all_bounds->at(i).first;
 		for (int j = 0; j < _all_bounds->size(); ++j) {
-			  Bounds* b = _all_bounds->at(j);
+			  Bounds* b = _all_bounds->at(j).first;
 			  const unsigned int collisionExists = a->IsColliding(b);
 			if (a == b)
 				continue;
 			SeparationData sd = CollisionDetection::CheckCollision(a, b);
-			if (sd._penetrationDistance !=0 && collisionExists == -1) {
-				//collision has happened and no collision with this object happened last frame
-				if (a->_solid && b->_solid) {
-					a->AddActiveCollision(b, sd);
-					b->AddActiveCollision(a, sd);
-					CollisionSeparation(a, b, sd);
+			if (sd._penetrationDistance !=0 ) {
+				//collision has happened 
+				//no collision with this object happened last frame
+				if (collisionExists == -1) {
+					if (a->_solid && b->_solid) {
+						a->AddActiveCollision(b, sd);
+						b->AddActiveCollision(a, sd);
+					}
 				}
+				CollisionSeparation(_all_bounds->at(i), _all_bounds->at(j), sd);
+
 			}
 			else  if(sd._penetrationDistance == 0 && collisionExists != -1){
 				//check if you have been colliding with b previously but have not yet called OnExitCollision
@@ -33,20 +37,23 @@ void CollisionHandler::Update(const float deltaTime) {
 					printf("EXITING COLLISION\n");
 					a->RemoveActiveCollision(b);
 				}
-				//check if a was colliding with b
-				//const unsigned int collision_index = isColliding(b);
-				//if(collision_index !=-1)
-				//	a->EndCollision(b);
 			}
 		}
 	}
 }
 
-void CollisionHandler::CollisionSeparation(const Bounds* a, const Bounds* b, SeparationData& sd) {
+void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std::pair<Bounds*, BaseNode*>& b, SeparationData& sd) {
 	printf("COLLIDEDD\n");
+	//return;
 	//check if the object cannot be moved
 	//if both objects can be moved then part them equally and separate directions
 	//if only one object can be moved part that one object fully
+
+	//move b by pen dist 
+	if (!b.first->_isFixed) {
+		Transform bt = b.second->GetTransform();
+		b.second->SetPosition(bt._position + sd._separationVector * sd._penetrationDistance);
+	}
 
 }
 

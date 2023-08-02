@@ -29,7 +29,7 @@ Button::Button():
 	AddComponent<Sprite>(btton_bg);		
 	
 	//add a collision box
-	AddComponent<BoxBounds>(new BoxBounds());
+	AddComponent<BoxBounds>(new BoxBounds(this));
 
 	//create text
 	BaseNode* bm = new BaseNode(Vec3(0, 0, 0.10f), Vec3(1, 1, 1), 0);
@@ -60,18 +60,18 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnHover(); }, BtnEvent::ON_HOVER);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnEndHover(); }, BtnEvent::ON_END_HOVER);	
 	AddComponent<MouseEvent>(mouse_e);	
-	_material = new MaterialButton();
+	_material = new MaterialButton();	
 	Sprite* btton_bg = new Sprite(_material);
 	AddComponent<Sprite>(btton_bg);		
-	AddComponent<BoxBounds>(new BoxBounds());
+	AddComponent<BoxBounds>(new BoxBounds(this));
 	BaseNode* bm = new BaseNode(Vec3(0, 0, 0.10f), Vec3(1,1,1), 0);
 	bool bools[3] = { true, false, true};
-	bm->SetInheritTransform(bools);
-	AddChild(bm);
+	bm->SetInheritTransform(bools);		
+	AddChild(bm);						
 	bm->AddComponent<Text>(new Text(txt, bm, 15));
-
+										
 	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
-	
+									
 }
 void Button::OnPress() {							
 	//printf("CALLING OnPress \n");					

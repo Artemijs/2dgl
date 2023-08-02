@@ -1,6 +1,7 @@
 #include "CollisionDetection.h"
 #include <functional>
 #include "../Util/Utility.h"
+//#include <math.h>
 
 /// THINGS THAT CAN BE OPTIMISED 
 /// passing SEPARATION DATA pointer instead of copying that data every function call
@@ -177,8 +178,8 @@ const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 		ProjectOnAxis(minB, maxB, axis, b);
 		if (_print)
 			printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n" , minA ,maxA, minB, maxB);
-		
-		float penetrationDistance = CheckOverlap(minA, maxA, minB, maxB);
+		auto od = CheckOverlap(minA, maxA, minB, maxB);
+		float penetrationDistance = od.first;
 		if (_print) {
 			printf("Penetration Distance : %f\n", penetrationDistance);
 		}
@@ -191,81 +192,65 @@ const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 		}
 		else {
 			if (penetrationDistance < sd._penetrationDistance) {
-				sd._penetrationDistance = penetrationDistance;
-				sd._separationVector = Vec3(-axis.y, axis.x, 0);
-				
+				sd._penetrationDistance = penetrationDistance;  
+				sd._separationVector = Vec3(axis.x, axis.y, 0) * od.second;
 			}
 		}
 		i++;
+	}
+	
+	if (sd._penetrationDistance != 0) {
+		printf("penetration distance %.3f\n, separation vector x %.3f, y %.3f\n", sd._penetrationDistance, sd._separationVector.x, sd._separationVector.y);
 	}
 	if (_print)
 		printf("\n ending SAT penDistance : %f \n", sd._penetrationDistance);
 	return sd;
 }
 //IF THE PENETRATION IS TOO DEEP THE OBJECTS WILL EXPLODE IN RANDOM DIRECTIONS
-const float CollisionDetection::CheckOverlap(const float x1, const float y1, const float x2, const float y2) {
-	float penDist = 0.0f;
-	/*//if  the right side of b collides with the left side of a
-	if (maxB > minA && maxB < maxA) {
-		penDist = maxB - minA;
-	}
-	//if the left side of b collidees with the irhgt side of a
-	else if (minB < maxA && minB > minA) {
-		penDist = maxA - minB;
-	}*/
-	//I ALSO AM IN GREATEST OF NEEDS FOR THE SMALLEST PENETRATION DISTANCE OF ALL THE PENETRATIONS ON EVERY AXIS
-
-	/*float a = 0 , b = 0 , c = 0 , d = 0;
-	if (x1 > x2 && x1 < y2) {
-		a = Utility::Dist2CLosest(x2, y2, x1);
-	}
-	if (y1 > x2 && y1 < y2) {
-		b = Utility::Dist2CLosest(x2, y2, y1);
-	}
-	if (x2 > x1 && x2 < y1) {
-		c = Utility::Dist2CLosest(x1, y1, x2);
-	}	
-	if (y2 > x1 && y2 < y2) {
-		d = Utility::Dist2CLosest(x1, y1, y2);
-	}
-	if (a + b + c + d == 0) return 0;*/
-	float centre1 = x1 + y1 * 0.5f;
-	float centre2 = x2 + y2 * 0.5f;
+const std::pair<float, int> CollisionDetection::CheckOverlap(const float x1, const float y1, const float x2, const float y2) {
+	/*x1 += 100000000;
+	x2 += 100000000;
+	y1 += 100000000;
+	y2 += 100000000;*/
+	std::pair<float, int> overlapData(0, false);
+	
+	float centre1 = x1 + ((y1-x1) * 0.5f);
+	float centre2 = x2 + ((y2-x2) * 0.5f);
 	
 	if (centre1 > centre2) {
 		//object is to the right
-
+		overlapData.second = -1;
 		//check if objects are intersecting at all
 		if (centre1 - centre2 > ((y1 - x1) * 0.5f) + ((y2 - x2) * 0.5f)) {
 			//if distance from cnters is greater than the 2  half widths combined
 			//not intersecting
-			penDist = 0;
+			overlapData.first = 0;
 		}
 		else
-			penDist = y2 - x1;
+			overlapData.first= y2 - x1;
 	}
 	else {
 		//object is to the left
-
+		overlapData.second = 1;
 		//check if objects are intersecting at all
 		if (centre2 - centre1 > ((y1 - x1) * 0.5f) + ((y2 - x2) * 0.5f)) {
 			//if distance from cnters is greater than the 2  half widths combined
 			//not intersecting
-			penDist = 0;
+			overlapData.first = 0;
 		}
 		else
-			penDist = y1 - x2;
+			overlapData.first = y1 - x2;
 	}
 
-	return penDist;
+	return overlapData;
 }
 const Vec2 CollisionDetection::GetAxis(const Vec3& p1, const Vec3& p2) {
 	//direction from a to b
-	Vec2 dir2p2 = Vec2(p2.x - p1.x, p2.y - p1.y);
+	Vec2 dir2p2 = Vec2( std::abs(p2.x - p1.x), std::abs(p2.y - p1.y));
 	dir2p2.Normalize();
 	//get the normal vector that will be used as the axis for translation
 	float x = dir2p2.x;
-	dir2p2.x = -dir2p2.y;
+	dir2p2.x = dir2p2.y;
 	dir2p2.y = x;
 	return  dir2p2;
 }

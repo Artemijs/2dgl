@@ -12,10 +12,10 @@ private:
 	//collsiion data maybe?
 	static void CallEvents(Bounds* a, Bounds* b, const SeparationData* sd);
 public :
-	static std::vector< Bounds*>* _all_bounds;
-	static void RegisterBounds( Bounds* b);
+	static std::vector< std::pair<Bounds*, BaseNode*>>* _all_bounds;
+	static void RegisterBounds( Bounds* b, BaseNode* bn);
 	static void Update(const float deltaTime);
-	static void CollisionSeparation(const Bounds* a, const Bounds* b, SeparationData& sd);
+	static void CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std::pair<Bounds*, BaseNode*> &b, SeparationData& sd);
 	static void Delete();
 	
 };

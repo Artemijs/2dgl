@@ -8,7 +8,7 @@
 
 CollisionTestGame::CollisionTestGame():Game() {
 	_tests = new std::vector<TestState*>();
-	BaseNode* a = new Button("a" ,Vec3(450, 400, 0), Vec3(200, 50, 1), 0);
+	BaseNode* a = new Button("a" ,Vec3(450, 400, 0), Vec3(100, 50, 1), 0);
 	//a->AddComponent(new Sprite("Assets/Textures/default.png"));
 	//a->AddComponent(new BoxBounds());
 
@@ -22,6 +22,7 @@ CollisionTestGame::CollisionTestGame():Game() {
 	aBox->AddEvent(false, new CollisionEvent(b->GetComponent<Bounds>(), [](Bounds* a, Bounds* b, SeparationData& sd) {
 		printf("EXIT COLLISION EVENTO\n");
 		}));
+	aBox->_isFixed = true;
 	//b->AddComponent(new Sprite("Assets/Textures/default.png"));
 	//b->AddComponent(new BoxBounds());
 	
