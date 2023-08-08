@@ -12,7 +12,7 @@ Bounds::Bounds(BoundsType bt, BaseNode* bn ):
 	_allEnterEvents(new std::vector<CollisionEvent*>()),
 	_allExitEvents(new std::vector<CollisionEvent*>()),
 	BaseComponent()  {
-	_centerOfMass = Vec3();
+	_centerOfMass = Vec3(1, 1, 1);
 	_isFixed = false;
 	CollisionHandler::RegisterBounds(this, bn);
 }

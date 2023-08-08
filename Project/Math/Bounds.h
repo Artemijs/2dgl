@@ -28,8 +28,6 @@ protected:
 
 	std::pair < Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd)> >* FindEvent( Bounds* b, const bool enter);
 	void CallEvent(const bool enter,  Bounds* b, SeparationData& sd);
-
-
 public:
 	static const unsigned int _component_id;
 	bool _solid;

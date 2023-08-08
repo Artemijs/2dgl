@@ -30,12 +30,14 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
 			as.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * as.second[1].x;
 			//SAT(a->GetShape(), bs);
+			return CircleSAT(as, bs);
 		}
 		if ( b->_type == BoundsType::CIRCLE) {
 			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
 			//this gets the second point to create the axis with
 			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
 			bs.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * bs.second[1].x;
+			return CircleSAT(bs, as);
 		}
 		return SAT(as, bs);
 
@@ -126,13 +128,61 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 
 
 
+const SeparationData CollisionDetection::CircleSAT(const shape &a, const shape &b) {
+	if (_print)
+		printf("\nSTARTING circle SAT SAT\n");
+	SeparationData sd;
+	sd._penetrationDistance = 10000000000;
+
+	bool finished = false;
+	int i = 0;
+	Vec3* p1 = NULL, * p2 = NULL;
+
+	const shape* s = &a;
+
+
+	Vec2 axis = GetAxis(a.second[0], a.second[1]);
+
+	if (_print) {
+		printf("\nAXIS : x %.3f, y %.3f, \n", axis.x, axis.y);
+	}
+	float minA = 10000000000;
+	float maxA = -11111111111;
+	float minB = 10000000000;
+	float maxB = -11111111111;
+	if (_print)
+		printf("PROJECTING ON AXIS SHAPE A\n");
+	ProjectOnAxis(minA, maxA, axis, a);
+	if (_print)
+		printf("PROJECTING ON AXIS SHAPE B\n");
+	ProjectOnAxis(minB, maxB, axis, b);
+	if (_print)
+		printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n", minA, maxA, minB, maxB);
+	auto od = CheckOverlap(minA, maxA, minB, maxB);
+	float penetrationDistance = od.first;
+	sd._penetrationDistance = od.first;
+	sd._separationVector = Vec3(axis.x, axis.y, 0) * od.second;
+	if (_print) {
+		printf("Penetration Distance : %f\n", penetrationDistance);
+	}
+	
+	
+
+	/*if (sd._penetrationDistance != 0) {
+		printf("penetration distance %.3f\n, separation vector x %.3f, y %.3f\n", sd._penetrationDistance, sd._separationVector.x, sd._separationVector.y);
+	}
+	if (_print)
+		printf("\n ending SAT penDistance : %f \n", sd._penetrationDistance);
+		*/
+	return sd;
+}
 
 
 
 
 //I THINK I NEED TO UPDATE SHAPE NORMAL VECTORS AS I UPDATE MODEL MATRIX
 
-const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
+const SeparationData CollisionDetection::SAT(const shape &a, const shape &b) {
 	if (_print)
 		printf("\nSTARTING COLLISION SAT\n");
 	SeparationData sd;
@@ -199,11 +249,12 @@ const SeparationData CollisionDetection::SAT(const shape a, const shape b) {
 		i++;
 	}
 	
-	if (sd._penetrationDistance != 0) {
+	/*if (sd._penetrationDistance != 0) {
 		printf("penetration distance %.3f\n, separation vector x %.3f, y %.3f\n", sd._penetrationDistance, sd._separationVector.x, sd._separationVector.y);
 	}
 	if (_print)
 		printf("\n ending SAT penDistance : %f \n", sd._penetrationDistance);
+		*/
 	return sd;
 }
 //IF THE PENETRATION IS TOO DEEP THE OBJECTS WILL EXPLODE IN RANDOM DIRECTIONS

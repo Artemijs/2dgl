@@ -77,7 +77,7 @@ public:
 	
 	/// <summary>
 	///set local angle unless inherit transform of parent is off
-	/// use the y axis 
+	///, use the y axis 
 	/// </summary>
 	/// <param name="angle"></param>
 	void SetAngle(Vec3 angle);

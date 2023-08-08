@@ -2,26 +2,30 @@
 #include "../../Graphics/Renderer.h"
 #include "../../Graphics/Sprite.h"
 #include "../../Math/BoxBounds.h"
-
+#include "../../Math/SphereBounds.h"
 //
 #include "../../UI/Button.h"
 
 CollisionTestGame::CollisionTestGame():Game() {
 	_tests = new std::vector<TestState*>();
 	BaseNode* a = new Button("a" ,Vec3(450, 400, 0), Vec3(100, 50, 1), 0);
+	//a->SetAngle(Vec3(0,45,0));
 	//a->AddComponent(new Sprite("Assets/Textures/default.png"));
 	//a->AddComponent(new BoxBounds());
 
 
-	BaseNode* b = new Button("b", Vec3(0, 0, 0), Vec3(50, 50, 1), 0);
+	BaseNode* b = new BaseNode(Vec3(0, 0, 0), Vec3(50, 50, 1), 0);
+	b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
+	Bounds* bBox = new SphereBounds(b, 25);
+	b->AddComponent(bBox);
 
 	Bounds* aBox = a->GetComponent<Bounds>();
-	aBox->AddEvent(true, new CollisionEvent(b->GetComponent<Bounds>(), []( Bounds* a,  Bounds* b, SeparationData& sd) {
+	aBox->AddEvent(true, new CollisionEvent(bBox, []( Bounds* a,  Bounds* b, SeparationData& sd) {
 		printf("HELLO WORLD from a collisiion event\n");
-		}));
-	aBox->AddEvent(false, new CollisionEvent(b->GetComponent<Bounds>(), [](Bounds* a, Bounds* b, SeparationData& sd) {
+	}));
+	aBox->AddEvent(false, new CollisionEvent(bBox, [](Bounds* a, Bounds* b, SeparationData& sd) {
 		printf("EXIT COLLISION EVENTO\n");
-		}));
+	}));
 	aBox->_isFixed = true;
 	//b->AddComponent(new Sprite("Assets/Textures/default.png"));
 	//b->AddComponent(new BoxBounds());
@@ -38,6 +42,17 @@ CollisionTestGame::CollisionTestGame():Game() {
 	_angVel = 0;
 	_ang = 0;
 	_angChange = 2;
+
+
+
+/*BaseNode* circle = new BaseNode(Vec3(100, 100, 0), Vec3(50, 50, 1), 0);
+	circle->AddComponent(new Sprite("Assets/Textures/Circle.png"));
+	Bounds* crclBounds = new SphereBounds(circle, 25);
+	
+	circle->AddComponent(crclBounds);
+	_world->AddChild(circle);*/
+
+
 }
 
 

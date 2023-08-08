@@ -1,8 +1,8 @@
-/*#include "SphereBounds.h"
-SphereBounds::SphereBounds():
+#include "SphereBounds.h"
+SphereBounds::SphereBounds(BaseNode* owner):
 	_localPosition(Vec3()),
 	_radius(50),
-	Bounds(BoundsType::CIRCLE)
+	Bounds(BoundsType::CIRCLE, owner)
 {
 	_worldPosition[0] = Vec3();
 	_worldPosition[1] = Vec3(_radius, _radius, _radius);
@@ -13,10 +13,10 @@ SphereBounds::SphereBounds():
 /// </summary>
 /// <param name="rad">size of circle</param>
 /// <param name="pos">position is local space</param>
-SphereBounds::SphereBounds(const float rad, const Vec3 pos):
+SphereBounds::SphereBounds(BaseNode* owner, const float rad, const Vec3 pos):
 	_radius(rad),
 	_localPosition(pos),
-	Bounds(BoundsType::CIRCLE)
+	Bounds(BoundsType::CIRCLE, owner)
 {
 	_worldPosition[0] = pos;
 	_worldPosition[1] = Vec3(_radius, _radius, _radius);
@@ -30,13 +30,13 @@ SphereBounds::SphereBounds(const float rad, const Vec3 pos):
 
 void SphereBounds::Translate2World(const Matrix4x4* model)  {
 	_worldPosition[0] = (*model) * _localPosition;
-	_centerOfMass = (*model) * _centerOfMass;
+	_centerOfMass = (*model) * Vec3(1,1,1);
 	_worldPosition[1] = Vec3(_radius, _radius, _radius);
 	
 }
- const shape SphereBounds::GetShape() const  {
+  shape SphereBounds::GetShape()   {
 	 
 	return shape(2, _worldPosition);//_worldRect;
 }
 
- */
+ 
