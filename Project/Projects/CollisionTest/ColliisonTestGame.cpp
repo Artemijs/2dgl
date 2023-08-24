@@ -8,15 +8,15 @@
 
 CollisionTestGame::CollisionTestGame():Game() {
 	_tests = new std::vector<TestState*>();
-	BaseNode* a = new Button("a" ,Vec3(450, 400, 0), Vec3(100, 50, 1), 0);
+	BaseNode* a = new Button("a" ,Vec3(450, 400, 0), Vec3(150, 50, 1), 0);
 	//a->SetAngle(Vec3(0,45,0));
 	//a->AddComponent(new Sprite("Assets/Textures/default.png"));
 	//a->AddComponent(new BoxBounds());
 
 
-	BaseNode* b = new BaseNode(Vec3(0, 0, 0), Vec3(50, 50, 1), 0);
+	BaseNode* b = new BaseNode(Vec3(0, 0, 0), Vec3(25, 25, 1), 0);
 	b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
-	Bounds* bBox = new SphereBounds(b, 25);
+	Bounds* bBox = new SphereBounds(b, 12.5f);
 	b->AddComponent(bBox);
 
 	Bounds* aBox = a->GetComponent<Bounds>();
@@ -238,8 +238,8 @@ TestThree::~TestThree() {
 }
 
 void TestThree::Reset() {
-	_a->SetPosition(Vec3(400, 400, 0));
-	_b->SetPosition(Vec3(400, 600, 0));
+	_a->SetPosition(Vec3(450, 400, 0));
+	_b->SetPosition(Vec3(450, 600, 0));
 }
 void TestThree::Update(float deltaTime) {
 	Vec3 bPos = _b->GetTransform()._position;

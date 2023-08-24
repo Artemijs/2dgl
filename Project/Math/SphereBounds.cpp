@@ -30,7 +30,7 @@ SphereBounds::SphereBounds(BaseNode* owner, const float rad, const Vec3 pos):
 
 void SphereBounds::Translate2World(const Matrix4x4* model)  {
 	_worldPosition[0] = (*model) * _localPosition;
-	_centerOfMass = (*model) * Vec3(1,1,1);
+	_centerOfMass = (*model) * Vec3(0, 0, 0);
 	_worldPosition[1] = Vec3(_radius, _radius, _radius);
 	
 }

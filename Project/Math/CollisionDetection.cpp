@@ -8,7 +8,7 @@
 /// Point to AABB a nd POINT to Circle
 /// 
 
-bool CollisionDetection::_print = false;
+bool CollisionDetection::_print = true;
 
 
 SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
@@ -25,21 +25,30 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 		auto bs = b->GetShape();
 		if (a->_type == BoundsType::CIRCLE) {
 			
+			/*float rad = as.second[1].x;  
+			//Vec3 dir = Vec3::Normalize(a->_centerOfMass - b->_centerOfMass);
+			Vec2 dir = Vec2(std::abs(a->_centerOfMass.x - b->_centerOfMass.x), std::abs(a->_centerOfMass.y - b->_centerOfMass.y));
+			as.second[1].x = (dir.x * rad) + as.second[0].x;
+			as.second[1].y = (dir.y * rad) + as.second[0].y;
+			return CircleSAT(as, bs, dir); */
+		}
+		else if ( b->_type == BoundsType::CIRCLE) {
 			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
 			//this gets the second point to create the axis with
 			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-			as.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * as.second[1].x;
-			//SAT(a->GetShape(), bs);
-			return CircleSAT(as, bs);
+			float rad = bs.second[1].x;
+			//Vec3 dir = Vec3::Normalize(a->_centerOfMass - b->_centerOfMass);
+			Vec2 dir = Vec2((b->_centerOfMass.x - a->_centerOfMass.x), (b->_centerOfMass.y - a->_centerOfMass.y));
+			dir.Normalize();
+			Vec2 offset = Vec2((dir.x * rad), (dir.y * rad));
+			bs.second[1].x = bs.second[0].x + offset.x;
+			bs.second[1].y = bs.second[0].y + offset.y;
+			
+			bs.second[0].x = bs.second[0].x - offset.x;
+			bs.second[0].y = bs.second[0].y - offset.y;
+			return CircleSAT(bs, as, dir);
 		}
-		if ( b->_type == BoundsType::CIRCLE) {
-			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
-			//this gets the second point to create the axis with
-			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-			bs.second[1] = Vec3::Normalize(b->_centerOfMass - a->_centerOfMass) * bs.second[1].x;
-			return CircleSAT(bs, as);
-		}
-		return SAT(as, bs);
+		else return SAT(as, bs);
 
 	}
 
@@ -118,7 +127,7 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 	}
 	if (_print)
 	{
-		_print = false;
+		//_print = false;
 	}
 	return smalestPenetration;
 }
@@ -127,10 +136,19 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 
 
 
-
-const SeparationData CollisionDetection::CircleSAT(const shape &a, const shape &b) {
+/// <summary>
+/// a being the circle
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <param name="axis"></param>
+/// <returns></returns>
+const SeparationData CollisionDetection::CircleSAT(const shape &a, const shape &b, Vec2& axis) {
 	if (_print)
 		printf("\nSTARTING circle SAT SAT\n");
+	//i have to check axis passed in, the direction between 2 shape centers
+	//and every other surface normal of shape b
+	
 	SeparationData sd;
 	sd._penetrationDistance = 10000000000;
 
@@ -139,42 +157,53 @@ const SeparationData CollisionDetection::CircleSAT(const shape &a, const shape &
 	Vec3* p1 = NULL, * p2 = NULL;
 
 	const shape* s = &a;
+	int max = b.first;
 
+	for (; i < max - 1; ++i) {
+		//Vec2 axis = GetAxis(a.second[0], a.second[1]);
 
-	Vec2 axis = GetAxis(a.second[0], a.second[1]);
+		if (_print) {
+			printf("\nAXIS : x %.3f, y %.3f, \n", axis.x, axis.y);
+		}
+		float minA = 10000000000;
+		float maxA = -11111111111;
+		float minB = 10000000000;
+		float maxB = -11111111111;
+		if (_print)
+			printf("PROJECTING ON AXIS SHAPE A\n");
+		ProjectOnAxis(minA, maxA, axis, a);
+		if (_print)
+			printf("PROJECTING ON AXIS SHAPE B\n");
+		ProjectOnAxis(minB, maxB, axis, b);
+		if (_print)
+			printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n", minA, maxA, minB, maxB);
+		auto od = CheckOverlap(minA, maxA, minB, maxB);
 
-	if (_print) {
-		printf("\nAXIS : x %.3f, y %.3f, \n", axis.x, axis.y);
+		float penetrationDistance = od.first;
+		//sd._penetrationDistance = od.first;  
+		//sd._separationVector = Vec3(axis.x, axis.y, 0);
+		if (od.first == 0) {
+			//printf("Penetration Distance : %f\n", penetrationDistance);
+			sd._penetrationDistance = od.first;
+			sd._separationVector = Vec3(axis.x, axis.y, 0) * -od.second;
+			return sd;
+		}
+		else {
+			if (od.first < sd._penetrationDistance) {
+				sd._penetrationDistance = od.first;
+				sd._separationVector = Vec3(axis.x, axis.y, 0) * -od.second;
+			}
+		}
+
+		if (_print) {
+			printf("Penetration Distance : %f\n", penetrationDistance);
+		}
+		
+		axis = GetAxis(b.second[i], b.second[i + 1]);
+
 	}
-	float minA = 10000000000;
-	float maxA = -11111111111;
-	float minB = 10000000000;
-	float maxB = -11111111111;
-	if (_print)
-		printf("PROJECTING ON AXIS SHAPE A\n");
-	ProjectOnAxis(minA, maxA, axis, a);
-	if (_print)
-		printf("PROJECTING ON AXIS SHAPE B\n");
-	ProjectOnAxis(minB, maxB, axis, b);
-	if (_print)
-		printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n", minA, maxA, minB, maxB);
-	auto od = CheckOverlap(minA, maxA, minB, maxB);
-	float penetrationDistance = od.first;
-	sd._penetrationDistance = od.first;
-	sd._separationVector = Vec3(axis.x, axis.y, 0) * od.second;
-	if (_print) {
-		printf("Penetration Distance : %f\n", penetrationDistance);
-	}
-	
-	
-
-	/*if (sd._penetrationDistance != 0) {
-		printf("penetration distance %.3f\n, separation vector x %.3f, y %.3f\n", sd._penetrationDistance, sd._separationVector.x, sd._separationVector.y);
-	}
-	if (_print)
-		printf("\n ending SAT penDistance : %f \n", sd._penetrationDistance);
-		*/
 	return sd;
+	
 }
 
 
@@ -297,11 +326,11 @@ const std::pair<float, int> CollisionDetection::CheckOverlap(const float x1, con
 }
 const Vec2 CollisionDetection::GetAxis(const Vec3& p1, const Vec3& p2) {
 	//direction from a to b
-	Vec2 dir2p2 = Vec2( std::abs(p2.x - p1.x), std::abs(p2.y - p1.y));
+	Vec2 dir2p2 = Vec2( (p2.x - p1.x), (p2.y - p1.y));
 	dir2p2.Normalize();
 	//get the normal vector that will be used as the axis for translation
 	float x = dir2p2.x;
-	dir2p2.x = dir2p2.y;
+	dir2p2.x = -dir2p2.y;
 	dir2p2.y = x;
 	return  dir2p2;
 }
@@ -318,6 +347,8 @@ const void CollisionDetection::ProjectOnAxis(float& min, float& max, const Vec2 
 		if (d > max)
 			max = d;
 	}
+	//min += 1000000;
+	//max += 1000000;
 }
 
 

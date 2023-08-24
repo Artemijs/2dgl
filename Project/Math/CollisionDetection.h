@@ -18,7 +18,7 @@ private:
 	static const SeparationData CircleCircleCollision(const shape& a, const shape& b);
 
 	static const SeparationData SAT(const shape &a, const shape &b);
-	static const SeparationData CircleSAT(const shape &a, const shape &b);
+	static const SeparationData CircleSAT(const shape &a, const shape &b, Vec2& axis);
 	static const bool FullSAT(const shape &a, const shape &b);
 	static const std::pair<float, int> CheckOverlap(const float minA, const float maxA, const float minB, const float maxB);
 	static const Vec2 GetAxis(const Vec3& p1, const Vec3& p2);
