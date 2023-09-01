@@ -210,6 +210,12 @@
     <ClCompile Include="Math\CollisionHandler.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Math\PhysicsObject.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Projects\CollisionTest\CollisionTesMain.cpp">
+      <Filter>Projects\CollisionTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -319,6 +325,12 @@
     </ClInclude>
     <ClInclude Include="Math\SeparationData.h">
       <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\PhysicsObject.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\CollisionTest\CollisionTesMain.h">
+      <Filter>Projects\CollisionTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

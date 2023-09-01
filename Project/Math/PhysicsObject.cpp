@@ -19,3 +19,14 @@ void PhysicsObject::SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& 
 	_cRestitution = cRest;
 	_cFriction = cFriction;
 }
+void PhysicsObject::Update(const float deltaTime) {
+	
+	//LINEAR MOTION
+	//add acceleration to velocity
+	_velocity = _velocity + (_acceleration * _cFriction) * deltaTime;
+	//apply linear dampening
+	_velocity /= _linearDampening;
+	
+
+
+}

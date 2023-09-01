@@ -9,20 +9,20 @@ void CollisionHandler::RegisterBounds( Bounds* b, BaseNode* bn) {
 /// TO DO: COLLISION LAYERS
 /// </summary>
 /// <param name="deltaTime"></param>
-void CollisionHandler::Update(const float deltaTime) {
-	//check every bounds against every other bounds
-	for (int i = 0; i < _all_bounds->size(); ++i) {
-		  Bounds* a = _all_bounds->at(i).first;
-		for (int j = 0; j < _all_bounds->size(); ++j) {
-			  Bounds* b = _all_bounds->at(j).first;
+void CollisionHandler::Update(const float deltaTime) {	
+	//check every bounds against every other bounds		
+	for (int i = 0; i < _all_bounds->size()-1; ++i) {		
+		Bounds* a = _all_bounds->at(i).first;			
+		for (int j = i + 1; j < _all_bounds->size(); ++j) {	
+			  Bounds* b = _all_bounds->at(j).first;		
 			  const unsigned int collisionExists = a->IsColliding(b);
-			if (a == b)
-				continue;
+			if (a == b)									
+				continue;								
 			SeparationData sd = CollisionDetection::CheckCollision(a, b);
-			if (sd._penetrationDistance !=0 ) {
-				//collision has happened 
+			if (sd._penetrationDistance !=0 ) {			
+				//collision has happened				
 				//no collision with this object happened last frame
-				if (collisionExists == -1) {
+				if (collisionExists == -1) {			
 					if (a->_solid && b->_solid) {
 						a->AddActiveCollision(b, sd);
 						b->AddActiveCollision(a, sd);
@@ -49,10 +49,17 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	//if both objects can be moved then part them equally and separate directions
 	//if only one object can be moved part that one object fully
 
-	//move b by pen dist 
-	if (!b.first->_isFixed) {
+
+
+	//move b by half of pen dist 
+	if (b.first->_solid) {
 		Transform bt = b.second->GetTransform();
 		b.second->SetPosition(bt._position + sd._separationVector * sd._penetrationDistance);
+	}
+	//move a by the other half
+	if (a.first->_solid) {
+		Transform at = a.second->GetTransform();
+		a.second->SetPosition(at._position + sd._separationVector * sd._penetrationDistance);
 	}
 
 }

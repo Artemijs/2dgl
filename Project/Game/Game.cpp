@@ -11,6 +11,7 @@
 #include <typeinfo>
 #include "../UI/Text.h"
 #include "../Math/CollisionHandler.h"
+
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 
 Game::Game() {

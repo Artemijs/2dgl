@@ -25,12 +25,17 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 		auto bs = b->GetShape();
 		if (a->_type == BoundsType::CIRCLE) {
 			
-			/*float rad = as.second[1].x;  
-			//Vec3 dir = Vec3::Normalize(a->_centerOfMass - b->_centerOfMass);
-			Vec2 dir = Vec2(std::abs(a->_centerOfMass.x - b->_centerOfMass.x), std::abs(a->_centerOfMass.y - b->_centerOfMass.y));
-			as.second[1].x = (dir.x * rad) + as.second[0].x;
-			as.second[1].y = (dir.y * rad) + as.second[0].y;
-			return CircleSAT(as, bs, dir); */
+
+			float rad = as.second[1].x;
+			Vec2 dir = Vec2((a->_centerOfMass.x - b->_centerOfMass.x), (a->_centerOfMass.y - b->_centerOfMass.y));
+			dir.Normalize();
+			Vec2 offset = Vec2((dir.x * rad), (dir.y * rad));
+			as.second[1].x = as.second[0].x + offset.x;
+			as.second[1].y = as.second[0].y + offset.y;
+
+			as.second[0].x = as.second[0].x - offset.x;
+			as.second[0].y = as.second[0].y - offset.y;
+			return CircleSAT(bs, as, dir);
 		}
 		else if ( b->_type == BoundsType::CIRCLE) {
 			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
@@ -51,8 +56,6 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 		else return SAT(as, bs);
 
 	}
-
-
 }
 
 /// <summary>

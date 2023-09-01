@@ -34,6 +34,9 @@ public:
 	bool _colliding;
 	Vec3 _centerOfMass;
 	const BoundsType _type;
+	/// <summary>
+	/// this variable isnt used yet i use solid to check if an object is moved when collisded with
+	/// </summary>
 	bool _isFixed;
 	
 	/// <summary>
