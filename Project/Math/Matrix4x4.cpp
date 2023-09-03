@@ -57,6 +57,23 @@ const float Vec2::Dot(const Vec2& a, const Vec2& b) {
 const float Vec2::Dot(const float ax, const float ay, const float bx, const float by) {
 	return (ax * bx) + (ay * by);
 }
+const Vec2 Vec2::LineIntersection(const Vec2& a, const Vec2& b, const Vec2& c, const Vec2& d) {
+	//additive vector form
+	Vec2 r = (b - a);
+	Vec2 s = (d - c);
+
+	float dd = r.x * s.y - r.y * s.x;
+	float u = ((c.x - a.x) * r.y - (c.y * a.y) * r.x) / dd;
+	float t = ((c.x - a.x) * s.y - (c.y * a.y) * s.x) / dd;
+	if (0 <= u && u <= 1 && 0 <= t && t <= 1) {
+		return a + (r*t);
+	}
+	return Vec2(0, 0);
+}
+
+
+
+
 Vec2Int::Vec2Int() {
 	x = 0; y = 0;
 }

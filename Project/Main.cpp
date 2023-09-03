@@ -18,7 +18,7 @@ void button_key_calls(GLFWwindow* window, int key, int scancode, int action, int
 int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();
-	g = new CollisionTestMain();
+	g = new IneIntersectTest();
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glfwSetMouseButtonCallback(window, button_calls);

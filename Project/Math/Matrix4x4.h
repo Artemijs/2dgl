@@ -25,6 +25,7 @@ public:
 	static const float Lenght(const Vec2 &v);
 	static const float Dot(const Vec2& a, const Vec2& b);
 	static const float Dot(const float ax, const float ay, const float bx, const float by);
+	static const Vec2 LineIntersection(const Vec2& a, const Vec2& b, const Vec2& c, const Vec2& d);
 
 };
 class Vec2Int

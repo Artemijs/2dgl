@@ -8,6 +8,9 @@
 
 CollisionTestMain::CollisionTestMain():Game() {
 	
+	//Vec2 test = Vec2(5, 10);
+	//test.Normalize();
+
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");
 	//s->GetMaterial()
@@ -133,5 +136,61 @@ void CollisionTestMain::Update(float deltaTime) {
 
 void CollisionTestMain::Play(const bool on) {
 	_play = on;
+}
+
+
+
+
+
+
+
+
+//LINE INTERSECTION TEST
+
+
+
+
+
+IneIntersectTest::IneIntersectTest() :Game() {
+	Vec2 res = Vec2::LineIntersection(
+		Vec2(0, 0),
+		Vec2(3, 3),
+		Vec2(3, 0),
+		Vec2(0, 3));
+	Utility::PrintVector("Result of intersection :", res);
+	res = Vec2::LineIntersection(
+		Vec2(0, 0),
+		Vec2(3, 3),
+		Vec2(3, 0),
+		Vec2(6, 3));
+	Utility::PrintVector("Result of intersection :", res);
+
+}
+
+
+IneIntersectTest::~IneIntersectTest() {
+	std::cout << "deleting CollisionDetection\n";
+	//delete _world;
+	
+}
+//263 left
+//262 right 
+// 32 space 
+#include "../../Math/CollisionDetection.h"
+void IneIntersectTest::HandleKeyInputs(int key, int action, int mods) {
+
+}
+
+void IneIntersectTest::Update(float deltaTime) {
+	Game::Update(deltaTime);
+
+
+
+
+
+}
+
+void IneIntersectTest::Play(const bool on) {
+	
 }
 

@@ -22,4 +22,14 @@ public :
 	void Play(const bool on);
 };
 
+class IneIntersectTest :public Game {
+private:
+public:
+	IneIntersectTest();
+	~IneIntersectTest() override;
+	void Update(float deltaTime) override;
+	void HandleKeyInputs(int key, int action, int mods) override;
+	void Play(const bool on);
+};
+
 #endif

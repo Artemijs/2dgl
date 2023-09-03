@@ -10,6 +10,7 @@ void CollisionHandler::RegisterBounds( Bounds* b, BaseNode* bn) {
 /// </summary>
 /// <param name="deltaTime"></param>
 void CollisionHandler::Update(const float deltaTime) {	
+	if (_all_bounds->size() == 0) return;
 	//check every bounds against every other bounds		
 	for (int i = 0; i < _all_bounds->size()-1; ++i) {		
 		Bounds* a = _all_bounds->at(i).first;			
