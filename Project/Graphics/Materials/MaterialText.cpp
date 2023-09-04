@@ -1,5 +1,9 @@
 #include "MAterialText.h"
 #include "../Renderer.h"
+
+/// <summary>
+/// changed BINd function not tested
+/// </summary>
 MaterialText::MaterialText():
 	Material(Renderer::instance()->GetShader(2), "Assets/Textures/btn.png")
 {
@@ -27,6 +31,8 @@ void MaterialText::Bind(const Matrix4x4* model)const  {
 	_texture->Bind();
 	_texture->texUni(_shader, "tex0", 0);
 
+	//Material::Bind(model);
+
 	glUniform1f(glGetUniformLocation(_shader->ID, "borderWidth"), _borderWidth);
 	glUniform2f(glGetUniformLocation(_shader->ID, "offset"), _borderDirection.x, _borderDirection.y);
 	glUniform3f(glGetUniformLocation(_shader->ID, "color"), _color.x, _color.y, _color.z);
@@ -36,7 +42,8 @@ void MaterialText::Bind(const Matrix4x4* model)const  {
 
 void MaterialText::Unbind()const {
 	(*_vao)->Unbind();
-	glBindTexture(GL_TEXTURE_2D, 0);
-	glUseProgram(0);
+	//glBindTexture(GL_TEXTURE_2D, 0);
+	//glUseProgram(0);
+	Material::Unbind();
 
 }

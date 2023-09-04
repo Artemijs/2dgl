@@ -32,4 +32,16 @@ public:
 	void Play(const bool on);
 };
 
+
+class MaterialTest :public Game {
+private:
+public:
+	MaterialTest();
+	~MaterialTest() override;
+	void Update(float deltaTime) override;
+	void HandleKeyInputs(int key, int action, int mods) override;
+	void Play(const bool on);
+};
+
+
 #endif

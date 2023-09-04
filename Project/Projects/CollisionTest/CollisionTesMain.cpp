@@ -194,3 +194,68 @@ void IneIntersectTest::Play(const bool on) {
 	
 }
 
+
+//Material  TEST
+
+
+
+
+/// <summary>
+/// CANNOT SET MATERIAL
+/// </summary>
+MaterialTest::MaterialTest() :Game() {
+	Renderer* r = Renderer::instance();
+	//button
+	float startX = 200;
+	float startY = 100;
+	Vec3 size = Vec3(200, 75, 1);
+	BaseNode* btn = new Button("Hi!", Vec3(startX, startY, 0), size, 0);
+	_world->AddChild(btn);
+	//btn->GetComponent<Sprite>()->
+	//BaseNode* btn1 = new Button("Hi!", Vec3(10, 10, 0), Vec3(50, 25, 1), 0);
+	startY += size.y+20;
+	//_world->AddChild(btn1);
+	//sprite
+	BaseNode* img = new BaseNode(Vec3(startX, startY, 0), size, 0);
+	img->AddComponent(new Sprite("Assets/Textures/temp.png"));
+	_world->AddChild(img);
+	
+	startY += size.y + 20;
+
+	Material* m = new MaterialDefault(r->GetShader(0), "Assets/Textures/temp.png");
+	m->_color = Vec4(1, 0, 0, 1);
+	BaseNode* img2 = new BaseNode(Vec3(startX, startY, 0), size, 0);
+	img2->AddComponent(new Sprite(m));
+	_world->AddChild(img2);
+	//text
+	//Text
+
+}
+
+
+MaterialTest::~MaterialTest() {
+	std::cout << "deleting CollisionDetection\n";
+	//delete _world;
+
+}
+//263 left
+//262 right 
+// 32 space 
+#include "../../Math/CollisionDetection.h"
+void MaterialTest::HandleKeyInputs(int key, int action, int mods) {
+
+}
+
+void MaterialTest::Update(float deltaTime) {
+	Game::Update(deltaTime);
+
+
+
+
+
+}
+
+void MaterialTest::Play(const bool on) {
+
+}
+

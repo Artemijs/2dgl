@@ -27,14 +27,14 @@ private:
 	EBO* _ebo;
 	FBO* _fbo;
 	GLfloat _vertices[32] = {
-		//verices					colors				//uvs
-		-0.5f,  -0.5f,  -1.0f,		1.0f, 0.0f, 0.0f,	0.0f, 0.0f, //lower left
+		//verices						//uvs
+		-0.5f,  -0.5f,  -1.0f,			0.0f, 0.0f, //lower left
 
-		-0.5f,   0.5f,	-1.0f,		0.0f, 1.0f, 0.0f,	0.0f, 1.0f,//upper left 
+		-0.5f,   0.5f,	-1.0f,			0.0f, 1.0f,//upper left 
 
-			0.5f,	 0.5f,	-1.0f,		0.0f, 0.0f, 1.0f,	1.0f, 1.0f, //upper right
+		0.5f,	 0.5f,	-1.0f,			1.0f, 1.0f, //upper right
 
-			0.5f,	-0.5f,	-1.0f,		1.0f, 1.0f, 1.0f,	1.0f, 0.0f //lower right
+		0.5f,	-0.5f,	-1.0f,			1.0f, 0.0f //lower right
 	};
 	GLuint _indices[6] = {
 		0, 2, 1, //upper triangle,

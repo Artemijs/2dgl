@@ -8,13 +8,16 @@ class Material {
 protected:
 	const Shader* _shader;
 	const Texture* _texture;
+	
 public :
+	Vec4 _color;
 	Material();
 	Material(const Shader* s, const char* texturePath);
 	virtual ~Material();
-	virtual void Bind(const Matrix4x4* model) const = 0;
-	virtual void Unbind() const = 0;
+	virtual void Bind(const Matrix4x4* model) const ;
+	virtual void Unbind() const;
 	const Texture* GetTexture()const;
+	
 
 
 };

@@ -3,6 +3,10 @@
 #include "../Game/MouseEventComponent.h"
 #include "../Math/BoxBounds.h"
 #include "Text.h"
+
+/// <summary>
+/// USES SPRITE COMPONENT, 
+/// </summary>
 Button::Button():
 	BaseNode(),
 	_pressedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnPress.wav")),
@@ -42,6 +46,13 @@ Button::Button():
 	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
 
 }
+/// <summary>
+/// USES SPRITE COMPONENT and a default btn image,
+/// </summary>
+/// <param name="txt">text in the button</param>
+/// <param name="pos"></param>
+/// <param name="size">width, height</param>
+/// <param name="ang"></param>
 Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float ang) : 
 	BaseNode(pos, size, ang),
 	_pressedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnPress.wav")),
@@ -60,9 +71,11 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnHover(); }, BtnEvent::ON_HOVER);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnEndHover(); }, BtnEvent::ON_END_HOVER);	
 	AddComponent<MouseEvent>(mouse_e);	
+
 	_material = new MaterialButton();	
 	Sprite* btton_bg = new Sprite(_material);
-	AddComponent<Sprite>(btton_bg);		
+	AddComponent<Sprite>(btton_bg);	
+
 	AddComponent<BoxBounds>(new BoxBounds(this));
 	BaseNode* bm = new BaseNode(Vec3(0, 0, 0.10f), Vec3(1,1,1), 0);
 	bool bools[3] = { true, false, true};
