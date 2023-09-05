@@ -5,8 +5,6 @@ Graphic::Graphic(const unsigned int indexCount): BaseComponent(true),
 	_indexCount(indexCount)
 {
 	Renderer::instance()->AddGraphic(this);
-	
-	
 }
 
 Graphic::~Graphic() {
@@ -26,6 +24,6 @@ void Graphic::Draw(const Matrix4x4* model) const {
 	_baseMaterial->Unbind();
 }
 	
-const Material* Graphic::GetMaterial() const {
+ Material* Graphic::GetMaterial() const {
 	return _baseMaterial;
 }

@@ -322,13 +322,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 					dynamic_cast<Graphic*>(comps->at(i)->second)->Draw(node->GetModelMatrix());
 				}
 			}
-			/*
-			const Graphic* g = node->GetGraphic();
-
-			//if it does, cast it to graphic and draw it
-			if (g != NULL) {
-				g->Draw(node->GetModelMatrix());
-			}*/
+			
 		}
 		else if (renderNode) {
 			//unbind prev FBO

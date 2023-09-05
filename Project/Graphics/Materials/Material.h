@@ -6,6 +6,7 @@
 class Material {
 
 protected:
+	bool _transparent;
 	const Shader* _shader;
 	const Texture* _texture;
 	

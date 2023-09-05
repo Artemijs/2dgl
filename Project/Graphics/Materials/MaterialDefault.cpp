@@ -19,7 +19,6 @@ void MaterialDefault::Bind(const Matrix4x4* model)const  {
 	//_texture->Bind();	
 	//_texture->texUni(_shader, "tex0", 0);
 	
-	
 	//Material::Bind(model);
 	Material::Bind(model);
 	Renderer::instance()->GetVAO()->Bind();

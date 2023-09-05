@@ -209,21 +209,25 @@ MaterialTest::MaterialTest() :Game() {
 	float startX = 200;
 	float startY = 100;
 	Vec3 size = Vec3(200, 75, 1);
+	
 	BaseNode* btn = new Button("Hi!", Vec3(startX, startY, 0), size, 0);
+	Material* mtrl = btn->GetComponent<Sprite>(Sprite::_component_id)->GetMaterial();
+	mtrl->_color = Vec4(0.0f, 0.5f, 5.0f, 0.1f);
 	_world->AddChild(btn);
-	//btn->GetComponent<Sprite>()->
-	//BaseNode* btn1 = new Button("Hi!", Vec3(10, 10, 0), Vec3(50, 25, 1), 0);
-	startY += size.y+20;
-	//_world->AddChild(btn1);
+
+	startX += size.x*0.5f;
+	//startY += size.y+20;
+	
 	//sprite
 	BaseNode* img = new BaseNode(Vec3(startX, startY, 0), size, 0);
 	img->AddComponent(new Sprite("Assets/Textures/temp.png"));
 	_world->AddChild(img);
 	
-	startY += size.y + 20;
+	//startY += size.y + 20;
+	startX += size.x*0.5f;
 
 	Material* m = new MaterialDefault(r->GetShader(0), "Assets/Textures/temp.png");
-	m->_color = Vec4(1, 0, 0, 1);
+	m->_color = Vec4(1.0f, 0.0f, 0.0f, 0.5f);
 	BaseNode* img2 = new BaseNode(Vec3(startX, startY, 0), size, 0);
 	img2->AddComponent(new Sprite(m));
 	_world->AddChild(img2);

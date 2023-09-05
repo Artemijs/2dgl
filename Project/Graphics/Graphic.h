@@ -18,7 +18,7 @@ public:
 	~Graphic();
 
 	void Draw(const Matrix4x4* model) const;
-	const Material* GetMaterial() const ;
+	Material* GetMaterial() const ;
 };
 
 
