@@ -99,7 +99,7 @@ void Renderer::CreateWindow() {
 	gladLoadGL();
 	glViewport(0, 0, _windowSize.x, _windowSize.y);
 	glEnable(GL_DEPTH_TEST);
-
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
 /*
@@ -138,13 +138,21 @@ void Renderer::Draw(const BaseNode* n) {
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glEnable(GL_DEPTH_TEST);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		const std::vector<BaseNode*>* children = n->GetAllChildren();
 
-
-		//Game::_testG->Draw(n->GetModelMatrix());
-		
-		//glBindTexture(GL_TEXTURE_2D, tID);
-		//glUniform1i(glGetUniformLocation(_shader->ID, "tex0"), tID); //maybe this part is optioNAL
-		//Renderer::instance()->GetVAO()->Bind();
+		if (children != NULL) {
+			for (int i = 0; i < children->size(); ++i) {
+				auto child = children->at(i);
+				auto  comps = child->Components();
+				for (int i = 0; i < comps->size(); ++i) {
+					if (comps->at(i)->second->IsGraphic()) {
+						dynamic_cast<Graphic*>(comps->at(i)->second)->Draw(child->GetModelMatrix());
+					}
+				}
+			}
+		}
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		
@@ -316,6 +324,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 		//check if node has a graphic component 
 		//if (node->GetNodeType() == 1) {
 		if(!renderNode){
+
 			auto  comps = node->Components();
 			for (int i = 0; i < comps->size(); ++i) {
 				if (comps->at(i)->second->IsGraphic()) {
