@@ -109,6 +109,7 @@ public:
 	static Matrix4x4 RotationMatrix(float ang);
 	static Matrix4x4 ScaleMatrix(Vec3 scale);
 	static Matrix4x4 TranslationMatrix(Vec3 pos);
+	static Matrix4x4 GetMatrix(Vec3 pos, Vec3 scale, float ang);
 	//float GetAngle();
 	Vec3 GetPosition();
 	Vec3 GetSize();

@@ -20,6 +20,7 @@ public :
 	void Update(float deltaTime) override;
 	void HandleKeyInputs(int key, int action, int mods) override;
 	void Play(const bool on);
+	
 };
 
 class IneIntersectTest :public Game {
@@ -41,6 +42,7 @@ public:
 	void Update(float deltaTime) override;
 	void HandleKeyInputs(int key, int action, int mods) override;
 	void Play(const bool on);
+	void Draw();
 };
 
 

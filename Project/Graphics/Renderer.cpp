@@ -99,6 +99,10 @@ void Renderer::CreateWindow() {
 	gladLoadGL();
 	glViewport(0, 0, _windowSize.x, _windowSize.y);
 	glEnable(GL_DEPTH_TEST);
+	// Keeps front faces
+	glCullFace(GL_FRONT);
+	// Uses counter clock-wise standard
+	glFrontFace(GL_CCW);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
@@ -129,7 +133,7 @@ void Renderer::CreateWindow() {
 ///debug function that draws everything to _fbo with root model matrix
 void Renderer::Draw(const BaseNode* n) {
 	bool isRoot = (n->GetParent() == NULL);
-	
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 
 	if (isRoot) {
@@ -138,8 +142,8 @@ void Renderer::Draw(const BaseNode* n) {
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glEnable(GL_DEPTH_TEST);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable(GL_BLEND);
+		
+		
 		const std::vector<BaseNode*>* children = n->GetAllChildren();
 
 		if (children != NULL) {
@@ -148,6 +152,7 @@ void Renderer::Draw(const BaseNode* n) {
 				auto  comps = child->Components();
 				for (int i = 0; i < comps->size(); ++i) {
 					if (comps->at(i)->second->IsGraphic()) {
+						glEnable(GL_BLEND);
 						dynamic_cast<Graphic*>(comps->at(i)->second)->Draw(child->GetModelMatrix());
 					}
 				}
@@ -162,6 +167,7 @@ void Renderer::Draw(const BaseNode* n) {
 		_fRect->Bind();
 		glDisable(GL_DEPTH_TEST);
 		glBindTexture(GL_TEXTURE_2D, _fbo->_fboTex);
+		glEnable(GL_BLEND);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		_fRect->Unbind();
 		glBindTexture(GL_TEXTURE_2D, 0);
@@ -366,4 +372,9 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 	}
+}
+
+
+Matrix4x4* Renderer::GetProjection() {
+	return &_projection;
 }

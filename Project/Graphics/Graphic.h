@@ -19,6 +19,7 @@ public:
 
 	void Draw(const Matrix4x4* model) const;
 	Material* GetMaterial() const ;
+	const unsigned int IndexCount();
 };
 
 

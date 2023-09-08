@@ -369,6 +369,12 @@
     <None Include="Assets\Shaders\final_rect.vert">
       <Filter>Resource Files\Assets\Shaders</Filter>
     </None>
+    <None Include="Assets\Shaders\defaultNoTex.frag">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\defaultNoTex.vert">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\btn.png">

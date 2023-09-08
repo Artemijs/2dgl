@@ -71,6 +71,7 @@ public:
 	Shader* GetShader(int id);
 	Texture* GetTexture(int id);
 	const Texture* LoadTexture(const char* path);
+	Matrix4x4* GetProjection();
 };
 
 

@@ -16,8 +16,13 @@ Material::~Material() {
 const Texture* Material::GetTexture() const {
 	return _texture;
 }
+/// <summary>
+/// some optimisation can be added here if you have shader variables that dont change they can be bound once only
+/// </summary>
+/// <param name="model"></param>
 void Material::Bind(const Matrix4x4* model) const {
 	_shader->Activate();
+
 	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &model->buff[0]);
 	Renderer::instance()->SetShaderVariables(_shader->ID);
 

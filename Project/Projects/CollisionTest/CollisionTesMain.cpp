@@ -215,25 +215,28 @@ MaterialTest::MaterialTest() :Game() {
 	mtrl->_color = Vec4(0.0f, 0.5f, 5.0f, 0.1f);
 	_world->AddChild(btn);
 
+	//mtrl->Bind(Matrix4x4(1.0f));
 	startX += size.x*0.5f;
 	//startY += size.y+20;
 	
 	//sprite
 	BaseNode* img = new BaseNode(Vec3(startX, startY, 0), size, 0);
 	img->AddComponent(new Sprite("Assets/Textures/temp.png"));
+	img->GetComponent<Sprite>()->GetMaterial()->_color = Vec4(1.0f, 1.0f, 1.0f, 0.5f);
 	_world->AddChild(img);
 	
 	//startY += size.y + 20;
 	startX += size.x*0.5f;
 
 	Material* m = new MaterialDefault(r->GetShader(0), "Assets/Textures/temp.png");
-	m->_color = Vec4(1.0f, 0.0f, 0.0f, 0.5f);
+	m->_color = Vec4(1.0f, 0.0f, 0.0f, 1.0f);
 	BaseNode* img2 = new BaseNode(Vec3(startX, startY, 0), size, 0);
 	img2->AddComponent(new Sprite(m));
 	_world->AddChild(img2);
 	//text
 	//Text
-
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 
@@ -253,12 +256,68 @@ void MaterialTest::HandleKeyInputs(int key, int action, int mods) {
 void MaterialTest::Update(float deltaTime) {
 	Game::Update(deltaTime);
 
-
+	Draw();
 
 
 
 }
+void MaterialTest::Draw() {
+	Matrix4x4 m = Matrix4x4::GetMatrix(Vec3(400, 400, -1), Vec3(100,100, 1), 0);
+	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(350, 350, -1), Vec3(100, 100, 1), 0);
+	Renderer* r = Renderer::instance();
+	Shader* s = new Shader("Assets/Shaders/defaultNoTex.vert", "Assets/Shaders/defaultNoTex.frag");//r->GetShader(0);
+	
+	
+	//Renderer::instance()->Draw(_world);
+	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+	// Clean the back buffer and depth buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	auto children = _world->GetAllChildren();
+	
+	/*for (int i = 0; i < children->size(); i++) {
+		auto child = children->at(i);
 
+		auto  comps = child->Components();
+		for (int i = 0; i < comps->size(); ++i) {
+			if (comps->at(i)->second->IsGraphic()) {
+				
+				dynamic_cast<Graphic*>(comps->at(i)->second)->Draw(child->GetModelMatrix());
+				//auto iCount = 	dynamic_cast<Graphic*>(comps->at(i)->second)->IndexCount();
+				//glDrawElements(GL_TRIANGLES, iCount, GL_UNSIGNED_INT, 0);
+
+			}
+		}
+	}*/
+	
+	s->Activate();
+	
+	glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, &m.buff[0]);
+	glUniformMatrix4fv(glGetUniformLocation(s->ID, "proj"), 1, GL_TRUE, r->GetProjection()->buff);
+	glUniform4f(glGetUniformLocation(s->ID, "color"), 0.250f, 0.340f, 0.20f ,1);
+	
+	
+	r->GetVAO()->Bind();
+	glEnable(GL_BLEND);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glUseProgram(0);
+
+	s->Activate();
+
+	glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, &m1.buff[0]);
+	glUniformMatrix4fv(glGetUniformLocation(s->ID, "proj"), 1, GL_TRUE, r->GetProjection()->buff);
+	glUniform4f(glGetUniformLocation(s->ID, "color"), 0.250f, 0.60f, 0.20f, 0.50f);
+
+
+	r->GetVAO()->Bind();
+	glEnable(GL_BLEND);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glUseProgram(0);
+
+
+	glfwSwapBuffers(Renderer::instance()->GetWindow());
+	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
+	delete s;
+}
 void MaterialTest::Play(const bool on) {
 
 }

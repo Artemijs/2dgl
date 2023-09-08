@@ -9,6 +9,6 @@ uniform vec4 color;
 
 void main(){
 	vec4 texCol = texture(tex0, uv);
-
+	
 	FragColor = (texCol * color);
 }

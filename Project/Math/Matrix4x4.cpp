@@ -371,3 +371,8 @@ Vec3 Matrix4x4::GetPosition() {
 Vec3 Matrix4x4::GetSize() {
 	return Vec3(buff[0], buff[5], buff[10]);
 }
+Matrix4x4 Matrix4x4::GetMatrix(Vec3 pos, Vec3 scale, float ang) {
+	
+	//tsr
+	return Matrix4x4::TranslationMatrix(pos) * Matrix4x4::ScaleMatrix(scale) * Matrix4x4::RotationMatrix(ang);
+}

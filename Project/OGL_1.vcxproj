@@ -238,6 +238,8 @@
     <None Include="Assets\Shaders\animated_sprite.vert" />
     <None Include="Assets\Shaders\default.frag" />
     <None Include="Assets\Shaders\default.vert" />
+    <None Include="Assets\Shaders\defaultNoTex.frag" />
+    <None Include="Assets\Shaders\defaultNoTex.vert" />
     <None Include="Assets\Shaders\final_rect.frag" />
     <None Include="Assets\Shaders\final_rect.vert" />
     <None Include="Assets\Shaders\outlineText.frag" />
