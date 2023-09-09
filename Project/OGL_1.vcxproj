@@ -181,6 +181,7 @@
     <ClCompile Include="Math\Matrix4x4.cpp" />
     <ClCompile Include="Math\PhysicsObject.cpp" />
     <ClCompile Include="Math\SphereBounds.cpp" />
+    <ClCompile Include="Projects\3D\RayCastingTest\RayCastTest.cpp" />
     <ClCompile Include="Projects\CollisionTest\ColliisonTestGame.cpp" />
     <ClCompile Include="Projects\CollisionTest\CollisionTesMain.cpp" />
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Math\PhysicsObject.h" />
     <ClInclude Include="Math\SeparationData.h" />
     <ClInclude Include="Math\SphereBounds.h" />
+    <ClInclude Include="Projects\3D\RayCastingTest\RayCastTest.h" />
     <ClInclude Include="Projects\CollisionTest\ColliisonTestGame.h" />
     <ClInclude Include="Projects\CollisionTest\CollisionTesMain.h" />
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />

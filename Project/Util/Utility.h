@@ -2,6 +2,7 @@
 #define UTILITY_H
 #include "../Game/BaseNode.h"
 
+class Game;
 class Utility {
 public:
 	static unsigned int _idCount;
@@ -25,6 +26,13 @@ public:
 	static const float Dist2CLosest(const float min, const float max, const float p);
 	static void PrintVector(const char* prefix, const Vec3& v);
 	static void PrintVector(const char* prefix, const Vec2& v);
+	static void ToLower(std::string& s);
+
+
 };
+
+
+Game* DevGetGameType();
+
 
 #endif

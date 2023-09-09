@@ -91,6 +91,12 @@
     <Filter Include="Projects\CollisionTest">
       <UniqueIdentifier>{804624b9-cbc3-4364-97f0-382a800562c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\3D">
+      <UniqueIdentifier>{156885e1-7ea2-4118-b3a6-d6af35259c7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Projects\3D\RayCastingTest">
+      <UniqueIdentifier>{1e337fc9-d80f-4824-9949-55d150c5048e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -216,6 +222,9 @@
     <ClCompile Include="Projects\CollisionTest\CollisionTesMain.cpp">
       <Filter>Projects\CollisionTest</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\3D\RayCastingTest\RayCastTest.cpp">
+      <Filter>Projects\3D\RayCastingTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -331,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="Projects\CollisionTest\CollisionTesMain.h">
       <Filter>Projects\CollisionTest</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\3D\RayCastingTest\RayCastTest.h">
+      <Filter>Projects\3D\RayCastingTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

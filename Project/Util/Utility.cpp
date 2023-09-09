@@ -1,6 +1,6 @@
 #include "Utility.h"
 #include "../Game/FBOComponent.h"
-#include "../Game/Game.h"
+
 
 unsigned int Utility::_idCount = 0;
 bool Utility::IsRenderNode(const BaseNode* node) {
@@ -47,3 +47,123 @@ void Utility::PrintVector(const char* prefix, const Vec2& v) {
 	b - c =  2
 
 */
+
+void Utility::ToLower(std::string& s) {
+	for (auto it = s.begin(); it != s.end(); it++) {
+		(*it) = (std::tolower((*it)));
+	}
+}
+
+#include "../Game/Game.h"
+#include "../Projects/TowerDefense/TowerDefenseGame.h"
+#include "../Projects/CollisionTest/ColliisonTestGame.h"
+#include "../Projects/CollisionTest/CollisionTesMain.h"
+#include "../Projects/3D/RayCastingTest/RayCastTest.h"
+#include <sstream>
+void DevPrintHelp() {
+	std::string msg = 
+		"The games available to load are:\n";
+	msg += "0 : TowerDefenseGame\n";
+	msg += "1 : CollisionTestGame\n";
+	msg += "2 : CollisionTestMain\n";
+	msg += "3 : IneIntersectTest\n";
+	msg += "4 : MaterialTest\n";
+	msg += "5 : RayCastTest\n";
+	msg += "type HELP N n being the number of the game, for a description of that project\n";
+	std::cout << msg;
+}
+void DevPrintDetails(std::string s) {
+	s = s.substr(5, s.length());
+	std::stringstream ss;
+	ss << s;
+	int nr = -1;
+	ss >> nr;
+
+	if (!ss) {
+		std::cout << "please type a valid number after help, format : help(space)number\n";
+		return;
+	}
+	switch (nr) {
+		case 0:
+			std::cout << "The tower defense game that this project was meant to be and designed in 2021\n nothing there yet and will probably throw an error\n";
+			break;
+		case 1:
+			std::cout << "Collision test game that tests SAT with multiple different test cases.\n Us n and p keys to change tests, use space to pause and play\n";
+			break;
+		case 2:
+			std::cout << "A Collision and Physics test game where you control a sphere, wasd to move\n";
+			break;
+		case 3:
+			std::cout << "A test to test out a small line intersection algorythm, prints results to console\n";
+			break;
+		case 4:
+			std::cout << "A game to test the materials of UI elements and to test transparency\n";
+			break;
+		case 5:
+			std::cout << "A game to test RayCast in 3D\n";
+			break;
+		default:
+			std::cout << "YOu have entered a number out of range\n";
+	}
+	
+
+}
+Game* DevGetGameType() {
+	int max = 5;
+	std::cout << "PLEASE ENTER WHICH GAME YOU WOULD LIKE TO LOAD \n____ a value between 0 and "<<max<<"\n Type HELP for details(no case sens)\n";
+	Game* g = NULL;
+	int gameId;
+	std::stringstream ss;
+
+	std::string input;
+	while (g == NULL) {
+		std::cin.clear();
+		std::getline(std::cin, input);
+		
+		Utility::ToLower(input);
+		if (input == "help") { // inout == help
+			DevPrintHelp();
+			continue;
+		}
+		else if (input.length() >= 6) { //input == help and a number
+			if(input[0] == 'h' && input[3] == 'p' )
+				DevPrintDetails(input);
+			continue;
+		}
+
+
+		ss << input;
+		ss >> gameId;
+		if (!ss) {
+			std::cout << "Please enter a valid number\n";
+			continue;
+		}
+
+		std::cout << "Loading game " << input << "\n";
+		switch (gameId) {
+		case 0:
+			g = new TowerDefenseGame();
+			break;
+		case 1:
+			g = new CollisionTestGame();
+			break;
+		case 2:
+			g = new CollisionTestMain();
+			break;
+		case 3:
+			g = new IneIntersectTest();
+			break;
+		case 4:
+			g = new MaterialTest();
+			break;
+		case 5:
+			g = new RayCastTest();
+			break;
+		default:
+			g = new TowerDefenseGame();
+		}
+
+		
+	}
+	return g;
+}
