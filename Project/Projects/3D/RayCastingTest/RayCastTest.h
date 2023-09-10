@@ -7,12 +7,17 @@ class RayCastTest : public Game {
 
 
 private:
-
+	bool _3d;
+	float _fov;
+	float _near;
+	float _far;
+	float _aspect;
 public :
 	RayCastTest();
 	~RayCastTest();
 	void Update(float deltaTime) override;
 	void HandleKeyInputs(int key, int action, int mods) override;
+	void ChangePerspective();
 
 
 };

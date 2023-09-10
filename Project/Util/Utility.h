@@ -27,7 +27,8 @@ public:
 	static void PrintVector(const char* prefix, const Vec3& v);
 	static void PrintVector(const char* prefix, const Vec2& v);
 	static void ToLower(std::string& s);
-
+	static float Deg2Rad(const float deg);
+	static float Rad2Deg(const float rad);
 
 };
 

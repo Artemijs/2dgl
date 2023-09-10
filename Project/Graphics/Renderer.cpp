@@ -22,10 +22,11 @@ Renderer::Renderer() {
 	_projection = Matrix4x4::Ortho(0.0f, _windowSize.x, 0.0f, _windowSize.y, 0.1f, 1000.0f);
 	_all_graphics = new std::vector<Graphic*>();
 	_all_shaders = new std::vector<Shader*>();
-	_all_shaders->push_back(new Shader("Assets/Shaders/default.vert", "Assets/Shaders/default.frag"));
+	_all_shaders->push_back(new Shader("Assets/Shaders/default.vert", "Assets/Shaders/default.frag"));//0
 	_all_shaders->push_back(new Shader("Assets/Shaders/animated_sprite.vert", "Assets/Shaders/animated_sprite.frag"));
 	_all_shaders->push_back(new Shader("Assets/Shaders/outlineText.vert", "Assets/Shaders/outlineText.frag"));
 	_all_shaders->push_back(new Shader("Assets/Shaders/final_rect.vert", "Assets/Shaders/final_rect.frag"));
+	_all_shaders->push_back(new Shader("Assets/Shaders/diffuse.vert", "Assets/Shaders/diffuse.frag"));//4
 	//_all_shaders->push_back();
 
 	_all_textures = new std::vector<std::pair<const char*, Texture*>>();

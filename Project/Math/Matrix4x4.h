@@ -106,6 +106,7 @@ public:
 	const Vec3 operator*(const Vec3& v)const ;
 	void SetRotation(float ang);
 	static Matrix4x4 Ortho(float left, float right, float bot, float top, float near, float far);
+	static Matrix4x4 Perspective(const float fov, const float aspect, const float near, const float far);
 	static Matrix4x4 RotationMatrix(float ang);
 	static Matrix4x4 ScaleMatrix(Vec3 scale);
 	static Matrix4x4 TranslationMatrix(Vec3 pos);

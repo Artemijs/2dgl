@@ -67,9 +67,10 @@ void Game::Update(float deltaTime) {
 	
 }
 void Game::Draw() {
-	return;
-	//Renderer::instance()->DrawNodes(_world, _world);
-	Renderer::instance()->Draw(_world);
+	//return; WHO DID THIS?
+
+	Renderer::instance()->DrawNodes(_world, _world);
+	//Renderer::instance()->Draw(_world);
 	/*if (!_switch) {
 		Renderer::instance()->Draw(_world);
 	}

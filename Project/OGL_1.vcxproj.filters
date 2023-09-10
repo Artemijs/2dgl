@@ -97,6 +97,12 @@
     <Filter Include="Projects\3D\RayCastingTest">
       <UniqueIdentifier>{1e337fc9-d80f-4824-9949-55d150c5048e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Assets\Shaders\3D">
+      <UniqueIdentifier>{0ecd8593-8fdd-454b-b5e6-6b323485aa2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Shaders\2D">
+      <UniqueIdentifier>{e744ed9c-768e-4da8-9082-4ef43651e383}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -225,6 +231,12 @@
     <ClCompile Include="Projects\3D\RayCastingTest\RayCastTest.cpp">
       <Filter>Projects\3D\RayCastingTest</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Camera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\DiffuseMaterial.cpp">
+      <Filter>Source Files\Graphics\Materials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -344,6 +356,12 @@
     <ClInclude Include="Projects\3D\RayCastingTest\RayCastTest.h">
       <Filter>Projects\3D\RayCastingTest</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Materials\DiffuseMaterial.h">
+      <Filter>Header Files\Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Camera.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\AFX\btn_press.wav">
@@ -351,41 +369,47 @@
     </Media>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Shaders\default.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+    <None Include="Assets\Shaders\diffuse.frag">
+      <Filter>Resource Files\Assets\Shaders\3D</Filter>
     </None>
-    <None Include="Assets\Shaders\default.vert">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\outlineText.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\outlineText.vert">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+    <None Include="Assets\Shaders\diffuse.vert">
+      <Filter>Resource Files\Assets\Shaders\3D</Filter>
     </None>
     <None Include="Assets\Shaders\text.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="Assets\Shaders\text.vert">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
     <None Include="Assets\Shaders\animated_sprite.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
     <None Include="Assets\Shaders\animated_sprite.vert">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\final_rect.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+    <None Include="Assets\Shaders\default.frag">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\final_rect.vert">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+    <None Include="Assets\Shaders\default.vert">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
     <None Include="Assets\Shaders\defaultNoTex.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
     <None Include="Assets\Shaders\defaultNoTex.vert">
-      <Filter>Resource Files\Assets\Shaders</Filter>
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
+    <None Include="Assets\Shaders\final_rect.frag">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
+    <None Include="Assets\Shaders\final_rect.vert">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
+    <None Include="Assets\Shaders\outlineText.frag">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
+    <None Include="Assets\Shaders\outlineText.vert">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
+    <None Include="Assets\Shaders\text.vert">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

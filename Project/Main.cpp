@@ -25,8 +25,8 @@ int main() {
 	//g = new Game();
 	
 	g = DevGetGameType();
+	//g = new RayCastTest();
 	
-	//g = new MaterialTest();
 	
 	
 	glEnable(GL_BLEND);

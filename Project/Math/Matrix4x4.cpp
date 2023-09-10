@@ -202,9 +202,9 @@ Matrix4x4::Matrix4x4(const Matrix4x4& m) {
 Matrix4x4::Matrix4x4() {
 }
 Matrix4x4::Matrix4x4(float n) {
-	buff[0] = 1;
-	buff[5] = 1;
-	buff[10] = 1;
+	buff[0] = n;
+	buff[5] = n;
+	buff[10] = n;
 	/*
 	0 1 2 3
 	4 5 6 7
@@ -375,4 +375,21 @@ Matrix4x4 Matrix4x4::GetMatrix(Vec3 pos, Vec3 scale, float ang) {
 	
 	//tsr
 	return Matrix4x4::TranslationMatrix(pos) * Matrix4x4::ScaleMatrix(scale) * Matrix4x4::RotationMatrix(ang);
+}
+/// <summary>
+/// 3d camera perspective
+/// </summary>
+/// <param name="fov">in radians</param>
+/// <param name="aspect">width/height</param>
+/// <param name="near">0.1f, cant be 0 for mathematical reasons</param>
+/// <param name="far"> </param>
+/// <returns></returns>
+Matrix4x4 Matrix4x4::Perspective(const float fov, const float aspect, const float near, const float far) {
+	Matrix4x4 m;
+	m.buff[0] = 1 / (aspect * std::tanf(fov / 2));
+	m.buff[5] = 1 / (std::tanf(fov / 2));
+	m.buff[10] = -((far + near) / (far - near));
+	m.buff[11] = -((2 * far * near) / (far - near));
+	m.buff[14] = -1;
+	return m;
 }

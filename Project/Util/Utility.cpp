@@ -27,6 +27,19 @@ const float Utility::Dist2CLosest(const float min, const float max, const float 
 		return max_m_p;
 }
 
+float Utility::Deg2Rad(const float deg) {
+	return deg * 0.0174533f;
+}
+float Utility::Rad2Deg(const float rad) {
+	return  rad / 0.0174533f;
+}
+
+
+
+
+
+
+
 void Utility::PrintVector(const char* prefix, const Vec3& v) {
 	std::cout << prefix << "(" << v.x << " ," << v.y << " ," << v.z << ")\n";
 }
