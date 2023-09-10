@@ -103,6 +103,12 @@
     <Filter Include="Resource Files\Assets\Shaders\2D">
       <UniqueIdentifier>{e744ed9c-768e-4da8-9082-4ef43651e383}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\ShaderTests">
+      <UniqueIdentifier>{dd15d328-e374-4ac2-9644-2bfb7dff0a2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Shaders\Experimental">
+      <UniqueIdentifier>{e0143489-4fff-4833-ac89-348a135acefc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -237,6 +243,9 @@
     <ClCompile Include="Graphics\Materials\DiffuseMaterial.cpp">
       <Filter>Source Files\Graphics\Materials</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\ShaderTests\ShaterTest.cpp">
+      <Filter>Projects\ShaderTests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -362,6 +371,9 @@
     <ClInclude Include="Graphics\Camera.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Projects\ShaderTests\ShaterTest.h">
+      <Filter>Projects\ShaderTests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\AFX\btn_press.wav">
@@ -410,6 +422,12 @@
     </None>
     <None Include="Assets\Shaders\text.vert">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
+    <None Include="Assets\Shaders\Experimental\eperiment_0.frag">
+      <Filter>Resource Files\Assets\Shaders\Experimental</Filter>
+    </None>
+    <None Include="Assets\Shaders\Experimental\eperiment_0.vert">
+      <Filter>Resource Files\Assets\Shaders\Experimental</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

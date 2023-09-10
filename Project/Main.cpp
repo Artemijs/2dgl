@@ -20,12 +20,13 @@ void button_key_calls(GLFWwindow* window, int key, int scancode, int action, int
 #include "./Projects/CollisionTest/ColliisonTestGame.h"
 #include "./Projects/CollisionTest/CollisionTesMain.h"
 #include "./Projects/3D/RayCastingTest/RayCastTest.h"
+#include "./Projects/ShaderTests/ShaterTest.h"
 int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();
 	
-	g = DevGetGameType();
-	//g = new RayCastTest();
+	//g = DevGetGameType();
+	g = new ShaderTest();
 	
 	
 	

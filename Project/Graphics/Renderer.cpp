@@ -27,6 +27,7 @@ Renderer::Renderer() {
 	_all_shaders->push_back(new Shader("Assets/Shaders/outlineText.vert", "Assets/Shaders/outlineText.frag"));
 	_all_shaders->push_back(new Shader("Assets/Shaders/final_rect.vert", "Assets/Shaders/final_rect.frag"));
 	_all_shaders->push_back(new Shader("Assets/Shaders/diffuse.vert", "Assets/Shaders/diffuse.frag"));//4
+	_all_shaders->push_back(new Shader("Assets/Shaders/Experimental/eperiment_0.vert", "Assets/Shaders/Experimental/eperiment_0.frag"));
 	//_all_shaders->push_back();
 
 	_all_textures = new std::vector<std::pair<const char*, Texture*>>();
