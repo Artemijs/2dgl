@@ -24,7 +24,7 @@ void Graphic::Draw(const Matrix4x4* model) const {
 	_baseMaterial->Unbind();
 }
 	
- Material* Graphic::GetMaterial() const {
+Material* Graphic::GetMaterial() const {
 	return _baseMaterial;
 }
  const unsigned int Graphic::IndexCount() {

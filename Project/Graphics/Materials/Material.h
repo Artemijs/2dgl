@@ -3,20 +3,38 @@
 #include "../../Math/Matrix4x4.h"
 #include "../ShaderClass.h"
 #include "../Texture.h"
-class Material {
 
+
+class BaseMaterial {
 protected:
 	bool _transparent;
 	const Shader* _shader;
-	const Texture* _texture;
-	
+
+
 public :
 	Vec4 _color;
+	BaseMaterial();
+	BaseMaterial(const Shader* s);
+	~BaseMaterial();
+	virtual void Bind(const Matrix4x4* model) const;
+	virtual void Unbind() const;
+};
+
+
+class Material : public BaseMaterial{
+
+protected:
+
+	const Texture* _texture;
+public :
 	Material();
 	Material(const Shader* s, const char* texturePath);
+	/// <summary>
+	/// shaders and textures get deleted in renderer
+	/// </summary>
 	virtual ~Material();
-	virtual void Bind(const Matrix4x4* model) const ;
-	virtual void Unbind() const;
+	void Bind(const Matrix4x4* model) const override;
+	void Unbind() const override;
 	const Texture* GetTexture()const;
 	
 

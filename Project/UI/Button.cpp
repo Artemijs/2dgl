@@ -26,7 +26,7 @@ Button::Button():
 	AddComponent<MouseEvent>(mouse_e);	
 	
 	//init the material
-	_material = new MaterialButton();	
+	_material = new MaterialUiButton();	
 	
 	//add a back ground image
 	Sprite* btton_bg = new Sprite(_material);
@@ -72,7 +72,7 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnEndHover(); }, BtnEvent::ON_END_HOVER);	
 	AddComponent<MouseEvent>(mouse_e);	
 
-	_material = new MaterialButton();	
+	_material = new MaterialUiButton();	
 	Sprite* btton_bg = new Sprite(_material);
 	AddComponent<Sprite>(btton_bg);	
 

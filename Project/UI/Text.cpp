@@ -2,19 +2,19 @@
 #include <stb/stb_image.h>
 #include <fstream>
 #include "../Graphics/Renderer.h"
-#include "../Graphics/Materials/MaterialText.h"
+#include "../Graphics/Materials/MaterialUiText.h"
 #include "../Util/Utility.h"
 std::vector<CharData>* Text::_allData = new std::vector<CharData>();
 const unsigned int Text::_component_id = Utility::GetID();
 //"Assets/Fonts/arial.png"
 Text::Text( std::string txt,  BaseNode* owner, int fontSize, int maxCharPerLine) :
-	Graphic( new MaterialText(Renderer::instance()->GetShader(2), "Assets/Fonts/arial.png", &_vao)),
+	Graphic( new MaterialUiText(Renderer::instance()->GetShader(2), "Assets/Fonts/arial.png", &_vao)),
 	_text(txt),
 	_maxCharsPerLine(maxCharPerLine), 
 	_fontSize(fontSize),
 	_owner(owner)
 	{
-	_material = static_cast<MaterialText*>(_baseMaterial);
+	_material = static_cast<MaterialUiText*>(_baseMaterial);
 
 	if (txt.length() == 0) {
 		_text = " ";

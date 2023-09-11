@@ -2,10 +2,10 @@
 #define BUTTON_H
 
 #include "../Game/BaseNode.h"
-#include "../Graphics/Materials/MaterialButton.h"
+#include "../Graphics/Materials/MaterialUiButton.h"
 class Button : public BaseNode {
 private:
-	 MaterialButton* _material;
+	MaterialUiButton* _material;
 	 const unsigned int _pressedSfx;
 	 const unsigned int _releasedSfx;
 	 const unsigned int _enterSfx;

@@ -109,6 +109,12 @@
     <Filter Include="Resource Files\Assets\Shaders\Experimental">
       <UniqueIdentifier>{e0143489-4fff-4833-ac89-348a135acefc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graphics\Materials\UI">
+      <UniqueIdentifier>{64ab8ed0-c785-4e84-9f59-4e2960ad51d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Materials\UI">
+      <UniqueIdentifier>{b35f5aa1-ce21-4776-96f2-3f53e15da6d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -198,20 +204,8 @@
     <ClCompile Include="Math\Bounds.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Materials\MaterialDefault.cpp">
-      <Filter>Source Files\Graphics\Materials</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Materials\Material.cpp">
-      <Filter>Source Files\Graphics\Materials</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Materials\MaterialButton.cpp">
-      <Filter>Source Files\Graphics\Materials</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Text.cpp">
       <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Materials\MaterialText.cpp">
-      <Filter>Source Files\Graphics\Materials</Filter>
     </ClCompile>
     <ClCompile Include="Math\AABoxBounds.cpp">
       <Filter>Source Files\Math</Filter>
@@ -245,6 +239,18 @@
     </ClCompile>
     <ClCompile Include="Projects\ShaderTests\ShaterTest.cpp">
       <Filter>Projects\ShaderTests</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\MaterialUiSprite.cpp">
+      <Filter>Source Files\Graphics\Materials\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\MaterialUiButton.cpp">
+      <Filter>Source Files\Graphics\Materials\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\MaterialUiText.cpp">
+      <Filter>Source Files\Graphics\Materials\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\Material.cpp">
+      <Filter>Source Files\Graphics\Materials\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,20 +329,8 @@
     <ClInclude Include="UI\Button.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Materials\Material.h">
-      <Filter>Header Files\Graphics\Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Materials\MaterialDefault.h">
-      <Filter>Header Files\Graphics\Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Materials\MaterialButton.h">
-      <Filter>Header Files\Graphics\Materials</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Text.h">
       <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\Materials\MaterialText.h">
-      <Filter>Header Files\Graphics\Materials</Filter>
     </ClInclude>
     <ClInclude Include="Math\SphereBounds.h">
       <Filter>Header Files\Math</Filter>
@@ -374,6 +368,18 @@
     <ClInclude Include="Projects\ShaderTests\ShaterTest.h">
       <Filter>Projects\ShaderTests</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Materials\MaterialUiSprite.h">
+      <Filter>Header Files\Graphics\Materials\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Materials\Material.h">
+      <Filter>Header Files\Graphics\Materials\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Materials\MaterialUiButton.h">
+      <Filter>Header Files\Graphics\Materials\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Materials\MaterialUiText.h">
+      <Filter>Header Files\Graphics\Materials\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\AFX\btn_press.wav">
@@ -387,19 +393,19 @@
     <None Include="Assets\Shaders\diffuse.vert">
       <Filter>Resource Files\Assets\Shaders\3D</Filter>
     </None>
-    <None Include="Assets\Shaders\text.frag">
+    <None Include="Assets\Shaders\ui_text.frag">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\animated_sprite.frag">
+    <None Include="Assets\Shaders\ui_animated_sprite.frag">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\animated_sprite.vert">
+    <None Include="Assets\Shaders\ui_animated_sprite.vert">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\default.frag">
+    <None Include="Assets\Shaders\ui_sprite.frag">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\default.vert">
+    <None Include="Assets\Shaders\ui_sprite.vert">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
     <None Include="Assets\Shaders\defaultNoTex.frag">
@@ -414,13 +420,13 @@
     <None Include="Assets\Shaders\final_rect.vert">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\outlineText.frag">
+    <None Include="Assets\Shaders\ui_outlineText.frag">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\outlineText.vert">
+    <None Include="Assets\Shaders\ui_outlineText.vert">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
-    <None Include="Assets\Shaders\text.vert">
+    <None Include="Assets\Shaders\ui_text.vert">
       <Filter>Resource Files\Assets\Shaders\2D</Filter>
     </None>
     <None Include="Assets\Shaders\Experimental\eperiment_0.frag">

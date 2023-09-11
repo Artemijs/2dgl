@@ -7,7 +7,7 @@
 #include "../BackEnd/VBO.h"
 #include "../BackEnd/EBO.h"
 #include "../Math/Matrix4x4.h"
-#include "../Graphics/Materials/MaterialText.h"
+#include "../Graphics/Materials/MaterialUiText.h"
 #include "../Game/BaseNode.h"
 //char id=32 x=0 y=0 width=0 height=0 xoffset=1 yoffset=1 xadvance=43 page=0 chnl=15
 struct CharData {
@@ -35,7 +35,7 @@ private:
 	//int _indexCount;		
 	int _fontSize;			
 	std::string _text;		
-	MaterialText* _material;
+	MaterialUiText* _material;
 	Vec2 GetUV(CharData cd, int corner);
 	void SetVert(int charCount, Vec3 pos, char c, GLfloat* verts, Vec2 uvs);
 	void SetIndices(int topRight, GLuint* indices, int indexCount);

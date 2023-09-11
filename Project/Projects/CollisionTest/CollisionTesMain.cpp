@@ -5,7 +5,7 @@
 #include "../../Math/SphereBounds.h"
 //
 #include "../../UI/Button.h"
-
+#include "../../Graphics/Materials/DiffuseMaterial.h"
 CollisionTestMain::CollisionTestMain():Game() {
 	
 	//Vec2 test = Vec2(5, 10);
@@ -210,29 +210,36 @@ MaterialTest::MaterialTest() :Game() {
 	float startY = 100;
 	Vec3 size = Vec3(200, 75, 1);
 	
-	BaseNode* btn = new Button("Hi!", Vec3(startX, startY, 0), size, 0);
+	BaseNode* btn = new Button("Hi!", Vec3(startX, startY, 0), size, 0);			
 	Material* mtrl = btn->GetComponent<Sprite>(Sprite::_component_id)->GetMaterial();
 	mtrl->_color = Vec4(0.0f, 0.5f, 5.0f, 0.1f);
 	_world->AddChild(btn);
 
+
+	/*
 	//mtrl->Bind(Matrix4x4(1.0f));
-	startX += size.x*0.5f;
+	startX += size.x * 0.5f;
 	//startY += size.y+20;
-	
-	//sprite
+	*/
+	//											SPRITE WITH IMAGE, MATERIAL_UI_SPRITE
 	BaseNode* img = new BaseNode(Vec3(startX, startY, 0), size, 0);
 	img->AddComponent(new Sprite("Assets/Textures/temp.png"));
-	img->GetComponent<Sprite>()->GetMaterial()->_color = Vec4(1.0f, 1.0f, 1.0f, 1.5f);
+	//img->GetComponent<Sprite>()->GetMaterial()->_color = Vec4(1.0f, 1.0f, 1.0f, 1.5f);
 	_world->AddChild(img);
 	
 	//startY += size.y + 20;
-	startX += size.x*0.5f;
 
-	Material* m = new MaterialDefault(r->GetShader(0), "Assets/Textures/temp.png");
+
+	startX += size.x*0.5f;
+	//											PLANE WITH DEFAULT DIFFUSE SHADER
+	/*Material* m = new DiffuseMaterial();
 	m->_color = Vec4(1.0f, 1.0f, 0.0f, 1.0f);
 	BaseNode* img2 = new BaseNode(Vec3(startX, startY, 0), size, 0);
 	img2->AddComponent(new Sprite(m));
 	_world->AddChild(img2);
+	*/
+
+
 	//text
 	//Text
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -256,7 +263,7 @@ void MaterialTest::HandleKeyInputs(int key, int action, int mods) {
 void MaterialTest::Update(float deltaTime) {
 	Game::Update(deltaTime);
 
-	Draw();
+	//Draw();
 
 
 

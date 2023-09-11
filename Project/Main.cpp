@@ -26,7 +26,7 @@ int main() {
 	//g = new Game();
 	
 	//g = DevGetGameType();
-	g = new ShaderTest();
+	g = new MaterialTest();
 	
 	
 	

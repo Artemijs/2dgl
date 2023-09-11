@@ -2,14 +2,15 @@
 #include "../../Graphics/Renderer.h";
 #include "../../Graphics/Materials/DiffuseMaterial.h"
 ShaderTest::ShaderTest() :Game(){
-
+	//https://www.youtube.com/watch?v=ye_JlwUIyto&list=PL4neAtv21WOmIrTrkNO3xCyrxg4LKkrF7&index=16
+	//do that next
 	_time = 0;
 	//create a plane
 	Renderer* r = Renderer::instance();
 	BaseNode* bn = new BaseNode(Vec3(400, 400, -5), Vec3(800, 800, 1), 0);
 
 		
-	Material* m = new MaterialDefault(r->GetShader(5), "Assets/Textures/default.png");
+	Material* m = new MaterialUiSprite(r->GetShader(5), "Assets/Textures/default.png");
 	m->_color = Vec4(1, 2, 3, 1);
 	bn->AddComponent<Sprite>(new Sprite(m));
 	_world->AddChild(bn);
