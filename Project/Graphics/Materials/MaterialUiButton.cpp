@@ -1,13 +1,13 @@
 #include "MaterialUiButton.h"
 #include "../Renderer.h"
 MaterialUiButton::MaterialUiButton():
-	Material(Renderer::instance()->GetShader(1), "Assets/Textures/btn.png"),
+	Material(Renderer::instance()->GetShader(2), "Assets/Textures/btn.png"),
 	_texScale(Vec2(1, 0.25f)),
 	_uvOffset(Vec2(0, 3)){
 	//_shader = Renderer::instance()->GetShader(0);
 }
 MaterialUiButton::MaterialUiButton(const char* texturePath): 
-	Material(Renderer::instance()->GetShader(1), texturePath),
+	Material(Renderer::instance()->GetShader(2), texturePath),
 	_texScale(Vec2(1, 0.25f)),
 	_uvOffset( Vec2(0, 3)){
 

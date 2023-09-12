@@ -8,7 +8,7 @@
 /// Point to AABB a nd POINT to Circle
 /// 
 
-bool CollisionDetection::_print = true;
+bool CollisionDetection::_print = false;
 
 
 SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {

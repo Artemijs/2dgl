@@ -43,6 +43,7 @@ public:
 	void HandleKeyInputs(int key, int action, int mods) override;
 	void Play(const bool on);
 	void Draw();
+	void TestMaterials();
 };
 
 

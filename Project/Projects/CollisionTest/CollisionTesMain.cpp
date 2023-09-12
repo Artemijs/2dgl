@@ -263,9 +263,73 @@ void MaterialTest::HandleKeyInputs(int key, int action, int mods) {
 void MaterialTest::Update(float deltaTime) {
 	Game::Update(deltaTime);
 
-	//Draw();
+	Draw();
 
 
+
+}
+#include "../../Graphics/Materials/DiffuseMaterial.h"
+void MaterialTest::TestMaterials() {
+	
+	Renderer* r = Renderer::instance();
+	Matrix4x4 translation = Matrix4x4::TranslationMatrix(Vec3(0, 100, 0));
+	//											DIFFUSE MATERIAL
+	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), 0);
+	BaseMaterial* diffuseMat = new BaseMaterial();
+	diffuseMat->_color = Vec4(0.5f, 0.6, 0.1f, 1);
+	diffuseMat->Bind(&m1);	
+	r->GetVAO()->Bind();	
+						
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glUseProgram(0);
+
+
+	//											MATERIAL
+	m1 =  translation * m1;
+	BaseMaterial* mat = new Material();
+	mat->Bind(&m1);
+	r->GetVAO()->Bind();
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glUseProgram(0);
+
+
+	//											MATERIAL BUTTON
+	m1 = translation * m1;
+	BaseMaterial* btnMat= new MaterialUiButton();
+	btnMat->Bind(&m1);
+	r->GetVAO()->Bind();
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glUseProgram(0);
+
+
+	//											MATERIAL SPRITE
+	m1 = translation * m1;
+	BaseMaterial* spriteMat = new MaterialUiSprite();
+	spriteMat->Bind(&m1);
+	r->GetVAO()->Bind();
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glUseProgram(0);
+
+
+	delete diffuseMat;
+	delete mat;
+	delete btnMat;
+	delete spriteMat;
 
 }
 void MaterialTest::Draw() {
@@ -276,11 +340,13 @@ void MaterialTest::Draw() {
 	Matrix4x4 m = Matrix4x4::GetMatrix(Vec3(400, 400, -3), Vec3(100,100, 1), 0)  ;
 	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(350, 350, -2), Vec3(100, 100, 1), 0);
 	Matrix4x4 m2 = Matrix4x4::GetMatrix(Vec3(400, 350, -1), Vec3(100, 100, 1), 0);
+	Matrix4x4 m3 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), 0);
 	Renderer* r = Renderer::instance();
 	const Texture* t = r->LoadTexture("Assets/Textures/default.png");
 	const Texture* t1 = r->LoadTexture("Assets/Textures/pogcattile.png");
 	const Texture* t2 = r->LoadTexture("Assets/Textures/temp.png");
 	Shader* s = new Shader("Assets/Shaders/defaultNoTex.vert", "Assets/Shaders/defaultNoTex.frag");
+	//Shader* s2 = Renderer::instance()->GetShader(1);
 	
 	
 	//Renderer::instance()->Draw(_world);
@@ -289,6 +355,9 @@ void MaterialTest::Draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	auto children = _world->GetAllChildren();
 	
+	TestMaterials();
+
+
 
 	s->Activate();
 	

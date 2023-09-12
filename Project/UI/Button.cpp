@@ -70,13 +70,13 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnLeave(); }, BtnEvent::ON_LEAVE);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnHover(); }, BtnEvent::ON_HOVER);			
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnEndHover(); }, BtnEvent::ON_END_HOVER);	
-	AddComponent<MouseEvent>(mouse_e);	
-
-	_material = new MaterialUiButton();	
-	Sprite* btton_bg = new Sprite(_material);
-	AddComponent<Sprite>(btton_bg);	
-
-	AddComponent<BoxBounds>(new BoxBounds(this));
+	AddComponent<MouseEvent>(mouse_e);				
+													
+	_material = new MaterialUiButton();				
+	Sprite* btton_bg = new Sprite(_material);		
+	AddComponent<Sprite>(btton_bg);					
+													
+	AddComponent<BoxBounds>(new BoxBounds(this));	
 	BaseNode* bm = new BaseNode(Vec3(0, 0, 0.10f), Vec3(1,1,1), 0);
 	bool bools[3] = { true, false, true};
 	bm->SetInheritTransform(bools);		
