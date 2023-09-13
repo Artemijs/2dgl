@@ -5,16 +5,21 @@ RayCastTest::RayCastTest() {
 	//create a plane
 	Renderer* r = Renderer::instance();
 	_3d = false;
-	_fov = Utility::Deg2Rad(100);
+	_fov = Utility::Deg2Rad(90);
 	_near = 0.1f;
-	_far = 10.0f;
+	_far = 1000.0f;
 	_aspect = r->GetWindowSize().x / r->GetWindowSize().y;
-	BaseNode* bn = new BaseNode(Vec3(400, 400, -5), Vec3(200, 200, 1), 0);
 
-		
-	Material* m = new DiffuseMaterial(r->GetShader(0), "Assets/Textures/default.png");
+
+	BaseNode* bn = new BaseNode(Vec3(10, 100, -200), Vec3(100, 100, 1), 0);
+	Material* m = new MaterialUiSprite();
 	bn->AddComponent<Sprite>(new Sprite(m));
 	_world->AddChild(bn);
+
+	BaseNode* bn1 = new BaseNode(Vec3(0, 0, -500), Vec3(100, 100, 1), 0);
+	//Material* m = new MaterialUiSprite();
+	bn1->AddComponent<Sprite>(new Sprite(new MaterialUiSprite()));
+	_world->AddChild(bn1);
 }
 
 RayCastTest::~RayCastTest() {
@@ -23,6 +28,10 @@ RayCastTest::~RayCastTest() {
 
 void RayCastTest::Update(float deltaTime) {
 	Game::Update(deltaTime);
+	if (_3d) {
+		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
+		_fov += Utility::Deg2Rad(1);
+	}
 }
 void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 	if (action == 2) return;

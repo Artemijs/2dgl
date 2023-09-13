@@ -10,6 +10,15 @@ Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(
 	_orientation = Vec3(0.0f, 0.0f, -1.0f);
 
 }
+void Camera::CalculateViewMatrix() {
+	
+	Vec3 Z = _orientation;
+	Vec3 X = Vec3::Cross(_up, Z);
+	X.Normalize();
+	Vec3 Y = Vec3::Cross(Z, X);
+	Y.Normalize();
+	_viewMatrix = Matrix4x4::GetCameraMatrix(X, Y, Z, _position);
+}
 Matrix4x4* Camera::GetCamera() {
 	return &_viewMatrix;
 }

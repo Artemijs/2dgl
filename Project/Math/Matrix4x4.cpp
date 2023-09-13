@@ -176,6 +176,19 @@ const float Vec3::Distance(const float ax, const float ay, const float az, const
 const float Vec3::Lenght(const Vec3& v) {
 	return std::sqrtf((v.x*v.x)+(v.y*v.y)+(v.z*v.z));
 }
+
+//a * b = x(aybz - azby) + y(azbx - axbz) +z(axby - aybx)
+Vec3 Vec3::Cross(const Vec3& a, const Vec3& b) {
+	/*
+		ay* bz - az * b.y,
+		az* b.x - ax * b.z,
+		ax* b.y - ay * b.x
+	*/
+	return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+}
+
+
+
 Vec4::Vec4() {
 	x = 0; y = 0; z = 0; a = 1;
 }
@@ -391,5 +404,27 @@ Matrix4x4 Matrix4x4::Perspective(const float fov, const float aspect, const floa
 	m.buff[10] = -((far + near) / (far - near));
 	m.buff[11] = -((2 * far * near) / (far - near));
 	m.buff[14] = -1;
+	return m;
+}
+Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O) {
+	Matrix4x4 m;
+	//0 4 8  X
+	m.buff[0] = X.x;
+	m.buff[4] = X.y;
+	m.buff[8] = X.z;
+	//1 5 9  y
+	m.buff[1] = Y.x;
+	m.buff[5] = Y.y;
+	m.buff[9] = Y.z;
+	//2 6 10 z
+	m.buff[2] = Z.x;
+	m.buff[6] = Z.y;
+	m.buff[10] = Z.z;
+	//3 7 11 O
+	m.buff[3] = O.x;
+	m.buff[7] = O.y;
+	m.buff[11] = O.z;
+
+	m.buff[15] = 1.0f;
 	return m;
 }

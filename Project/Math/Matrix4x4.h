@@ -69,6 +69,7 @@ public:
 	static const float Distance(const Vec3& a, const Vec3& b);
 	static const float Distance(const float ax, const float ay, const float az,const float bx, const float by, const float bz);
 	static const float Lenght(const Vec3& v);
+	static Vec3 Cross(const Vec3& a, const Vec3& b);
 };
 class Vec4
 {
@@ -111,6 +112,7 @@ public:
 	static Matrix4x4 ScaleMatrix(Vec3 scale);
 	static Matrix4x4 TranslationMatrix(Vec3 pos);
 	static Matrix4x4 GetMatrix(Vec3 pos, Vec3 scale, float ang);
+	static Matrix4x4 GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O);
 	//float GetAngle();
 	Vec3 GetPosition();
 	Vec3 GetSize();

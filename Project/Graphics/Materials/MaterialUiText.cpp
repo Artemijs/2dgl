@@ -5,16 +5,16 @@
 /// changed BINd function not tested
 /// </summary>
 MaterialUiText::MaterialUiText():
-	Material(Renderer::instance()->GetShader(2), "Assets/Textures/btn.png")
+	Material(Renderer::instance()->GetShader(3), "Assets/Textures/btn.png")
 {
 }
 MaterialUiText::MaterialUiText(const char* texturePath, const VAO** vao):
-	Material(Renderer::instance()->GetShader(2), texturePath),
+	Material(Renderer::instance()->GetShader(3), texturePath),
 	_vao(vao)
 {
 
 }MaterialUiText::MaterialUiText(const Shader* shader, const char* texturePath, const VAO** vao) :
-	Material(Renderer::instance()->GetShader(2), texturePath),
+	Material(Renderer::instance()->GetShader(3), texturePath),
 	_vao(vao)
 {
 

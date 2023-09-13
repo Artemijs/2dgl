@@ -49,23 +49,9 @@ const Texture* Material::GetTexture() const {
 /// </summary>
 /// <param name="model"></param>
 void Material::Bind(const Matrix4x4* model) const {
-	/*_shader->Activate();
-	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &model->buff[0]);
-	Renderer::instance()->SetShaderVariables(_shader->ID);
-	glUniform4f(glGetUniformLocation(_shader->ID, "color"), _color.x, _color.y, _color.z, _color.a);
+	BaseMaterial::Bind(model);
 	_texture->Bind();
 	_texture->texUni(_shader, "tex0", 0);
-	*/
-
-	_shader->Activate();
-
-	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &model->buff[0]);
-	Renderer::instance()->SetShaderVariables(_shader->ID);
-
-	_texture->Bind();
-	_texture->texUni(_shader, "tex0", 0);
-	glUniform4f(glGetUniformLocation(_shader->ID, "color"), _color.x, _color.y, _color.z, _color.a);
-	
 }
 void Material::Unbind()const {
 	BaseMaterial::Unbind();

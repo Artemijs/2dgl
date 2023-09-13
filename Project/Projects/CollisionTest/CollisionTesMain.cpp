@@ -210,17 +210,17 @@ MaterialTest::MaterialTest() :Game() {
 	float startY = 100;
 	Vec3 size = Vec3(200, 75, 1);
 	
-	BaseNode* btn = new Button("Hi!", Vec3(startX, startY, 0), size, 0);			
+	btn = new Button("Hi!", Vec3(startX, startY, 0), size, 0);			
 	Material* mtrl = btn->GetComponent<Sprite>(Sprite::_component_id)->GetMaterial();
-	mtrl->_color = Vec4(0.0f, 0.5f, 5.0f, 0.1f);
+	//mtrl->_color = Vec4(0.0f, 0.5f, 5.0f, 0.1f);
 	_world->AddChild(btn);
 
 
-	/*
+	
 	//mtrl->Bind(Matrix4x4(1.0f));
-	startX += size.x * 0.5f;
+	startX += size.x;
 	//startY += size.y+20;
-	*/
+	
 	//											SPRITE WITH IMAGE, MATERIAL_UI_SPRITE
 	BaseNode* img = new BaseNode(Vec3(startX, startY, 0), size, 0);
 	img->AddComponent(new Sprite("Assets/Textures/temp.png"));
@@ -263,7 +263,7 @@ void MaterialTest::HandleKeyInputs(int key, int action, int mods) {
 void MaterialTest::Update(float deltaTime) {
 	Game::Update(deltaTime);
 
-	Draw();
+	//Draw();
 
 
 
@@ -273,6 +273,10 @@ void MaterialTest::TestMaterials() {
 	
 	Renderer* r = Renderer::instance();
 	Matrix4x4 translation = Matrix4x4::TranslationMatrix(Vec3(0, 100, 0));
+
+	
+
+
 	//											DIFFUSE MATERIAL
 	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), 0);
 	BaseMaterial* diffuseMat = new BaseMaterial();
@@ -324,6 +328,23 @@ void MaterialTest::TestMaterials() {
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);
+
+
+	//											BUTTON
+	//btn->GetGraphic()->Draw(btn->GetModelMatrix());
+
+	const Matrix4x4* btnm = btn->GetModelMatrix();
+	BaseMaterial* btnMat1 = btn->GetGraphic()->GetMaterial();
+	//btnMat1->_color = Vec4(0.5f, 0.6, 0.1f, 1);
+	btnMat1->Bind(btnm);
+	r->GetVAO()->Bind();
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glUseProgram(0);
+
 
 
 	delete diffuseMat;

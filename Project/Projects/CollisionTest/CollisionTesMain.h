@@ -36,7 +36,8 @@ public:
 
 class MaterialTest :public Game {
 private:
-public:
+	BaseNode* btn;
+public :
 	MaterialTest();
 	~MaterialTest() override;
 	void Update(float deltaTime) override;

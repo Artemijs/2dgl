@@ -135,7 +135,27 @@ void Renderer::CreateWindow() {
 */
 ///debug function that draws everything to _fbo with root model matrix
 void Renderer::Draw(const BaseNode* n) {
-	bool isRoot = (n->GetParent() == NULL);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	const std::vector<BaseNode*>* children = n->GetAllChildren();
+
+	if (children != NULL) {
+		for (int i = 0; i < children->size(); ++i) {
+			auto child = children->at(i);
+			auto  comps = child->Components();
+			for (int i = 0; i < comps->size(); ++i) {
+				if (comps->at(i)->second->IsGraphic()) {
+					
+					dynamic_cast<Graphic*>(comps->at(i)->second)->Draw(child->GetModelMatrix());
+				}
+			}
+		}
+	}
+
+	/*bool isRoot = (n->GetParent() == NULL);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 
@@ -175,7 +195,7 @@ void Renderer::Draw(const BaseNode* n) {
 		_fRect->Unbind();
 		glBindTexture(GL_TEXTURE_2D, 0);
 
-	}
+	}*/
 	/*bool isRoot = (n->GetParent() == NULL);
 	auto children = n->GetAllChildren();
 	auto graphic = n->GetGraphic();
@@ -280,7 +300,6 @@ const Texture* Renderer::LoadTexture(const char* path) {
 #include "../Util/Utility.h"
 #include "../Game/FBOComponent.h"
 void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
-
 	bool renderNode = Utility::IsRenderNode(node);
 	bool isRoot = (node->GetParent() == NULL);
 	//RenderNode* rn = NULL;
@@ -328,11 +347,11 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	else {
-		
+
 		//check if it is a drawable type 
 		//check if node has a graphic component 
 		//if (node->GetNodeType() == 1) {
-		if(!renderNode){
+		if (!renderNode) {
 
 			auto  comps = node->Components();
 			for (int i = 0; i < comps->size(); ++i) {
@@ -340,7 +359,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 					dynamic_cast<Graphic*>(comps->at(i)->second)->Draw(node->GetModelMatrix());
 				}
 			}
-			
+
 		}
 		else if (renderNode) {
 			//unbind prev FBO
