@@ -20,5 +20,7 @@ public:
 	Camera(unsigned int height, unsigned int width, Vec3 position);
 	void CalculateViewMatrix();
 	Matrix4x4* GetCamera();
+	Vec3 GetPosition();
+	void SetPosition(Vec3 pos);
 };
 #endif // !CAMERA_H

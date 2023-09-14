@@ -166,6 +166,7 @@
     <ClCompile Include="Graphics\Graphic.cpp" />
     <ClCompile Include="Graphics\Materials\DiffuseMaterial.cpp" />
     <ClCompile Include="Graphics\Materials\Material.cpp" />
+    <ClCompile Include="Graphics\Materials\MaterialSprite.cpp" />
     <ClCompile Include="Graphics\Materials\MaterialUiButton.cpp" />
     <ClCompile Include="Graphics\Materials\MaterialUiSprite.cpp" />
     <ClCompile Include="Graphics\Materials\MaterialUiText.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Graphics\Graphic.h" />
     <ClInclude Include="Graphics\Materials\DiffuseMaterial.h" />
     <ClInclude Include="Graphics\Materials\Material.h" />
+    <ClInclude Include="Graphics\Materials\MaterialSprite.h" />
     <ClInclude Include="Graphics\Materials\MaterialUiButton.h" />
     <ClInclude Include="Graphics\Materials\MaterialUiSprite.h" />
     <ClInclude Include="Graphics\Materials\MaterialUiText.h" />
@@ -242,6 +244,8 @@
     <Media Include="Assets\AFX\btn_press.wav" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shaders\sprite.frag" />
+    <None Include="Assets\Shaders\sprite.vert" />
     <None Include="Assets\Shaders\ui_animated_sprite.frag" />
     <None Include="Assets\Shaders\ui_animated_sprite.vert" />
     <None Include="Assets\Shaders\ui_sprite.frag" />

@@ -7,7 +7,7 @@ Camera::Camera() {
 
 Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(width), _height(height), _position(position){
 	_up = Vec3(0.0f, 1.0f, 0.0f);
-	_orientation = Vec3(0.0f, 0.0f, -1.0f);
+	_orientation = Vec3(0.0f, 0.0f, 1.0f);
 
 }
 void Camera::CalculateViewMatrix() {
@@ -21,4 +21,10 @@ void Camera::CalculateViewMatrix() {
 }
 Matrix4x4* Camera::GetCamera() {
 	return &_viewMatrix;
+}
+Vec3 Camera::GetPosition() {
+	return _position;
+}
+void Camera::SetPosition(Vec3 pos) {
+	_position = pos;
 }

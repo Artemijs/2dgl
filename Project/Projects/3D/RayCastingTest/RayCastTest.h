@@ -12,6 +12,8 @@ private:
 	float _near;
 	float _far;
 	float _aspect;
+	BaseNode* bn1;
+	float x;
 public :
 	RayCastTest();
 	~RayCastTest();

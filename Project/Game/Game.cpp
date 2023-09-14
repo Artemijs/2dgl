@@ -59,7 +59,7 @@ void Game::Update(float deltaTime) {
 	ypos = Renderer::instance()->GetWindowSize().y - ypos;
 	MouseEventHandler::HandleMouseMoving(Vec3(xpos, ypos, 0), deltaTime);
 	MouseEventHandler::Update(deltaTime);
-
+	Renderer::instance()->GetCamera()->CalculateViewMatrix();
 	//KEYBOARD EVENTS
 	//std::cout << "game update\n";
 

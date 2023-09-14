@@ -16,7 +16,7 @@
 #include <utility>
 #include "../BackEnd/FinalRect.h"
 #include "../Game/BaseNode.h"
-
+#include "Camera.h"
 class Renderer {
 
 private:
@@ -51,6 +51,7 @@ private:
 	std::vector<std::pair<const char*, Texture*>>* _all_textures;
 	Renderer();
 	static Renderer* _instance;
+	Camera* _camera;
 
 	//Graphic* _testG;
 	//const unsigned int fb
@@ -64,14 +65,15 @@ public:
 	void Draw(const BaseNode* n);
 	void DrawNodes(BaseNode* node, BaseNode* last);
 	VAO* GetVAO();
-	void AddGraphic(Graphic* g) {
-		_all_graphics->push_back(g);
-	}
+	void AddGraphic(Graphic* g) {						
+		_all_graphics->push_back(g);					
+	}													
 	void SetShaderVariables(const unsigned int shaderID);
-	Shader* GetShader(int id);
-	Texture* GetTexture(int id);
-	const Texture* LoadTexture(const char* path);
+	Shader* GetShader(int id);							
+	Texture* GetTexture(int id);						
+	const Texture* LoadTexture(const char* path);		
 	Matrix4x4* GetProjection();
+	Camera* GetCamera();
 };
 
 

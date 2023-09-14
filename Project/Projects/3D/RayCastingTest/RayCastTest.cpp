@@ -1,6 +1,7 @@
 #include "./RayCastTest.h"
 #include "../../../Graphics/Renderer.h";
 #include "../../../Graphics/Materials/DiffuseMaterial.h"
+#include "../../../Graphics/Materials/MaterialSprite.h"
 RayCastTest::RayCastTest() {
 	//create a plane
 	Renderer* r = Renderer::instance();
@@ -9,16 +10,13 @@ RayCastTest::RayCastTest() {
 	_near = 0.1f;
 	_far = 1000.0f;
 	_aspect = r->GetWindowSize().x / r->GetWindowSize().y;
+	x = 0;
 
+	
 
-	BaseNode* bn = new BaseNode(Vec3(10, 100, -200), Vec3(100, 100, 1), 0);
-	Material* m = new MaterialUiSprite();
-	bn->AddComponent<Sprite>(new Sprite(m));
-	_world->AddChild(bn);
-
-	BaseNode* bn1 = new BaseNode(Vec3(0, 0, -500), Vec3(100, 100, 1), 0);
+	bn1 = new BaseNode(Vec3(100, 100, -500), Vec3(100, 100, 1), 0);
 	//Material* m = new MaterialUiSprite();
-	bn1->AddComponent<Sprite>(new Sprite(new MaterialUiSprite()));
+	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(bn1);
 }
 
@@ -28,6 +26,15 @@ RayCastTest::~RayCastTest() {
 
 void RayCastTest::Update(float deltaTime) {
 	Game::Update(deltaTime);
+	Renderer* r = Renderer::instance();
+	Camera* cam = r->GetCamera();
+	Vec3 p = ( (*r->GetProjection()) * (*r->GetCamera()->GetCamera()) * (*bn1->GetModelMatrix()) ) * Vec3(100, 100, 0);
+	Utility::PrintVector("P with camera : ", p);
+	p = ((*r->GetProjection()) * (*bn1->GetModelMatrix())) * Vec3(100, 100, 0);
+	Utility::PrintVector("P without camera : ", p);
+	x += 0.5f * deltaTime;
+	cam->SetPosition(cam->GetPosition() + Vec3(x, 0, 0));
+
 	if (_3d) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		_fov += Utility::Deg2Rad(1);

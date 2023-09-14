@@ -29,6 +29,7 @@ Renderer::Renderer() {
 	_all_shaders->push_back(new Shader("Assets/Shaders/final_rect.vert", "Assets/Shaders/final_rect.frag"));//4
 	_all_shaders->push_back(new Shader("Assets/Shaders/diffuse.vert", "Assets/Shaders/diffuse.frag"));
 	_all_shaders->push_back(new Shader("Assets/Shaders/Experimental/eperiment_0.vert", "Assets/Shaders/Experimental/eperiment_0.frag"));
+	_all_shaders->push_back(new Shader("Assets/Shaders/sprite.vert", "Assets/Shaders/sprite.frag"));
 	//_all_shaders->push_back();
 
 	_all_textures = new std::vector<std::pair<const char*, Texture*>>();
@@ -37,7 +38,7 @@ Renderer::Renderer() {
 
 	_fRect = new FinalRect();
 
-
+	_camera = new Camera(_windowSize.x, _windowSize.y, Vec3());
 }
 Renderer::~Renderer() {
 
@@ -399,4 +400,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 
 Matrix4x4* Renderer::GetProjection() {
 	return &_projection;
+}
+Camera* Renderer::GetCamera() {
+	return _camera;
 }

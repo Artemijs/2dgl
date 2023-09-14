@@ -252,6 +252,9 @@
     <ClCompile Include="Graphics\Materials\Material.cpp">
       <Filter>Source Files\Graphics\Materials\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Materials\MaterialSprite.cpp">
+      <Filter>Source Files\Graphics\Materials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -380,6 +383,9 @@
     <ClInclude Include="Graphics\Materials\MaterialUiText.h">
       <Filter>Header Files\Graphics\Materials\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Materials\MaterialSprite.h">
+      <Filter>Header Files\Graphics\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\AFX\btn_press.wav">
@@ -434,6 +440,12 @@
     </None>
     <None Include="Assets\Shaders\Experimental\eperiment_0.vert">
       <Filter>Resource Files\Assets\Shaders\Experimental</Filter>
+    </None>
+    <None Include="Assets\Shaders\sprite.frag">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\sprite.vert">
+      <Filter>Resource Files\Assets\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
