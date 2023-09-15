@@ -356,6 +356,10 @@ Matrix4x4 Matrix4x4 ::Ortho(float left, float right, float bot, float top, float
 	m.buff[11] = -(far + near)/(far - near);
 	return m;
 }
+/// <summary>
+/// this only works for one axis at the moment
+/// </summary>
+/// <param name="ang"></param>
 void Matrix4x4::SetRotation(float ang) {
 	buff[0] = cos(ang);
 	buff[1] = -sin(ang);
@@ -426,5 +430,23 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 	m.buff[11] = O.z;
 
 	m.buff[15] = 1.0f;
+	return m;
+}
+Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
+	//this needs to be a 3x3 matrix
+	Matrix4x4 m = Matrix4x4(1.0f);
+	m.buff[0] = cosf(rotation) + pow(axis.x, 2) * (1 - cosf(rotation));
+	m.buff[1] = axis.x * axis.y * (1 - cosf(rotation)) - axis.z * sinf(rotation);
+	m.buff[2] = axis.x * axis.z * (1 - cosf(rotation)) + axis.y * sinf(rotation);
+	
+	m.buff[3] = axis.y * axis.x * (1 - cosf(rotation)) + axis.z * sinf(rotation);
+	m.buff[4] = cosf(rotation) + pow(axis.y, 2) * 1 - cosf(rotation);
+	m.buff[5] = axis.y * axis.z * (1 - cos(rotation)) - axis.x * sinf(rotation);
+
+	m.buff[6] = axis.z * axis.x * (1 - cos(rotation)) - axis.y * sinf(rotation);
+	m.buff[7] = axis.z * axis.y * (1 - cos(rotation)) + axis.x * sinf(rotation);
+	//m.buff[8] = cosf(rotation) + pow(axis.z, 2) * sinf(rotation) + axis.x * sinf(rotation);
+	//m.buff[8] = cosf(rotation) + pow(axis.z, 2) * sinf(rotation) + axis.x * sinf(rotation);
+
 	return m;
 }

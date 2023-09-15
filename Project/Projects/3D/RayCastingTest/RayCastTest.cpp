@@ -12,12 +12,17 @@ RayCastTest::RayCastTest() {
 	_aspect = r->GetWindowSize().x / r->GetWindowSize().y;
 	x = 0;
 
-	
+		
 
 	bn1 = new BaseNode(Vec3(100, 100, -500), Vec3(100, 100, 1), 0);
 	//Material* m = new MaterialUiSprite();
 	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(bn1);
+
+	BaseNode* bn = new BaseNode(Vec3(100, 100, -550), Vec3(100, 100, 1), 0);
+	//Material* m = new MaterialUiSprite();
+	bn->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
+	_world->AddChild(bn);
 }
 
 RayCastTest::~RayCastTest() {
@@ -25,19 +30,20 @@ RayCastTest::~RayCastTest() {
 }
 
 void RayCastTest::Update(float deltaTime) {
-	Game::Update(deltaTime);
-	Renderer* r = Renderer::instance();
-	Camera* cam = r->GetCamera();
+	Game::Update(deltaTime);										
+																	
+	Renderer* r = Renderer::instance();								
+	Camera* cam = r->GetCamera();									
 	Vec3 p = ( (*r->GetProjection()) * (*r->GetCamera()->GetCamera()) * (*bn1->GetModelMatrix()) ) * Vec3(100, 100, 0);
-	Utility::PrintVector("P with camera : ", p);
+	Utility::PrintVector("P with camera : ", p);					
 	p = ((*r->GetProjection()) * (*bn1->GetModelMatrix())) * Vec3(100, 100, 0);
-	Utility::PrintVector("P without camera : ", p);
-	x += 0.5f * deltaTime;
-	cam->SetPosition(cam->GetPosition() + Vec3(x, 0, 0));
+	Utility::PrintVector("P without camera : ", p);					
+	x += 0.5f * deltaTime;											
+	//cam->SetPosition(cam->GetPosition() + Vec3(x, 0, 0));
 
 	if (_3d) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
-		_fov += Utility::Deg2Rad(1);
+		//_fov += Utility::Deg2Rad(1);
 	}
 }
 void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
@@ -49,23 +55,14 @@ void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 		/*case 49:
 			CollisionDetection::_print = true;
 			//left
-		case 263:
-			Rotate(1);
+		*/case 263:
+			Renderer::instance()->GetCamera()->SetPosition(Renderer::instance()->GetCamera()->GetPosition() + Vec3(10, 0, 0));
 			break;
 			//right
 		case 262:
-			Rotate(-1);
+			Renderer::instance()->GetCamera()->SetPosition(Renderer::instance()->GetCamera()->GetPosition() + Vec3(-10, 0, 0));
 			break;
 			//space
-		case 32:
-			Play(!_play);
-			break;
-		case 80://n
-			PrevTest();
-			break;
-		case 78://p
-			NextTest();
-			break;*/
 		case 32:
 			ChangePerspective();
 			break;
@@ -75,6 +72,17 @@ void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 
 	}
 }
+
+void RayCastTest::TurnCamera(const bool dir) {
+	Camera* c = Renderer::instance()->GetCamera();
+
+	//I HAVE TO FIGURE OUT HOW TO ROTATE THS BY A DEGREE AND AN PLANE
+
+	Vec3 dir = c->GetOrientation();
+
+
+}
+
 void RayCastTest::ChangePerspective() {
 	_3d = !_3d;
 

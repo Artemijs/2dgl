@@ -66,6 +66,7 @@ Renderer::~Renderer() {
 	glfwDestroyWindow(_window);
 	glfwTerminate();
 	delete _fRect;
+	delete _camera;
 	//delete _g;
 	//edelete _testG;
 	//glDeleteFramebuffers(1, &_fbo);

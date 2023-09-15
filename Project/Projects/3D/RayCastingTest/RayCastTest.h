@@ -20,6 +20,7 @@ public :
 	void Update(float deltaTime) override;
 	void HandleKeyInputs(int key, int action, int mods) override;
 	void ChangePerspective();
+	void TurnCamera(const bool dir);
 
 
 };

@@ -28,3 +28,11 @@ Vec3 Camera::GetPosition() {
 void Camera::SetPosition(Vec3 pos) {
 	_position = pos;
 }
+
+Vec3 Camera::GetOrientation() {
+	return _orientation;
+}
+
+void Camera::SetOrientation(Vec3 dir) {
+	_orientation = dir;
+}
