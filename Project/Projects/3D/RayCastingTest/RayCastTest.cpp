@@ -45,6 +45,7 @@ void RayCastTest::Update(float deltaTime) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
 	}
+	TurnCamera(true);
 }
 void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 	if (action == 2) return;
@@ -78,8 +79,10 @@ void RayCastTest::TurnCamera(const bool dir) {
 
 	//I HAVE TO FIGURE OUT HOW TO ROTATE THS BY A DEGREE AND AN PLANE
 
-	Vec3 dir = c->GetOrientation();
-
+	Vec3 lookDir = c->GetOrientation();
+	Vec3 newLookDir = Matrix3x3::RotationMatrix(Utility::Deg2Rad(0.1f), Vec3(0, 1, 0)) * lookDir;
+	newLookDir.Normalize();
+	c->SetOrientation(newLookDir);
 
 }
 

@@ -207,6 +207,121 @@ Vec4 Vec4::operator+(const Vec4& v) {
 Vec4 Vec4::operator*(const float f) {
 	return Vec4(x * f, y * f, z * f, a * f);
 }
+
+
+/*
+float buff[9] = {   0,0,0,
+					0,0,0,
+					0,0,0
+*/
+Matrix3x3::Matrix3x3() {
+
+}
+Matrix3x3::Matrix3x3(const Matrix3x3& m) {
+	for (int i = 0; i < 9; i++) {
+		buff[i] = m.buff[i];
+	}
+}
+Matrix3x3::Matrix3x3(float n) {
+	buff[0] = n;
+	buff[4] = n;
+	buff[8] = n;
+}
+
+Matrix3x3 Matrix3x3::operator+(const Matrix3x3& m)const {
+	Matrix3x3 rm = Matrix3x3();
+	for (int i = 0; i < 16; ++i) {
+		rm.buff[i] = m.buff[i] + buff[i];
+	}
+	return rm;
+}
+Matrix3x3 Matrix3x3::operator-(const Matrix3x3& m)const {
+	Matrix3x3 rm = Matrix3x3();
+	for (int i = 0; i < 16; ++i) {
+		rm.buff[i] = m.buff[i] - buff[i];
+	}
+	return rm;
+}
+Matrix3x3 Matrix3x3::operator*(const Matrix3x3& m)const {
+	Matrix3x3 rm = Matrix3x3();
+	/*
+	0 1 2
+	3 4 5
+	6 7 8
+	*/
+	//r1 x c1 
+	rm.buff[0] = buff[0] * m.buff[0] + buff[1] * m.buff[3] + buff[2] * m.buff[6];
+	//r2 x c1
+	rm.buff[3] = buff[3] * m.buff[0] + buff[4] * m.buff[3] + buff[5] * m.buff[6];
+	//r3 x c1
+	rm.buff[6] = buff[6] * m.buff[0] + buff[7] * m.buff[3] + buff[8] * m.buff[6];
+	
+
+	//r1 x c2 
+	rm.buff[0] = buff[0] * m.buff[1] + buff[1] * m.buff[4] + buff[2] * m.buff[7];
+	//r2 x c2
+	rm.buff[3] = buff[3] * m.buff[1] + buff[4] * m.buff[4] + buff[5] * m.buff[7];
+	//r3 x c2
+	rm.buff[6] = buff[6] * m.buff[1] + buff[7] * m.buff[4] + buff[8] * m.buff[7];
+
+	//r1 x c3 
+	rm.buff[0] = buff[0] * m.buff[2] + buff[1] * m.buff[5] + buff[2] * m.buff[8];
+	//r2 x c3
+	rm.buff[3] = buff[3] * m.buff[2] + buff[4] * m.buff[5] + buff[5] * m.buff[8];
+	//r3 x c3
+	rm.buff[6] = buff[6] * m.buff[2] + buff[7] * m.buff[5] + buff[8] * m.buff[8];
+
+	return rm;
+}
+	
+Vec3 Matrix3x3::operator*(const Vec3& v) {
+	Vec3 v3 = Vec3();
+	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z;
+	//r2 x c1
+	v3.y = buff[3] * v.x + buff[4] * v.y + buff[5] * v.z;
+	//r3 x c1
+	v3.z = buff[6] * v.x + buff[7] * v.y + buff[8] * v.z;
+
+	return v3;
+}
+const Vec3 Matrix3x3::operator*(const Vec3& v)const {
+	Vec3 v3 = Vec3();
+	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z;
+	//r2 x c1
+	v3.y = buff[3] * v.x + buff[4] * v.y + buff[5] * v.z;
+	//r3 x c1
+	v3.z = buff[6] * v.x + buff[7] * v.y + buff[8] * v.z;
+
+	return v3;
+}
+//};
+
+Matrix3x3 Matrix3x3::RotationMatrix(const float rotation, const Vec3& axis) {
+	//this needs to be a 3x3 matrix		
+	Matrix3x3 m = Matrix3x3(1.0f);		
+	m.buff[0] = cosf(rotation) + pow(axis.x, 2) * (1 - cosf(rotation));
+	m.buff[1] = axis.x * axis.y * (1 - cosf(rotation)) - axis.z * sinf(rotation);
+	m.buff[2] = axis.x * axis.z * (1 - cosf(rotation)) + axis.y * sinf(rotation);
+										
+	m.buff[3] = axis.y * axis.x * (1 - cosf(rotation)) + axis.z * sinf(rotation);
+	m.buff[4] = cosf(rotation) + pow(axis.y, 2) * 1 - cosf(rotation);
+	m.buff[5] = axis.y * axis.z * (1 - cos(rotation)) - axis.x * sinf(rotation);
+
+	m.buff[6] = axis.z * axis.x * (1 - cos(rotation)) - axis.y * sinf(rotation);
+	m.buff[7] = axis.z * axis.y * (1 - cos(rotation)) + axis.x * sinf(rotation);
+	m.buff[8] = cosf(rotation) + pow(axis.z, 2) * (1 - cosf(rotation));
+
+	return m;
+}
+
+
+
+
+
+
+
+
+
 Matrix4x4::Matrix4x4(const Matrix4x4& m) {
 	for (int i = 0; i < 16; i++) {
 		buff[i] = m.buff[i];
@@ -223,13 +338,8 @@ Matrix4x4::Matrix4x4(float n) {
 	4 5 6 7
 	8 9 10 11
 	0 0 0 1
-	*/
-	
+	*/	
 }
-/*Matrix4x4::~Matrix4x4() {
-	std::cout << "deleting mat\n";
-	delete buff;
-}*/
 Matrix4x4 Matrix4x4::operator+(const Matrix4x4& m)const  {
 	Matrix4x4 rm = Matrix4x4();
 	for (int i = 0; i < 16; ++i) {
@@ -430,23 +540,5 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 	m.buff[11] = O.z;
 
 	m.buff[15] = 1.0f;
-	return m;
-}
-Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
-	//this needs to be a 3x3 matrix
-	Matrix4x4 m = Matrix4x4(1.0f);
-	m.buff[0] = cosf(rotation) + pow(axis.x, 2) * (1 - cosf(rotation));
-	m.buff[1] = axis.x * axis.y * (1 - cosf(rotation)) - axis.z * sinf(rotation);
-	m.buff[2] = axis.x * axis.z * (1 - cosf(rotation)) + axis.y * sinf(rotation);
-	
-	m.buff[3] = axis.y * axis.x * (1 - cosf(rotation)) + axis.z * sinf(rotation);
-	m.buff[4] = cosf(rotation) + pow(axis.y, 2) * 1 - cosf(rotation);
-	m.buff[5] = axis.y * axis.z * (1 - cos(rotation)) - axis.x * sinf(rotation);
-
-	m.buff[6] = axis.z * axis.x * (1 - cos(rotation)) - axis.y * sinf(rotation);
-	m.buff[7] = axis.z * axis.y * (1 - cos(rotation)) + axis.x * sinf(rotation);
-	//m.buff[8] = cosf(rotation) + pow(axis.z, 2) * sinf(rotation) + axis.x * sinf(rotation);
-	//m.buff[8] = cosf(rotation) + pow(axis.z, 2) * sinf(rotation) + axis.x * sinf(rotation);
-
 	return m;
 }

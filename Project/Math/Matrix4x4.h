@@ -84,22 +84,44 @@ public:
 	void operator+=(const Vec4& v);
 };
 
+class Matrix3x3 {
+
+public:
+	float buff[9] = {   0,0,0,
+						0,0,0,
+						0,0,0
+	};
+	Matrix3x3();
+	Matrix3x3(const Matrix3x3& m);
+	Matrix3x3(float n);
+	Matrix3x3 operator+(const Matrix3x3& m)const;
+	Matrix3x3 operator-(const Matrix3x3& m)const;
+	Matrix3x3 operator*(const Matrix3x3& m)const;
+	static Matrix3x3 RotationMatrix(const float rotation, const Vec3& axis);
+	//Matrix4x4 operator*=(const Matrix4x4& m);
+	Vec3 operator*(const Vec3& v);
+	const Vec3 operator*(const Vec3& v)const;
+};
+
+
+
 class Matrix4x4 {
 	
 public:
-	float buff[16] = { 0,0,0,0,
+	float buff[16] = {   0,0,0,0,
 						 0,0,0,0,
 						 0,0,0,0,
-						 0,0,0,1 };
+						 0,0,0,1 
+	};
 	Matrix4x4();
 	Matrix4x4(const Matrix4x4& m);
 	Matrix4x4(float n);
 	//~Matrix4x4();
 	void SetTranslation(Vec3 v);
 	void SetScale(Vec3 s);
-	Matrix4x4 operator+(const Matrix4x4& m)const ;
-	Matrix4x4 operator-(const Matrix4x4& m)const ;
-	Matrix4x4 operator*(const Matrix4x4& m)const ;
+	Matrix4x4 operator+(const Matrix4x4& m)const;
+	Matrix4x4 operator-(const Matrix4x4& m)const;
+	Matrix4x4 operator*(const Matrix4x4& m)const;
 	//Matrix4x4 operator*=(const Matrix4x4& m);
 	Vec4 operator*(const Vec4& v);
 	//technically uses a vec4 here i just hard code a 1 for the 4th position in the vector
@@ -113,7 +135,7 @@ public:
 	static Matrix4x4 TranslationMatrix(Vec3 pos);
 	static Matrix4x4 GetMatrix(Vec3 pos, Vec3 scale, float ang);
 	static Matrix4x4 GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O);
-	static Matrix4x4 RotationMatrix(const float rotation, const Vec3& axis);
+
 	//float GetAngle();
 	Vec3 GetPosition();
 	Vec3 GetSize();
