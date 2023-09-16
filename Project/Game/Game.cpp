@@ -57,9 +57,10 @@ void Game::Update(float deltaTime) {
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
 	
 	ypos = Renderer::instance()->GetWindowSize().y - ypos;
+	Renderer::instance()->GetCamera()->MouseMove(xpos, ypos);
 	MouseEventHandler::HandleMouseMoving(Vec3(xpos, ypos, 0), deltaTime);
 	MouseEventHandler::Update(deltaTime);
-	Renderer::instance()->GetCamera()->CalculateViewMatrix();
+	//Renderer::instance()->GetCamera()->CalculateViewMatrix();
 	//KEYBOARD EVENTS
 	//std::cout << "game update\n";
 
@@ -98,10 +99,16 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 void Game::HandleMouseInputs(int btn, int action) {
 	//std::cout << "btn event called \n";
 	//m->OnPress();
-	if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) 
+	if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
 		MouseEventHandler::HandleMouseClick(true);
+		Renderer::instance()->GetCamera()->LockCursor(true);
+	}
 	else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
 		MouseEventHandler::HandleMouseClick(false);
+		Renderer::instance()->GetCamera()->LockCursor(false);
+	}
+	if (btn == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE) {
+		Renderer::instance()->GetCamera()->_x = !Renderer::instance()->GetCamera()->_x;
 	}
 }
 bool Game::IsRunning() { return _isRunning; }

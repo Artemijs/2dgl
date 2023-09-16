@@ -32,20 +32,12 @@ RayCastTest::~RayCastTest() {
 void RayCastTest::Update(float deltaTime) {
 	Game::Update(deltaTime);										
 																	
-	Renderer* r = Renderer::instance();								
-	Camera* cam = r->GetCamera();									
-	Vec3 p = ( (*r->GetProjection()) * (*r->GetCamera()->GetCamera()) * (*bn1->GetModelMatrix()) ) * Vec3(100, 100, 0);
-	Utility::PrintVector("P with camera : ", p);					
-	p = ((*r->GetProjection()) * (*bn1->GetModelMatrix())) * Vec3(100, 100, 0);
-	Utility::PrintVector("P without camera : ", p);					
-	x += 0.5f * deltaTime;											
-	//cam->SetPosition(cam->GetPosition() + Vec3(x, 0, 0));
-
+	
 	if (_3d) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
 	}
-	TurnCamera(true);
+	
 }
 void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 	if (action == 2) return;
@@ -75,6 +67,7 @@ void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 }
 
 void RayCastTest::TurnCamera(const bool dir) {
+	return;
 	Camera* c = Renderer::instance()->GetCamera();
 
 	//I HAVE TO FIGURE OUT HOW TO ROTATE THS BY A DEGREE AND AN PLANE

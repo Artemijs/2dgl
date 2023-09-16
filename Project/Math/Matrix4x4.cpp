@@ -299,17 +299,20 @@ const Vec3 Matrix3x3::operator*(const Vec3& v)const {
 Matrix3x3 Matrix3x3::RotationMatrix(const float rotation, const Vec3& axis) {
 	//this needs to be a 3x3 matrix		
 	Matrix3x3 m = Matrix3x3(1.0f);		
-	m.buff[0] = cosf(rotation) + pow(axis.x, 2) * (1 - cosf(rotation));
-	m.buff[1] = axis.x * axis.y * (1 - cosf(rotation)) - axis.z * sinf(rotation);
-	m.buff[2] = axis.x * axis.z * (1 - cosf(rotation)) + axis.y * sinf(rotation);
-										
-	m.buff[3] = axis.y * axis.x * (1 - cosf(rotation)) + axis.z * sinf(rotation);
-	m.buff[4] = cosf(rotation) + pow(axis.y, 2) * 1 - cosf(rotation);
-	m.buff[5] = axis.y * axis.z * (1 - cos(rotation)) - axis.x * sinf(rotation);
+	const float cosA = cosf(rotation);
+	const float sinA = sinf(rotation);
 
-	m.buff[6] = axis.z * axis.x * (1 - cos(rotation)) - axis.y * sinf(rotation);
-	m.buff[7] = axis.z * axis.y * (1 - cos(rotation)) + axis.x * sinf(rotation);
-	m.buff[8] = cosf(rotation) + pow(axis.z, 2) * (1 - cosf(rotation));
+	m.buff[0] = cosA + pow(axis.x, 2) * (1 - cosA);
+	m.buff[1] = axis.x * axis.y * (1 - cosA) - axis.z * sinA;
+	m.buff[2] = axis.x * axis.z * (1 - cosA) + axis.y * sinA;
+										
+	m.buff[3] = axis.y * axis.x * (1 - cosA) + axis.z * sinA;
+	m.buff[4] = cosA + pow(axis.y, 2) * (1 - cosA);
+	m.buff[5] = axis.y * axis.z * (1 - cosA) - axis.x * sinA;
+
+	m.buff[6] = axis.z * axis.x * (1 - cosA) - axis.y * sinA;
+	m.buff[7] = axis.z * axis.y * (1 - cosA) + axis.x * sinA;
+	m.buff[8] = cosA + pow(axis.z, 2) * (1 - cosA);
 
 	return m;
 }

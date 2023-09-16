@@ -15,11 +15,15 @@ private:
 
 	unsigned int _width;
 	unsigned int _height;
-
+	Vec2 _ang;
 	float _speed;
 	float _sensitivity;
+	bool _cursorLocked;
+	bool _firstClick;
+	
 
 public:
+	bool _x;
 	Camera();
 	Camera(unsigned int height, unsigned int width, Vec3 position);
 	void CalculateViewMatrix();
@@ -28,5 +32,8 @@ public:
 	void SetPosition(Vec3 pos);
 	Vec3 GetOrientation();
 	void SetOrientation(Vec3 dir);
+	void MouseMove(const double& xpos, const double& ypos);
+	void LockCursor(const bool lockState);
+	bool GetCursorLockState();
 };
 #endif // !CAMERA_H
