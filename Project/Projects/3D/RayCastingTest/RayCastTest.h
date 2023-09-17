@@ -21,6 +21,11 @@ public :
 	void HandleKeyInputs(int key, int action, int mods) override;
 	void ChangePerspective();
 	void TurnCamera(const bool dir);
+	/// <summary>
+	/// moves the camera based of the int direction of moement
+	/// </summary>
+	/// <param name="dir">0 : w  1 : a  2 : s  3 : d </param>
+	void MoveCamera(const unsigned int dir);
 
 
 };

@@ -160,6 +160,8 @@
     <ClCompile Include="Game\BaseNode.cpp" />
     <ClCompile Include="Game\FBOComponent.cpp" />
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\Mesh\Mesh.cpp" />
+    <ClCompile Include="Game\Mesh\MeshLoader.cpp" />
     <ClCompile Include="Game\MouseEventComponent.cpp" />
     <ClCompile Include="Game\RenderNode.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
@@ -206,6 +208,8 @@
     <ClInclude Include="Game\BaseNode.h" />
     <ClInclude Include="Game\FBOComponent.h" />
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\Mesh\Mesh.h" />
+    <ClInclude Include="Game\Mesh\MeshLoader.h" />
     <ClInclude Include="Game\MouseEventComponent.h" />
     <ClInclude Include="Game\RenderNode.h" />
     <ClInclude Include="Graphics\Camera.h" />

@@ -1,3 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Camera.cpp
+  RayCastTest.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\3D\RayCastingTest\RayCastTest.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

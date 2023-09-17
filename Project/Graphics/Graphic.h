@@ -17,7 +17,7 @@ public:
 	Graphic(Material* m, const unsigned int indexCount = 6);
 	~Graphic();
 
-	void Draw(const Matrix4x4* model) const;
+	virtual void Draw(const Matrix4x4* model) const;
 	Material* GetMaterial() const ;
 	const unsigned int IndexCount();
 };

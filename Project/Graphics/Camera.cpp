@@ -7,6 +7,7 @@ Camera::Camera() {
 	_sensitivity = 1.1f;
 	_firstClick = true;
 	_x = false;
+	_cursorLocked = false;
 }
 
 Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(width), _height(height), _position(position){
@@ -15,6 +16,7 @@ Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(
 	_ang = Vec2();
 	_sensitivity = 1.1f;
 	_firstClick = true;
+	_cursorLocked = false;
 	_x = false;
 }
 void Camera::CalculateViewMatrix() {
@@ -32,7 +34,9 @@ Matrix4x4* Camera::GetCamera() {
 Vec3 Camera::GetPosition() {
 	return _position;
 }
+#include "../Util/Utility.h"
 void Camera::SetPosition(Vec3 pos) {
+	//Utility::PrintVector(" camera offset", pos);
 	_position = pos;
 }
 
