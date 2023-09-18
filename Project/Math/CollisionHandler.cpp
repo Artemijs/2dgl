@@ -35,7 +35,7 @@ void CollisionHandler::Update(const float deltaTime) {
 			else  if(sd._penetrationDistance == 0 && collisionExists != -1){
 				//check if you have been colliding with b previously but have not yet called OnExitCollision
 				if (collisionExists != -1) {
-					printf("EXITING COLLISION\n");
+					//printf("EXITING COLLISION\n");
 					a->RemoveActiveCollision(b);
 				}
 			}
@@ -44,7 +44,7 @@ void CollisionHandler::Update(const float deltaTime) {
 }
 
 void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std::pair<Bounds*, BaseNode*>& b, SeparationData& sd) {
-	printf("COLLIDEDD\n");
+	//printf("COLLIDEDD\n");
 	//return;
 	//check if the object cannot be moved
 	//if both objects can be moved then part them equally and separate directions
@@ -55,12 +55,12 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	//move b by half of pen dist 
 	if (b.first->_solid) {
 		Transform bt = b.second->GetTransform();
-		b.second->SetPosition(bt._position + sd._separationVector * sd._penetrationDistance);
+		b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.5f));
 	}
 	//move a by the other half
 	if (a.first->_solid) {
 		Transform at = a.second->GetTransform();
-		a.second->SetPosition(at._position + sd._separationVector * sd._penetrationDistance);
+		a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.5f));
 	}
 
 }

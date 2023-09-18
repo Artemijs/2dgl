@@ -19,7 +19,7 @@ Graphic::Graphic( Material* m, const unsigned int indexCount):
 
 }
 void Graphic::Draw(const Matrix4x4* model) const {
-	std::cout << "drwing graphic\n";
+	//std::cout << "drwing graphic\n";
  	_baseMaterial->Bind(model);
 	glDrawElements(GL_TRIANGLES, _indexCount, GL_UNSIGNED_INT, 0);
 	_baseMaterial->Unbind();

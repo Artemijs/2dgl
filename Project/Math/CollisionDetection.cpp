@@ -376,6 +376,16 @@ const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, cons
 	}
 	return sd;
 }
+
+
+
+/// <summary>
+/// Actual wife actually left me. Shape positions local and world are fucked
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
+
 const SeparationData CollisionDetection::CircleCircleCollision(const shape& a, const shape& b) {
 	//direction between one and the other 
 	Vec3 dist = (b.second[0] - a.second[0]);
@@ -383,6 +393,11 @@ const SeparationData CollisionDetection::CircleCircleCollision(const shape& a, c
 	const float totalCircleDist = (a.second[1].x + b.second[1].x);
 	SeparationData sd;
 	sd._penetrationDistance = totalCircleDist - distLen;
+	if (sd._penetrationDistance < 0) {
+		sd._penetrationDistance = 0;
+		return sd;
+	}
+
 	dist.Normalize();
 	sd._separationVector = dist;
 	return sd;

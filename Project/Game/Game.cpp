@@ -90,7 +90,6 @@ void Game::HandleKeyInputs(int key, int action, int mods) {
 	std::cout << " key event called "<<"aaction "<<action<<" key "<<key<<" mods "<<mods<<"\n";
 	if (action == GLFW_PRESS) {
 		_switch = !_switch;
-	
 	}
 	else if (action == GLFW_RELEASE) {
 		

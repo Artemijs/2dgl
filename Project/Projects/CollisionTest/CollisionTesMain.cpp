@@ -15,25 +15,26 @@ CollisionTestMain::CollisionTestMain():Game() {
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");
 	//s->GetMaterial()
 	_myNode->AddComponent(s);
-	Bounds* bBox = new SphereBounds(_myNode, 12.5f);
-	bBox->_solid = false;		
+	Bounds* bBox = new SphereBounds(_myNode, 12.5f, _myNode->GetTransform()._position);
+	//bBox->_solid = false;		
 	_myNode->AddComponent(bBox);
 	_world->AddChild(_myNode);	
 
 	
-	unsigned int maxNodes = 10;
+	unsigned int maxNodes = 1;
 	_otherNodes = new BaseNode[maxNodes];
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;
 
 	for (int i = 0; i < maxNodes; i++) {
-
-		Vec3 randPos = Vec3(rand() % windowW, rand() % windowH, 0);
+		float randx = rand() % windowW;
+		float randy = rand() % windowW;
+		Vec3 randPos = Vec3(randx, randy, 0);
 		int rRad = 50;// rand() % 100;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
 		b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
-		Bounds* bBox = new SphereBounds(b, 12.5f);
-		bBox->_solid = false;
+		Bounds* bBox = new SphereBounds(b, 12.5f, randPos);
+		//bBox->_solid = false;
 		b->AddComponent(bBox);
 		
 		_otherNodes->AddChild(b);
@@ -92,8 +93,11 @@ CollisionTestMain::~CollisionTestMain() {
 //262 right 
 // 32 space 
 #include "../../Math/CollisionDetection.h"
+
 void CollisionTestMain::HandleKeyInputs(int key, int action, int mods) {
-	if (action == 2) return;
+	//if (action == 2) return;
+	//
+	
 	if (action == 0) {
 		std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
 		switch (key)
@@ -101,37 +105,56 @@ void CollisionTestMain::HandleKeyInputs(int key, int action, int mods) {
 		case 49:
 			CollisionDetection::_print = true;
 			//left
-		case 263:
-			//Rotate(1);
-			break;
-			//right
-		case 262:
-			//Rotate(-1);
-			break;
-			//space
-		case 32:
-			Play(!_play);
-			break;
-		case 80://n
-			//PrevTest();
-			break;
-		case 78://p
-			//NextTest();
-			break;
 		default:
 			break;
 		}
 		
 	}
+	else if (action == 2) { //m held
+		switch (key)
+		{
+			case 87:
+				MoveMyNode(0);
+				break;
+			case 65:
+				MoveMyNode(1);
+				break;
+			case 83:
+				MoveMyNode(2);
+				break;
+			case 68:
+				MoveMyNode(3);
+				break;
+			default:
+				break;
+			}
+	}
 }
 
+void CollisionTestMain::MoveMyNode(const unsigned int dir) {
+	Vec3 mpos = _myNode->GetTransform()._position;
+	Vec3 movDir = Vec3();
+	const float speed = 10;
+
+	if (dir == 0) {
+		movDir.y = 1;
+	}
+	else if (dir == 1) {
+		movDir.x = -1;
+	}
+	else if (dir == 2) {
+		movDir.y = -1;
+	}
+	else {
+		movDir.x = 1;
+	}
+
+
+	_myNode->SetPosition(mpos + movDir * speed);
+}
 void CollisionTestMain::Update(float deltaTime) {
 	Game::Update(deltaTime);
 	if (!_play) return;
-	
-
-
-
 }
 
 void CollisionTestMain::Play(const bool on) {
