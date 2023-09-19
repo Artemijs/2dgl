@@ -15,13 +15,13 @@ CollisionTestMain::CollisionTestMain():Game() {
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");
 	//s->GetMaterial()
 	_myNode->AddComponent(s);
-	Bounds* bBox = new SphereBounds(_myNode, 12.5f, _myNode->GetTransform()._position);
+	Bounds* bBox = new SphereBounds(_myNode, 25);
 	//bBox->_solid = false;		
 	_myNode->AddComponent(bBox);
 	_world->AddChild(_myNode);	
 
 	
-	unsigned int maxNodes = 1;
+	unsigned int maxNodes = 10;
 	_otherNodes = new BaseNode[maxNodes];
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;
@@ -33,7 +33,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 		int rRad = 50;// rand() % 100;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
 		b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
-		Bounds* bBox = new SphereBounds(b, 12.5f, randPos);
+		Bounds* bBox = new SphereBounds(b, 25);
 		//bBox->_solid = false;
 		b->AddComponent(bBox);
 		
@@ -154,7 +154,14 @@ void CollisionTestMain::MoveMyNode(const unsigned int dir) {
 }
 void CollisionTestMain::Update(float deltaTime) {
 	Game::Update(deltaTime);
-	if (!_play) return;
+	//if (!_play) return;
+	double xpos, ypos;
+	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
+
+	ypos = Renderer::instance()->GetWindowSize().y - ypos;
+
+	_myNode->SetPosition(Vec3(xpos, ypos, 0));
+
 }
 
 void CollisionTestMain::Play(const bool on) {

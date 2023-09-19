@@ -495,10 +495,10 @@ Matrix4x4 Matrix4x4::TranslationMatrix(Vec3 pos) {
 	return m;
 }
 //float GetAngle();
-Vec3 Matrix4x4::GetPosition() {
+Vec3 Matrix4x4::GetPosition() const {
 	return Vec3(buff[3], buff[7], buff[11]);
 }
-Vec3 Matrix4x4::GetSize() {
+Vec3 Matrix4x4::GetSize() const {
 	return Vec3(buff[0], buff[5], buff[10]);
 }
 Matrix4x4 Matrix4x4::GetMatrix(Vec3 pos, Vec3 scale, float ang) {

@@ -14,8 +14,10 @@ void CollisionHandler::Update(const float deltaTime) {
 	//check every bounds against every other bounds		
 	for (int i = 0; i < _all_bounds->size()-1; ++i) {		
 		Bounds* a = _all_bounds->at(i).first;			
+
 		for (int j = i + 1; j < _all_bounds->size(); ++j) {	
 			  Bounds* b = _all_bounds->at(j).first;		
+
 			  const unsigned int collisionExists = a->IsColliding(b);
 			if (a == b)									
 				continue;								
@@ -42,7 +44,7 @@ void CollisionHandler::Update(const float deltaTime) {
 		}
 	}
 }
-
+#include "../Util/Utility.h"
 void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std::pair<Bounds*, BaseNode*>& b, SeparationData& sd) {
 	//printf("COLLIDEDD\n");
 	//return;
@@ -50,19 +52,19 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	//if both objects can be moved then part them equally and separate directions
 	//if only one object can be moved part that one object fully
 
-
-
+	
 	//move b by half of pen dist 
 	if (b.first->_solid) {
+		Utility::PrintVector("A separation vector : ", (sd._separationVector * (sd._penetrationDistance * 0.5f)));
 		Transform bt = b.second->GetTransform();
 		b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.5f));
 	}
 	//move a by the other half
 	if (a.first->_solid) {
 		Transform at = a.second->GetTransform();
+		Utility::PrintVector("B separation vector : ", (sd._separationVector * (sd._penetrationDistance * -0.5f)));
 		a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.5f));
 	}
-
 }
 
 void CollisionHandler::CallEvents(Bounds* a, Bounds* b, const SeparationData* sd) {

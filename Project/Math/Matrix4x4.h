@@ -137,8 +137,8 @@ public:
 	static Matrix4x4 GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O);
 
 	//float GetAngle();
-	Vec3 GetPosition();
-	Vec3 GetSize();
+	Vec3 GetPosition() const;
+	Vec3 GetSize() const;
 
 };
 #endif

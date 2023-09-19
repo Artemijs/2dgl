@@ -60,7 +60,7 @@ void Camera::MouseMove(const double& xpos, const double& ypos) {
 
 		float rotX = _sensitivity * (float)(ypos - (_height / 2)) / _height;
 		float rotY = _sensitivity * (float)(xpos - (_width / 2)) / _width;
-		printf(" angle %.3f \n", rotY);
+		//printf(" angle %.3f \n", rotY);
 		/*if (!_x) {
 			_orientation += Matrix3x3::RotationMatrix(rotX, Vec3::Cross(_orientation, _up)) * _orientation;
 			//_up = Vec3::Cross(_up, Vec3(1, 0, 0));
@@ -79,7 +79,7 @@ void Camera::MouseMove(const double& xpos, const double& ypos) {
 		_orientation = Matrix3x3::RotationMatrix(rotX, Vec3::Cross(_orientation, _up)) * _orientation;
 		_orientation = Matrix3x3::RotationMatrix(rotY, _up) * _orientation;
 		
-		Utility::PrintVector("forward :", _orientation);
+		//Utility::PrintVector("forward :", _orientation);
 
 
 		glfwSetCursorPos(Renderer::instance()->GetWindow(), (_width / 2), (_height / 2));

@@ -380,12 +380,11 @@ const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, cons
 
 
 /// <summary>
-/// Actual wife actually left me. Shape positions local and world are fucked
+/// Shape positions local and world are fucked
 /// </summary>
 /// <param name="a"></param>
 /// <param name="b"></param>
 /// <returns></returns>
-
 const SeparationData CollisionDetection::CircleCircleCollision(const shape& a, const shape& b) {
 	//direction between one and the other 
 	Vec3 dist = (b.second[0] - a.second[0]);
