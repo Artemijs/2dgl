@@ -48,7 +48,7 @@ public:
 	virtual ~Bounds();
 	virtual void Translate2World(const Matrix4x4* model)  = 0;
 	const unsigned int ID() const override;
-	virtual   shape GetShape() = 0;
+	virtual shape GetShape() = 0;
 	const Vec3* GetCenterOfMass();
 	
 	const unsigned int IsColliding( Bounds* b);

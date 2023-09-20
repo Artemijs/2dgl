@@ -21,14 +21,15 @@ CollisionTestMain::CollisionTestMain():Game() {
 	_world->AddChild(_myNode);	
 
 	
-	unsigned int maxNodes = 10;
+	unsigned int maxNodes = 2;
 	_otherNodes = new BaseNode[maxNodes];
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;
-
-	for (int i = 0; i < maxNodes; i++) {
+	//CREATE CIRCLES
+	/*for (int i = 0; i < maxNodes; i++) {
 		float randx = rand() % windowW;
 		float randy = rand() % windowW;
+
 		Vec3 randPos = Vec3(randx, randy, 0);
 		int rRad = 50;// rand() % 100;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
@@ -37,6 +38,22 @@ CollisionTestMain::CollisionTestMain():Game() {
 		//bBox->_solid = false;
 		b->AddComponent(bBox);
 		
+		_otherNodes->AddChild(b);
+		_world->AddChild(b);
+	}*/
+	//CREATE BOXES
+	for (int i = 0; i < maxNodes; i++) {
+		float randx = rand() % windowW;
+		float randy = rand() % windowW;
+
+		Vec3 randPos = Vec3(randx, randy, 0);
+		int rRad = 50;// rand() % 100;
+		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
+		b->AddComponent(new Sprite("Assets/Textures/default.png"));
+		Bounds* bBox = new BoxBounds(b);
+		//bBox->_solid = false;
+		b->AddComponent(bBox);
+
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
 	}
@@ -102,8 +119,11 @@ void CollisionTestMain::HandleKeyInputs(int key, int action, int mods) {
 		std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
 		switch (key)
 		{
+		case 32:
+			Play(!_play);
+			break;
 		case 49:
-			CollisionDetection::_print = true;
+			break;
 			//left
 		default:
 			break;
@@ -153,6 +173,7 @@ void CollisionTestMain::MoveMyNode(const unsigned int dir) {
 	_myNode->SetPosition(mpos + movDir * speed);
 }
 void CollisionTestMain::Update(float deltaTime) {
+	if (_play) return;
 	Game::Update(deltaTime);
 	//if (!_play) return;
 	double xpos, ypos;

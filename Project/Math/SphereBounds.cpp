@@ -6,6 +6,7 @@ SphereBounds::SphereBounds(BaseNode* owner):
 {
 	_worldPosition[0] =  owner->GetTransform()._position;
 	_worldPosition[1] = Vec3(_radius, _radius, _radius);
+	_worldPosition[2] = Vec3(_radius, _radius, _radius);
 
 	
 }
@@ -21,6 +22,7 @@ SphereBounds::SphereBounds(BaseNode* owner, const float rad, const Vec3 pos):
 {
 	_worldPosition[0] = owner->GetTransform()._position;
 	_worldPosition[1] = Vec3(_radius, _radius, _radius);
+	_worldPosition[2] = Vec3(_radius, _radius, _radius);
 }
 //const bool SphereBounds::CheckInside(Vec3 pos)const {
 	//distance formula is needed 

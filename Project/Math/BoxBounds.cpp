@@ -23,7 +23,7 @@ void BoxBounds::Translate2World(const Matrix4x4* model)  {
 	const int a = 0;
 	int b = a;
 	for (int i = 0; i < 4; ++i) {
-		_worldRect[i] = (*model )* _localRect[i] ;
+		_worldRect[i] = (*model )* _localRect[i];
 	}
 	_centerOfMass = (*model) * Vec3(0, 0, 0);
 }

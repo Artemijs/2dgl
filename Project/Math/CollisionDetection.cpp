@@ -26,7 +26,7 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 		if (a->_type == BoundsType::CIRCLE) {
 			
 
-			float rad = as.second[1].x;
+			float rad = as.second[2].x;
 			Vec2 dir = Vec2((a->_centerOfMass.x - b->_centerOfMass.x), (a->_centerOfMass.y - b->_centerOfMass.y));
 			dir.Normalize();
 			Vec2 offset = Vec2((dir.x * rad), (dir.y * rad));
@@ -35,13 +35,13 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 
 			as.second[0].x = as.second[0].x - offset.x;
 			as.second[0].y = as.second[0].y - offset.y;
-			return CircleSAT(bs, as, dir);
+			return CircleSAT(as, bs, dir);
 		}
 		else if ( b->_type == BoundsType::CIRCLE) {
 			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
 			//this gets the second point to create the axis with
 			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-			float rad = bs.second[1].x;
+			float rad = bs.second[2].x;
 			//Vec3 dir = Vec3::Normalize(a->_centerOfMass - b->_centerOfMass);
 			Vec2 dir = Vec2((b->_centerOfMass.x - a->_centerOfMass.x), (b->_centerOfMass.y - a->_centerOfMass.y));
 			dir.Normalize();
