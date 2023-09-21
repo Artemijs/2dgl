@@ -1,3 +1,66 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  BoxBounds.cpp
+  CollisionDetection.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(77,41): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(80,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(89,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(105,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(178,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(180,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(197,55): warning C4244: 'argument': conversion from '_Ty2' to 'const float', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(203,56): warning C4244: 'argument': conversion from '_Ty2' to 'const float', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(236,9): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(258,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(260,28): warning C4305: 'initializing': truncation from '__int64' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(284,56): warning C4244: 'argument': conversion from '_Ty2' to 'const float', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(349,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(367,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(375,20): warning C4018: '<': signed/unsigned mismatch
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\utility(190,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty1=float
+          ]
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(304): message : see reference to function template instantiation 'std::pair<float,int>::pair<int,bool,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=bool
+          ]
+C:\Users\artem\Documents\programming\2dgl\Project\Math\CollisionDetection.cpp(304): message : see reference to function template instantiation 'std::pair<float,int>::pair<int,bool,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=bool
+          ]
   SphereBounds.cpp
+  ColliisonTestGame.cpp
+  CollisionTesMain.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(26,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(27,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(45,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(46,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(47,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(51,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(51,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(184,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(184,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(334,46): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating Code...
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

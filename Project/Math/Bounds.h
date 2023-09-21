@@ -55,6 +55,7 @@ public:
 	void AddActiveCollision( Bounds* b, SeparationData& sd);
 	void RemoveActiveCollision( Bounds* b);
 	void AddEvent(const bool enter, std::pair < Bounds*, std::function<void( Bounds* a, Bounds* b, SeparationData& sd)> >* e);
+	virtual float* GetSize() = 0;
 
 
 	

@@ -21,7 +21,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 	_world->AddChild(_myNode);	
 
 	
-	unsigned int maxNodes = 2;
+	unsigned int maxNodes = 4;
 	_otherNodes = new BaseNode[maxNodes];
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;

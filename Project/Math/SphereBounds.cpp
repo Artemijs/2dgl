@@ -5,8 +5,7 @@ SphereBounds::SphereBounds(BaseNode* owner):
 	Bounds(BoundsType::CIRCLE, owner)
 {
 	_worldPosition[0] =  owner->GetTransform()._position;
-	_worldPosition[1] = Vec3(_radius, _radius, _radius);
-	_worldPosition[2] = Vec3(_radius, _radius, _radius);
+	_worldPosition[1] = Vec3();
 
 	
 }
@@ -21,8 +20,7 @@ SphereBounds::SphereBounds(BaseNode* owner, const float rad, const Vec3 pos):
 	Bounds(BoundsType::CIRCLE, owner)
 {
 	_worldPosition[0] = owner->GetTransform()._position;
-	_worldPosition[1] = Vec3(_radius, _radius, _radius);
-	_worldPosition[2] = Vec3(_radius, _radius, _radius);
+	_worldPosition[1] = Vec3();
 }
 //const bool SphereBounds::CheckInside(Vec3 pos)const {
 	//distance formula is needed 
@@ -35,11 +33,15 @@ void SphereBounds::Translate2World(const Matrix4x4* model)  {
 	_worldPosition[0] = model->GetPosition();
 	_centerOfMass = model->GetPosition();
 	_worldPosition[1] = Vec3(_radius, _radius, _radius);
-	
 }
-  shape SphereBounds::GetShape()   {
+shape SphereBounds::GetShape()   {
 	 
 	return shape(2, _worldPosition);//_worldRect;
 }
-
- 
+/// <summary>
+/// returns the pointer to the radius
+/// </summary>
+/// <returns></returns>
+float* SphereBounds::GetSize() {
+	return &_radius;
+}

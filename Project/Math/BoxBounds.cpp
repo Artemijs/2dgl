@@ -32,3 +32,10 @@ shape BoxBounds::GetShape()  {
 	// shape s(4, &_worldRect[0]);
 	return  shape(4, _worldRect);
 }
+/// <summary>
+/// returns an array _size
+/// </summary>
+/// <returns>_size[0] : width, _size[1] : height</returns>
+float* BoxBounds::GetSize() {
+	return _size;
+}

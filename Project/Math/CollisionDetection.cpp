@@ -10,6 +10,12 @@
 
 bool CollisionDetection::_print = false;
 
+/// <summary>
+/// the first object collides just fine but every object after has their collision box offset by an un known amount in a seemingly random direction
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <returns></returns>
 
 SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 	//the idea here is that i will call a function in an array based on type using 
@@ -26,31 +32,31 @@ SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
 		if (a->_type == BoundsType::CIRCLE) {
 			
 
-			float rad = as.second[2].x;
+			float rad = (*a->GetSize());
 			Vec2 dir = Vec2((a->_centerOfMass.x - b->_centerOfMass.x), (a->_centerOfMass.y - b->_centerOfMass.y));
 			dir.Normalize();
 			Vec2 offset = Vec2((dir.x * rad), (dir.y * rad));
-			as.second[1].x = as.second[0].x + offset.x;
-			as.second[1].y = as.second[0].y + offset.y;
+			as.second[1].x = a->_centerOfMass.x + offset.x;
+			as.second[1].y = a->_centerOfMass.y + offset.y;
 
-			as.second[0].x = as.second[0].x - offset.x;
-			as.second[0].y = as.second[0].y - offset.y;
+			as.second[0].x = a->_centerOfMass.x - offset.x;
+			as.second[0].y = a->_centerOfMass.y - offset.y;
 			return CircleSAT(as, bs, dir);
 		}
 		else if ( b->_type == BoundsType::CIRCLE) {
 			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
 			//this gets the second point to create the axis with
 			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-			float rad = bs.second[2].x;
+			float rad = (*b->GetSize());
 			//Vec3 dir = Vec3::Normalize(a->_centerOfMass - b->_centerOfMass);
 			Vec2 dir = Vec2((b->_centerOfMass.x - a->_centerOfMass.x), (b->_centerOfMass.y - a->_centerOfMass.y));
 			dir.Normalize();
 			Vec2 offset = Vec2((dir.x * rad), (dir.y * rad));
-			bs.second[1].x = bs.second[0].x + offset.x;
-			bs.second[1].y = bs.second[0].y + offset.y;
+			bs.second[1].x = b->_centerOfMass.x + offset.x;
+			bs.second[1].y = b->_centerOfMass.y + offset.y;
 			
-			bs.second[0].x = bs.second[0].x - offset.x;
-			bs.second[0].y = bs.second[0].y - offset.y;
+			bs.second[0].x = b->_centerOfMass.x - offset.x;
+			bs.second[0].y = b->_centerOfMass.y - offset.y;
 			return CircleSAT(bs, as, dir);
 		}
 		else return SAT(as, bs);
@@ -188,13 +194,13 @@ const SeparationData CollisionDetection::CircleSAT(const shape &a, const shape &
 		if (od.first == 0) {
 			//printf("Penetration Distance : %f\n", penetrationDistance);
 			sd._penetrationDistance = od.first;
-			sd._separationVector = Vec3(axis.x, axis.y, 0) * -od.second;
+			sd._separationVector = Vec3(axis.x, axis.y, 0) * od.second;
 			return sd;
 		}
 		else {
 			if (od.first < sd._penetrationDistance) {
 				sd._penetrationDistance = od.first;
-				sd._separationVector = Vec3(axis.x, axis.y, 0) * -od.second;
+				sd._separationVector = Vec3(axis.x, axis.y, 0) * od.second;
 			}
 		}
 

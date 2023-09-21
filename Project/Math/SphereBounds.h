@@ -13,5 +13,6 @@ public :
 	//const bool CheckInside(const Vec3 pos)const ;
 	void Translate2World(const Matrix4x4* model);
 	shape GetShape() override;
+	float* GetSize() override;
 };
 #endif
