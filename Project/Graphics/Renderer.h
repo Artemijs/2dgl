@@ -26,7 +26,7 @@ private:
 	VBO* _vbo;
 	EBO* _ebo;
 	FBO* _fbo;
-	GLfloat _vertices[32] = {
+	/*/GLfloat _vertices[32] = {
 		//verices						//uvs
 		-0.5f,  -0.5f,  -1.0f,			0.0f, 0.0f, //lower left
 
@@ -35,6 +35,15 @@ private:
 		0.5f,	 0.5f,	-1.0f,			1.0f, 1.0f, //upper right
 
 		0.5f,	-0.5f,	-1.0f,			1.0f, 0.0f //lower right
+		
+	};*/
+	std::vector<Vertex> _vertices = 
+	{
+		//positions								//uv
+		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)},
+		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)},
+		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)},
+		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)}
 	};
 	GLuint _indices[6] = {
 		0, 2, 1, //upper triangle,

@@ -78,7 +78,7 @@ void Renderer::CreateGeometry() {
 	_vao = new VAO();
 	_vao->Bind();
 
-	_vbo = new VBO(_vertices, sizeof(_vertices));
+	_vbo = new VBO(_vertices);
 	_ebo = new EBO(_indices, sizeof(_indices));
 
 	_vao->LinkAttrib(_vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);//verts

@@ -30,7 +30,7 @@ Text::~Text() {
 	_vao->Delete();
 	_ebo->Delete();
 	_vbo->Delete();
-	delete[] _verts;
+	//delete[] _verts;
 	delete[] _indices;
 	delete _vao;
 	delete _vbo;
@@ -246,7 +246,7 @@ void Text::MakeMesh() {
 	//pos + color + uv
 	int vSize = (3 + 2);
 	const int vArrSize = vCount * vSize;
-	_verts = new GLfloat[vArrSize];
+	//_verts = new GLfloat[vArrSize];
 
 	const int indTotal = 6 * (_maxCharsPerLine * _lineCount);
 	_indexCount = indTotal;

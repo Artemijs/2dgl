@@ -160,6 +160,9 @@ Game* DevGetGameType() {
 		}
 
 		std::cout << "Loading game " << input << "\n";
+
+
+
 		switch (gameId) {
 		case 0:
 			g = new TowerDefenseGame();
@@ -178,6 +181,7 @@ Game* DevGetGameType() {
 			break;
 		case 5:
 			g = new RayCastTest();
+			break;
 		case 6:
 			g = new ShaderTest();
 			break;

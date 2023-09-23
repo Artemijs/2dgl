@@ -6,6 +6,11 @@
 #include <vector>
 #include "../Game/BaseComponent.h"
 #include "../Graphics/Materials/Material.h"
+
+
+/// <summary>
+/// to do change all the material to base materail
+/// </summary>
 class Graphic : public BaseComponent{
 protected:
 	Material* _baseMaterial;
@@ -19,7 +24,9 @@ public:
 
 	virtual void Draw(const Matrix4x4* model) const;
 	Material* GetMaterial() const ;
+	void SetMaterial(Material* m);
 	const unsigned int IndexCount();
+
 };
 
 

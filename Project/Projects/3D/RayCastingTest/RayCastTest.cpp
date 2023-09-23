@@ -26,7 +26,11 @@ RayCastTest::RayCastTest() {
 	_world->AddChild(bn);
 
 
-	Mesh* m = new Mesh(6, r->GetVAO(), new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png"));
+	//Mesh* m = new Mesh(6, r->GetVAO(), new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png"));
+	/*Mesh* m = MeshLoader::GetPlane();
+	BaseNode* meshNdoe = new BaseNode(Vec3(), Vec3(10000, 10000, 1), 0);
+	_world->AddChild(meshNdoe);
+	meshNdoe->AddComponent(m);*/
 
 
 }

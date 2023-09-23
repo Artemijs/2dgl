@@ -2,16 +2,23 @@
 #define MESH_H
 
 #include "../../BackEnd/VAO.h"
+#include "../../BackEnd/VBO.h"
+#include "../../BackEnd/EBO.h"
 #include "../../Graphics/Graphic.h"
 
-class Mesh : public Graphic{
+
+class Mesh : public Graphic {
 private:
 	VAO* _vao;
-	Material* _material;
-	static const unsigned int _component_id;
+	VBO* _vbo;
+	EBO* _ebo;
+	GLfloat* _vertices;
+	GLuint* _indices;
 public:
+	static const unsigned int _component_id;
 	Mesh();
-	Mesh(const unsigned int indexCount, VAO* vao, Material* mat);
+	Mesh(GLfloat* verts, GLuint* indices);
+	Mesh(const unsigned int indexCount, VAO* vao, VBO* vbo, EBO* ebo, Material* mat);
 	~Mesh();
 	void Draw(const Matrix4x4* model) const override;
 	VAO* GetVAO();

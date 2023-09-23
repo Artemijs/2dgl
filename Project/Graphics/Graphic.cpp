@@ -31,3 +31,7 @@ Material* Graphic::GetMaterial() const {
  const unsigned int Graphic::IndexCount() {
 	 return _indexCount;
  }
+ void Graphic::SetMaterial(Material* m) {
+	 _baseMaterial = m;
+	
+ }

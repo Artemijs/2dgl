@@ -27,7 +27,8 @@ private:
 	const VAO* _vao;
 	VBO* _vbo;
 	EBO* _ebo;
-	GLfloat* _verts;
+	//GLfloat* _verts;
+	std::vector<Vertex> _verts;
 	GLuint* _indices;		
 	 BaseNode* _owner;		
 	int _maxCharsPerLine;	

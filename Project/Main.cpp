@@ -27,7 +27,7 @@ int main() {
 	//g = new Game();
 	
 	//g = DevGetGameType();
-	g = new CollisionTestMain();
+	g = new MaterialTest();
 	
 	
 	
