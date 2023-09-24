@@ -11,7 +11,7 @@ Graphic::~Graphic() {
 	delete _baseMaterial;
 	printf("delting graphic\n");
 }
-Graphic::Graphic( Material* m, const unsigned int indexCount):
+Graphic::Graphic( BaseMaterial* m, const unsigned int indexCount):
 	_baseMaterial(m) ,
 	_indexCount(indexCount),
 	BaseComponent(true)	{
@@ -25,13 +25,13 @@ void Graphic::Draw(const Matrix4x4* model) const {
 	_baseMaterial->Unbind();
 }
 	
-Material* Graphic::GetMaterial() const {
+BaseMaterial* Graphic::GetMaterial() const {
 	return _baseMaterial;
 }
  const unsigned int Graphic::IndexCount() {
 	 return _indexCount;
  }
- void Graphic::SetMaterial(Material* m) {
+ void Graphic::SetMaterial(BaseMaterial* m) {
 	 _baseMaterial = m;
 	
  }

@@ -1,33 +1,37 @@
 #include "Mesh.h"
 #include "../../Util/Utility.h"
-
+#include <cassert>
 const unsigned int Mesh::_component_id = Utility::GetID();
 const unsigned int Mesh::ID()const {
 	return _component_id;
 }
 
 Mesh::Mesh() :Graphic() {
-	
+	assert(false, "Used default constructor of MESH, behaviour undefined");
 }
 
-Mesh::Mesh(GLfloat* verts, GLuint* indices) : Graphic() {
-	_vertices = verts;
-	_indices = indices;
+Mesh::Mesh(std::vector<Vertex>* verts, std::vector<GLuint>* indices, BaseMaterial* mat, const unsigned int indexCount) :
+	Graphic(mat, indexCount),
+	_vertices(verts),
+	_indices(indices){
+
 }
-
-Mesh::Mesh(const unsigned int indexCount, VAO* vao, VBO* vbo, EBO* ebo, Material* mat) : 
-	Graphic(mat, indexCount), _vao(vao), _vbo(vbo), _ebo(ebo){
-
+void Mesh::InitGLData(VAO* vao, VBO* vbo, EBO* ebo) {
+	_vao = vao;
+	_vbo = vbo;
+	_ebo = ebo;
 }
 Mesh::~Mesh() {
-	printf("delteing mesh \n");
-	_vao->Delete();
-	delete _vao;
+	printf("delteing mesh \n");				
+	delete _vertices;						
+	delete _indices;						
+	_vao->Delete();						
+	delete _vao;						
+	_vbo->Delete();					
+	delete _vbo;				
+	_ebo->Delete();				
+	delete _ebo;			
 	//DOES THE EBO AND VBO NEED TO BE UNBOUND BEFORE DELETION?
-	_ebo->Delete();
-	delete _ebo;
-	_vbo->Delete();
-	delete _vbo;
 	delete[] _vertices;
 	delete[] _indices;
 }

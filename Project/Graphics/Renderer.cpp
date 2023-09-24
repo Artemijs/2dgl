@@ -79,7 +79,7 @@ void Renderer::CreateGeometry() {
 	_vao->Bind();
 
 	_vbo = new VBO(_vertices);
-	_ebo = new EBO(_indices, sizeof(_indices));
+	_ebo = new EBO(_indices);
 
 	_vao->LinkAttrib(_vbo, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);//positions
 	_vao->LinkAttrib(_vbo, 2, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));//normals

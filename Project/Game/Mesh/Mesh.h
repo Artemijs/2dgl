@@ -12,13 +12,15 @@ private:
 	VAO* _vao;
 	VBO* _vbo;
 	EBO* _ebo;
-	GLfloat* _vertices;
-	GLuint* _indices;
+
+	std::vector<Vertex>* _vertices;
+	std::vector<GLuint>* _indices;
 public:
 	static const unsigned int _component_id;
 	Mesh();
-	Mesh(GLfloat* verts, GLuint* indices);
-	Mesh(const unsigned int indexCount, VAO* vao, VBO* vbo, EBO* ebo, Material* mat);
+	Mesh(std::vector<Vertex>* verts, std::vector<GLuint>* indices, BaseMaterial* mat, const unsigned int indexCount);
+	void InitGLData(VAO* vao, VBO* vbo, EBO* ebo);
+	Mesh(const unsigned int indexCount, VAO* vao, Material* mat);
 	~Mesh();
 	void Draw(const Matrix4x4* model) const override;
 	VAO* GetVAO();

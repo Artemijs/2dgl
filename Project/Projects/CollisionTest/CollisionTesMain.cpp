@@ -250,10 +250,11 @@ void IneIntersectTest::Play(const bool on) {
 
 
 
-
+#include "../../Game/Mesh/MeshLoader.h"
 /// <summary>
 /// CANNOT SET MATERIAL
 /// </summary>
+/// 
 MaterialTest::MaterialTest() :Game() {
 	Renderer* r = Renderer::instance();
 	//button
@@ -262,7 +263,7 @@ MaterialTest::MaterialTest() :Game() {
 	Vec3 size = Vec3(200, 75, 1);
 	
 	btn = new Button("Hi!", Vec3(startX, startY, 0), size, 0);			
-	Material* mtrl = btn->GetComponent<Sprite>(Sprite::_component_id)->GetMaterial();
+	BaseMaterial* mtrl = btn->GetComponent<Sprite>(Sprite::_component_id)->GetMaterial();
 	//mtrl->_color = Vec4(0.0f, 0.5f, 5.0f, 0.1f);
 	_world->AddChild(btn);
 
@@ -289,7 +290,6 @@ MaterialTest::MaterialTest() :Game() {
 	img2->AddComponent(new Sprite(m));
 	_world->AddChild(img2);
 	*/
-
 
 	//text
 	//Text

@@ -13,18 +13,18 @@
 /// </summary>
 class Graphic : public BaseComponent{
 protected:
-	Material* _baseMaterial;
+	BaseMaterial* _baseMaterial;
 	//for the glDraw call that text also uses and has more than 6 indices
 	unsigned int _indexCount;
 
 public:
 	Graphic(const unsigned int indexCount = 6);
-	Graphic(Material* m, const unsigned int indexCount = 6);
+	Graphic(BaseMaterial* m, const unsigned int indexCount = 6);
 	~Graphic();
 
 	virtual void Draw(const Matrix4x4* model) const;
-	Material* GetMaterial() const ;
-	void SetMaterial(Material* m);
+	BaseMaterial* GetMaterial() const ;
+	void SetMaterial(BaseMaterial* m);
 	const unsigned int IndexCount();
 
 };

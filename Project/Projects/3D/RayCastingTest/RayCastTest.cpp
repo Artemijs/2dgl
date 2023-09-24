@@ -14,23 +14,22 @@ RayCastTest::RayCastTest() {
 	x = 0;
 
 		
-
-	bn1 = new BaseNode(Vec3(100, 100, -500), Vec3(100, 100, 1), 0);
+	//					SOME SHIT TO ORIENT AROUND
+	bn1 = new BaseNode(Vec3(0, 0, 0), Vec3(100, 100, 1), 0);
 	//Material* m = new MaterialUiSprite();
 	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(bn1);
-
+		
 	BaseNode* bn = new BaseNode(Vec3(100, 100, -550), Vec3(100, 100, 1), 0);
 	//Material* m = new MaterialUiSprite();
 	bn->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(bn);
 
-
-	//Mesh* m = new Mesh(6, r->GetVAO(), new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png"));
-	/*Mesh* m = MeshLoader::GetPlane();
-	BaseNode* meshNdoe = new BaseNode(Vec3(), Vec3(10000, 10000, 1), 0);
-	_world->AddChild(meshNdoe);
-	meshNdoe->AddComponent(m);*/
+	//					TERRAIN PLANE
+	BaseNode* terrainNode = new BaseNode(Vec3(0, 0, 0), Vec3(100, 100, 1), 0);
+	//Material* m = new MaterialUiSprite();
+	terrainNode->AddComponent<Mesh>(MeshLoader::GetPlane(1, 10, 10));
+	_world->AddChild(terrainNode);
 
 
 }
