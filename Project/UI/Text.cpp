@@ -28,13 +28,12 @@ Text::Text( std::string txt,  BaseNode* owner, int fontSize, int maxCharPerLine)
 }
 Text::~Text() {
 	_vao->Delete();
-	_ebo->Delete();
-	_vbo->Delete();
-	//delete[] _verts;
+	glDeleteBuffers(1, &_ebo);
+	glDeleteBuffers(1, &_vbo);
+	delete[] _verts;
 	delete[] _indices;
 	delete _vao;
-	delete _vbo;
-	delete _ebo;
+
 	if (_allData != NULL) {
 		delete _allData;
 		_allData = NULL;
@@ -243,10 +242,10 @@ void Text::MakeMesh() {
 	int rowCount = _lineCount * 2;
 	int colCount = _maxCharsPerLine * 2;
 	int vCount = colCount * rowCount;
-	//pos + color + uv
+	//pos + uv
 	int vSize = (3 + 2);
 	const int vArrSize = vCount * vSize;
-	//_verts = new GLfloat[vArrSize];
+	_verts = new GLfloat[vArrSize];
 
 	const int indTotal = 6 * (_maxCharsPerLine * _lineCount);
 	_indexCount = indTotal;
@@ -305,13 +304,32 @@ void Text::MakeMesh() {
 	_vao = new VAO();
 	_vao->Bind();
 
-	_vbo = new VBO(_verts, sizeof(_verts) * vArrSize);
-	_ebo = new EBO(_indices, sizeof(_indices) * indTotal);
-	_vao->LinkAttrib(_vbo, 0, 3, GL_FLOAT, vSize * sizeof(float), (void*)0);//positions
-	_vao->LinkAttrib(_vbo, 1, 2, GL_FLOAT, vSize * sizeof(float), (void*)(3 * sizeof(float)));//uvs 
+	//_vbo = new VBO(_verts, sizeof(_verts) * vArrSize);
+	glGenBuffers(1, &_vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(_verts)*vArrSize, _verts, GL_STATIC_DRAW);
+	//_ebo = new EBO(_indices, sizeof(_indices) * indTotal);
+	glGenBuffers(1, &_ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices)*indTotal, _indices, GL_STATIC_DRAW);
+
+	//_vao->LinkAttrib(_vbo, 0, 3, GL_FLOAT, vSize * sizeof(float), (void*)0);//positions
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vSize * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//_vao->LinkAttrib(_vbo, 1, 2, GL_FLOAT, vSize * sizeof(float), (void*)(3 * sizeof(float)));//uvs 
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, vSize * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 	_vao->Unbind();
-	_vbo->Unbind();
-	_ebo->Unbind();
+	//_vbo->Unbind();
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//_ebo->Unbind();
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 void Text::SetFontSize(int size) {
 	_fontSize = size;

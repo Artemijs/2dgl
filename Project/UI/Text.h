@@ -25,12 +25,12 @@ class Text : public Graphic {
 private:
 	static  std::vector<CharData>* _allData;
 	const VAO* _vao;
-	VBO* _vbo;
-	EBO* _ebo;
-	//GLfloat* _verts;
-	std::vector<Vertex> _verts;
+	GLuint _vbo;
+	GLuint _ebo;
+	GLfloat* _verts;
+	//std::vector<Vertex> _verts;
 	GLuint* _indices;		
-	 BaseNode* _owner;		
+	BaseNode* _owner;		
 	int _maxCharsPerLine;	
 	unsigned int _lineCount;
 	//int _indexCount;		

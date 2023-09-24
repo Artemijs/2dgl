@@ -5,6 +5,13 @@ class MeshLoader {
 private:
 
 public :
-	static Mesh* GetPlane();
+	/// <summary>
+	/// auto generate a flat diffuse lit plane
+	/// </summary>
+	/// <param name="resolution"></param>
+	/// <param name="width"></param>
+	/// <param name="height"></param>
+	/// <returns></returns>
+	static Mesh* GetPlane(const float resolution, const float width, const float height);
 };
 #endif // !MESH_LOADER_H

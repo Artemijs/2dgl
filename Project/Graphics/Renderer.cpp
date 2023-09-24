@@ -81,9 +81,9 @@ void Renderer::CreateGeometry() {
 	_vbo = new VBO(_vertices);
 	_ebo = new EBO(_indices, sizeof(_indices));
 
-	_vao->LinkAttrib(_vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);//verts
-	_vao->LinkAttrib(_vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));//uvs
-	//_vao->LinkAttrib(_vbo, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float))); //used to be color
+	_vao->LinkAttrib(_vbo, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);//positions
+	_vao->LinkAttrib(_vbo, 2, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));//normals
+	_vao->LinkAttrib(_vbo, 1, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float))); //uvs
 	_vao->Unbind();
 	_vbo->Unbind();
 	_ebo->Unbind();

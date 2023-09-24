@@ -39,11 +39,11 @@ private:
 	};*/
 	std::vector<Vertex> _vertices = 
 	{
-		//positions								//uv
+		//positions							//normals			//uv
 		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)},
-		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)},
-		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)},
-		Vertex{Vec3(-0.5f,  -0.5f,  -1.0f), Vec3(0, 0, 0), Vec2(0.0f, 0.0f)}
+		Vertex{Vec3(-0.5f,  0.5f,  -1.0f),  Vec3(0, 0, 0), Vec2(0.0f, 1.0f)}, 
+		Vertex{Vec3(0.5f,  0.5f,  -1.0f),   Vec3(0, 0, 0), Vec2(1.0f, 1.0f)},  
+		Vertex{Vec3(0.5f,  -0.5f,  -1.0f),  Vec3(0, 0, 0), Vec2(1.0f, 0.0f)}  
 	};
 	GLuint _indices[6] = {
 		0, 2, 1, //upper triangle,
