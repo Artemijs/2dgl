@@ -15,7 +15,7 @@ RayCastTest::RayCastTest() {
 
 		
 	//					SOME SHIT TO ORIENT AROUND
-	bn1 = new BaseNode(Vec3(0, 0, -2), Vec3(10, 10, 1), 0);
+	bn1 = new BaseNode(Vec3(0, 0, -20), Vec3(10, 10, 1), 0);
 	//Material* m = new MaterialUiSprite();
 	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(bn1);
@@ -54,7 +54,8 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 	Vec3 pos = c->GetPosition();
 	Vec3 moveDir;
 	if (dir == 0) { //w
-		moveDir = c->GetOrientation();
+		//moveDir = c->GetOrientation();
+		moveDir = Vec3(0, 0, -1);
 		Utility::PrintVector(" W : ", moveDir);
 	}
 	else if (dir == 1) {//a
@@ -62,7 +63,7 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 		Utility::PrintVector(" A : ", moveDir);
 	}
 	else if (dir == 2) {//s
-		moveDir = c->GetOrientation()*-1;
+		moveDir = Vec3(0, 0, 1);
 		Utility::PrintVector(" S : ", moveDir);
 	}
 	else {//d

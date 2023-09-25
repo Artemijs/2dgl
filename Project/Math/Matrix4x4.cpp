@@ -548,3 +548,23 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 
 	return m * m1;
 }
+
+Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
+	//this needs to be a 3x3 matrix		
+	Matrix4x4 m = Matrix4x4(1.0f);
+	const float cosA = cosf(rotation);
+	const float sinA = sinf(rotation);
+
+	m.buff[0] = cosA + pow(axis.x, 2) * (1 - cosA);
+	m.buff[1] = axis.x * axis.y * (1 - cosA) - axis.z * sinA;
+	m.buff[2] = axis.x * axis.z * (1 - cosA) + axis.y * sinA;
+
+	m.buff[3] = axis.y * axis.x * (1 - cosA) + axis.z * sinA;
+	m.buff[4] = cosA + pow(axis.y, 2) * (1 - cosA);
+	m.buff[5] = axis.y * axis.z * (1 - cosA) - axis.x * sinA;
+
+	m.buff[6] = axis.z * axis.x * (1 - cosA) - axis.y * sinA;
+	m.buff[7] = axis.z * axis.y * (1 - cosA) + axis.x * sinA;
+	m.buff[8] = cosA + pow(axis.z, 2) * (1 - cosA);
+	return m;
+}

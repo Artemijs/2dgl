@@ -135,7 +135,7 @@ public:
 	static Matrix4x4 TranslationMatrix(Vec3 pos);
 	static Matrix4x4 GetMatrix(Vec3 pos, Vec3 scale, float ang);
 	static Matrix4x4 GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O);
-
+	static Matrix4x4 RotationMatrix(const float rotation, const Vec3& axis);
 	//float GetAngle();
 	Vec3 GetPosition() const;
 	Vec3 GetSize() const;

@@ -12,7 +12,7 @@ private:
 	Vec3 _position;
 	Vec3 _orientation;
 	Vec3 _up;
-
+	Vec3 _angles;
 	unsigned int _width;
 	unsigned int _height;
 	Vec2 _ang;
