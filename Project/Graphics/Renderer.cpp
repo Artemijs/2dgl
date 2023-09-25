@@ -38,7 +38,7 @@ Renderer::Renderer() {
 
 	_fRect = new FinalRect();
 
-	_camera = new Camera(_windowSize.x, _windowSize.y, Vec3());
+	_camera = new Camera(_windowSize.x, _windowSize.y, Vec3(0, -10, 0));
 }
 Renderer::~Renderer() {
 

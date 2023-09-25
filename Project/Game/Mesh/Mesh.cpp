@@ -35,11 +35,13 @@ Mesh::~Mesh() {
 	delete[] _vertices;
 	delete[] _indices;
 }
+#include "../../Graphics/Renderer.h"
 void Mesh::Draw(const Matrix4x4* model) const {		
-	std::cout << "DRAWIN DROM MESH\n";	
+	//std::cout << "DRAWIN DROM MESH\n";	
 
 	_baseMaterial->Bind(model);									
 	_vao->Bind();					
+	//Renderer::instance()->GetVAO()->Bind();
 
 	glDrawElements(GL_TRIANGLES, _indexCount, GL_UNSIGNED_INT, 0);
 

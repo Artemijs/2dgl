@@ -12,7 +12,7 @@ Camera::Camera() {
 
 Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(width), _height(height), _position(position){
 	_up = Vec3(0.0f, 1.0f, 0.0f);
-	_orientation = Vec3(0.0f, 0.0f, 1.0f);
+	_orientation = Vec3(1.0f, 0.0f, 0.0f);
 	_ang = Vec2();
 	_sensitivity = 1.1f;
 	_firstClick = true;
@@ -75,9 +75,10 @@ void Camera::MouseMove(const double& xpos, const double& ypos) {
 		{
 			Orientation = newOrientation;
 		}*/
-
-		_orientation = Matrix3x3::RotationMatrix(rotX, Vec3::Cross(_orientation, _up)) * _orientation;
-		_orientation = Matrix3x3::RotationMatrix(rotY, _up) * _orientation;
+		//_orientation = Matrix3x3::RotationMatrix(rotY, _up) * _orientation;
+		Vec3 vAxis = Vec3(0, 0, 1);//Vec3::Cross(_orientation, _up);
+		_orientation = Matrix3x3::RotationMatrix(rotX, vAxis) * _orientation;
+		
 		
 		//Utility::PrintVector("forward :", _orientation);
 

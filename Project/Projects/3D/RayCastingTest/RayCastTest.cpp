@@ -15,7 +15,7 @@ RayCastTest::RayCastTest() {
 
 		
 	//					SOME SHIT TO ORIENT AROUND
-	bn1 = new BaseNode(Vec3(0, 0, 0), Vec3(100, 100, 1), 0);
+	bn1 = new BaseNode(Vec3(0, 0, -2), Vec3(10, 10, 1), 0);
 	//Material* m = new MaterialUiSprite();
 	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(bn1);
@@ -26,9 +26,9 @@ RayCastTest::RayCastTest() {
 	_world->AddChild(bn);
 
 	//					TERRAIN PLANE
-	BaseNode* terrainNode = new BaseNode(Vec3(0, 0, 0), Vec3(100, 100, 1), 0);
+	BaseNode* terrainNode = new BaseNode(Vec3(0, -10, -1), Vec3(1, 1, 1), 0);
 	//Material* m = new MaterialUiSprite();
-	terrainNode->AddComponent<Mesh>(MeshLoader::GetPlane(1, 10, 10));
+	terrainNode->AddComponent<Mesh>(MeshLoader::GetPlane(1000, 2, 2));
 	_world->AddChild(terrainNode);
 
 
@@ -58,7 +58,7 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 		Utility::PrintVector(" W : ", moveDir);
 	}
 	else if (dir == 1) {//a
-		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0));
+		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0)) * -1;
 		Utility::PrintVector(" A : ", moveDir);
 	}
 	else if (dir == 2) {//s
@@ -66,7 +66,7 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 		Utility::PrintVector(" S : ", moveDir);
 	}
 	else {//d
-		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0)) * -1;
+		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0));
 		Utility::PrintVector(" D : ", moveDir);
 	}
 

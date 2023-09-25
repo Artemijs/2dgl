@@ -538,10 +538,13 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 	m.buff[6] = Z.y;
 	m.buff[10] = Z.z;
 	//3 7 11 O
-	m.buff[3] = O.x;
+	/*m.buff[3] = O.x;
 	m.buff[7] = O.y;
 	m.buff[11] = O.z;
-
+	*/
 	m.buff[15] = 1.0f;
-	return m;
+	Matrix4x4 m1(1.0f);
+	m1.SetTranslation(O *-1);
+
+	return m * m1;
 }
