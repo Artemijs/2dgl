@@ -12,10 +12,10 @@ private:
 	Vec3 _position;
 	Vec3 _orientation;
 	Vec3 _up;
-	Vec3 _angles;
+
 	unsigned int _width;
 	unsigned int _height;
-	Vec2 _ang;
+
 	float _speed;
 	float _sensitivity;
 	bool _cursorLocked;
@@ -26,8 +26,12 @@ public:
 	bool _x;
 	Camera();
 	Camera(unsigned int height, unsigned int width, Vec3 position);
+	/// <summary>
+	/// comptue the forward right adn up vectors and create the view matrix
+	/// </summary>
 	void CalculateViewMatrix();
-	Matrix4x4* GetCamera();
+
+	Matrix4x4* GetViewMatrix();
 	Vec3 GetPosition();
 	void SetPosition(Vec3 pos);
 	Vec3 GetOrientation();

@@ -41,7 +41,11 @@ RayCastTest::~RayCastTest() {
 void RayCastTest::Update(float deltaTime) {
 	Game::Update(deltaTime);										
 																	
-	
+	/*Camera* c = Renderer::instance()->GetCamera();
+	Vec3 pos = c->GetPosition();
+	c->SetPosition(pos + (c->GetOrientation()* -4.5f* deltaTime));
+	Utility::PrintVector("ORIENTATION : ", c->GetOrientation());
+	Utility::PrintVector("POSITIon : ", c->GetPosition());*/
 	if (_3d) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
@@ -49,25 +53,26 @@ void RayCastTest::Update(float deltaTime) {
 	
 }
 void RayCastTest::MoveCamera(const unsigned int dir) {
-	const float moveSpeed = 100;
+	const float moveSpeed = 10;
 	Camera* c = Renderer::instance()->GetCamera();
 	Vec3 pos = c->GetPosition();
 	Vec3 moveDir;
 	if (dir == 0) { //w
-		//moveDir = c->GetOrientation();
-		moveDir = Vec3(0, 0, -1);
+		moveDir = c->GetOrientation() * -1;
+		//moveDir = Vec3(0, 0, -1);
 		Utility::PrintVector(" W : ", moveDir);
 	}
 	else if (dir == 1) {//a
-		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0)) * -1;
+		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0));
 		Utility::PrintVector(" A : ", moveDir);
 	}
 	else if (dir == 2) {//s
-		moveDir = Vec3(0, 0, 1);
+		//moveDir = Vec3(0, 0, 1);
+		moveDir = c->GetOrientation();
 		Utility::PrintVector(" S : ", moveDir);
 	}
 	else {//d
-		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0));
+		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0)) * -1;
 		Utility::PrintVector(" D : ", moveDir);
 	}
 

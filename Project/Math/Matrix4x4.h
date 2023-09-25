@@ -70,6 +70,7 @@ public:
 	static const float Distance(const float ax, const float ay, const float az,const float bx, const float by, const float bz);
 	static const float Lenght(const Vec3& v);
 	static Vec3 Cross(const Vec3& a, const Vec3& b);
+	static float Dot(const Vec3& a, const Vec3& b);
 };
 class Vec4
 {

@@ -187,7 +187,9 @@ Vec3 Vec3::Cross(const Vec3& a, const Vec3& b) {
 	return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
 }
 
-
+float Vec3::Dot(const Vec3& a, const Vec3& b) {
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
 
 Vec4::Vec4() {
 	x = 0; y = 0; z = 0; a = 1;
@@ -524,9 +526,27 @@ Matrix4x4 Matrix4x4::Perspective(const float fov, const float aspect, const floa
 	return m;
 }
 Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O) {
-	Matrix4x4 m;
-	//0 4 8  X
+	Matrix4x4 m(1.0f);
+	//0  1  2  3
+	//4  5  6  7
+	//8  9  10 11
+	//12 13 14 15
+	
+
 	m.buff[0] = X.x;
+	m.buff[1] = X.y;
+	m.buff[2] = X.z;
+	//1 5 9  y
+	m.buff[4] = Y.x;
+	m.buff[5] = Y.y;
+	m.buff[6] = Y.z;
+	//2 6 10 z
+	m.buff[8] = Z.x;
+	m.buff[9] = Z.y;
+	m.buff[10] = Z.z; 
+
+	//0 4 8  X
+	/*m.buff[0] = X.x;
 	m.buff[4] = X.y;
 	m.buff[8] = X.z;
 	//1 5 9  y
@@ -536,7 +556,7 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 	//2 6 10 z
 	m.buff[2] = Z.x;
 	m.buff[6] = Z.y;
-	m.buff[10] = Z.z;
+	m.buff[10] = Z.z;*/
 	//3 7 11 O
 	/*m.buff[3] = O.x;
 	m.buff[7] = O.y;

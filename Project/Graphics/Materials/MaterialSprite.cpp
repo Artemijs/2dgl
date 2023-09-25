@@ -9,7 +9,7 @@ MaterialSprite::~MaterialSprite() {
 }						
 void MaterialSprite::Bind(const Matrix4x4* model)const  {
 	Material::Bind(model);
-	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "view"), 1, GL_TRUE, Renderer::instance()->GetCamera()->GetCamera()->buff);
+	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "view"), 1, GL_TRUE, &Renderer::instance()->GetCamera()->GetViewMatrix()->buff[0]);
 	Renderer::instance()->GetVAO()->Bind();
 }						
 						
