@@ -4,11 +4,13 @@
 #include "../Graphics/Graphic.h"
 #include "../Graphics/Sprite.h"
 #include "MouseEventComponent.h"
+#include "../Input/Keyboard.h"
 class Game {							
 protected:								
 	bool _switch;						
 	bool _isRunning;			
 	float _ang;
+	Keyboard* _keyboard;
 public :								
 										
 	static BaseNode* _world;			

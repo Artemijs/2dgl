@@ -15,7 +15,7 @@
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 
 Game::Game() {
-	
+	Keyboard::Init();
 	Text::Init();
 	_switch = false;
 	//_world->AddChild(new Button("LOL", Vec3(400, 400, 0), Vec3(100, 50, 1), 0));
@@ -25,7 +25,7 @@ Game::Game() {
 }
 Game::~Game() {
 	std::cout << "deleting game\n";
-
+	Keyboard::Delete();
 	delete Renderer::instance();
 	delete _world;
 	MouseEventHandler::Delete();
@@ -88,8 +88,10 @@ void Game::Draw() {
 void Game::HandleKeyInputs(int key, int action, int mods) {
 	if (action == GLFW_REPEAT) return;
 	std::cout << " key event called "<<"aaction "<<action<<" key "<<key<<" mods "<<mods<<"\n";
+	Keyboard::HendleInput(key, action);
 	if (action == GLFW_PRESS) {
 		_switch = !_switch;
+	
 	}
 	else if (action == GLFW_RELEASE) {
 		

@@ -50,6 +50,9 @@ void RayCastTest::Update(float deltaTime) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
 	}
+	if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
+		MoveCamera(0);
+	}
 	
 }
 void RayCastTest::MoveCamera(const unsigned int dir) {
