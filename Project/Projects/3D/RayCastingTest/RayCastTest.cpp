@@ -50,9 +50,9 @@ void RayCastTest::Update(float deltaTime) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
 	}
-	if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
+	/*if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
 		MoveCamera(0);
-	}
+	}*/
 	
 }
 void RayCastTest::MoveCamera(const unsigned int dir) {
@@ -63,7 +63,7 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 	if (dir == 0) { //w
 		moveDir = c->GetOrientation() * -1;
 		//moveDir = Vec3(0, 0, -1);
-		Utility::PrintVector(" W : ", moveDir);
+		//Utility::PrintVector(" W : ", moveDir);
 	}
 	else if (dir == 1) {//a
 		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0));
@@ -86,6 +86,8 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 }
 void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 	if (action == 2) return;
+	char c = char(key+32);
+	printf("key %c \n", c);
 	if (action == 0) {
 		std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
 		switch (key)

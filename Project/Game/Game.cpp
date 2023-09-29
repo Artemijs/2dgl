@@ -87,15 +87,15 @@ void Game::Draw() {
 
 void Game::HandleKeyInputs(int key, int action, int mods) {
 	if (action == GLFW_REPEAT) return;
+
 	std::cout << " key event called "<<"aaction "<<action<<" key "<<key<<" mods "<<mods<<"\n";
 	Keyboard::HendleInput(key, action);
-	if (action == GLFW_PRESS) {
-		_switch = !_switch;
-	
-	}
+	if (action == GLFW_PRESS) {	
+		_switch = !_switch;		
+	}							
 	else if (action == GLFW_RELEASE) {
-		
-	}
+								
+	}							
 }
 void Game::HandleMouseInputs(int btn, int action) {
 	//std::cout << "btn event called \n";

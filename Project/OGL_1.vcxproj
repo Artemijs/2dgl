@@ -176,6 +176,7 @@
     <ClCompile Include="Graphics\ShaderClass.cpp" />
     <ClCompile Include="Graphics\Sprite.cpp" />
     <ClCompile Include="Graphics\Texture.cpp" />
+    <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="Input\MouseEventHandler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math\AABoxBounds.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Graphics\ShaderClass.h" />
     <ClInclude Include="Graphics\Sprite.h" />
     <ClInclude Include="Graphics\Texture.h" />
+    <ClInclude Include="Input\Keyboard.h" />
     <ClInclude Include="Input\MouseEventHandler.h" />
     <ClInclude Include="Math\AABoxBounds.h" />
     <ClInclude Include="Math\Bounds.h" />

@@ -10,14 +10,13 @@ enum class KeyState
 };
 struct Key {
 	const char key;
-	const unsigned int id;
 	KeyState state;
 };
 class Keyboard {
-#define pressedkey std::pair<float, Key*>
+#define pressedkey std::pair<float, Key>
 private:
-	static std::vector<Key*>* _allKeys;
-	static std::vector<pressedkey>* _pressedKeys;
+	static std::vector<Key>* _allKeys;
+	static std::vector<std::pair<float, Key>>* _pressedKeys;
 	static float _heldDelay;
 	
 public :

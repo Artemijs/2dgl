@@ -267,6 +267,9 @@
     <ClCompile Include="Game\Mesh\MeshLoader.cpp">
       <Filter>Source Files\Game\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Input\Keyboard.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -403,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="Game\Mesh\Mesh.h">
       <Filter>Header Files\Game\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keyboard.h">
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
