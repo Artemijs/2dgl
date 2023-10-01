@@ -9,19 +9,24 @@ enum class KeyState
 	IDLE
 };
 struct Key {
+public :
 	const char key;
 	KeyState state;
+	Key(const char k) :key(k) { state = KeyState::IDLE; }
 };
+#include "../Util/Utility.h"
 class Keyboard {
-#define pressedkey std::pair<float, Key>
+#define pressedkey std::pair<float, Key*>
+
 private:
 	static std::vector<Key>* _allKeys;
-	static std::vector<std::pair<float, Key>>* _pressedKeys;
+	static std::vector<pressedkey>* _pressedKeys;
+	static std::vector<Key*>* _keysUp;
 	static float _heldDelay;
 	
 public :
 	static void Init();
-	static void HendleInput(const unsigned int key, const unsigned int action);
+	static void HendleInput( unsigned int key, const unsigned int action);
 	static const Key* GetKey(const char key);
 	void static Update(float deltaTime);
 	static void Delete();

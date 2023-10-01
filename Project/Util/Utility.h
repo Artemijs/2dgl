@@ -37,3 +37,38 @@ Game* DevGetGameType();
 
 
 #endif
+
+#ifndef SLINKED_LIST
+#define SLINKED_LIST
+template <typename T> class SLNode {
+public:
+	
+	SLNode<T>* _next;
+	T* _value;
+	SLNode() :_next(NULL), _value(NULL) {}
+	SLNode(T* value = NULL, SLNode<T>* next = NULL): _next(next), _value(value) { }
+};
+
+
+template <typename T> class SList {
+public:
+	SLNode<T>* _head;
+	SLNode<T>* _tail;
+	SList() {
+		_head = NULL;
+		_tail = NULL;
+	}
+	void Add(T node) {
+
+		/*SLNode<T> n = SLNode<T>(node);
+		if (_head == NULL) {
+			_head = n;
+			_tail = _head;
+		}
+		else {
+			_tail->_next = &n;
+			_tail = n;
+		}*/
+	}
+};
+#endif

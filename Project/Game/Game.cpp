@@ -39,6 +39,9 @@ void Game::Test() {
 	printf("HELLO FROM BLACK mAGIC PORTAL\n");
 }
 void Game::Update(float deltaTime) {
+	//UPDATE KEYBOARD
+	Keyboard::Update(deltaTime);
+	
 	//translate children 
 	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
 	//update the world
@@ -87,15 +90,14 @@ void Game::Draw() {
 
 void Game::HandleKeyInputs(int key, int action, int mods) {
 	if (action == GLFW_REPEAT) return;
-
 	std::cout << " key event called "<<"aaction "<<action<<" key "<<key<<" mods "<<mods<<"\n";
 	Keyboard::HendleInput(key, action);
-	if (action == GLFW_PRESS) {	
+	/*if (action == GLFW_PRESS) {	
 		_switch = !_switch;		
 	}							
 	else if (action == GLFW_RELEASE) {
 								
-	}							
+	}*/							
 }
 void Game::HandleMouseInputs(int btn, int action) {
 	//std::cout << "btn event called \n";

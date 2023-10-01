@@ -193,3 +193,45 @@ Game* DevGetGameType() {
 	}
 	return g;
 }
+
+
+/*
+template<typename T> SLNode<T>::SLNode() {
+	_next = NULL;
+}
+template<typename T> SLNode<T>::SLNode(T& value) {
+	_next = NULL;
+	_value = value;
+}
+template<typename T> SLNode<T>::~SLNode() {
+	delete _value;
+	delete _next; 
+}
+template<typename T>
+void SLNode<T>::AddNext(SLNode& next){
+	_next = next;
+	
+}
+*/
+
+
+
+/*template <typename T>
+SList<T>::SList() {
+	_head = NULL;
+	_tail = NULL;
+}
+
+template <typename T>
+void SList<T>::Add(T* node) {
+	
+	SLNode<T> n = SLNode<T>(node);
+	if (_head == NULL) {
+		_head = &n;
+		_tail = _head;
+	}
+	else {
+		_tail->_next = &n;
+		_tail = &n;
+	}
+}*/

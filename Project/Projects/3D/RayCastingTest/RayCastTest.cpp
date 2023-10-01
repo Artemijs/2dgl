@@ -31,7 +31,7 @@ RayCastTest::RayCastTest() {
 	terrainNode->AddComponent<Mesh>(MeshLoader::GetPlane(1000, 2, 2));
 	_world->AddChild(terrainNode);
 
-
+	(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 }
 
 RayCastTest::~RayCastTest() {
@@ -50,13 +50,23 @@ void RayCastTest::Update(float deltaTime) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
 	}
-	/*if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
+	printf("%c :  %d\n", Keyboard::GetKey('w')->key, Keyboard::GetKey('w')->state);
+	if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
 		MoveCamera(0);
-	}*/
+	}
+	if (Keyboard::GetKey('a')->state == KeyState::KEY_HELD) {
+		MoveCamera(1);
+	}
+	if (Keyboard::GetKey('s')->state == KeyState::KEY_HELD) {
+		MoveCamera(2);
+	}
+	if (Keyboard::GetKey('d')->state == KeyState::KEY_HELD) {
+		MoveCamera(3);
+	}
 	
 }
 void RayCastTest::MoveCamera(const unsigned int dir) {
-	const float moveSpeed = 10;
+	const float moveSpeed = 1.2f;
 	Camera* c = Renderer::instance()->GetCamera();
 	Vec3 pos = c->GetPosition();
 	Vec3 moveDir;
@@ -85,6 +95,7 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 
 }
 void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
+	Game::HandleKeyInputs(key, action, mods);
 	if (action == 2) return;
 	char c = char(key+32);
 	printf("key %c \n", c);
@@ -92,19 +103,6 @@ void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
 		std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
 		switch (key)
 		{
-		case 87:
-			MoveCamera(0);
-			break;
-		case 65:
-			MoveCamera(1);
-			break;
-		case 83:
-			MoveCamera(2);
-			break;
-		case 68:
-			MoveCamera(3);
-			break;
-			//left
 		case 263:
 			Renderer::instance()->GetCamera()->SetPosition(Renderer::instance()->GetCamera()->GetPosition() + Vec3(10, 0, 0));
 			break;
