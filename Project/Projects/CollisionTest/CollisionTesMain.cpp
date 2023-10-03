@@ -26,7 +26,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;
 	//CREATE CIRCLES
-	/*for (int i = 0; i < maxNodes; i++) {
+	for (int i = 0; i < maxNodes; i++) {
 		float randx = rand() % windowW;
 		float randy = rand() % windowW;
 
@@ -40,7 +40,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 		
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
-	}*/
+	}
 	//CREATE BOXES
 	for (int i = 0; i < maxNodes; i++) {
 		float randx = rand() % windowW;
@@ -58,45 +58,10 @@ CollisionTestMain::CollisionTestMain():Game() {
 		_world->AddChild(b);
 	}
 
-
-
-/*
-
-	Bounds* aBox = _myNode->GetComponent<Bounds>();
-	aBox->AddEvent(true, new CollisionEvent(bBox, []( Bounds* a,  Bounds* b, SeparationData& sd) {
-		printf("HELLO WORLD from a collisiion event\n");
-	}));
-
-
-	aBox->AddEvent(false, new CollisionEvent(bBox, [](Bounds* a, Bounds* b, SeparationData& sd) {
-		printf("EXIT COLLISION EVENTO\n");
-	}));
-	aBox->_isFixed = true;
-	//b->AddComponent(new Sprite("Assets/Textures/default.png"));
-	//b->AddComponent(new BoxBounds());
-	
-	
-	_world->AddChild(a);
-	
-	_world->AddChild(b);
-	*/
-	//CreateTests(a, b);
-	//_state = 0;
 	_play = false;
 
 	_angVel = 0;
 	_ang = 0;
-	//_angChange = 2;
-
-
-
-/*BaseNode* circle = new BaseNode(Vec3(100, 100, 0), Vec3(50, 50, 1), 0);
-	circle->AddComponent(new Sprite("Assets/Textures/Circle.png"));
-	Bounds* crclBounds = new SphereBounds(circle, 25);
-	
-	circle->AddComponent(crclBounds);
-	_world->AddChild(circle);*/
-
 
 }
 
@@ -178,6 +143,16 @@ void CollisionTestMain::Update(float deltaTime) {
 	//if (!_play) return;
 	double xpos, ypos;
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
+
+	_ang += Utility::Deg2Rad(1.0f);
+
+	auto children = _world->GetAllChildren();
+	for (int i = 4; i < children->size(); i++) {
+		//Vec3 v = children->at(i)->GetTransform()._angle;
+		children->at(i)->SetAngle(Vec3(0, _ang, 0));
+	}
+
+
 
 	ypos = Renderer::instance()->GetWindowSize().y - ypos;
 

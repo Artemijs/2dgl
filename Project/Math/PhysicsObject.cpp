@@ -8,7 +8,7 @@ const unsigned int PhysicsObject::ID() const {
 	return _component_id;
 }
 
-void PhysicsObject::SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& angVel, const Vec3& angAccel,
+void PhysicsObject::SetPhysData(const Vec3& pos, const Vec3& vel, const Vec3& accel, const Vec3& angVel, const Vec3& angAccel,
 	const float linearDamp, const float angDamp, const float cRest, const float cFriction) {
 	_velocity = vel;
 	_acceleration = accel;
@@ -18,14 +18,17 @@ void PhysicsObject::SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& 
 	_angularDampening = angDamp;
 	_cRestitution = cRest;
 	_cFriction = cFriction;
+	_position = pos;
+
 }
 void PhysicsObject::Update(const float deltaTime) {
 	
 	//LINEAR MOTION
 	//add acceleration to velocity
-	_velocity = _velocity + (_acceleration * _cFriction) * deltaTime;
+	//_velocity = _velocity + (_acceleration * _cFriction) * deltaTime;
 	//apply linear dampening
-	_velocity /= _linearDampening;
+	//_velocity /= _linearDampening;
+	//_velocity += _veloci
 	
 
 

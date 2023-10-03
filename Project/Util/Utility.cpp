@@ -188,7 +188,7 @@ Game* DevGetGameType() {
 		default:
 			g = new TowerDefenseGame();
 		}
-
+		DevPrintDetails("help " + std::to_string(gameId));
 		
 	}
 	return g;
