@@ -1,13 +1,15 @@
-#ifndef PHYSICS_OBJECT
-#define PHYSICS_OBJECT
+#ifndef PHYSICS_OBJECT_H
+#define PHYSICS_OBJECT_H
 #include "../Game/BaseComponent.h"
 #include "Matrix4x4.h"
+#include "../Game/BaseNode.h"
 class PhysicsObject : public BaseComponent{
 private:
 	static const unsigned int _component_id;
-	PhysicsObject();				
-
+	PhysicsObject(Transform* transform);				
+	Transform* _parentTransform;
 	Vec3 _position;
+	Vec3 _rotation;
 	Vec3 _velocity;							
 	Vec3 _acceleration;				
 	Vec3 _angularVelocity;			
@@ -21,7 +23,7 @@ private:
 	
 public:
 	const unsigned int ID() const override;
-	void SetPhysData(const Vec3& pos, const Vec3& vel, const Vec3& accel, const Vec3& angVel, const Vec3& angAccel,
+	void SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& angVel, const Vec3& angAccel,
 		const float linearDamp, const float angDamp, const float _cRest, const float _cFriction);
 	void Update(const float deltaTime);
 };

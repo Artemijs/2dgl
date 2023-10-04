@@ -11,17 +11,22 @@ void CollisionHandler::RegisterBounds( Bounds* b, BaseNode* bn) {
 /// <param name="deltaTime"></param>
 void CollisionHandler::Update(const float deltaTime) {	
 	if (_all_bounds->size() == 0) return;
+
 	//check every bounds against every other bounds		
 	for (int i = 0; i < _all_bounds->size()-1; ++i) {		
+		
 		Bounds* a = _all_bounds->at(i).first;			
 
 		for (int j = i + 1; j < _all_bounds->size(); ++j) {	
-			  Bounds* b = _all_bounds->at(j).first;		
 
-			  const unsigned int collisionExists = a->IsColliding(b);
+			Bounds* b = _all_bounds->at(j).first;		
+
+			const unsigned int collisionExists = a->IsColliding(b);
 			if (a == b)									
 				continue;								
+			
 			SeparationData sd = CollisionDetection::CheckCollision(a, b);
+
 			if (sd._penetrationDistance !=0 ) {			
 				//collision has happened				
 				//no collision with this object happened last frame

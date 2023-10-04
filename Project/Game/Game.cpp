@@ -12,20 +12,24 @@
 #include "../UI/Text.h"
 #include "../Math/CollisionHandler.h"
 
+
+PhysicsWorld* Game::_physWorld = new PhysicsWorld();
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 
 Game::Game() {
 	Keyboard::Init();
-	Text::Init();
+	Text::Init();	
 	_switch = false;
 	//_world->AddChild(new Button("LOL", Vec3(400, 400, 0), Vec3(100, 50, 1), 0));
 	_ang = 0.0f;
 	_isRunning = true;
+	//_physWorld = new PhysicsWorld();
 	
 }
 Game::~Game() {
 	std::cout << "deleting game\n";
 	Keyboard::Delete();
+	delete _physWorld;
 	delete Renderer::instance();
 	delete _world;
 	MouseEventHandler::Delete();
@@ -42,20 +46,26 @@ void Game::Update(float deltaTime) {
 	//UPDATE KEYBOARD
 	Keyboard::Update(deltaTime);
 	
-	//translate children 
+	//PHYSICS 
+	_physWorld->Step(deltaTime);
+	
+	//CREATE THE MODEL MATRIX FOR EVERY OBJECT
 	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
+	
 	//update the world
+
 	_world->TryUpdate(deltaTime);
+	
 	//check collision
 	
 	double xpos, ypos;
 	_ang += 5 * deltaTime;
 	//_world->GetChild(0)->SetAngle(Vec3(0, _ang, 0));
 
-	//PHYSICS 
+	
 	//- update all model matrices( parentTransform, parentScale, parentRotation)
 	CollisionHandler::Update(deltaTime);
-		
+	
 	//MOUSE EVENTS
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
 	

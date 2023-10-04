@@ -186,6 +186,7 @@
     <ClCompile Include="Math\CollisionHandler.cpp" />
     <ClCompile Include="Math\Matrix4x4.cpp" />
     <ClCompile Include="Math\PhysicsObject.cpp" />
+    <ClCompile Include="Math\PhysicsWorld.cpp" />
     <ClCompile Include="Math\SphereBounds.cpp" />
     <ClCompile Include="Projects\3D\RayCastingTest\RayCastTest.cpp" />
     <ClCompile Include="Projects\CollisionTest\ColliisonTestGame.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="Math\CollisionHandler.h" />
     <ClInclude Include="Math\Matrix4x4.h" />
     <ClInclude Include="Math\PhysicsObject.h" />
+    <ClInclude Include="Math\PhysicsWorld.h" />
     <ClInclude Include="Math\SeparationData.h" />
     <ClInclude Include="Math\SphereBounds.h" />
     <ClInclude Include="Projects\3D\RayCastingTest\RayCastTest.h" />

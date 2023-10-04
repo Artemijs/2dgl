@@ -5,12 +5,15 @@
 #include "../Graphics/Sprite.h"
 #include "MouseEventComponent.h"
 #include "../Input/Keyboard.h"
+#include "../Math/PhysicsWorld.h"
 class Game {							
 protected:								
 	bool _switch;						
 	bool _isRunning;			
-	float _ang;
-	Keyboard* _keyboard;
+	float _ang;					
+	//static Keyboard* _keyboard;
+	static PhysicsWorld* _physWorld;
+
 public :								
 										
 	static BaseNode* _world;			
