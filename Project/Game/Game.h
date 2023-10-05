@@ -31,6 +31,7 @@ public :
 	virtual void HandleKeyInputs(int key, int action, int mods);
 	bool IsRunning();
 	void Test();
+	static PhysicsWorld* GetPhyscisWorld();
 
 };
 #endif

@@ -89,7 +89,7 @@ void BaseNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, con
 
 
 
-Transform BaseNode::GetTransform() {
+Transform& BaseNode::GetTransform() {
 	return _transform;
 }
 

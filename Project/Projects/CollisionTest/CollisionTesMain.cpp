@@ -6,16 +6,160 @@
 //
 #include "../../UI/Button.h"
 #include "../../Graphics/Materials/DiffuseMaterial.h"
+
+
+//												PHYSICS TEST GAME
+
+
+
+
+
+PhysicsTest::PhysicsTest() :Game() {
+
+	//Vec2 test = Vec2(5, 10);
+	//test.Normalize();
+
+	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
+	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
+	body->SetPhysData(Vec3(), Vec3(100, 0, 0));
+	_myNode->AddComponent<PhysicsObject>(body);
+	Sprite* s = new Sprite("Assets/Textures/Circle.png");
+	//s->GetMaterial()
+	_myNode->AddComponent(s);
+	Bounds* bBox = new SphereBounds(_myNode, 25);
+
+	//bBox->_solid = false;		
+	_myNode->AddComponent(bBox);
+	_world->AddChild(_myNode);
+
+	_play = false;
+
+	
+
+}
+
+
+PhysicsTest::~PhysicsTest() {
+	std::cout << "deleting CollisionDetection\n";
+	delete _world;
+
+}
+//263 left
+//262 right 
+// 32 space 
+#include "../../Math/CollisionDetection.h"
+
+void PhysicsTest::HandleKeyInputs(int key, int action, int mods) {
+	//if (action == 2) return;
+	//
+
+	if (action == 0) {
+		std::cout << " key event called from tower defense " << "aaction " << action << " key " << key << " mods " << mods << "\n";
+		switch (key)
+		{
+		case 32:
+			Play(!_play);
+			break;
+		case 49:
+			break;
+			//left
+		default:
+			break;
+		}
+
+	}
+	else if (action == 2) { //m held
+		switch (key)
+		{
+		case 87:
+			MoveMyNode(0);
+			break;
+		case 65:
+			MoveMyNode(1);
+			break;
+		case 83:
+			MoveMyNode(2);
+			break;
+		case 68:
+			MoveMyNode(3);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void PhysicsTest::MoveMyNode(const unsigned int dir) {
+	Vec3 mpos = _myNode->GetTransform()._position;
+	Vec3 movDir = Vec3();
+	const float speed = 10;
+
+	if (dir == 0) {
+		movDir.y = 1;
+	}
+	else if (dir == 1) {
+		movDir.x = -1;
+	}
+	else if (dir == 2) {
+		movDir.y = -1;
+	}
+	else {
+		movDir.x = 1;
+	}
+
+
+	_myNode->SetPosition(mpos + movDir * speed);
+}
+void PhysicsTest::Update(float deltaTime) {
+	if (_play) return;
+	Game::Update(deltaTime);
+	//if (!_play) return;
+	double xpos, ypos;
+	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
+
+	_ang += Utility::Deg2Rad(1.0f);
+
+	auto children = _world->GetAllChildren();
+	for (int i = 4; i < children->size(); i++) {
+		//Vec3 v = children->at(i)->GetTransform()._angle;
+		children->at(i)->SetAngle(Vec3(0, _ang, 0));
+	}
+
+
+
+	ypos = Renderer::instance()->GetWindowSize().y - ypos;
+
+	_myNode->SetPosition(Vec3(xpos, ypos, 0));
+
+}
+
+void PhysicsTest::Play(const bool on) {
+	_play = on;
+}
+
+
+
+
+
+
+
+
+
+
 CollisionTestMain::CollisionTestMain():Game() {
 	
 	//Vec2 test = Vec2(5, 10);
 	//test.Normalize();
 
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
+	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
+	body->SetPhysData(Vec3(1, 0, 0));
+	_myNode->AddComponent<PhysicsObject>(body);
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");
 	//s->GetMaterial()
 	_myNode->AddComponent(s);
 	Bounds* bBox = new SphereBounds(_myNode, 25);
+
 	//bBox->_solid = false;		
 	_myNode->AddComponent(bBox);
 	_world->AddChild(_myNode);	

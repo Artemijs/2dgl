@@ -65,7 +65,7 @@ public:
 	virtual void MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot) ;
 
 	//returns global positions rotation and scale
-	Transform GetTransform();
+	Transform& GetTransform();
 
 	//set local posiion unless inherit transform of parent is off
 	void SetPosition(Vec3 pos);

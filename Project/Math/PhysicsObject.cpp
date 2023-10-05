@@ -1,7 +1,11 @@
 #include "PhysicsObject.h"
 #include "../Util/Utility.h"
+#include "../Game/Game.h"
 PhysicsObject::PhysicsObject(Transform* transform) {
 	_parentTransform = transform;
+	SetPhysData();
+	_force = Vec3();
+	Game::GetPhyscisWorld()->AddBody(this);
 }
 
 const unsigned int PhysicsObject::_component_id = Utility::GetID();
@@ -22,9 +26,13 @@ void PhysicsObject::SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& 
 	_position = _parentTransform->_position;
 	_rotation = _parentTransform->_angle;
 
+
 }
 void PhysicsObject::Update(const float deltaTime) {
 	//UPDATE PHYSICS
+	_velocity += (_force + _acceleration ) * deltaTime;
+
+
 	_position += _velocity * deltaTime;
 	_rotation += _angularVelocity * deltaTime;
 
@@ -32,4 +40,10 @@ void PhysicsObject::Update(const float deltaTime) {
 	_parentTransform->_position = _position;
 	_parentTransform->_angle = _rotation;
 
+	//RESET THE FORCE APPLIED making it apply only once
+	_force = Vec3();
+
+}
+void PhysicsObject::AddForce(const Vec3& force) {
+	_force += force;
 }

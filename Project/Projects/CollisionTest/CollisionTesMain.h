@@ -2,6 +2,23 @@
 #define COLLISION_TES_MAIN_H
 #include "../../Game/Game.h"
 
+class PhysicsTest :public Game {
+private:
+
+	bool _play;
+	BaseNode* _myNode;
+	
+
+
+public:
+	PhysicsTest();
+	~PhysicsTest() override;
+	void Update(float deltaTime) override;
+	void HandleKeyInputs(int key, int action, int mods) override;
+	void Play(const bool on);
+	void MoveMyNode(const unsigned int dir);
+
+};
 
 
 class CollisionTestMain :public Game{

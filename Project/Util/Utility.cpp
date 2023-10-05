@@ -84,6 +84,7 @@ void DevPrintHelp() {
 	msg += "4 : MaterialTest\n";
 	msg += "5 : RayCastTest\n";
 	msg += "6 : ShaterTest\n";
+	msg += "7 : PhysicsTest\n";
 	msg += "type HELP N n being the number of the game, for a description of that project\n";
 	std::cout << msg;
 }
@@ -120,6 +121,9 @@ void DevPrintDetails(std::string s) {
 		case 6:
 			std::cout << "Tesing out funcy shader code i found online, PREPARE TO TRIP BALLS\n";
 			break;
+		case 7:
+			std::cout << "Testing out the physics engine functions\n";
+			break;
 		default:
 			std::cout << "YOu have entered a number out of range\n";
 	}
@@ -128,7 +132,7 @@ void DevPrintDetails(std::string s) {
 }
 Game* DevGetGameType() {
 
-	int max = 6;
+	int max = 7;
 
 	std::cout << "PLEASE ENTER WHICH GAME YOU WOULD LIKE TO LOAD \n____ a value between 0 and "<<max<<"\n Type HELP for details(no case sens)\n";
 	Game* g = NULL;
@@ -184,6 +188,9 @@ Game* DevGetGameType() {
 			break;
 		case 6:
 			g = new ShaderTest();
+			break;
+		case 7:
+			g = new PhysicsTest();
 			break;
 		default:
 			g = new TowerDefenseGame();

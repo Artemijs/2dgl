@@ -125,3 +125,6 @@ void Game::HandleMouseInputs(int btn, int action) {
 	}
 }
 bool Game::IsRunning() { return _isRunning; }
+PhysicsWorld* Game::GetPhyscisWorld() {
+	return _physWorld;
+}

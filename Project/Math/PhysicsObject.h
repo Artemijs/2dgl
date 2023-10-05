@@ -5,8 +5,8 @@
 #include "../Game/BaseNode.h"
 class PhysicsObject : public BaseComponent{
 private:
-	static const unsigned int _component_id;
-	PhysicsObject(Transform* transform);				
+	
+				
 	Transform* _parentTransform;
 	Vec3 _position;
 	Vec3 _rotation;
@@ -14,7 +14,7 @@ private:
 	Vec3 _acceleration;				
 	Vec3 _angularVelocity;			
 	Vec3 _angularAcceleration;		
-
+	Vec3 _force;
 	float _linearDampening;			
 	float _angularDampening;		
 
@@ -22,10 +22,14 @@ private:
 	float _cFriction;				
 	
 public:
+	static const unsigned int _component_id;
+	PhysicsObject(Transform* transform);
 	const unsigned int ID() const override;
-	void SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& angVel, const Vec3& angAccel,
-		const float linearDamp, const float angDamp, const float _cRest, const float _cFriction);
+	void SetPhysData(const Vec3& vel = Vec3(), const Vec3& accel = Vec3(), const Vec3& angVel = Vec3(), const Vec3& angAccel = Vec3(),
+		const float linearDamp = 0, const float angDamp = 0, const float _cRest = 0, const float _cFriction = 0);
 	void Update(const float deltaTime);
+	void AddForce(const Vec3& force);
+
 };
 
 
