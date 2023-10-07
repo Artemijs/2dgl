@@ -18,6 +18,10 @@ public:
 
 	//NEEDS TO BE OPTIMISED TO CASH MOUSE EVENT COMPONENT
 	static void HandleMouseMoving(const Vec3 mousePos, const float deltaTime);
+	/// <summary>
+	/// calls mouse events
+	/// </summary>
+	/// <param name="on">if the mouse is pressed or resleased</param>
 	static void HandleMouseClick(const bool on);
 	static void Update(const float deltaTime);
 	static void Delete();

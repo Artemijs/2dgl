@@ -12,7 +12,7 @@
 #include "../UI/Text.h"
 #include "../Math/CollisionHandler.h"
 
-
+Mouse* Game::_mouse = new Mouse();
 PhysicsWorld* Game::_physWorld = new PhysicsWorld();
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 
@@ -34,6 +34,7 @@ Game::~Game() {
 	delete _world;
 	MouseEventHandler::Delete();
 	CollisionHandler::Delete();
+	delete _mouse;
 }
 //remove all ui code
 //add UpdateModelMatrix(parentPos, parentScale, parentRot)
@@ -42,44 +43,30 @@ Game::~Game() {
 void Game::Test() {
 	printf("HELLO FROM BLACK mAGIC PORTAL\n");
 }
+
 void Game::Update(float deltaTime) {
 	//UPDATE KEYBOARD
 	Keyboard::Update(deltaTime);
-	
+
+	//MOUSE EVENTS
+	_mouse->Update(deltaTime);  
+
 	//PHYSICS 
 	_physWorld->Step(deltaTime);
 	
 	//CREATE THE MODEL MATRIX FOR EVERY OBJECT
 	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
 	
-	//update the world
-
+	//UPDATE GAME OBJECTS
 	_world->TryUpdate(deltaTime);
 	
-	//check collision
-	
-	double xpos, ypos;
 	_ang += 5 * deltaTime;
-	//_world->GetChild(0)->SetAngle(Vec3(0, _ang, 0));
 
-	
-	//- update all model matrices( parentTransform, parentScale, parentRotation)
+	//RESOLVE COLLISIONS 
 	CollisionHandler::Update(deltaTime);
-	
-	//MOUSE EVENTS
-	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
-	
-	ypos = Renderer::instance()->GetWindowSize().y - ypos;
-	Renderer::instance()->GetCamera()->MouseMove(xpos, ypos);
-	MouseEventHandler::HandleMouseMoving(Vec3(xpos, ypos, 0), deltaTime);
-	MouseEventHandler::Update(deltaTime);
-	//Renderer::instance()->GetCamera()->CalculateViewMatrix();
-	//KEYBOARD EVENTS
-	//std::cout << "game update\n";
 
-	
-	
 }
+
 void Game::Draw() {
 	//return; //WHO DID THIS?
 
@@ -98,33 +85,10 @@ void Game::Draw() {
 }
 
 
-void Game::HandleKeyInputs(int key, int action, int mods) {
-	if (action == GLFW_REPEAT) return;
-	std::cout << " key event called "<<"aaction "<<action<<" key "<<key<<" mods "<<mods<<"\n";
-	Keyboard::HendleInput(key, action);
-	/*if (action == GLFW_PRESS) {	
-		_switch = !_switch;		
-	}							
-	else if (action == GLFW_RELEASE) {
-								
-	}*/							
-}
-void Game::HandleMouseInputs(int btn, int action) {
-	//std::cout << "btn event called \n";
-	//m->OnPress();
-	if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
-		MouseEventHandler::HandleMouseClick(true);
-		Renderer::instance()->GetCamera()->LockCursor(true);
-	}
-	else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
-		MouseEventHandler::HandleMouseClick(false);
-		Renderer::instance()->GetCamera()->LockCursor(false);
-	}
-	if (btn == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE) {
-		Renderer::instance()->GetCamera()->_x = !Renderer::instance()->GetCamera()->_x;
-	}
-}
 bool Game::IsRunning() { return _isRunning; }
 PhysicsWorld* Game::GetPhyscisWorld() {
 	return _physWorld;
+}
+Mouse* Game::GetMouse() {
+	return _mouse;
 }

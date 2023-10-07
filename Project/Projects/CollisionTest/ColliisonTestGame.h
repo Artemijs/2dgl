@@ -89,7 +89,7 @@ public :
 	~CollisionTestGame() override;
 	void Rotate(const int dir);
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods) ;
 	void NextTest();
 	void PrevTest();
 	void Play(const bool on);

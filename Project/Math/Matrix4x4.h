@@ -9,8 +9,8 @@ public:
 	float x, y;
 	Vec2();
 	Vec2(float x, float y);
-	Vec2 operator+(const Vec2& v)const;
-	Vec2 operator-(const Vec2& v)const;
+	Vec2 operator+(const Vec2& v) const;
+	Vec2 operator-(const Vec2& v) const;
 	Vec2 operator*(const float f) const;
 	Vec2 operator/(const float f) const;
 	void operator+=(const  Vec2& v);
@@ -142,4 +142,21 @@ public:
 	Vec3 GetSize() const;
 
 };
+
+
+struct RayHitData {
+	
+};
+
+
+class Ray {
+
+public :
+	float _distance;
+	Vec3 _direction;
+	Ray();
+	Ray(float dist, Vec3 dir);
+	~Ray();
+};
+
 #endif

@@ -1,6 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "../Math/Matrix4x4.h"
+#include "../Input/Mouse.h"
 /// <summary>
 /// To rotate this i could add pitch roll and yaw , create 3 matrices out off them
 /// multiply them together to get the final rotation matrix and use that to create the came view matrix
@@ -20,7 +21,7 @@ private:
 	float _sensitivity;
 	bool _cursorLocked;
 	bool _firstClick;
-	
+	Mouse* _mouse;
 
 public:
 	bool _x;
@@ -36,7 +37,7 @@ public:
 	void SetPosition(Vec3 pos);
 	Vec3 GetOrientation();
 	void SetOrientation(Vec3 dir);
-	void MouseMove(const double& xpos, const double& ypos);
+	void MouseMove();
 	void LockCursor(const bool lockState);
 	bool GetCursorLockState();
 };

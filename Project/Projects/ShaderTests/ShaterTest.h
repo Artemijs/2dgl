@@ -12,7 +12,7 @@ public :
 	ShaderTest();
 	~ShaderTest();
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods) ;
 	void DoThing();
 
 

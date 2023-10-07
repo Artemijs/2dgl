@@ -95,7 +95,7 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 
 }
 void RayCastTest::HandleKeyInputs(int key, int action, int mods) {
-	Game::HandleKeyInputs(key, action, mods);
+	//Game::HandleKeyInputs(key, action, mods);
 	if (action == 2) return;
 	char c = char(key+32);
 	printf("key %c \n", c);
@@ -148,3 +148,29 @@ void RayCastTest::ChangePerspective() {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Ortho(0.0f, wh.x, 0.0f, wh.y, 0.1f, 1000.0f);
 	}
 }
+
+
+/*
+
+bool Camera::RayPlaneIntersection(
+	const maths::Vector3& ray_origin,
+	const maths::Vector3& ray_direction,
+	const maths::Vector3& plane_origin,
+	const maths::Vector3& plane_normal,
+	float& distance )
+{
+	float denominator = plane_normal.Dot(ray_direction);
+
+	if (denominator >= 1e-6) // 1e-6 = 0.000001
+	{
+		maths::Vector3 vector_subtraction = plane_origin - ray_origin;
+		distance = vector_subtraction.Dot(plane_normal);
+
+		return (distance >= 0);
+	}
+
+	return false;
+}
+
+
+*/

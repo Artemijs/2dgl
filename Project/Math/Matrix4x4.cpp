@@ -588,3 +588,21 @@ Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
 	m.buff[8] = cosA + pow(axis.z, 2) * (1 - cosA);
 	return m;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//										RAY
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Ray::Ray() :_distance(0), _direction(Vec3()){
+}
+
+
+Ray::Ray(float dist, Vec3 dir) : _distance(dist), _direction(dir) {
+
+}
+
+Ray::~Ray() {
+	
+}

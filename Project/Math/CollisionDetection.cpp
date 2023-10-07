@@ -386,7 +386,7 @@ const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, cons
 
 
 /// <summary>
-/// Shape positions local and world are fucked
+/// Shape positions local and world are fucked, I THINK I FIXED THAT
 /// </summary>
 /// <param name="a"></param>
 /// <param name="b"></param>
@@ -407,4 +407,10 @@ const SeparationData CollisionDetection::CircleCircleCollision(const shape& a, c
 	sd._separationVector = dist;
 	return sd;
 
+}
+
+
+bool CollisionDetection::LineObjectIntersection(Ray* ray, RayHitData& hitData) {
+
+	return false;
 }

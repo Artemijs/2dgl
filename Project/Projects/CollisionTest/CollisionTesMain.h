@@ -14,7 +14,7 @@ public:
 	PhysicsTest();
 	~PhysicsTest() override;
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods) ;
 	void Play(const bool on);
 	void MoveMyNode(const unsigned int dir);
 
@@ -35,7 +35,7 @@ public :
 	CollisionTestMain();
 	~CollisionTestMain() override;
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods) ;
 	void Play(const bool on);
 	void MoveMyNode(const unsigned int dir);
 	
@@ -47,7 +47,7 @@ public:
 	IneIntersectTest();
 	~IneIntersectTest() override;
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods) ;
 	void Play(const bool on);
 };
 
@@ -59,7 +59,7 @@ public :
 	MaterialTest();
 	~MaterialTest() override;
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods) ;
 	void Play(const bool on);
 	void Draw();
 	void TestMaterials();

@@ -72,13 +72,13 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	}
 }
 
-void CollisionHandler::CallEvents(Bounds* a, Bounds* b, const SeparationData* sd) {
-	if (sd->_penetrationDistance > 0) {//colllision true
-		//a->OnCollisionEnter();
-	}
-	else {//collision false
+
+bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData) {
+
+	//find every plane
+	//check plane intersection
+	//use DOT product to check if intersection is within polygonal bounds of the plane
 	
-	}
 }
 
 

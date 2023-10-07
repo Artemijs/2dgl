@@ -69,7 +69,7 @@ const unsigned int Bounds::IsColliding( Bounds* b) {
 /// <summary>
 /// calls the on collision entered and on collision exitted events
 /// </summary>
-/// <param name="enter">Enter or eXit events to call</param>
+/// <param name="enter">Enter or eXit events to call true or false</param>
 /// <param name="b">the object collision is happening with</param>
 /// <param name="sd">separation data from the collision detection algorythm</param>
 void Bounds::CallEvent(const bool enter, Bounds* b, SeparationData& sd) {
@@ -82,6 +82,8 @@ void Bounds::CallEvent(const bool enter, Bounds* b, SeparationData& sd) {
 			events->at(i)->second(this, b, sd);
 	}
 }
+
+
 void Bounds::AddActiveCollision( Bounds* b, SeparationData& sd) {
 	_activeCollisions->push_back(b);
 	//check if new collision or the collision has already happened
@@ -89,7 +91,14 @@ void Bounds::AddActiveCollision( Bounds* b, SeparationData& sd) {
 		CallEvent(true, b, sd); 
 		
 }
+
+
+/// <summary>
+/// THIS IS GOING TO SHIT ITSELF because of iterators
+/// </summary>
+/// <param name="b"></param>
 void Bounds::RemoveActiveCollision( Bounds* b) {
+
 	SeparationData sd;
 	CallEvent(false, b, sd);
 	auto itt = _activeCollisions->begin();
@@ -97,10 +106,10 @@ void Bounds::RemoveActiveCollision( Bounds* b) {
 		itt++;
 	}
 	if (itt != _activeCollisions->end()) {
-		//delete (*itt);
-
+		//Maybe this doesnt shsit itself after all
 		_activeCollisions->erase(itt);
 	}
+
 }
 void Bounds::AddEvent(const bool enter, CollisionEvent* e) {
 	if (enter) {

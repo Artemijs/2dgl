@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Renderer.h"
+#include "../Game/Game.h"
 Camera::Camera() {
 	_up = Vec3(0.0f, 1.0f, 0.0f);
 	_orientation = Vec3(0.0f, 0.0f, -1.0f);
@@ -7,6 +8,7 @@ Camera::Camera() {
 	_firstClick = true;
 	_x = false;
 	_cursorLocked = false;
+	_mouse = Game::GetMouse();
 }
 
 Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(width), _height(height), _position(position){
@@ -16,6 +18,7 @@ Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(
 	_firstClick = true;					
 	_cursorLocked = false;			
 	_x = false;			
+	_mouse = Game::GetMouse();
 }
 
 void Camera::CalculateViewMatrix() {
@@ -50,17 +53,20 @@ void Camera::SetOrientation(Vec3 dir) {
 }
 
 
-void Camera::MouseMove(const double& xpos, const double& ypos) {
+void Camera::MouseMove() {
+
 
 	if (_cursorLocked) {
+		Vec2 pos = _mouse->GetPosition();
 		if (_firstClick) {
-			glfwSetCursorPos(Renderer::instance()->GetWindow(), (_width / 2), (_height / 2));
+			//glfwSetCursorPos(Renderer::instance()->GetWindow(), (_width / 2), (_height / 2));
+			_mouse->SetCursorPos((_width / 2), (_height / 2));
 			_firstClick = false;
 			return;
 		}
 
-		float rotX = -_sensitivity * (float)(ypos - (_height / 2)) / _height;
-		float rotY = -_sensitivity * (float)(xpos - (_width / 2)) / _width;
+		float rotX = -_sensitivity * (float)( pos.y - (_height / 2)) / _height;
+		float rotY = -_sensitivity * (float)(pos.x - (_width / 2)) / _width;
 
 		Vec3 newOrientation = _orientation;
 		_orientation = Matrix3x3::RotationMatrix(rotY, _up) * _orientation;
@@ -71,7 +77,8 @@ void Camera::MouseMove(const double& xpos, const double& ypos) {
 			_orientation = newOrientation;
 		}
 
-		glfwSetCursorPos(Renderer::instance()->GetWindow(), (_width / 2), (_height / 2));
+		//glfwSetCursorPos(Renderer::instance()->GetWindow(), (_width / 2), (_height / 2));
+		_mouse->SetCursorPos((_width / 2), (_height / 2));
 
 		CalculateViewMatrix();
 	}
@@ -80,11 +87,13 @@ void Camera::MouseMove(const double& xpos, const double& ypos) {
 void Camera::LockCursor(const bool lockState) {
 	_cursorLocked = lockState;
 	if (_cursorLocked) {
-		glfwSetInputMode(Renderer::instance()->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+		//glfwSetInputMode(Renderer::instance()->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+		_mouse->SetCursorHidden(_cursorLocked);
 		
 	}
 	else {
-		glfwSetInputMode(Renderer::instance()->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		//glfwSetInputMode(Renderer::instance()->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		_mouse->SetCursorHidden(_cursorLocked);
 		_firstClick = true;
 		
 	}

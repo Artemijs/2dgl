@@ -18,7 +18,7 @@ public :
 	RayCastTest();
 	~RayCastTest();
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods);
 	void ChangePerspective();
 	void TurnCamera(const bool dir);
 	/// <summary>

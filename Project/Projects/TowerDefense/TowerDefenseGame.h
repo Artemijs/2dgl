@@ -25,7 +25,7 @@ public :
 	TowerDefenseGame();
 	~TowerDefenseGame() override;
 	void Update(float deltaTime) override;
-	void HandleKeyInputs(int key, int action, int mods) override;
+	void HandleKeyInputs(int key, int action, int mods) ;
 
 	//GRID
 	void MakeGrid();

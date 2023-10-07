@@ -57,6 +57,13 @@ public :
 	/// <returns></returns>
 	static const SeparationData CheckAABBCollision(const shape& a, const shape& b);
 	
+	/// <summary>
+	/// Checks collision between a Ray and everything that has a collision box on it
+	/// </summary>
+	/// <param name="ray">The ray it checks</param>
+	/// <param name="hitData">The return data variable that is filled here</param>
+	/// <returns>collided/not collided</returns>
+	static bool LineObjectIntersection(Ray* ray, RayHitData& hitData);
 	
 };
 #endif

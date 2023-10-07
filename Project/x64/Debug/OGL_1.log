@@ -1,20 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  CollisionTesMain.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(132,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(132,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(170,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(171,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(173,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(174,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(175,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(179,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(179,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(189,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(190,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(191,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(195,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(195,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(303,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(303,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(453,46): warning C4305: 'argument': truncation from 'double' to 'float'
+  Camera.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(63,48): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(63,33): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(81,47): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(81,32): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe
