@@ -10,7 +10,7 @@ ShaderTest::ShaderTest() :Game(){
 	BaseNode* bn = new BaseNode(Vec3(400, 400, -5), Vec3(800, 800, 1), 0);
 
 		
-	Material* m = new MaterialUiSprite(r->GetShader(6), "Assets/Textures/default.png");
+	BaseMaterial* m = new MaterialUiSprite(r->GetShader(6), "Assets/Textures/default.png");
 	m->_color = Vec4(1, 2, 3, 1);
 	bn->AddComponent<Sprite>(new Sprite(m));
 	_world->AddChild(bn);

@@ -52,6 +52,7 @@ private:
 
 	
 	Matrix4x4 _projection;
+	Matrix4x4 _uiProjection;
 	std::vector<Shader*>* _all_shaders;
 	FinalRect* _fRect;
 	void CreateWindow();
@@ -82,6 +83,7 @@ public:
 	Texture* GetTexture(int id);						
 	const Texture* LoadTexture(const char* path);		
 	Matrix4x4* GetProjection();
+	Matrix4x4* GetUIProjection();
 	Camera* GetCamera();
 };
 

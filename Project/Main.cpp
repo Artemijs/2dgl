@@ -29,9 +29,14 @@ int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();
 	
-	g = DevGetGameType();
-	//g = new RayCastTest();
-	
+	//g = DevGetGameType();
+	g = new RayCastTest();
+
+	//TODO:
+		//add a vao to base class, leave the text vbos and ebos in text
+		//add a base ui material
+		//a base non ui material
+		//g = new MaterialTest();
 	
 	
 	glEnable(GL_BLEND);

@@ -78,6 +78,7 @@ bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData) {
 	//find every plane
 	//check plane intersection
 	//use DOT product to check if intersection is within polygonal bounds of the plane
+	return false;
 	
 }
 

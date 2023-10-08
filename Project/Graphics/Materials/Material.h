@@ -41,4 +41,23 @@ public :
 
 };
 
+class MaterialUI : public BaseMaterial {
+
+protected:
+
+	const Texture* _texture;
+public:
+	MaterialUI();
+	MaterialUI(const Shader* s, const char* texturePath);
+	/// <summary>
+	/// shaders and textures get deleted in renderer
+	/// </summary>
+	virtual ~MaterialUI();
+	void Bind(const Matrix4x4* model) const override;
+	void Unbind() const override;
+	const Texture* GetTexture()const;
+
+};
+
+
 #endif

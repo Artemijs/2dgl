@@ -414,6 +414,7 @@ MaterialTest::MaterialTest() :Game() {
 	//Text
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(90), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
 }
 
 

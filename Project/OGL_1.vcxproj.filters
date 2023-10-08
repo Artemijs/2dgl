@@ -512,5 +512,8 @@
     <Image Include="Assets\Textures\temp.png">
       <Filter>Resource Files\Assets\Textures</Filter>
     </Image>
+    <Image Include="Assets\Textures\crosshair.png">
+      <Filter>Resource Files\Assets\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

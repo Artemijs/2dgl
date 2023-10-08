@@ -8,7 +8,7 @@ const unsigned int Sprite::_component_id = Utility::GetID();
 Sprite::Sprite() : Graphic(new MaterialUiSprite()){
 
 }
-Sprite::Sprite(Material* m ) : Graphic(m) {
+Sprite::Sprite(BaseMaterial* m ) : Graphic(m) {
 
 }
 

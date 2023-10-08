@@ -13,6 +13,10 @@ RayCastTest::RayCastTest() {
 	_aspect = r->GetWindowSize().x / r->GetWindowSize().y;
 	x = 0;
 
+	//					CROSSHAIR
+	BaseNode* crossNode = new BaseNode(Vec3(100,100, -1), Vec3(100, 10, 1), 0);
+	crossNode->AddComponent<Sprite>(new Sprite(new MaterialUiSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
+	_world->AddChild(crossNode);
 		
 	//					SOME SHIT TO ORIENT AROUND
 	bn1 = new BaseNode(Vec3(0, 0, -20), Vec3(10, 10, 1), 0);

@@ -275,6 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\btn.png" />
+    <Image Include="Assets\Textures\crosshair.png" />
     <Image Include="Assets\Textures\default.png" />
     <Image Include="Assets\Textures\pogcat.png" />
     <Image Include="Assets\Textures\pogcattile.png" />

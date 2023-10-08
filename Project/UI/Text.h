@@ -9,6 +9,9 @@
 #include "../Math/Matrix4x4.h"
 #include "../Graphics/Materials/MaterialUiText.h"
 #include "../Game/BaseNode.h"
+
+
+
 //char id=32 x=0 y=0 width=0 height=0 xoffset=1 yoffset=1 xadvance=43 page=0 chnl=15
 struct CharData {
 	int id;
@@ -43,6 +46,7 @@ private:
 
 	void MakeMesh();
 	void CenterText(Vec2 size, int vArrSize);
+
 public:
 	static const unsigned int _component_id;
 	Text( std::string txt,  BaseNode* owner, int fontSize = 6, int maxCharPerLine = 0);

@@ -19,13 +19,14 @@ Renderer::Renderer() {
 	_windowSize = Vec2(800, 800);
 	CreateWindow();
 	CreateGeometry();
+	_uiProjection = Matrix4x4::Ortho(0.0f, _windowSize.x, 0.0f, _windowSize.y, 0.1f, 1000.0f);;
 	_projection = Matrix4x4::Ortho(0.0f, _windowSize.x, 0.0f, _windowSize.y, 0.1f, 1000.0f);
 	_all_graphics = new std::vector<Graphic*>();
 	_all_shaders = new std::vector<Shader*>();
-	_all_shaders->push_back(new Shader("Assets/Shaders/defaultNoTex.vert", "Assets/Shaders/defaultNoTex.frag"));//0
-	_all_shaders->push_back(new Shader("Assets/Shaders/ui_sprite.vert", "Assets/Shaders/ui_sprite.frag"));
+	_all_shaders->push_back(new Shader("Assets/Shaders/defaultNoTex.vert", "Assets/Shaders/defaultNoTex.frag"));//0			
+	_all_shaders->push_back(new Shader("Assets/Shaders/ui_sprite.vert", "Assets/Shaders/ui_sprite.frag"));					
 	_all_shaders->push_back(new Shader("Assets/Shaders/ui_animated_sprite.vert", "Assets/Shaders/ui_animated_sprite.frag"));
-	_all_shaders->push_back(new Shader("Assets/Shaders/ui_outlineText.vert", "Assets/Shaders/ui_outlineText.frag"));
+	_all_shaders->push_back(new Shader("Assets/Shaders/ui_outlineText.vert", "Assets/Shaders/ui_outlineText.frag"));		
 	_all_shaders->push_back(new Shader("Assets/Shaders/final_rect.vert", "Assets/Shaders/final_rect.frag"));//4
 	_all_shaders->push_back(new Shader("Assets/Shaders/diffuse.vert", "Assets/Shaders/diffuse.frag"));
 	_all_shaders->push_back(new Shader("Assets/Shaders/Experimental/eperiment_0.vert", "Assets/Shaders/Experimental/eperiment_0.frag"));
@@ -244,7 +245,7 @@ VAO* Renderer::GetVAO() {
 }
 GLFWwindow* Renderer::GetWindow() { return _window; }
 Vec2 Renderer::GetWindowSize() { return _windowSize; }
-const Vec3 Renderer::WindowSizeVec3() { return Vec3(_windowSize.x, _windowSize.y, 1.0f); }
+const Vec3 Renderer::WindowSizeVec3() { return Vec3(_windowSize.x, _windowSize.y, 0.0f); }
 /// <summary>
 /// set projection and camera view matrix
 /// </summary>
@@ -398,6 +399,9 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 	}
 }
 
+Matrix4x4* Renderer::GetUIProjection() {
+	return &_uiProjection;
+}
 
 Matrix4x4* Renderer::GetProjection() {
 	return &_projection;
