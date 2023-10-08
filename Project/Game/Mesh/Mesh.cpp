@@ -31,9 +31,6 @@ Mesh::~Mesh() {
 	delete _vbo;				
 	_ebo->Delete();				
 	delete _ebo;			
-	//DOES THE EBO AND VBO NEED TO BE UNBOUND BEFORE DELETION?
-	delete[] _vertices;
-	delete[] _indices;
 }
 #include "../../Graphics/Renderer.h"
 void Mesh::Draw(const Matrix4x4* model) const {		

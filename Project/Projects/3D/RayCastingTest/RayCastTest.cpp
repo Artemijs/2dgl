@@ -3,6 +3,7 @@
 #include "../../../Graphics/Materials/DiffuseMaterial.h"
 #include "../../../Graphics/Materials/MaterialSprite.h"
 #include "../../../Game/Mesh/MeshLoader.h"
+#include "../../../Math/CollisionHandler.h"
 RayCastTest::RayCastTest() {
 	//create a plane
 	Renderer* r = Renderer::instance();
@@ -14,9 +15,16 @@ RayCastTest::RayCastTest() {
 	x = 0;
 
 	//					CROSSHAIR
-	BaseNode* crossNode = new BaseNode(Vec3(100,100, -1), Vec3(100, 10, 1), 0);
-	crossNode->AddComponent<Sprite>(new Sprite(new MaterialUiSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
+	BaseNode* crossNode = new BaseNode(Renderer::instance()->WindowSizeVec3() * 0.5f, Vec3(20, 5, 1), 0);
+	MaterialUiSprite* muisp = new MaterialUiSprite(Renderer::instance()->GetShader(7), "Assets/Textures/crosshair.png");
+	muisp->_color = Vec4(1.0f, 0, 0, 1.0f);
+	Sprite* s = new Sprite(muisp);
+	crossNode->AddComponent<Sprite>(s);
 	_world->AddChild(crossNode);
+	
+	BaseNode* crossNode1 = new BaseNode(Renderer::instance()->WindowSizeVec3() * 0.5f, Vec3(5, 20, 1), 0);
+	crossNode1->AddComponent<Sprite>(s);
+	_world->AddChild(crossNode1);
 		
 	//					SOME SHIT TO ORIENT AROUND
 	bn1 = new BaseNode(Vec3(0, 0, -20), Vec3(10, 10, 1), 0);
@@ -50,6 +58,16 @@ void RayCastTest::Update(float deltaTime) {
 	c->SetPosition(pos + (c->GetOrientation()* -4.5f* deltaTime));
 	Utility::PrintVector("ORIENTATION : ", c->GetOrientation());
 	Utility::PrintVector("POSITIon : ", c->GetPosition());*/
+	Renderer* r = Renderer::instance();
+	RayHitData hitData;
+	if (CollisionHandler::RayCast(&Ray(FLT_MAX, r->GetCamera()->GetOrientation()), hitData)) {
+		// i need the object i hit
+		printf("I HIT THE OBJECT\n");
+	}
+	
+
+
+
 	if (_3d) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
