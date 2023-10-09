@@ -3,18 +3,36 @@
 #include "../Math/Matrix4x4.h"
 
 
-/*enum class MouseBtns{
+
+enum class MouseKeyState{
+
+	KEY_DOWN,
+	KEY_HELD,
+	KEY_UP,
+	IDLE
+
+};
 
 
-};*/
+struct MouseKey {
+	const unsigned int _id;
+	MouseKeyState _state;
+};
 
 
+/// <summary>
+/// GLFW only allows for 8 mouse buttons
+/// </summary>
 class Mouse {
+
 private:
+
 	Vec2 _position;
 	bool _hidden;
+	//all keys
 
 public :
+
 	Mouse();
 	~Mouse();
 
@@ -29,7 +47,6 @@ public :
 	/// <param name="hidden"></param>
 	void SetCursorHidden(const bool hidden);
 	bool IsHidden();
-
 
 };
 

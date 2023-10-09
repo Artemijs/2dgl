@@ -1,4 +1,48 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Game.cpp
+  Camera.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(63,48): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(63,33): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(81,47): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Camera.cpp(81,32): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+  Renderer.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(38,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(38,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(42,49): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(42,34): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(97,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(97,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(106,45): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Graphics\Renderer.cpp(106,30): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+  MouseEventHandler.cpp
+  Main.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Main.cpp(28,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Main.cpp(51,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  PhysicsObject.cpp
+  PhysicsWorld.cpp
   RayCastTest.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Projects\3D\RayCastingTest\RayCastTest.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  ColliisonTestGame.cpp
+  CollisionTesMain.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(162,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(163,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(165,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(166,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(167,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(171,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(171,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(181,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(182,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(183,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(187,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(187,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(295,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(295,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(446,46): warning C4305: 'argument': truncation from 'double' to 'float'
+  ShaterTest.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\ShaderTests\ShaterTest.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TowerDefenseGame.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\TowerDefense\TowerDefenseGame.cpp(9,14): warning C4305: '=': truncation from 'double' to 'float'
+  Utility.cpp
+  Generating Code...
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

@@ -20,8 +20,10 @@ PhysicsTest::PhysicsTest() :Game() {
 	//test.Normalize();
 
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
-	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
-	body->SetPhysData(Vec3(), Vec3(100, 0, 0));
+	Transform* t = &_myNode->GetTransform();
+	t->_position = Vec3();
+	PhysicsObject* body = new PhysicsObject(t);
+	//body->SetPhysData(Vec3(), Vec3(100, 0, 0));
 	_myNode->AddComponent<PhysicsObject>(body);
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");
 	//s->GetMaterial()
@@ -111,26 +113,17 @@ void PhysicsTest::MoveMyNode(const unsigned int dir) {
 	_myNode->SetPosition(mpos + movDir * speed);
 }
 void PhysicsTest::Update(float deltaTime) {
+
 	if (_play) return;
+	
+
+	Vec2 mpos = Game::GetMouse()->GetPosition();
+	//if(_mouse->GetKey(
+	//ypos = Renderer::instance()->GetWindowSize().y - ypos;
+
+	//_myNode->SetPosition(Vec3(mpos.x, mpos.y, 0));
+
 	Game::Update(deltaTime);
-	//if (!_play) return;
-	double xpos, ypos;
-	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
-
-	_ang += Utility::Deg2Rad(1.0f);
-
-	auto children = _world->GetAllChildren();
-	for (int i = 4; i < children->size(); i++) {
-		//Vec3 v = children->at(i)->GetTransform()._angle;
-		children->at(i)->SetAngle(Vec3(0, _ang, 0));
-	}
-
-
-
-	ypos = Renderer::instance()->GetWindowSize().y - ypos;
-
-	_myNode->SetPosition(Vec3(xpos, ypos, 0));
-
 }
 
 void PhysicsTest::Play(const bool on) {

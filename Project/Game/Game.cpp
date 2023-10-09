@@ -54,11 +54,13 @@ void Game::Update(float deltaTime) {
 	//PHYSICS 
 	_physWorld->Step(deltaTime);
 	
+	//UPDATE GAME OBJECTS
+	_world->TryUpdate(deltaTime);
+
 	//CREATE THE MODEL MATRIX FOR EVERY OBJECT
 	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
 	
-	//UPDATE GAME OBJECTS
-	_world->TryUpdate(deltaTime);
+	
 	
 	_ang += 5 * deltaTime;
 

@@ -85,6 +85,7 @@ bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData) {
 			continue;
 
 		auto s = b->GetShape();
+
 		
 
 	}

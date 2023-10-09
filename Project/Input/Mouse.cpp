@@ -71,14 +71,14 @@ void Mouse::ButtonInput(const unsigned int btn, const unsigned int action) {
 	
 	if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
 		MouseEventHandler::HandleMouseClick(true);
-		Renderer::instance()->GetCamera()->LockCursor(true);
+		//Renderer::instance()->GetCamera()->LockCursor(true);
 	}
 	else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
 		MouseEventHandler::HandleMouseClick(false);
-		Renderer::instance()->GetCamera()->LockCursor(false);
+		//Renderer::instance()->GetCamera()->LockCursor(false);
 	}
 	if (btn == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE) {
-		Renderer::instance()->GetCamera()->_x = !Renderer::instance()->GetCamera()->_x;
+		//Renderer::instance()->GetCamera()->_x = !Renderer::instance()->GetCamera()->_x;
 	}
 
 }

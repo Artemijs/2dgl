@@ -58,12 +58,12 @@ void RayCastTest::Update(float deltaTime) {
 	c->SetPosition(pos + (c->GetOrientation()* -4.5f* deltaTime));
 	Utility::PrintVector("ORIENTATION : ", c->GetOrientation());
 	Utility::PrintVector("POSITIon : ", c->GetPosition());*/
-	Renderer* r = Renderer::instance();
+	/*Renderer* r = Renderer::instance();
 	RayHitData hitData;
 	if (CollisionHandler::RayCast(&Ray(FLT_MAX, r->GetCamera()->GetOrientation()), hitData)) {
 		// i need the object i hit
 		printf("I HIT THE OBJECT\n");
-	}
+	}*/
 	
 
 

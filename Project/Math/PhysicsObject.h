@@ -8,8 +8,6 @@ private:
 	
 				
 	Transform* _parentTransform;
-	Vec3 _position;
-	Vec3 _rotation;
 	Vec3 _velocity;							
 	Vec3 _acceleration;				
 	Vec3 _angularVelocity;			

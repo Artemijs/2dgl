@@ -23,8 +23,8 @@ void PhysicsObject::SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& 
 	_angularDampening = angDamp;
 	_cRestitution = cRest;
 	_cFriction = cFriction;
-	_position = _parentTransform->_position;
-	_rotation = _parentTransform->_angle;
+	//_position = _parentTransform->_position;
+	//_rotation = _parentTransform->_angle;
 
 
 }
@@ -32,13 +32,8 @@ void PhysicsObject::Update(const float deltaTime) {
 	//UPDATE PHYSICS
 	_velocity += (_force + _acceleration ) * deltaTime;
 
-
-	_position += _velocity * deltaTime;
-	_rotation += _angularVelocity * deltaTime;
-
-	//UPDATE THE TRANSFORM OF BASE NODE
-	_parentTransform->_position = _position;
-	_parentTransform->_angle = _rotation;
+	_parentTransform->_position += _velocity * deltaTime;
+	_parentTransform->_angle += _angularVelocity * deltaTime;
 
 	//RESET THE FORCE APPLIED making it apply only once
 	_force = Vec3();
