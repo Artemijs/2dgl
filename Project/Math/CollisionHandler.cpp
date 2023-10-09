@@ -60,14 +60,14 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	
 	//move b by half of pen dist 
 	if (b.first->_solid) {
-		Utility::PrintVector("A separation vector : ", (sd._separationVector * (sd._penetrationDistance * 0.5f)));
+		//Utility::PrintVector("A separation vector : ", (sd._separationVector * (sd._penetrationDistance * 0.5f)));
 		Transform bt = b.second->GetTransform();
 		b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.5f));
 	}
 	//move a by the other half
 	if (a.first->_solid) {
 		Transform at = a.second->GetTransform();
-		Utility::PrintVector("B separation vector : ", (sd._separationVector * (sd._penetrationDistance * -0.5f)));
+		//Utility::PrintVector("B separation vector : ", (sd._separationVector * (sd._penetrationDistance * -0.5f)));
 		a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.5f));
 	}
 }

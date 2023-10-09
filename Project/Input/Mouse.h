@@ -1,6 +1,7 @@
 #ifndef MOUSE_H
 #define MOUSE_H
 #include "../Math/Matrix4x4.h"
+#include <vector>
 
 
 
@@ -29,7 +30,11 @@ private:
 
 	Vec2 _position;
 	bool _hidden;
-	//all keys
+	std::vector<MouseKey> * _allKeys;
+	std::vector<MouseKey*>* _keysPressed;
+	std::vector<MouseKey*>* _keysUp;
+	const unsigned int _maxKeys;
+	//					all keys
 
 public :
 
@@ -47,7 +52,8 @@ public :
 	/// <param name="hidden"></param>
 	void SetCursorHidden(const bool hidden);
 	bool IsHidden();
-
+	MouseKey* GetMouseKey(const unsigned int key);
+	Vec3 GetMousePosV3();
 };
 
 #endif // !MOUSE_H

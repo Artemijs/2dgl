@@ -21,7 +21,7 @@ PhysicsTest::PhysicsTest() :Game() {
 
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
 	Transform* t = &_myNode->GetTransform();
-	t->_position = Vec3();
+	//t->_position = Vec3();
 	PhysicsObject* body = new PhysicsObject(t);
 	//body->SetPhysData(Vec3(), Vec3(100, 0, 0));
 	_myNode->AddComponent<PhysicsObject>(body);
@@ -113,18 +113,28 @@ void PhysicsTest::MoveMyNode(const unsigned int dir) {
 	_myNode->SetPosition(mpos + movDir * speed);
 }
 void PhysicsTest::Update(float deltaTime) {
-
+		
 	if (_play) return;
-	
+		//add force in the direction from the mouse to the object
+	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_DOWN) {
+		printf("MOUSE DOWN \n");
+		PhysicsObject* body = _myNode->GetComponent<PhysicsObject>();
+		Vec3 dir = (_myNode->GetTransform()._position - _mouse->GetMousePosV3());
+		dir.Normalize();
+		body->AddForce(dir*10000.0f);
+	}	
+	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_HELD) {
+		printf("MOUSE HELD\n");
 
+	}	
+	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_UP) {
+		printf("MOUSE KEY UP \n");
+
+	}	
 	Vec2 mpos = Game::GetMouse()->GetPosition();
-	//if(_mouse->GetKey(
-	//ypos = Renderer::instance()->GetWindowSize().y - ypos;
-
-	//_myNode->SetPosition(Vec3(mpos.x, mpos.y, 0));
-
+		
 	Game::Update(deltaTime);
-}
+}	
 
 void PhysicsTest::Play(const bool on) {
 	_play = on;
@@ -145,23 +155,26 @@ CollisionTestMain::CollisionTestMain():Game() {
 	//test.Normalize();
 
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
+	
 	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
-	body->SetPhysData(Vec3(1, 0, 0));
-	_myNode->AddComponent<PhysicsObject>(body);
-	Sprite* s = new Sprite("Assets/Textures/Circle.png");
-	//s->GetMaterial()
-	_myNode->AddComponent(s);
-	Bounds* bBox = new SphereBounds(_myNode, 25);
+	body->SetPhysData(Vec3(10, 0, 0));						
+	_myNode->AddComponent<PhysicsObject>(body);				
+
+	Sprite* s = new Sprite("Assets/Textures/Circle.png");	
+	s->GetMaterial()->_color = Vec4(0.7f, 0.5f, 0.3f, 1.0f);
+	_myNode->AddComponent(s);								
+	Bounds* bBox = new SphereBounds(_myNode, 25);			
 
 	//bBox->_solid = false;		
 	_myNode->AddComponent(bBox);
 	_world->AddChild(_myNode);	
 
 	
-	unsigned int maxNodes = 4;
+	unsigned int maxNodes = 1;
 	_otherNodes = new BaseNode[maxNodes];
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;
+	
 	//CREATE CIRCLES
 	for (int i = 0; i < maxNodes; i++) {
 		float randx = rand() % windowW;
@@ -178,6 +191,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
 	}
+	/*
 	//CREATE BOXES
 	for (int i = 0; i < maxNodes; i++) {
 		float randx = rand() % windowW;
@@ -193,7 +207,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
-	}
+	}*/
 
 	_play = false;
 
@@ -270,9 +284,10 @@ void CollisionTestMain::MoveMyNode(const unsigned int dir) {
 	else {
 		movDir.x = 1;
 	}
-
-
-	_myNode->SetPosition(mpos + movDir * speed);
+		
+	
+		_myNode->SetPosition(mpos + movDir * speed);
+	
 }
 void CollisionTestMain::Update(float deltaTime) {
 	if (_play) return;
@@ -283,7 +298,7 @@ void CollisionTestMain::Update(float deltaTime) {
 
 	_ang += Utility::Deg2Rad(1.0f);
 
-	auto children = _world->GetAllChildren();
+	auto children = _world->GetAllChildren(); 
 	for (int i = 4; i < children->size(); i++) {
 		//Vec3 v = children->at(i)->GetTransform()._angle;
 		children->at(i)->SetAngle(Vec3(0, _ang, 0));
@@ -292,8 +307,9 @@ void CollisionTestMain::Update(float deltaTime) {
 
 
 	ypos = Renderer::instance()->GetWindowSize().y - ypos;
-
-	_myNode->SetPosition(Vec3(xpos, ypos, 0));
+	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_HELD) {
+		_myNode->SetPosition(Vec3(xpos, ypos, 0));
+	}
 
 }
 

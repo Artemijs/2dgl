@@ -16,7 +16,14 @@ private:
 	static float _dd_time_max;
 public:
 
-	//NEEDS TO BE OPTIMISED TO CASH MOUSE EVENT COMPONENT
+	//
+	
+	/// <summary>
+	///	NEEDS TO BE OPTIMISED TO CASH MOUSE EVENT COMPONENT 
+	/// HANDLES MOUSE AND UI COLLISION AND EVENTS 
+	/// </summary>
+	/// <param name="mousePos"></param>
+	/// <param name="deltaTime"></param>
 	static void HandleMouseMoving(const Vec3 mousePos, const float deltaTime);
 	/// <summary>
 	/// calls mouse events
