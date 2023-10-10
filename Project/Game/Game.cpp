@@ -66,7 +66,10 @@ void Game::Update(float deltaTime) {
 
 	//RESOLVE COLLISIONS 
 	CollisionHandler::Update(deltaTime);
-
+	
+	//HANDLE UI MOUSE COLLISION AND EVENTS
+	MouseEventHandler::HandleMouseMoving(_mouse->GetMousePosV3(), deltaTime);
+	MouseEventHandler::Update(deltaTime);
 }
 
 void Game::Draw() {

@@ -1,6 +1,13 @@
 #include "CollisionHandler.h"
 #include "CollisionDetection.h"
+#include "PhysicsObject.h"
+
+
+
 std::vector< std::pair<Bounds*, BaseNode*>>*  CollisionHandler::_all_bounds = new std::vector< std::pair<Bounds*, BaseNode*>>();
+
+
+
 
 void CollisionHandler::RegisterBounds( Bounds* b, BaseNode* bn) {
 	_all_bounds->push_back(std::pair<Bounds*, BaseNode*>(b,bn));
@@ -49,27 +56,39 @@ void CollisionHandler::Update(const float deltaTime) {
 		}
 	}
 }
+//#define float/(Vec3 v){}
+//Vec3 float::operator/(Vec3 v) {}
 #include "../Util/Utility.h"
 void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std::pair<Bounds*, BaseNode*>& b, SeparationData& sd) {
-	//printf("COLLIDEDD\n");
-	//return;
-	//check if the object cannot be moved
-	//if both objects can be moved then part them equally and separate directions
-	//if only one object can be moved part that one object fully
+	
+	PhysicsObject* bodyA = a.second->GetComponent<PhysicsObject>();
+	PhysicsObject* bodyB = b.second->GetComponent<PhysicsObject>();
+	
+
+	//								seperate objects apart from each other
+	Transform bt = b.second->GetTransform();
+	b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.5f));
+
+	Transform at = a.second->GetTransform();
+	a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.5f));
+
+	//								physics response
+
+	if (bodyA == NULL || bodyB == NULL) return;
+	Vec3 relativeVelocity = (*bodyB->GetVelocity()) - (*bodyA->GetVelocity());		
+	float e = std::min(bodyA->GetCoefRestitution(), bodyB->GetCoefRestitution());	
+	float j = -(1.0f - e) * Vec3::Dot(relativeVelocity, sd._separationVector);		
+	j /= (1.0f / bodyA->GetMass()) + (1.0f / bodyB->GetMass());						
+
+	(*bodyA->GetVelocity()) -= j / ( bodyA->GetMass() * sd._separationVector);
+	(*bodyB->GetVelocity()) += j / (bodyB->GetMass() * sd._separationVector);
+	/*bodyA->GetVelocity()->x += j / (sd._separationVector.x * bodyA->GetMass());
+	bodyA->GetVelocity()->y += j / (sd._separationVector.y * bodyA->GetMass());
+	bodyA->GetVelocity()->z += j / (sd._separationVector.z * bodyA->GetMass());*/
+	//(*bodyA->GetVelocity()) += j / bodyA->GetMass() * sd._separationVector;
 
 	
-	//move b by half of pen dist 
-	if (b.first->_solid) {
-		//Utility::PrintVector("A separation vector : ", (sd._separationVector * (sd._penetrationDistance * 0.5f)));
-		Transform bt = b.second->GetTransform();
-		b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.5f));
-	}
-	//move a by the other half
-	if (a.first->_solid) {
-		Transform at = a.second->GetTransform();
-		//Utility::PrintVector("B separation vector : ", (sd._separationVector * (sd._penetrationDistance * -0.5f)));
-		a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.5f));
-	}
+	
 }
 
 

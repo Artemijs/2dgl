@@ -146,18 +146,17 @@ void PhysicsTest::Play(const bool on) {
 
 
 
-
-
+//void Add(float a, float b) {}
+//#define + Add
 
 CollisionTestMain::CollisionTestMain():Game() {
 	
-	//Vec2 test = Vec2(5, 10);
-	//test.Normalize();
+	
 
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
 	
 	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
-	body->SetPhysData(Vec3(10, 0, 0));						
+	//body->SetPhysData(Vec3(10, 0, 0));						
 	_myNode->AddComponent<PhysicsObject>(body);				
 
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");	
@@ -165,12 +164,11 @@ CollisionTestMain::CollisionTestMain():Game() {
 	_myNode->AddComponent(s);								
 	Bounds* bBox = new SphereBounds(_myNode, 25);			
 
-	//bBox->_solid = false;		
 	_myNode->AddComponent(bBox);
 	_world->AddChild(_myNode);	
 
 	
-	unsigned int maxNodes = 1;
+	unsigned int maxNodes = 4;
 	_otherNodes = new BaseNode[maxNodes];
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;
@@ -191,7 +189,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
 	}
-	/*
+	
 	//CREATE BOXES
 	for (int i = 0; i < maxNodes; i++) {
 		float randx = rand() % windowW;
@@ -207,7 +205,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
-	}*/
+	}
 
 	_play = false;
 
@@ -268,25 +266,29 @@ void CollisionTestMain::HandleKeyInputs(int key, int action, int mods) {
 }
 
 void CollisionTestMain::MoveMyNode(const unsigned int dir) {
-	Vec3 mpos = _myNode->GetTransform()._position;
+	
 	Vec3 movDir = Vec3();
-	const float speed = 10;
+	const float speed = 100;
 
-	if (dir == 0) {
+	if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
+		printf("W PRESSED\n");
 		movDir.y = 1;
 	}
-	else if (dir == 1) {
+	if (Keyboard::GetKey('a')->state == KeyState::KEY_HELD) {
+		printf("A PRESSED\n");
 		movDir.x = -1;
 	}
-	else if (dir == 2) {
+	if (Keyboard::GetKey('s')->state == KeyState::KEY_HELD) {
+		printf("S PRESSED\n");
 		movDir.y = -1;
 	}
-	else {
+	if(Keyboard::GetKey('d')->state == KeyState::KEY_HELD){
+		printf("D PRESSED\n");
 		movDir.x = 1;
 	}
 		
-	
-		_myNode->SetPosition(mpos + movDir * speed);
+	_myNode->GetComponent<PhysicsObject>()->AddForce(movDir * speed);
+	//_myNode->SetPosition(mpos + movDir * speed);
 	
 }
 void CollisionTestMain::Update(float deltaTime) {
@@ -310,7 +312,7 @@ void CollisionTestMain::Update(float deltaTime) {
 	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_HELD) {
 		_myNode->SetPosition(Vec3(xpos, ypos, 0));
 	}
-
+	MoveMyNode(0);
 }
 
 void CollisionTestMain::Play(const bool on) {

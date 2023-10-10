@@ -29,7 +29,7 @@ public:
 	static void ToLower(std::string& s);
 	static float Deg2Rad(const float deg);
 	static float Rad2Deg(const float rad);
-
+	
 };
 
 

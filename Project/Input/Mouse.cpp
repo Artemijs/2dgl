@@ -63,10 +63,6 @@ void Mouse::Update(const float deltaTime) {
 
 	//							THIS NEEDS TO BE MOVED 
 	Renderer::instance()->GetCamera()->MouseMove();
-	//							HANDLE UI MOUSE COLLISION AND EVENTS
-	MouseEventHandler::HandleMouseMoving(Vec3(x, y, 0), deltaTime);
-	MouseEventHandler::Update(deltaTime);
-
 }
 
 
@@ -101,6 +97,7 @@ void Mouse::SetCursorHidden(const bool hidden) {
 
 }
 
+
 /// <summary>
 /// Handle mouse Button presses, MouseEvents and MouseCollision with UI
 /// </summary>
@@ -134,22 +131,8 @@ void Mouse::ButtonInput(const unsigned int btn, const unsigned int action) {
 		}
 
 	}
-	
-
-
-	/*if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
-		MouseEventHandler::HandleMouseClick(true);
-		//Renderer::instance()->GetCamera()->LockCursor(true);
-	}
-	else if (btn == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
-		MouseEventHandler::HandleMouseClick(false);
-		//Renderer::instance()->GetCamera()->LockCursor(false);
-	}
-	if (btn == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE) {
-		//Renderer::instance()->GetCamera()->_x = !Renderer::instance()->GetCamera()->_x;
-	}*/
-
 }
+
 
 MouseKey* Mouse::GetMouseKey(const unsigned int key) {
 	if (key > _allKeys->size()) {
@@ -158,6 +141,7 @@ MouseKey* Mouse::GetMouseKey(const unsigned int key) {
 	}
 	return &_allKeys->at(key);
 }
+
 
 Vec2 Mouse::GetPosition() {return _position;}
 bool Mouse::IsHidden() {return _hidden;}

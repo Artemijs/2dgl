@@ -3,23 +3,25 @@
 #include "../Game/BaseComponent.h"
 #include "Matrix4x4.h"
 #include "../Game/BaseNode.h"
+
+
+
 class PhysicsObject : public BaseComponent{
-private:
-	
+private:	
 				
-	Transform* _parentTransform;
-	Vec3 _velocity;							
+	Transform* _parentTransform;	
+	Vec3 _velocity;					
 	Vec3 _acceleration;				
 	Vec3 _angularVelocity;			
 	Vec3 _angularAcceleration;		
-	Vec3 _force;
+	Vec3 _force;					
 	float _linearDampening;			
 	float _angularDampening;		
-
 	float _cRestitution;			
 	float _cFriction;				
-	
+	float _mass;
 public:
+
 	static const unsigned int _component_id;
 	PhysicsObject(Transform* transform);
 	const unsigned int ID() const override;
@@ -27,6 +29,18 @@ public:
 		const float linearDamp = 0, const float angDamp = 0, const float _cRest = 0, const float _cFriction = 0);
 	void Update(const float deltaTime);
 	void AddForce(const Vec3& force);
+	Vec3* GetVelocity();
+	Vec3* GetAcceleration();
+	Vec3* GetAngularVelocity();
+	Vec3* GetAngularAccelaration();
+	Vec3* GetForce();
+	float GetLinearDampening();
+	float GetAngularDampening();
+	float GetCoefRestitution();
+	float GetCoefFriction();
+	float GetMass();
+	void SetMass(float mass);
+
 
 };
 

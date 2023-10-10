@@ -158,6 +158,14 @@ const float Vec3::Lenght() const {
 	return std::sqrt((x * x + y * y + z * z));
 }
 
+/*const Vec3 Vec3::operator*(const float& lhs, const Vec3& rhs) {
+
+	return Vec3(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs);
+}
+Vec3 Vec3::operator/(const float& lhs, const Vec3& rhs) {
+
+	return Vec3(rhs.x / lhs, rhs.y / lhs, rhs.z / lhs);
+}*/
 void Vec3::Normalize() {
 	(*this) /= Lenght();
 }

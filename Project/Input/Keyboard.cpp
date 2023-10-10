@@ -1,13 +1,13 @@
 #include "Keyboard.h"
 #include <algorithm>
-
 #include "../Util/Utility.h"
-std::vector<Key>* Keyboard::_allKeys = new std::vector<Key>();
 
+
+
+std::vector<Key>* Keyboard::_allKeys = new std::vector<Key>();
 std::vector<pressedkey>* Keyboard::_pressedKeys = new std::vector<pressedkey>();
 std::vector<Key*>* Keyboard::_keysUp = new std::vector<Key*>();
-
-float Keyboard::_heldDelay = 0.05f;
+float Keyboard::_heldDelay = 0.0f;
 
 
 
@@ -35,7 +35,8 @@ void Keyboard::Init() {
 
 
 /// <summary>
-/// this can be optimised to index the key beased on key int value
+/// THIS HAS A BUG WHERE THE KEY STAYS IN DOWN STATE for too long
+/// 
 /// </summary>
 /// <param name="key"></param>
 /// <param name="action"></param>
@@ -83,17 +84,20 @@ void Keyboard::HendleInput( unsigned int key, const unsigned int action) {
 /// <param name="deltaTime"></param>
 void Keyboard::Update(float deltaTime) {
 
+	//								HANDLE TRANSITION FROM KEY HELD TO IDLE
 	while (_keysUp->size() != 0) {
 		Key* k = _keysUp->at(0);
 		k->state = KeyState::IDLE;
 		_keysUp->erase(_keysUp->begin());
 	}
-	for (int i = 0; i < _pressedKeys->size();) {
-		auto pKey = &_pressedKeys->at(i);
-		pKey->first += deltaTime;
+
+	//								HANDLE TRANSITION FROM KEY DOWN TO KEY HELD
+	for (int i = 0; i < _pressedKeys->size();) {		
+		auto pKey = &_pressedKeys->at(i);				
+		pKey->first += deltaTime;						
 		printf("timer : %.3f state : %d\n", pKey->first, pKey->second->state);
-		if (pKey->first >= Keyboard::_heldDelay) {
-			pKey->second->state = KeyState::KEY_HELD;
+		if (pKey->first >= Keyboard::_heldDelay) {		
+			pKey->second->state = KeyState::KEY_HELD;	
 			_pressedKeys->erase(_pressedKeys->begin() + i);
 		}
 		else {

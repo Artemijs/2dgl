@@ -43,6 +43,7 @@ public:
 	void operator=(const Vec2Int& v);
 
 };
+
 class Vec3
 {
 private:
@@ -55,6 +56,12 @@ public:
 	const Vec3 operator-(const Vec3& v)const;
 	const Vec3 operator/(const float f)const;
 	const Vec3 operator*(const float f)const;
+	friend const Vec3 operator*(const float lhs, const Vec3& rhs) {
+		return Vec3(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs);
+	}
+	friend const Vec3 operator/(const float lhs, const Vec3& rhs) {
+		return Vec3(rhs.x / lhs, rhs.y / lhs, rhs.z / lhs);
+	}
 	void operator+=(const float& n);
 	void operator+=(const int& n);
 	void operator+=(const  Vec3& v);
@@ -71,7 +78,17 @@ public:
 	static const float Lenght(const Vec3& v);
 	static Vec3 Cross(const Vec3& a, const Vec3& b);
 	static float Dot(const Vec3& a, const Vec3& b);
+	//friend class Float;
 };
+/*
+Vec3 operator*(const float& lhs, const Vec3& rhs) {
+	
+	return Vec3(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs);
+}
+Vec3 operator/(const float& lhs, const Vec3& rhs) {
+
+	return Vec3(rhs.x / lhs, rhs.y / lhs, rhs.z /lhs);
+}*/
 class Vec4
 {
 private:
