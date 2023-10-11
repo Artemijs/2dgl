@@ -24,15 +24,15 @@ void button_key_calls(GLFWwindow* window, int key, int scancode, int action, int
 #include "./Projects/CollisionTest/CollisionTesMain.h"
 #include "./Projects/3D/RayCastingTest/RayCastTest.h"
 #include "./Projects/ShaderTests/ShaterTest.h"
-int main() {
-	srand(time(NULL));
+int main() {					
+	srand(time(NULL));			
 	GLFWwindow* window = Renderer::instance()->GetWindow();
-	//g = new Game();
-	
-	//g = DevGetGameType();
-	//g = new RayCastTest();
+	//g = new Game();			
+								
+	//g = DevGetGameType();		
+	//g = new RayCastTest();	
 	g = new CollisionTestMain();
-	//TODO:
+	//TODO:						
 		//add a vao to base class, leave the text vbos and ebos in text
 		//add a base ui material
 		//a base non ui material

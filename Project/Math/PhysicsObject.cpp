@@ -13,7 +13,7 @@ const unsigned int PhysicsObject::ID() const {
 	return _component_id;
 }
 
-void PhysicsObject::SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& angVel, const Vec3& angAccel,
+void PhysicsObject::SetPhysData(const float mass, const Vec3& vel, const Vec3& accel, const Vec3& angVel, const Vec3& angAccel,
 	const float linearDamp, const float angDamp, const float cRest, const float cFriction) {
 	_velocity = vel;
 	_acceleration = accel;
@@ -23,6 +23,7 @@ void PhysicsObject::SetPhysData(const Vec3& vel, const Vec3& accel, const Vec3& 
 	_angularDampening = angDamp;
 	_cRestitution = cRest;
 	_cFriction = cFriction;
+	_mass = mass;
 
 }
 void PhysicsObject::Update(const float deltaTime) {
@@ -41,7 +42,6 @@ void PhysicsObject::Update(const float deltaTime) {
 void PhysicsObject::AddForce(const Vec3& force) {
 	_force += force;
 }
-
 
 Vec3* PhysicsObject::GetVelocity() {
 	return &_velocity;

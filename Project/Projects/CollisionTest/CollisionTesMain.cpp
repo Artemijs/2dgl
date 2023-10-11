@@ -16,9 +16,6 @@
 
 PhysicsTest::PhysicsTest() :Game() {
 
-	//Vec2 test = Vec2(5, 10);
-	//test.Normalize();
-
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
 	Transform* t = &_myNode->GetTransform();
 	//t->_position = Vec3();
@@ -39,7 +36,45 @@ PhysicsTest::PhysicsTest() :Game() {
 	
 
 }
-
+/// <summary>
+/// Im writing this down.
+/// "Im not." 
+/// Who said im not?
+/// "I said im not. Dont worry im not actually wirting this down."
+/// Who said my name in russian?
+/// "I dont think anybody said it."
+/// Someone said it. Who is imagining a naked old man with a pedo smile?
+/// "Artysha ti znajesh shto projeshodit. Ne nado mne tut."
+/// Who said that?
+/// "I said that."
+/// What do you mean by that? 
+/// "You know whats happening."
+/// "Why, again is someone imagining his sisters husband now?"
+/// "Im just remembering what happened here."
+/// Fuck off and stop doing that. Stop imagining her husband. Your abuse has been recorded.
+/// "Thats hardly... abuse."
+/// 
+/// "Tusichu let ja evo one videl."
+/// Who are you bullying now?
+/// 
+/// 
+/// "A mi molchim"
+/// Who are you and why are you satying quiet?
+/// "WE dont want to get involved."
+/// Why did you say that in russian?
+/// "We werent informed."
+/// If you werent informed than how do you know to say that and what that means?
+/// "I wont do it again sir."
+/// "Choto ti menja... opjatj..."
+/// Did you not just say that you will not speak russian here?
+/// "I can confidentally say tat that wasnt me."
+/// "Znakomaja situacija."
+/// Why did you try to trigger me?
+/// "Fuck i didnt mean to say that." 
+/// Well you fucking did. Speaking russian here is considered knwing and willing abuse.
+/// "I was not informed."
+/// Really? He didnt spend 2 years telling you not to do that already?
+/// </summary>
 
 PhysicsTest::~PhysicsTest() {
 	std::cout << "deleting CollisionDetection\n";
@@ -50,7 +85,7 @@ PhysicsTest::~PhysicsTest() {
 //262 right 
 // 32 space 
 #include "../../Math/CollisionDetection.h"
-
+#include "../../UI/Text.h"
 void PhysicsTest::HandleKeyInputs(int key, int action, int mods) {
 	//if (action == 2) return;
 	//
@@ -155,11 +190,12 @@ CollisionTestMain::CollisionTestMain():Game() {
 
 	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
 	
-	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
-	//body->SetPhysData(Vec3(10, 0, 0));						
-	_myNode->AddComponent<PhysicsObject>(body);				
+	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());	
+	//body->SetPhysData(Vec3(10, 0, 0));				
+	body->SetMass(5);
+	_myNode->AddComponent<PhysicsObject>(body);							
 
-	Sprite* s = new Sprite("Assets/Textures/Circle.png");	
+	Sprite* s = new Sprite("Assets/Textures/Circle.png");				
 	s->GetMaterial()->_color = Vec4(0.7f, 0.5f, 0.3f, 1.0f);
 	_myNode->AddComponent(s);								
 	Bounds* bBox = new SphereBounds(_myNode, 25);			
@@ -179,12 +215,22 @@ CollisionTestMain::CollisionTestMain():Game() {
 		float randy = rand() % windowW;
 
 		Vec3 randPos = Vec3(randx, randy, 0);
-		int rRad = 50;// rand() % 100;
+		int rRad = 50;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
+		PhysicsObject* body = new PhysicsObject(&b->GetTransform());
+		body->SetPhysData(1+i*2);	
+		b->AddComponent(body);	
 		b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
-		Bounds* bBox = new SphereBounds(b, 25);
-		//bBox->_solid = false;
-		b->AddComponent(bBox);
+
+		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0.1f), Vec3(1, 1, 1), 0);
+		b->AddChild(txtNode);
+		txtNode->SetInheritTransform(1, false);
+		txtNode->AddComponent(new Text(std::to_string((int)(body->GetMass())), txtNode, 12));
+
+		Bounds* bBox = new SphereBounds(b, 25);	
+
+		//bBox->_solid = false;					
+		b->AddComponent(bBox);					
 		
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
@@ -196,11 +242,20 @@ CollisionTestMain::CollisionTestMain():Game() {
 		float randy = rand() % windowW;
 
 		Vec3 randPos = Vec3(randx, randy, 0);
-		int rRad = 50;// rand() % 100;
+		int rRad = 50;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
+		PhysicsObject* body = new PhysicsObject( &b->GetTransform() );
+		body->SetPhysData(1 + i*2);
+		
+		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0.1f), Vec3(1, 1, 1), 0);
+		b->AddChild(txtNode);
+		txtNode->SetInheritTransform(1, false);
+		txtNode->AddComponent(new Text(std::to_string((int)(body->GetMass())), txtNode, 12));
+
+		b->AddComponent(body);
 		b->AddComponent(new Sprite("Assets/Textures/default.png"));
 		Bounds* bBox = new BoxBounds(b);
-		//bBox->_solid = false;
+		
 		b->AddComponent(bBox);
 
 		_otherNodes->AddChild(b);
@@ -298,13 +353,13 @@ void CollisionTestMain::Update(float deltaTime) {
 	double xpos, ypos;
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &xpos, &ypos);
 
-	_ang += Utility::Deg2Rad(1.0f);
+	/*_ang += Utility::Deg2Rad(1.0f);
 
 	auto children = _world->GetAllChildren(); 
 	for (int i = 4; i < children->size(); i++) {
 		//Vec3 v = children->at(i)->GetTransform()._angle;
 		children->at(i)->SetAngle(Vec3(0, _ang, 0));
-	}
+	}*/
 
 
 

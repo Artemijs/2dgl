@@ -77,18 +77,11 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	if (bodyA == NULL || bodyB == NULL) return;
 	Vec3 relativeVelocity = (*bodyB->GetVelocity()) - (*bodyA->GetVelocity());		
 	float e = std::min(bodyA->GetCoefRestitution(), bodyB->GetCoefRestitution());	
-	float j = -(1.0f - e) * Vec3::Dot(relativeVelocity, sd._separationVector);		
+	float j = -(1.0f + e) * Vec3::Dot(relativeVelocity, sd._separationVector);		
 	j /= (1.0f / bodyA->GetMass()) + (1.0f / bodyB->GetMass());						
 
 	(*bodyA->GetVelocity()) -= j / ( bodyA->GetMass() * sd._separationVector);
 	(*bodyB->GetVelocity()) += j / (bodyB->GetMass() * sd._separationVector);
-	/*bodyA->GetVelocity()->x += j / (sd._separationVector.x * bodyA->GetMass());
-	bodyA->GetVelocity()->y += j / (sd._separationVector.y * bodyA->GetMass());
-	bodyA->GetVelocity()->z += j / (sd._separationVector.z * bodyA->GetMass());*/
-	//(*bodyA->GetVelocity()) += j / bodyA->GetMass() * sd._separationVector;
-
-	
-	
 }
 
 

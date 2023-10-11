@@ -25,8 +25,8 @@ public:
 	static const unsigned int _component_id;
 	PhysicsObject(Transform* transform);
 	const unsigned int ID() const override;
-	void SetPhysData(const Vec3& vel = Vec3(), const Vec3& accel = Vec3(), const Vec3& angVel = Vec3(), const Vec3& angAccel = Vec3(),
-		const float linearDamp = 0, const float angDamp = 0, const float _cRest = 0, const float _cFriction = 0);
+	void SetPhysData(const float mass = 1.0f,const Vec3& vel = Vec3(), const Vec3& accel = Vec3(), const Vec3& angVel = Vec3(), const Vec3& angAccel = Vec3(),
+		const float linearDamp = 0.1f, const float angDamp = 0.1f, const float _cRest = 0.1f, const float _cFriction = 0.1f);
 	void Update(const float deltaTime);
 	void AddForce(const Vec3& force);
 	Vec3* GetVelocity();
