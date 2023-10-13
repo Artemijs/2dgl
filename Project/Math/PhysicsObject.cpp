@@ -28,7 +28,7 @@ void PhysicsObject::SetPhysData(const float mass, const Vec3& vel, const Vec3& a
 }
 void PhysicsObject::Update(const float deltaTime) {
 	//UPDATE PHYSICS
-	_velocity += (_force + _acceleration ) * deltaTime;
+	_velocity += ((_force / _mass) + _acceleration) * deltaTime;
 
 	_parentTransform->_position += _velocity * deltaTime;
 	_parentTransform->_angle += _angularVelocity * deltaTime;
@@ -66,6 +66,9 @@ float PhysicsObject::GetAngularDampening() {
 }
 float PhysicsObject::GetCoefRestitution() {
 	return _cRestitution;
+}
+void PhysicsObject::SetCoefRestitution(const float& rest) {
+	this->_cRestitution = rest;
 }
 float PhysicsObject::GetCoefFriction() {
 	return _cFriction;

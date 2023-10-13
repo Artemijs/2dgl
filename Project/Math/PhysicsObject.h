@@ -37,6 +37,7 @@ public:
 	float GetLinearDampening();
 	float GetAngularDampening();
 	float GetCoefRestitution();
+	void SetCoefRestitution(const float& rest);
 	float GetCoefFriction();
 	float GetMass();
 	void SetMass(float mass);

@@ -59,6 +59,17 @@ void CollisionHandler::Update(const float deltaTime) {
 //#define float/(Vec3 v){}
 //Vec3 float::operator/(Vec3 v) {}
 #include "../Util/Utility.h"
+/// <summary>
+/// this does not work and i dont know why. Doesnt look like it does in the tutorial video but that could be becausee of the camera zoom.
+/// I have 1 being 1 pixel he has 1 being 1 object. The scale difference is why it doesnt bounce or look remotely how it should.
+/// Potential solution being to write my own JANK somehow.
+/// Something like energy or momentum transfer, when 2 objects collide type of shit.
+/// REACCTION FORCES.
+/// Maybe you should finish watching the entire set of tutorials, maybe it gets addressed somewhere.
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <param name="sd"></param>
 void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std::pair<Bounds*, BaseNode*>& b, SeparationData& sd) {
 	
 	PhysicsObject* bodyA = a.second->GetComponent<PhysicsObject>();
@@ -66,22 +77,27 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	
 
 	//								seperate objects apart from each other
-	Transform bt = b.second->GetTransform();
-	b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.5f));
+	//Transform bt = b.second->GetTransform();
+	//b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.6f));
 
 	Transform at = a.second->GetTransform();
-	a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.5f));
+	a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -1.0f));
 
 	//								physics response
-
-	if (bodyA == NULL || bodyB == NULL) return;
+	if (bodyA == NULL || bodyB == NULL) {
+		printf("THERES A PROBLEM A BODY WAS NULL\n");
+		return;
+	}
 	Vec3 relativeVelocity = (*bodyB->GetVelocity()) - (*bodyA->GetVelocity());		
 	float e = std::min(bodyA->GetCoefRestitution(), bodyB->GetCoefRestitution());	
 	float j = -(1.0f + e) * Vec3::Dot(relativeVelocity, sd._separationVector);		
 	j /= (1.0f / bodyA->GetMass()) + (1.0f / bodyB->GetMass());						
-
-	(*bodyA->GetVelocity()) -= j / ( bodyA->GetMass() * sd._separationVector);
-	(*bodyB->GetVelocity()) += j / (bodyB->GetMass() * sd._separationVector);
+	Vec3* velA = bodyA->GetVelocity();
+	Vec3* velB = bodyB->GetVelocity();
+	//(*bodyA->GetVelocity()) += j / ( bodyA->GetMass() * sd._separationVector);
+	(*velA ) -= (j / bodyA->GetMass()) * sd._separationVector;
+	//(*bodyB->GetVelocity()) -= j / (bodyB->GetMass() * sd._separationVector) ;
+	(*velB) += (j / bodyB->GetMass()) * sd._separationVector;
 }
 
 

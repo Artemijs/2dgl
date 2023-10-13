@@ -95,7 +95,7 @@ void Keyboard::Update(float deltaTime) {
 	for (int i = 0; i < _pressedKeys->size();) {		
 		auto pKey = &_pressedKeys->at(i);				
 		pKey->first += deltaTime;						
-		printf("timer : %.3f state : %d\n", pKey->first, pKey->second->state);
+		//printf("timer : %.3f state : %d\n", pKey->first, pKey->second->state);
 		if (pKey->first >= Keyboard::_heldDelay) {		
 			pKey->second->state = KeyState::KEY_HELD;	
 			_pressedKeys->erase(_pressedKeys->begin() + i);

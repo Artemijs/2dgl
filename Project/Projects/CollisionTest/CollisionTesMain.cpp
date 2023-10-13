@@ -192,7 +192,8 @@ CollisionTestMain::CollisionTestMain():Game() {
 	
 	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());	
 	//body->SetPhysData(Vec3(10, 0, 0));				
-	body->SetMass(5);
+	body->SetMass(1);
+	body->SetCoefRestitution(1.0f);
 	_myNode->AddComponent<PhysicsObject>(body);							
 
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");				
@@ -202,6 +203,20 @@ CollisionTestMain::CollisionTestMain():Game() {
 
 	_myNode->AddComponent(bBox);
 	_world->AddChild(_myNode);	
+
+	/*BaseNode* wall = new BaseNode(Vec3(700, 400, 0), Vec3(50, 800, 1), 0);
+	Sprite* wallSprt = new Sprite();
+	PhysicsObject* wallBod = new PhysicsObject(&wall->GetTransform());
+	Bounds* wallBox = new BoxBounds(wall);
+	wallBod->SetPhysData(1000);
+	wall->AddComponent(wallSprt);
+	wall->AddComponent(wallBod);
+	wall->AddComponent(wallBox);
+	_world->AddChild(wall);
+	*/
+
+
+	
 
 	
 	unsigned int maxNodes = 4;
@@ -218,7 +233,8 @@ CollisionTestMain::CollisionTestMain():Game() {
 		int rRad = 50;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
 		PhysicsObject* body = new PhysicsObject(&b->GetTransform());
-		body->SetPhysData(1+i*2);	
+		body->SetPhysData(1 + i * 100);	
+		body->SetCoefRestitution(1.0f);
 		b->AddComponent(body);	
 		b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
 
@@ -245,8 +261,8 @@ CollisionTestMain::CollisionTestMain():Game() {
 		int rRad = 50;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
 		PhysicsObject* body = new PhysicsObject( &b->GetTransform() );
-		body->SetPhysData(1 + i*2);
-		
+		body->SetPhysData(1 + i * 2);
+		body->SetCoefRestitution(1.0f);
 		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0.1f), Vec3(1, 1, 1), 0);
 		b->AddChild(txtNode);
 		txtNode->SetInheritTransform(1, false);
@@ -261,7 +277,7 @@ CollisionTestMain::CollisionTestMain():Game() {
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
 	}
-
+	
 	_play = false;
 
 	_angVel = 0;
@@ -323,22 +339,22 @@ void CollisionTestMain::HandleKeyInputs(int key, int action, int mods) {
 void CollisionTestMain::MoveMyNode(const unsigned int dir) {
 	
 	Vec3 movDir = Vec3();
-	const float speed = 100;
+	const float speed = 500;
 
 	if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
-		printf("W PRESSED\n");
+		//printf("W PRESSED\n");
 		movDir.y = 1;
 	}
 	if (Keyboard::GetKey('a')->state == KeyState::KEY_HELD) {
-		printf("A PRESSED\n");
+		//printf("A PRESSED\n");
 		movDir.x = -1;
 	}
 	if (Keyboard::GetKey('s')->state == KeyState::KEY_HELD) {
-		printf("S PRESSED\n");
+		//printf("S PRESSED\n");
 		movDir.y = -1;
 	}
 	if(Keyboard::GetKey('d')->state == KeyState::KEY_HELD){
-		printf("D PRESSED\n");
+		//printf("D PRESSED\n");
 		movDir.x = 1;
 	}
 		
@@ -368,6 +384,7 @@ void CollisionTestMain::Update(float deltaTime) {
 		_myNode->SetPosition(Vec3(xpos, ypos, 0));
 	}
 	MoveMyNode(0);
+	WrapWorld();
 }
 
 void CollisionTestMain::Play(const bool on) {
@@ -375,7 +392,47 @@ void CollisionTestMain::Play(const bool on) {
 }
 
 
+void CollisionTestMain::WrapWorld() {
+	Vec2 windowSize = Renderer::instance()->GetWindowSize();
 
+	auto allGameObjects = _world->GetAllChildren();
+	for (int i = 0; i < allGameObjects->size(); i++) {
+		auto gameObject = allGameObjects->at(i);
+		Transform goTransform = gameObject->GetTransform();
+		if (goTransform._position.x < -goTransform._scale.x) {
+			//move the game object to the edge of the right side of the screen
+			Vec3 newPosition = goTransform._position;
+			newPosition.x = windowSize.x + goTransform._scale.x;
+			gameObject->SetPosition(newPosition);
+		}
+		else if (goTransform._position.x > windowSize.x + goTransform._scale.x){
+			//move the object to the left of the left edge of the screen
+			Vec3 newPosition = goTransform._position;
+			newPosition.x = -goTransform._scale.x;
+			gameObject->SetPosition(newPosition);
+		}
+		if (goTransform._position.y > windowSize.y +goTransform._scale.y) {
+			//move the object to the top of the screen
+			Vec3 newPosition = goTransform._position;
+			newPosition.y = -goTransform._scale.y;
+			gameObject->SetPosition(newPosition);
+		}
+		else if (goTransform._position.y < -goTransform._scale.y) {
+			//.move the object to the bottom of the screen
+			Vec3 newPosition = goTransform._position;
+			newPosition.y = windowSize.y + goTransform._scale.y;
+			gameObject->SetPosition(newPosition);
+		}
+
+
+	}
+	/*auto allChildren = _world->GetAllChildren();
+	for (int i = 0; i < allChildren->size(); i++) {
+		auto child = allChildren->at(i);
+		Transform childTransform = child->GetTransform();
+		if(child<
+	}*/
+}
 
 
 

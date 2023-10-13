@@ -38,6 +38,7 @@ public :
 	void HandleKeyInputs(int key, int action, int mods) ;
 	void Play(const bool on);
 	void MoveMyNode(const unsigned int dir);
+	void WrapWorld();
 	
 };
 
