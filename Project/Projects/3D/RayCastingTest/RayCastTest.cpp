@@ -53,11 +53,23 @@ RayCastTest::~RayCastTest() {
 void RayCastTest::Update(float deltaTime) {
 	Game::Update(deltaTime);										
 																	
-	/*Camera* c = Renderer::instance()->GetCamera();
-	Vec3 pos = c->GetPosition();
-	c->SetPosition(pos + (c->GetOrientation()* -4.5f* deltaTime));
-	Utility::PrintVector("ORIENTATION : ", c->GetOrientation());
-	Utility::PrintVector("POSITIon : ", c->GetPosition());*/
+	Camera* c = Renderer::instance()->GetCamera();
+	
+	//if( _mouse->GetMouseKey(0)->_state != MouseKeyState::IDLE)
+		printf("M1 state : %d \n", _mouse->GetMouseKey(0)->_state);
+	//	printf("L state : %d \n", Keyboard::GetKey('l')->state);
+	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_HELD) {
+		_mouse->SetCursorHidden(true);
+		c->LockCursor(true);
+		c->MouseMove();
+	}
+	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_UP) {
+		_mouse->SetCursorHidden(false);
+		c->LockCursor(false);
+	}
+	
+
+	
 	/*Renderer* r = Renderer::instance();
 	RayHitData hitData;
 	if (CollisionHandler::RayCast(&Ray(FLT_MAX, r->GetCamera()->GetOrientation()), hitData)) {
@@ -72,7 +84,7 @@ void RayCastTest::Update(float deltaTime) {
 		(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
 		//_fov += Utility::Deg2Rad(1);
 	}
-	printf("%c :  %d\n", Keyboard::GetKey('w')->key, Keyboard::GetKey('w')->state);
+	//printf("%c :  %d\n", Keyboard::GetKey('w')->key, Keyboard::GetKey('w')->state);
 	if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
 		MoveCamera(0);
 	}

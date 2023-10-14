@@ -6,8 +6,8 @@
 
 std::vector<Key>* Keyboard::_allKeys = new std::vector<Key>();
 std::vector<pressedkey>* Keyboard::_pressedKeys = new std::vector<pressedkey>();
-std::vector<Key*>* Keyboard::_keysUp = new std::vector<Key*>();
-float Keyboard::_heldDelay = 0.0f;
+std::vector<pressedkey>* Keyboard::_keysUp = new std::vector<pressedkey>();
+float Keyboard::_heldDelay = 0.1f;
 
 
 
@@ -50,17 +50,13 @@ void Keyboard::HendleInput( unsigned int key, const unsigned int action) {
 	
 	
 	Key* k = &_allKeys->at(key);
-	//IF KEY PRESSED
-	if (action == 1) {
+	if (action == 1) {//IF KEY PRESSED
 		k->state = KeyState::KEY_DOWN;
-		//add new key to pressed keys
-		pressedkey pk(0, k);
-		_pressedKeys->push_back(pk);
+		_pressedKeys->push_back(pressedkey(false, k));
 	}
-	else {
-		//if KEY RELEASED
+	else {//IF KEY RELEASED
 		k->state = KeyState::KEY_UP;
-		_keysUp->push_back(k);
+		_keysUp->push_back(pressedkey(false, k));
 		//REMOVE FROM PRESSED KEYS IF ITS THERE
 		auto itt = _pressedKeys->begin();
 		auto end = _pressedKeys->end();
@@ -72,6 +68,8 @@ void Keyboard::HendleInput( unsigned int key, const unsigned int action) {
 			itt++;
 		}
 	}
+	
+
 }
 
 
@@ -84,28 +82,42 @@ void Keyboard::HendleInput( unsigned int key, const unsigned int action) {
 /// <param name="deltaTime"></param>
 void Keyboard::Update(float deltaTime) {
 
-	//								HANDLE TRANSITION FROM KEY HELD TO IDLE
-	while (_keysUp->size() != 0) {
-		Key* k = _keysUp->at(0);
-		k->state = KeyState::IDLE;
-		_keysUp->erase(_keysUp->begin());
-	}
-
 	//								HANDLE TRANSITION FROM KEY DOWN TO KEY HELD
-	for (int i = 0; i < _pressedKeys->size();) {		
-		auto pKey = &_pressedKeys->at(i);				
-		pKey->first += deltaTime;						
-		//printf("timer : %.3f state : %d\n", pKey->first, pKey->second->state);
-		if (pKey->first >= Keyboard::_heldDelay) {		
-			pKey->second->state = KeyState::KEY_HELD;	
+	for (int i = 0; i < _pressedKeys->size();) {
+
+		auto pKey = &_pressedKeys->at(i);
+
+		if (pKey->first) {
+			pKey->second->state = KeyState::KEY_HELD;
 			_pressedKeys->erase(_pressedKeys->begin() + i);
+			i--;
 		}
 		else {
-			i++;
+			pKey->first = true;
 		}
+		i++;
+
+	}
+
+	//								HANDLE TRANSITION FROM KEY HELD TO UP
+	for (int i = 0; i < _keysUp->size();) {
+
+		auto pKey = &_keysUp->at(i);
+
+		if (pKey->first) {
+			pKey->second->state = KeyState::IDLE;
+			_keysUp->erase(_keysUp->begin() + i);
+			i--;
+		}
+		else {
+			pKey->first = true;
+		}
+		i++;
 	}
 
 }
+
+
 const Key* Keyboard::GetKey(const char  key) {
 	
 
@@ -120,6 +132,8 @@ const Key* Keyboard::GetKey(const char  key) {
 	
 	return &_allKeys->at(id);
 }
+
+
 void Keyboard::Delete() {
 	delete _allKeys;
 	delete _pressedKeys;

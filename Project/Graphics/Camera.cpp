@@ -55,11 +55,9 @@ void Camera::SetOrientation(Vec3 dir) {
 
 void Camera::MouseMove() {
 
-
 	if (_cursorLocked) {
 		Vec2 pos = _mouse->GetPosition();
 		if (_firstClick) {
-			//glfwSetCursorPos(Renderer::instance()->GetWindow(), (_width / 2), (_height / 2));
 			_mouse->SetCursorPos((_width / 2), (_height / 2));
 			_firstClick = false;
 			return;
@@ -77,7 +75,6 @@ void Camera::MouseMove() {
 			_orientation = newOrientation;
 		}
 
-		//glfwSetCursorPos(Renderer::instance()->GetWindow(), (_width / 2), (_height / 2));
 		_mouse->SetCursorPos((_width / 2), (_height / 2));
 
 		CalculateViewMatrix();

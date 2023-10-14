@@ -30,8 +30,8 @@ int main() {
 	//g = new Game();			
 								
 	//g = DevGetGameType();		
-	//g = new RayCastTest();	
-	g = new CollisionTestMain();
+	g = new RayCastTest();	
+	//g = new CollisionTestMain();
 	//TODO:						
 		//add a vao to base class, leave the text vbos and ebos in text
 		//add a base ui material

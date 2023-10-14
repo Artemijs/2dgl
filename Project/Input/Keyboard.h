@@ -16,12 +16,12 @@ public :
 };
 #include "../Util/Utility.h"
 class Keyboard {
-#define pressedkey std::pair<float, Key*>
+#define pressedkey std::pair<bool, Key*>
 
 private:
 	static std::vector<Key>* _allKeys;
 	static std::vector<pressedkey>* _pressedKeys;
-	static std::vector<Key*>* _keysUp;
+	static std::vector<pressedkey>* _keysUp;
 	static float _heldDelay;
 	
 public :

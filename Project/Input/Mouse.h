@@ -20,7 +20,7 @@ struct MouseKey {
 	MouseKeyState _state;
 };
 
-
+#define mkeyPress std::pair<bool, MouseKey*>
 /// <summary>
 /// GLFW only allows for 8 mouse buttons
 /// </summary>
@@ -31,8 +31,8 @@ private:
 	Vec2 _position;
 	bool _hidden;
 	std::vector<MouseKey> * _allKeys;
-	std::vector<MouseKey*>* _keysPressed;
-	std::vector<MouseKey*>* _keysUp;
+	std::vector<mkeyPress>* _keysPressed;
+	std::vector<mkeyPress>* _keysUp;
 	const unsigned int _maxKeys;
 	//					all keys
 

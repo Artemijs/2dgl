@@ -8,8 +8,8 @@ Mouse::Mouse() :_maxKeys(8){
 	//_maxKeys = 8;
 	_hidden = false;
 	_allKeys = new std::vector<MouseKey>();
-	_keysPressed = new std::vector<MouseKey*>();
-	_keysUp = new std::vector<MouseKey*>();
+	_keysPressed = new std::vector<mkeyPress>();
+	_keysUp = new std::vector<mkeyPress>();
 	for (int i = 0; i < _maxKeys; i++) {
 		MouseKey mk{ i, MouseKeyState::IDLE };
 		_allKeys->push_back(mk);
@@ -31,25 +31,31 @@ Mouse::~Mouse() {
 void Mouse::Update(const float deltaTime) {
 
 	//HANDLE TRANSITION FROM MOUSE held TO idle
-	while (_keysUp->size() != 0) {
-		MouseKey* mk = _keysUp->at(0);
-		mk->_state = MouseKeyState::IDLE;
-		_keysUp->erase(_keysUp->begin());
+	for (unsigned int i = 0; i < _keysUp->size(); ) {
+		auto mk = &_keysUp->at(i);
+		if (mk->first) {
+			mk->second->_state = MouseKeyState::IDLE;
+			_keysUp->erase(_keysUp->begin() + i);
+			i--;
+		}
+		else {
+			mk->first = true;
+		}
+		i++;
 	}
 	
 	//HANDLE TRANSITION FROM MOUSE PRESSED TO MOUSE HELD
-	for (unsigned int i = 0; i < _keysPressed->size(); ){
-		
-		//				change key state
-		MouseKey* mk = _keysPressed->at(i);
-		mk->_state = MouseKeyState::KEY_HELD;
-		//_keysUp->push_back(mk);
-		
-		//			REMOVE IT FROM pressed array
-		if (true)//I CAN EXPLAIN, THIS CODE IS FOR YOU
+	for (unsigned int i = 0; i < _keysPressed->size(); ) {
+		auto mk = &_keysPressed->at(i);
+		if (mk->first) {
+			mk->second->_state = MouseKeyState::KEY_HELD;
 			_keysPressed->erase(_keysPressed->begin() + i);
-		else i++;
-
+			i--;
+		}
+		else {
+			mk->first = true;
+		}
+		i++;
 	}
 
 
@@ -60,9 +66,6 @@ void Mouse::Update(const float deltaTime) {
 	y = Renderer::instance()->GetWindowSize().y - y;
 	_position.x = x;
 	_position.y = y;
-
-	//							THIS NEEDS TO BE MOVED 
-	Renderer::instance()->GetCamera()->MouseMove();
 }
 
 
@@ -108,7 +111,7 @@ void Mouse::ButtonInput(const unsigned int btn, const unsigned int action) {
 	if (action == GLFW_PRESS) {				
 		MouseKey* mk = &_allKeys->at(btn);	
 		mk->_state = MouseKeyState::KEY_DOWN;
-		_keysPressed->push_back(mk);		
+		_keysPressed->push_back(mkeyPress(false, mk));
 	}
 	else if (action == GLFW_RELEASE) {
 		
@@ -117,13 +120,13 @@ void Mouse::ButtonInput(const unsigned int btn, const unsigned int action) {
 		mk->_state = MouseKeyState::KEY_UP;
 		
 		//			ADD IT TO A LIST OF KEYS TO THAT CHANGE THE STATE NEXT FRAME
-		_keysUp->push_back(mk);
+		_keysUp->push_back(mkeyPress(false, mk));
 		
 		//			REMOVE FROM PRESSED KEYS IF ITS THERE
 		auto itt = _keysPressed->begin();
 		auto end = _keysPressed->end();
 		while (itt != end) {
-			if ((*itt)->_id == mk->_id) {
+			if ((*itt).second->_id == mk->_id) {
 				_keysPressed->erase(itt);
 				break;
 			}
