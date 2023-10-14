@@ -123,9 +123,12 @@ bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData, const Vec3& plane_
 	
 	float denom = Vec3::Dot(plane_normal, ray->_direction);
 	if (denom >= 1e-6) {//0.000001
-		Vec3 relVect = plane_origin - ray->_position;
+		Vec3 relVect =  plane_origin - ray->_position;	
 		float distance = Vec3::Dot(relVect, plane_normal);
-		printf(" distance %.3f \n", distance);
+		float idk =  Vec3::Dot(ray->_direction, plane_normal);
+		idk = distance / idk;
+		printf(" distance %.3f \n", distance);			
+		Utility::PrintVector(("Distance : " + std::to_string(idk) + " : pos ").c_str(), (ray->_position + (ray->_direction * idk)));
 		return (distance >= 0);
 	}
 	return false;
