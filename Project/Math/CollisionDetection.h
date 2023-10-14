@@ -15,20 +15,23 @@ private:
 	/// <param name="a">vertices of first bounds</param>
 	/// <param name="b">vertices of second bounds</param>
 	/// <returns></returns>
-	static const SeparationData CircleCircleCollision(const shape& a, const shape& b);
+	static const void CircleCircleCollision(const shape& a, const shape& b, SeparationData& sd);
 
-	static const SeparationData SAT(const shape &a, const shape &b);
-	static const SeparationData CircleSAT(const shape &a, const shape &b, Vec2& axis);
+	static const void SAT(const shape &a, const shape &b, SeparationData& sd);
+	static const void CircleSAT(const Vec3& circleCenter, const float& circleRad, const shape& b, SeparationData& sd);
+	//static const SeparationData CircleSAT(const shape &a, const shape &b, Vec2& axis);
 	static const bool FullSAT(const shape &a, const shape &b);
 	static const std::pair<float, int> CheckOverlap(const float minA, const float maxA, const float minB, const float maxB);
 	static const Vec2 GetAxis(const Vec3& p1, const Vec3& p2);
 	static const void ProjectOnAxis(float& min, float& max, const Vec2 axis, const shape& s);
+	static const void PeojectCircleOnAxis(float& min, float& max, const Vec2& axis, const Vec3& center, const float& rad);
+	static const unsigned int ClosestPointOnPoly(const Vec3& center, const shape& poly);
 
 	
 public :
 	static bool _print;
 	
-	static SeparationData CheckCollision( Bounds *a,  Bounds *b);
+	static void CheckCollision( Bounds *a,  Bounds *b, SeparationData& sd);
 
 	/// <summary>
 	/// Calls the appropriate collision detection function depending on bound types
@@ -55,7 +58,7 @@ public :
 	/// <param name="a">vertices of first bounds</param>
 	/// <param name="b">vertices of second bounds</param>
 	/// <returns></returns>
-	static const SeparationData CheckAABBCollision(const shape& a, const shape& b);
+	static const void CheckAABBCollision(const shape& a, const shape& b, SeparationData& sd);
 	
 	/// <summary>
 	/// Checks collision between a Ray and everything that has a collision box on it

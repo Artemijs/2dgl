@@ -32,7 +32,8 @@ void CollisionHandler::Update(const float deltaTime) {
 			if (a == b)									
 				continue;								
 			
-			SeparationData sd = CollisionDetection::CheckCollision(a, b);
+			SeparationData sd;
+			CollisionDetection::CheckCollision(a, b, sd);
 
 			if (sd._penetrationDistance !=0 ) {			
 				//collision has happened				
@@ -74,22 +75,35 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	
 	PhysicsObject* bodyA = a.second->GetComponent<PhysicsObject>();
 	PhysicsObject* bodyB = b.second->GetComponent<PhysicsObject>();
+	bool physics = (bodyA != NULL && bodyB != NULL);
+	if (physics) {
+		bool movA = (bodyA->GetMass() > bodyB->GetMass());
+		//								seperate objects apart from each other
+		if (movA) {
+			Transform bt = b.second->GetTransform();
+			b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 1.1));
+		}
+		else {
+			Transform at = a.second->GetTransform();
+			a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -1.1f));
+		}
+	}
+	else{
+		Transform bt = b.second->GetTransform();
+		b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.6f));
+		Transform at = a.second->GetTransform();
+		a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.6f));
+	}
+
 	
-
-	//								seperate objects apart from each other
-	//Transform bt = b.second->GetTransform();
-	//b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.6f));
-
-	Transform at = a.second->GetTransform();
-	a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -1.0f));
-
 	//								physics response
-	if (bodyA == NULL || bodyB == NULL) {
+	if (!physics) {
 		printf("THERES A PROBLEM A BODY WAS NULL\n");
 		return;
 	}
+
 	Vec3 relativeVelocity = (*bodyB->GetVelocity()) - (*bodyA->GetVelocity());		
-	float e = std::min(bodyA->GetCoefRestitution(), bodyB->GetCoefRestitution());	
+	float e = (bodyA->GetCoefRestitution() + bodyB->GetCoefRestitution()) * 0.5f;//std::min(bodyA->GetCoefRestitution(), bodyB->GetCoefRestitution());	
 	float j = -(1.0f + e) * Vec3::Dot(relativeVelocity, sd._separationVector);		
 	j /= (1.0f / bodyA->GetMass()) + (1.0f / bodyB->GetMass());						
 	Vec3* velA = bodyA->GetVelocity();
@@ -113,9 +127,6 @@ bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData) {
 			continue;
 
 		auto s = b->GetShape();
-
-		
-
 	}
 	return false;
 	

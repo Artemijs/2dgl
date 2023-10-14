@@ -6,7 +6,7 @@
 /// THINGS THAT CAN BE OPTIMISED 
 /// passing SEPARATION DATA pointer instead of copying that data every function call
 /// Point to AABB a nd POINT to Circle
-/// 
+/// ONLY CHECKING HALF THE AXEEESE FOR SQUARE POLYGONS
 
 bool CollisionDetection::_print = false;
 
@@ -17,49 +17,30 @@ bool CollisionDetection::_print = false;
 /// <param name="b"></param>
 /// <returns></returns>
 
-SeparationData CollisionDetection::CheckCollision( Bounds* a,  Bounds* b) {
+void CollisionDetection::CheckCollision( Bounds* a,  Bounds* b, SeparationData& sd) {
 	//the idea here is that i will call a function in an array based on type using 
-	
+	auto as = a->GetShape();
+	auto bs = b->GetShape();
 	if (a->_type == BoundsType::CIRCLE && b->_type == BoundsType::CIRCLE) {
-		return CircleCircleCollision(a->GetShape(), b->GetShape());
+		CircleCircleCollision(as, bs, sd);
 	}
 	else if(a->_type == BoundsType::AABB && b->_type == BoundsType::AABB) {
-		return CheckAABBCollision(a->GetShape(), b->GetShape());
+		CheckAABBCollision(as, bs, sd);
 	}
 	else {
-		auto as = a->GetShape();
-		auto bs = b->GetShape();
+		
 		if (a->_type == BoundsType::CIRCLE) {
 			
 
 			float rad = (*a->GetSize());
-			Vec2 dir = Vec2((a->_centerOfMass.x - b->_centerOfMass.x), (a->_centerOfMass.y - b->_centerOfMass.y));
-			dir.Normalize();
-			Vec2 offset = Vec2((dir.x * rad), (dir.y * rad));
-			as.second[1].x = a->_centerOfMass.x + offset.x;
-			as.second[1].y = a->_centerOfMass.y + offset.y;
-
-			as.second[0].x = a->_centerOfMass.x - offset.x;
-			as.second[0].y = a->_centerOfMass.y - offset.y;
-			return CircleSAT(as, bs, dir);
+			CircleSAT((*a->GetCenterOfMass()), rad, bs, sd);
 		}
 		else if ( b->_type == BoundsType::CIRCLE) {
-			//bs.second[1].x is where the radius is stored of the circle FEEL FREE TO CLEAN THIS UP
-			//this gets the second point to create the axis with
-			//CAN BE OPTIMISED TO USE THE NORMALISED DIRECTION AS AXIS 
-			float rad = (*b->GetSize());
-			//Vec3 dir = Vec3::Normalize(a->_centerOfMass - b->_centerOfMass);
-			Vec2 dir = Vec2((b->_centerOfMass.x - a->_centerOfMass.x), (b->_centerOfMass.y - a->_centerOfMass.y));
-			dir.Normalize();
-			Vec2 offset = Vec2((dir.x * rad), (dir.y * rad));
-			bs.second[1].x = b->_centerOfMass.x + offset.x;
-			bs.second[1].y = b->_centerOfMass.y + offset.y;
 			
-			bs.second[0].x = b->_centerOfMass.x - offset.x;
-			bs.second[0].y = b->_centerOfMass.y - offset.y;
-			return CircleSAT(bs, as, dir);
+			float rad = (*b->GetSize());
+			CircleSAT((*b->GetCenterOfMass()), rad, as, sd);
 		}
-		else return SAT(as, bs);
+		else SAT(as, bs, sd);
 
 	}
 }
@@ -144,75 +125,113 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 
 
 
-
 /// <summary>
-/// a being the circle
+/// Returns PenetrationDeistance = 0 if no collision is detected
 /// </summary>
-/// <param name="a"></param>
+/// <param name="circleCenter"></param>
+/// <param name="circleRad"></param>
 /// <param name="b"></param>
-/// <param name="axis"></param>
-/// <returns></returns>
-const SeparationData CollisionDetection::CircleSAT(const shape &a, const shape &b, Vec2& axis) {
+/// <param name="sd"></param>
+const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& circleRad, const shape& b, SeparationData& sd) {
 	if (_print)
 		printf("\nSTARTING circle SAT SAT\n");
-	//i have to check axis passed in, the direction between 2 shape centers
-	//and every other surface normal of shape b
-	
-	SeparationData sd;
-	sd._penetrationDistance = 10000000000;
+	sd._separationVector = Vec3();
+	sd._penetrationDistance = FLT_MAX;
+	Vec2 axis = Vec2();
+	float penetrationDepth = 0;
 
-	bool finished = false;
-	int i = 0;
-	Vec3* p1 = NULL, * p2 = NULL;
-
-	const shape* s = &a;
-	int max = b.first;
-
-	for (; i < max - 1; ++i) {
-		//Vec2 axis = GetAxis(a.second[0], a.second[1]);
-
-		if (_print) {
-			printf("\nAXIS : x %.3f, y %.3f, \n", axis.x, axis.y);
-		}
-		float minA = 10000000000;
-		float maxA = -11111111111;
-		float minB = 10000000000;
-		float maxB = -11111111111;
-		if (_print)
-			printf("PROJECTING ON AXIS SHAPE A\n");
-		ProjectOnAxis(minA, maxA, axis, a);
-		if (_print)
-			printf("PROJECTING ON AXIS SHAPE B\n");
-		ProjectOnAxis(minB, maxB, axis, b);
-		if (_print)
-			printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n", minA, maxA, minB, maxB);
-		auto od = CheckOverlap(minA, maxA, minB, maxB);
-
-		float penetrationDistance = od.first;
-		//sd._penetrationDistance = od.first;  
-		//sd._separationVector = Vec3(axis.x, axis.y, 0);
-		if (od.first == 0) {
-			//printf("Penetration Distance : %f\n", penetrationDistance);
-			sd._penetrationDistance = od.first;
-			sd._separationVector = Vec3(axis.x, axis.y, 0) * od.second;
-			return sd;
-		}
-		else {
-			if (od.first < sd._penetrationDistance) {
-				sd._penetrationDistance = od.first;
-				sd._separationVector = Vec3(axis.x, axis.y, 0) * od.second;
-			}
-		}
-
-		if (_print) {
-			printf("Penetration Distance : %f\n", penetrationDistance);
-		}
+	//								PROJECT CIRCLE ON POLYGON AXIS
+	for (int i = 0; i < b.first; i++) {
 		
+		//GEt THE AXIS TO PROJECT ALL VERTICES ONTO
 		axis = GetAxis(b.second[i], b.second[i + 1]);
+		
+		Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i]);
+		Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i + 1]);
+		//PROJECT BOTH SHAPES ONTO THE AXIS
+		float minA, maxA, minB, maxB;
+		
+		//project the circle
+		PeojectCircleOnAxis(minA, maxA, axis, circleCenter, circleRad);
 
+		//project square
+		ProjectOnAxis(minB, maxB, axis, b);
+		
+		if (minA >= maxB || minB >= maxA) {
+			return;
+		}
+
+		penetrationDepth = std::min(maxB - minA, maxA - minB);
+		if (penetrationDepth < sd._penetrationDistance) {
+			sd._penetrationDistance = penetrationDepth;
+			sd._separationVector.x = axis.x;
+			sd._separationVector.y = axis.y;
+		}
 	}
-	return sd;
 	
+	//								PROJECT POLYGON ON CIRCLE AXIS
+	//find closest point to circle
+	int cpIndex = ClosestPointOnPoly(circleCenter, b);
+	Vec3 cp = b.second[cpIndex];
+	//get the axis 
+	Vec3 a = (cp - circleCenter);
+	a.Normalize();
+	axis.x = a.x;
+	axis.y = a.y;
+	
+	float minA, maxA, minB, maxB;
+	//project poly on axis 
+	ProjectOnAxis(minB, maxB, axis, b);
+	//project circle
+	PeojectCircleOnAxis(minA, maxA, axis, circleCenter, circleRad);
+	if (minA >= maxB || minB >= maxA) {
+		return ;
+	}
+
+	penetrationDepth = std::min(maxB - minA, maxA - minB);
+	if (penetrationDepth < sd._penetrationDistance) {
+		sd._penetrationDistance = penetrationDepth;
+		sd._separationVector.x = axis.x;
+		sd._separationVector.y = axis.y;
+	}
+
+}
+
+
+const void CollisionDetection::PeojectCircleOnAxis(float& min, float& max, const Vec2& axis, const Vec3& center, const float& rad) {
+
+	Vec3 p1, p2;// = center + (axis * rad);
+	//Vec3 p2 = center - (axis * rad);
+	p1.x = center.x + (axis.x * rad);
+	p1.y = center.y + (axis.y * rad);
+	p1.z = 0;
+
+	p2.x = center.x - (axis.x * rad);
+	p2.y = center.y - (axis.y * rad);
+	p2.z = 0;
+
+	min = Vec2::Dot(p1.x, p1.y, axis.x, axis.y);
+	max = Vec2::Dot(p2.x, p2.y, axis.x, axis.y);
+
+	//in case min is not less than max, flip them
+	if (min > max) {
+		float t = min;
+		min = max;
+		max = t;
+	}
+}
+const unsigned int CollisionDetection::ClosestPointOnPoly(const Vec3& center, const shape& poly) {
+
+	unsigned int result = -1;
+	float minD = FLT_MAX;
+	for (int i = 0; i < poly.first; i++) {
+		float d = Vec3::Distance(center, poly.second[i]);
+		if (d < minD) {
+			minD = d;
+			result = i;
+		}
+	}
+	return result;
 }
 
 
@@ -220,11 +239,11 @@ const SeparationData CollisionDetection::CircleSAT(const shape &a, const shape &
 
 //I THINK I NEED TO UPDATE SHAPE NORMAL VECTORS AS I UPDATE MODEL MATRIX
 
-const SeparationData CollisionDetection::SAT(const shape &a, const shape &b) {
+const void  CollisionDetection::SAT(const shape &a, const shape &b, SeparationData& sd) {
 	if (_print)
 		printf("\nSTARTING COLLISION SAT\n");
-	SeparationData sd;
-	sd._penetrationDistance = 10000000000;
+	
+	sd._penetrationDistance = FLT_MAX;
 
 	bool finished = false;
 	int i = 0;
@@ -286,14 +305,6 @@ const SeparationData CollisionDetection::SAT(const shape &a, const shape &b) {
 		}
 		i++;
 	}
-	
-	/*if (sd._penetrationDistance != 0) {
-		printf("penetration distance %.3f\n, separation vector x %.3f, y %.3f\n", sd._penetrationDistance, sd._separationVector.x, sd._separationVector.y);
-	}
-	if (_print)
-		printf("\n ending SAT penDistance : %f \n", sd._penetrationDistance);
-		*/
-	return sd;
 }
 //IF THE PENETRATION IS TOO DEEP THE OBJECTS WILL EXPLODE IN RANDOM DIRECTIONS
 const std::pair<float, int> CollisionDetection::CheckOverlap(const float x1, const float y1, const float x2, const float y2) {
@@ -362,14 +373,14 @@ const void CollisionDetection::ProjectOnAxis(float& min, float& max, const Vec2 
 
 
 
-const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, const shape& b) {
-	SeparationData sd;
+const void CollisionDetection::CheckAABBCollision(const shape& a, const shape& b, SeparationData& sd) {
+
 	for (int i = 0; i < a.first; ++i) {
 		
 		const Vec3* v1 = &a.second[i];
 		if (v1->x > b.second[0].x && v1->x < b.second[1].x &&
 			v1->y > b.second[0].y && v1->y < b.second[2].y) {
-			return sd;
+			//return sd;
 		}
 	}
 	for (int i = 0; i < b.first; ++i) {
@@ -377,10 +388,10 @@ const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, cons
 		const Vec3* v1 = &b.second[i];
 		if (v1->x > a.second[0].x && v1->x < a.second[1].x &&
 			v1->y > a.second[0].y && v1->y < a.second[2].y) {
-			return sd;
+			//return sd;
 		}
 	}
-	return sd;
+	//return sd;
 }
 
 
@@ -391,21 +402,21 @@ const SeparationData CollisionDetection::CheckAABBCollision(const shape& a, cons
 /// <param name="a"></param>
 /// <param name="b"></param>
 /// <returns></returns>
-const SeparationData CollisionDetection::CircleCircleCollision(const shape& a, const shape& b) {
+const void CollisionDetection::CircleCircleCollision(const shape& a, const shape& b, SeparationData& sd) {
 	//direction between one and the other 
 	Vec3 dist = (b.second[0] - a.second[0]);
 	const float distLen = dist.Lenght();
 	const float totalCircleDist = (a.second[1].x + b.second[1].x);
-	SeparationData sd;
+	
 	sd._penetrationDistance = totalCircleDist - distLen;
 	if (sd._penetrationDistance < 0) {
 		sd._penetrationDistance = 0;
-		return sd;
+		return;
 	}
 
 	dist.Normalize();
 	sd._separationVector = dist;
-	return sd;
+	
 
 }
 

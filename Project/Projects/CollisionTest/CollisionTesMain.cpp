@@ -183,59 +183,68 @@ void PhysicsTest::Play(const bool on) {
 
 //void Add(float a, float b) {}
 //#define + Add
+void CollisionTestMain::CreatePlayerCube(const bool physics) {
 
-CollisionTestMain::CollisionTestMain():Game() {
+	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(rRad * 2, rRad * 2, 1), 0);
 	
+	if (physics) {
+		PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
+		body->SetMass(1);
+		body->SetCoefRestitution(1.0f);
+		_myNode->AddComponent<PhysicsObject>(body);
+	}
 	
-
-	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(50, 50, 1), 0);
-	
-	PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());	
-	//body->SetPhysData(Vec3(10, 0, 0));				
-	body->SetMass(1);
-	body->SetCoefRestitution(1.0f);
-	_myNode->AddComponent<PhysicsObject>(body);							
-
-	Sprite* s = new Sprite("Assets/Textures/Circle.png");				
+	Sprite* s = new Sprite();
 	s->GetMaterial()->_color = Vec4(0.7f, 0.5f, 0.3f, 1.0f);
-	_myNode->AddComponent(s);								
-	Bounds* bBox = new SphereBounds(_myNode, 25);			
+	
+	Bounds* bBox = new BoxBounds(_myNode);
 
+	_myNode->AddComponent(s);
 	_myNode->AddComponent(bBox);
-	_world->AddChild(_myNode);	
+	_world->AddChild(_myNode);
 
-	/*BaseNode* wall = new BaseNode(Vec3(700, 400, 0), Vec3(50, 800, 1), 0);
-	Sprite* wallSprt = new Sprite();
-	PhysicsObject* wallBod = new PhysicsObject(&wall->GetTransform());
-	Bounds* wallBox = new BoxBounds(wall);
-	wallBod->SetPhysData(1000);
-	wall->AddComponent(wallSprt);
-	wall->AddComponent(wallBod);
-	wall->AddComponent(wallBox);
-	_world->AddChild(wall);
-	*/
+}
 
 
+void CollisionTestMain::CreatePlayerCircle(const bool physics) {
+	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(rRad * 2, rRad * 2, 1), 0);
+
+	if (physics) {
+		PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
+		body->SetMass(1);
+		body->SetCoefRestitution(1.0f);
+		_myNode->AddComponent<PhysicsObject>(body);
+	}
+
+	Sprite* s = new Sprite("Assets/Textures/Circle.png");
+	s->GetMaterial()->_color = Vec4(0.7f, 0.5f, 0.3f, 1.0f);
+
+	Bounds* bBox = new SphereBounds(_myNode, rRad);
+
+	_myNode->AddComponent(s);
+	_myNode->AddComponent(bBox);
+	_world->AddChild(_myNode);
+}
+
+
+void CollisionTestMain::CreateCIRCLES(const unsigned int count) {
 	
-
-	
-	unsigned int maxNodes = 4;
+	unsigned int maxNodes = 10;
 	_otherNodes = new BaseNode[maxNodes];
 	int windowW = Renderer::instance()->GetWindowSize().x;
 	int windowH = Renderer::instance()->GetWindowSize().y;
-	
-	//CREATE CIRCLES
-	for (int i = 0; i < maxNodes; i++) {
+
+	for (int i = 0; i < count; i++) {
 		float randx = rand() % windowW;
 		float randy = rand() % windowW;
 
 		Vec3 randPos = Vec3(randx, randy, 0);
-		int rRad = 50;
+		//int rRad = 25;
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
 		PhysicsObject* body = new PhysicsObject(&b->GetTransform());
-		body->SetPhysData(1 + i * 100);	
+		body->SetPhysData(1);
 		body->SetCoefRestitution(1.0f);
-		b->AddComponent(body);	
+		b->AddComponent(body);
 		b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
 
 		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0.1f), Vec3(1, 1, 1), 0);
@@ -243,26 +252,35 @@ CollisionTestMain::CollisionTestMain():Game() {
 		txtNode->SetInheritTransform(1, false);
 		txtNode->AddComponent(new Text(std::to_string((int)(body->GetMass())), txtNode, 12));
 
-		Bounds* bBox = new SphereBounds(b, 25);	
+		Bounds* bBox = new SphereBounds(b, rRad * 0.5f);
 
 		//bBox->_solid = false;					
-		b->AddComponent(bBox);					
-		
+		b->AddComponent(bBox);
+
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
 	}
+
+}
+
+
+void CollisionTestMain::CreateSquares(const unsigned int count) {
 	
-	//CREATE BOXES
-	for (int i = 0; i < maxNodes; i++) {
+	unsigned int maxNodes = 10;
+	_otherNodes = new BaseNode[maxNodes];
+	int windowW = Renderer::instance()->GetWindowSize().x;
+	int windowH = Renderer::instance()->GetWindowSize().y;
+
+	for (int i = 0; i < count; i++) {
 		float randx = rand() % windowW;
 		float randy = rand() % windowW;
 
 		Vec3 randPos = Vec3(randx, randy, 0);
-		int rRad = 50;
+
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
-		PhysicsObject* body = new PhysicsObject( &b->GetTransform() );
-		body->SetPhysData(1 + i * 2);
-		body->SetCoefRestitution(1.0f);
+		PhysicsObject* body = new PhysicsObject(&b->GetTransform());
+		body->SetPhysData(1);
+		body->SetCoefRestitution(0.5f);
 		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0.1f), Vec3(1, 1, 1), 0);
 		b->AddChild(txtNode);
 		txtNode->SetInheritTransform(1, false);
@@ -271,17 +289,42 @@ CollisionTestMain::CollisionTestMain():Game() {
 		b->AddComponent(body);
 		b->AddComponent(new Sprite("Assets/Textures/default.png"));
 		Bounds* bBox = new BoxBounds(b);
-		
+
 		b->AddComponent(bBox);
 
 		_otherNodes->AddChild(b);
 		_world->AddChild(b);
 	}
-	
-	_play = false;
 
+}
+
+
+void CollisionTestMain::CreateWall(const float& w, const float& h) {
+	
+	BaseNode* wall = new BaseNode(Vec3(700, 400, 0), Vec3(w, h, 1), 0);
+	Sprite* wallSprt = new Sprite();
+	PhysicsObject* wallBod = new PhysicsObject(&wall->GetTransform());
+	Bounds* wallBox = new BoxBounds(wall);
+	
+	wallBod->SetPhysData(100);
+
+	wall->AddComponent(wallSprt);
+	wall->AddComponent(wallBod);
+	wall->AddComponent(wallBox);
+	_world->AddChild(wall);
+
+}
+
+
+CollisionTestMain::CollisionTestMain():Game() {
+	
+	rRad = 30;
+	_play = false;
 	_angVel = 0;
 	_ang = 0;
+	//i have to properly update the collision Bounds to the world
+	CreatePlayerCube(false);
+	CreateWall(50, 400);
 
 }
 
@@ -357,8 +400,9 @@ void CollisionTestMain::MoveMyNode(const unsigned int dir) {
 		//printf("D PRESSED\n");
 		movDir.x = 1;
 	}
-		
-	_myNode->GetComponent<PhysicsObject>()->AddForce(movDir * speed);
+	PhysicsObject* body = _myNode->GetComponent<PhysicsObject>();
+	if(body != NULL)
+		body->AddForce(movDir * speed);
 	//_myNode->SetPosition(mpos + movDir * speed);
 	
 }

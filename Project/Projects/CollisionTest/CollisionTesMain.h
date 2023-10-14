@@ -29,7 +29,12 @@ private:
 	float _angVel;
 	BaseNode* _myNode;
 	BaseNode* _otherNodes;
-
+	float  rRad;
+	void CreatePlayerCube(const bool physics);
+	void CreatePlayerCircle(const bool physics);
+	void CreateCIRCLES(const unsigned int count);
+	void CreateSquares(const unsigned int count);
+	void CreateWall(const float& w, const float& h);
 	
 public :
 	CollisionTestMain();

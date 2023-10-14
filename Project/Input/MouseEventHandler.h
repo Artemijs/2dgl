@@ -3,6 +3,9 @@
 #include "../Game/BaseNode.h"
 #include "../Game/MouseEventComponent.h"
 #include <vector>
+
+
+
 class MouseEventHandler {
 private:
 	static BaseNode* _current;
@@ -35,47 +38,6 @@ public:
 	static const Vec3 GetMousePosition();
 
 	static BaseNode* CheckCollision(BaseNode* n, const Vec3 mousePos);
-
-	/*
-	A RECURSIVE COLLISION CHECK
-	has to return closest to the camera object that intersects with mouse
-	
-	//COLLISION DETECTION
-	const BaseNode* CheckCollision(node n, Vec2 mousePos) const{
-		const Bounds* bb = n->GetComponent<Bounds>();
-		auto children = n->GetChildren();
-		BaseNode* closest_n = NULL;
-
-		if( children !=NULL){
-			for(int i =0; i < n->children->size(); ++i){
-		
-				const BaseNode* bn = CheckCollision (childre->at(i), mousePos);
-
-				if(bn == null) continue;
-
-				if(closest_n == NULL)
-					closest_n = bn;
-				else{
-				//buf[11] is the world space z value
-					if(bn->_model->buff[11]> closest_n->_model->buff[11])
-						closest_n = bn;
-				}
-			}
-		}
-		if(bb != null){
-
-			if(closest_n == NULL)	return n;
-
-			else if (bb->CheckInside(mousePos)){
-				if(n->_model->buff[11]> closest_n->_model->buff[11]){
-					closest_n = n;
-				}
-			}
-		}
-		return closest_n;
-	}
-
-	*/
 
 };
 #endif

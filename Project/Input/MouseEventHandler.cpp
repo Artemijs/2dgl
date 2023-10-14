@@ -5,6 +5,9 @@
 #include "../Math/Bounds.h"
 #include "../UI/Button.h"
 #define uwu 0x0
+#define yes true
+#define no false
+
 //std::vector<MouseEvent*>* MouseEventHandler::_all_events = new std::vector < MouseEvent* >();
 Vec3 MouseEventHandler::_prevPos = Vec3(0, 0, 0);
 MouseEvent* MouseEventHandler::_current_m = uwu;
@@ -12,8 +15,8 @@ float MouseEventHandler::_time = 0;
 float MouseEventHandler::_hover_time = 1.5f;
 float MouseEventHandler::_ddclick_time = 0.5f;
 float MouseEventHandler::_dd_time_max = 0.2f;
-bool MouseEventHandler::_onHover = false;		
-bool MouseEventHandler::_on = false;
+bool MouseEventHandler::_onHover = no;		
+bool MouseEventHandler::_on = no;
 BaseNode* MouseEventHandler::_current = uwu;
 /*void MouseEventHandler::RegisterEvent(MouseEvent* e) {
 	_all_events->push_back(e);
@@ -107,7 +110,7 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 				MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
 				if (m == NULL) return;
 				m->CallEvents(BtnEvent::ON_HOVER, mousePos);
-				_onHover = true;
+				_onHover = yes;
 			}
 		}
 		else {
@@ -117,7 +120,7 @@ void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float delta
 				MouseEvent* m = _current->GetComponent<MouseEvent>(MouseEvent::_component_id);
 				if (m == NULL) return;
 				m->CallEvents(BtnEvent::ON_END_HOVER, mousePos);
-				_onHover = false;
+				_onHover = no;
 			}
 		}
 	}
