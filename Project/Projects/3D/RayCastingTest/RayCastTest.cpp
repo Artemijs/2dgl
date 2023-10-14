@@ -52,11 +52,11 @@ RayCastTest::~RayCastTest() {
 
 void RayCastTest::Update(float deltaTime) {
 	Game::Update(deltaTime);										
-																	
-	Camera* c = Renderer::instance()->GetCamera();
+	Renderer* r = Renderer::instance();
+	Camera* c = r->GetCamera();
 	
 	//if( _mouse->GetMouseKey(0)->_state != MouseKeyState::IDLE)
-		printf("M1 state : %d \n", _mouse->GetMouseKey(0)->_state);
+	//printf("M1 state : %d \n", _mouse->GetMouseKey(0)->_state);
 	//	printf("L state : %d \n", Keyboard::GetKey('l')->state);
 	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_HELD) {
 		_mouse->SetCursorHidden(true);
@@ -70,12 +70,14 @@ void RayCastTest::Update(float deltaTime) {
 	
 
 	
-	/*Renderer* r = Renderer::instance();
+	
+
 	RayHitData hitData;
-	if (CollisionHandler::RayCast(&Ray(FLT_MAX, r->GetCamera()->GetOrientation()), hitData)) {
+	Ray ray(FLT_MAX, c->GetOrientation(), c->GetPosition());
+	if (CollisionHandler::RayCast(&ray, hitData, Vec3(), Vec3(0, 1, 0))    ) {
 		// i need the object i hit
 		printf("I HIT THE OBJECT\n");
-	}*/
+	}
 	
 
 

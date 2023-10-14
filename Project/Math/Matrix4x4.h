@@ -171,8 +171,9 @@ class Ray {
 public :
 	float _distance;
 	Vec3 _direction;
+	Vec3 _position;
 	Ray();
-	Ray(float dist, Vec3 dir);
+	Ray(float dist, Vec3 dir, Vec3 pos);
 	~Ray();
 };
 

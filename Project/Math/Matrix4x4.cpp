@@ -607,7 +607,7 @@ Ray::Ray() :_distance(0), _direction(Vec3()){
 }
 
 
-Ray::Ray(float dist, Vec3 dir) : _distance(dist), _direction(dir) {
+Ray::Ray(float dist, Vec3 dir, Vec3 pos) : _distance(dist), _direction(dir), _position(pos) {
 
 }
 

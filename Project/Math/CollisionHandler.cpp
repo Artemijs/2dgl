@@ -115,18 +115,18 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 }
 
 
-bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData) {
-
-	//find every plane
-	//check plane intersection
+bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData, const Vec3& plane_origin, const Vec3& plane_normal) {
+																				
+	//find every plane															
+	//check plane intersection													
 	//use DOT product to check if intersection is within polygonal bounds of the plane
-	for (int i = 0; i < _all_bounds->size(); i++) {
-		auto pair = _all_bounds->at(i);
-		Bounds* b = pair.first;
-		if (b->_type != BoundsType::BB)
-			continue;
-
-		auto s = b->GetShape();
+	
+	float denom = Vec3::Dot(plane_normal, ray->_direction);
+	if (denom >= 1e-6) {//0.000001
+		Vec3 relVect = plane_origin - ray->_position;
+		float distance = Vec3::Dot(relVect, plane_normal);
+		printf(" distance %.3f \n", distance);
+		return (distance >= 0);
 	}
 	return false;
 	
