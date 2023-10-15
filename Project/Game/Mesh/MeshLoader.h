@@ -14,5 +14,7 @@ public :
 	/// <param name="height">currently not used local space height of plane</param>
 	/// <returns></returns>
 	static Mesh* GetPlane(const float resolution, const float width, const float height);
+	static Mesh* GetCube();
+
 };
 #endif // !MESH_LOADER_H

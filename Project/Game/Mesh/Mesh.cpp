@@ -1,10 +1,13 @@
 #include "Mesh.h"
 #include "../../Util/Utility.h"
 #include <cassert>
+
+
+
 const unsigned int Mesh::_component_id = Utility::GetID();
 const unsigned int Mesh::ID()const {
 	return _component_id;
-}
+} 
 
 Mesh::Mesh() :Graphic() {
 	assert(false, "Used default constructor of MESH, behaviour undefined");
@@ -14,7 +17,6 @@ Mesh::Mesh(std::vector<Vertex>* verts, std::vector<GLuint>* indices, BaseMateria
 	Graphic(mat, indexCount),
 	_vertices(verts),
 	_indices(indices){
-
 }
 void Mesh::InitGLData(VAO* vao, VBO* vbo, EBO* ebo) {
 	_vao = vao;

@@ -81,8 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\artem\Documents\programming\OGL_1\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\artem\Documents\programming\OGL_1\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -162,6 +162,7 @@
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\Mesh\Mesh.cpp" />
     <ClCompile Include="Game\Mesh\MeshLoader.cpp" />
+    <ClCompile Include="Game\Mesh\Model.cpp" />
     <ClCompile Include="Game\MouseEventComponent.cpp" />
     <ClCompile Include="Game\RenderNode.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Math\PhysicsObject.cpp" />
     <ClCompile Include="Math\PhysicsWorld.cpp" />
     <ClCompile Include="Math\SphereBounds.cpp" />
+    <ClCompile Include="Projects\3D\MeshTest\MeshTest.cpp" />
     <ClCompile Include="Projects\3D\RayCastingTest\RayCastTest.cpp" />
     <ClCompile Include="Projects\CollisionTest\ColliisonTestGame.cpp" />
     <ClCompile Include="Projects\CollisionTest\CollisionTesMain.cpp" />
@@ -213,6 +215,7 @@
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\Mesh\Mesh.h" />
     <ClInclude Include="Game\Mesh\MeshLoader.h" />
+    <ClInclude Include="Game\Mesh\Model.h" />
     <ClInclude Include="Game\MouseEventComponent.h" />
     <ClInclude Include="Game\RenderNode.h" />
     <ClInclude Include="Graphics\Camera.h" />
@@ -240,6 +243,7 @@
     <ClInclude Include="Math\PhysicsWorld.h" />
     <ClInclude Include="Math\SeparationData.h" />
     <ClInclude Include="Math\SphereBounds.h" />
+    <ClInclude Include="Projects\3D\MeshTest\MeshTest.h" />
     <ClInclude Include="Projects\3D\RayCastingTest\RayCastTest.h" />
     <ClInclude Include="Projects\CollisionTest\ColliisonTestGame.h" />
     <ClInclude Include="Projects\CollisionTest\CollisionTesMain.h" />

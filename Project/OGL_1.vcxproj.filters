@@ -121,6 +121,9 @@
     <Filter Include="Source Files\Game\Mesh">
       <UniqueIdentifier>{a98b62c8-e37f-4578-a2e3-d5209f557ea6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\3D\MeshTest">
+      <UniqueIdentifier>{4e133a7b-8b13-41f8-a4b6-17a4a6c42af9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -276,6 +279,12 @@
     <ClCompile Include="Input\Mouse.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\3D\MeshTest\MeshTest.cpp">
+      <Filter>Projects\3D\MeshTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Mesh\Model.cpp">
+      <Filter>Source Files\Game\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -421,6 +430,12 @@
     </ClInclude>
     <ClInclude Include="Input\Mouse.h">
       <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\3D\MeshTest\MeshTest.h">
+      <Filter>Projects\3D\MeshTest</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Mesh\Model.h">
+      <Filter>Header Files\Game\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

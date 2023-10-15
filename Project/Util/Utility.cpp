@@ -73,6 +73,7 @@ void Utility::ToLower(std::string& s) {
 #include "../Projects/CollisionTest/CollisionTesMain.h"
 #include "../Projects/3D/RayCastingTest/RayCastTest.h"
 #include "../Projects/ShaderTests/ShaterTest.h"
+#include "../Projects/3D/MeshTest/MeshTest.h"
 #include <sstream>
 void DevPrintHelp() {
 	std::string msg = 
@@ -85,6 +86,7 @@ void DevPrintHelp() {
 	msg += "5 : RayCastTest\n";
 	msg += "6 : ShaterTest\n";
 	msg += "7 : PhysicsTest\n";
+	msg += "8 : MeshTest\n";
 	msg += "type HELP N n being the number of the game, for a description of that project\n";
 	std::cout << msg;
 }
@@ -124,15 +126,20 @@ void DevPrintDetails(std::string s) {
 		case 7:
 			std::cout << "Testing out the physics engine functions\n";
 			break;
+		case 8:
+			std::cout << "Testing out mesh loading and viewing, camera 3d enabled, asd to move left click to rotate\n";
+			break;
 		default:
 			std::cout << "YOu have entered a number out of range\n";
 	}
 	
 
 }
+
+
 Game* DevGetGameType() {
 
-	int max = 7;
+	int max = 8;
 
 	std::cout << "PLEASE ENTER WHICH GAME YOU WOULD LIKE TO LOAD \n____ a value between 0 and "<<max<<"\n Type HELP for details(no case sens)\n";
 	Game* g = NULL;
@@ -192,6 +199,9 @@ Game* DevGetGameType() {
 		case 7:
 			g = new PhysicsTest();
 			break;
+		case 8:
+			g = new MeshTest();
+			break;
 		default:
 			g = new TowerDefenseGame();
 		}
@@ -200,45 +210,3 @@ Game* DevGetGameType() {
 	}
 	return g;
 }
-
-
-/*
-template<typename T> SLNode<T>::SLNode() {
-	_next = NULL;
-}
-template<typename T> SLNode<T>::SLNode(T& value) {
-	_next = NULL;
-	_value = value;
-}
-template<typename T> SLNode<T>::~SLNode() {
-	delete _value;
-	delete _next; 
-}
-template<typename T>
-void SLNode<T>::AddNext(SLNode& next){
-	_next = next;
-	
-}
-*/
-
-
-
-/*template <typename T>
-SList<T>::SList() {
-	_head = NULL;
-	_tail = NULL;
-}
-
-template <typename T>
-void SList<T>::Add(T* node) {
-	
-	SLNode<T> n = SLNode<T>(node);
-	if (_head == NULL) {
-		_head = &n;
-		_tail = _head;
-	}
-	else {
-		_tail->_next = &n;
-		_tail = &n;
-	}
-}*/

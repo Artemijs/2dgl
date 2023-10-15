@@ -7,7 +7,9 @@
 #include "../../Graphics/Graphic.h"
 
 
+
 class Mesh : public Graphic {
+
 private:
 	VAO* _vao;
 	VBO* _vbo;
@@ -15,6 +17,7 @@ private:
 
 	std::vector<Vertex>* _vertices;
 	std::vector<GLuint>* _indices;
+
 public:
 	static const unsigned int _component_id;
 	Mesh();
@@ -25,5 +28,6 @@ public:
 	void Draw(const Matrix4x4* model) const override;
 	VAO* GetVAO();
 	const unsigned int ID() const override;
+
 };
 #endif

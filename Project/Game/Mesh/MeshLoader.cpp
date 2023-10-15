@@ -69,3 +69,114 @@ Mesh* MeshLoader::GetPlane(const float resolution, const float width, const floa
 	return m;
 
 }
+
+
+Mesh* MeshLoader::GetCube() {
+
+
+	//									create each vertex
+	std::vector<Vertex>* verts = new std::vector<Vertex> { 
+		
+		Vertex{Vec3(-0.1f, -0.1f,  0.1f)},
+		Vertex{Vec3(-0.1f, -0.1f, -0.1f)},
+		Vertex{Vec3(0.1f, -0.1f, -0.1f)},
+		Vertex{Vec3(0.1f, -0.1f,  0.1f)},
+		Vertex{Vec3(-0.1f,  0.1f,  0.1f)},
+		Vertex{Vec3(-0.1f,  0.1f, -0.1f)},
+		Vertex{Vec3(0.1f,  0.1f, -0.1f)},
+		Vertex{Vec3(0.1f,  0.1f,  0.1f)}
+	
+	};
+
+	//										create the index array
+	std::vector<GLuint>* indices = new std::vector<GLuint>{
+
+		0, 1, 2,
+		0, 2, 3,
+		0, 4, 7,
+		0, 7, 3,
+		3, 7, 6,
+		3, 6, 2,
+		2, 6, 5,
+		2, 5, 1,
+		1, 5, 4,
+		1, 4, 0,
+		4, 5, 6,
+		4, 6, 7
+
+	};
+
+	BaseMaterial* bm = new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png");
+	VAO* vao = new VAO();
+	Mesh* m = new Mesh(verts, indices, bm, indices->size());
+
+
+	//								OPENGL STUFF
+	vao->Bind();
+	VBO* vbo = new VBO((*verts));
+	EBO* ebo = new EBO((*indices));
+
+	vao->LinkAttrib(vbo, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);						//positions
+	vao->LinkAttrib(vbo, 2, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));	//normals
+	vao->LinkAttrib(vbo, 1, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));	//uvs
+
+	vao->Unbind();
+	vbo->Unbind();
+	ebo->Unbind();
+
+	m->InitGLData(vao, vbo, ebo);
+
+	return m;
+
+}
+
+
+
+/*
+	
+
+// Vertices coordinates
+Vertex vertices[] =
+{ //               COORDINATES           /            COLORS          /           TexCoord         /       NORMALS         //
+	Vertex{Vec3(-1.0f, 0.0f,  1.0f), Vec3(0.0f, 1.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f)},
+	Vertex{Vec3(-1.0f, 0.0f, -1.0f), Vec3(0.0f, 1.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 1.0f)},
+	Vertex{Vec3( 1.0f, 0.0f, -1.0f), Vec3(0.0f, 1.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 1.0f)},
+	Vertex{Vec3( 1.0f, 0.0f,  1.0f), Vec3(0.0f, 1.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
+};
+
+// Indices for vertices order
+GLuint indices[] =
+{
+	0, 1, 2,
+	0, 2, 3
+};
+
+Vertex lightVertices[] =
+{ //     COORDINATES     //
+	Vertex{Vec3(-0.1f, -0.1f,  0.1f)},
+	Vertex{Vec3(-0.1f, -0.1f, -0.1f)},
+	Vertex{Vec3(0.1f, -0.1f, -0.1f)},
+	Vertex{Vec3(0.1f, -0.1f,  0.1f)},
+	Vertex{Vec3(-0.1f,  0.1f,  0.1f)},
+	Vertex{Vec3(-0.1f,  0.1f, -0.1f)},
+	Vertex{Vec3(0.1f,  0.1f, -0.1f)},
+	Vertex{Vec3(0.1f,  0.1f,  0.1f)}
+};
+
+GLuint lightIndices[] =
+{
+	0, 1, 2,
+	0, 2, 3,
+	0, 4, 7,
+	0, 7, 3,
+	3, 7, 6,
+	3, 6, 2,
+	2, 6, 5,
+	2, 5, 1,
+	1, 5, 4,
+	1, 4, 0,
+	4, 5, 6,
+	4, 6, 7
+};
+
+*/

@@ -24,13 +24,14 @@ void button_key_calls(GLFWwindow* window, int key, int scancode, int action, int
 #include "./Projects/CollisionTest/CollisionTesMain.h"
 #include "./Projects/3D/RayCastingTest/RayCastTest.h"
 #include "./Projects/ShaderTests/ShaterTest.h"
+#include "./Projects/3D/MeshTest/MeshTest.h"
 int main() {					
 	srand(time(NULL));			
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();			
 								
 	//g = DevGetGameType();		
-	g = new RayCastTest();	
+	g = new MeshTest();	
 	//g = new CollisionTestMain();
 	//TODO:						
 		//add a vao to base class, leave the text vbos and ebos in text
