@@ -16,7 +16,7 @@ private:
 	EBO* _ebo;
 
 	std::vector<Vertex>* _vertices;
-	std::vector<GLuint>* _indices;
+	std::vector<GLuint>* _indices;	
 
 public:
 	static const unsigned int _component_id;

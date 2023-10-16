@@ -316,7 +316,9 @@ void CollisionTestMain::CreateWall(const float& w, const float& h) {
 
 }
 
-
+/// <summary>
+/// THE ERROR ONLY HAPPENS WITH circles THAT ARE NOT the first child of the world
+/// </summary>
 CollisionTestMain::CollisionTestMain():Game() {
 	
 	rRad = 30;
