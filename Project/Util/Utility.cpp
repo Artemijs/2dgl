@@ -74,6 +74,7 @@ void Utility::ToLower(std::string& s) {
 #include "../Projects/3D/RayCastingTest/RayCastTest.h"
 #include "../Projects/ShaderTests/ShaterTest.h"
 #include "../Projects/3D/MeshTest/MeshTest.h"
+#include "../Projects/3D/3DCollision/CollisionTest3D.h"
 #include <sstream>
 void DevPrintHelp() {
 	std::string msg = 
@@ -87,6 +88,7 @@ void DevPrintHelp() {
 	msg += "6 : ShaterTest\n";
 	msg += "7 : PhysicsTest\n";
 	msg += "8 : MeshTest\n";
+	msg += "9 : CollisionTest3D\n";
 	msg += "type HELP N n being the number of the game, for a description of that project\n";
 	std::cout << msg;
 }
@@ -129,6 +131,9 @@ void DevPrintDetails(std::string s) {
 		case 8:
 			std::cout << "Testing out mesh loading and viewing, camera 3d enabled, asd to move left click to rotate\n";
 			break;
+		case 9:
+			std::cout << "Trying to figure out THE GEE JEE KAY algorythm.\n";
+			break;
 		default:
 			std::cout << "YOu have entered a number out of range\n";
 	}
@@ -139,7 +144,7 @@ void DevPrintDetails(std::string s) {
 
 Game* DevGetGameType() {
 
-	int max = 8;
+	int max = 9;
 
 	std::cout << "PLEASE ENTER WHICH GAME YOU WOULD LIKE TO LOAD \n____ a value between 0 and "<<max<<"\n Type HELP for details(no case sens)\n";
 	Game* g = NULL;
@@ -201,6 +206,9 @@ Game* DevGetGameType() {
 			break;
 		case 8:
 			g = new MeshTest();
+			break;
+		case 9:
+			g = new CollisionTest3D();
 			break;
 		default:
 			g = new TowerDefenseGame();

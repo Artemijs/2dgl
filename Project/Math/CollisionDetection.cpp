@@ -409,6 +409,21 @@ const void CollisionDetection::CheckAABBCollision(const shape& a, const shape& b
 			//return sd;
 		}
 	}
+
+	/*
+		float d1x = b->min.x - a->max.x;
+		float d1y = b->min.y - a->max.y;
+		float d2x = a->min.x - b->max.x;
+		float d2y = a->min.y - b->max.y;
+
+		if (d1x > 0.0f || d1y > 0.0f)
+			return FALSE;
+
+		if (d2x > 0.0f || d2y > 0.0f)
+			return FALSE;
+
+		return TRUE;
+	*/
 	//return sd;
 }
 

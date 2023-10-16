@@ -93,6 +93,7 @@ std::vector<GLuint> Model::GetIndices(json accessor) {
 
 std::vector<Vertex> Model::AssembleVertices(const std::vector<Vec3>& positions, const std::vector<Vec3>& normals, const std::vector<Vec2>& textUvs) {
 	//tutorial time 1:39:33
+
 }
 
 std::vector<Vec2> Model::GroupFloatsVec2(const std::vector<float>& floatVec) {

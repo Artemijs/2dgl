@@ -124,6 +124,9 @@
     <Filter Include="Projects\3D\MeshTest">
       <UniqueIdentifier>{4e133a7b-8b13-41f8-a4b6-17a4a6c42af9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\3D\3DCollision">
+      <UniqueIdentifier>{73bcd94c-f843-41a8-a323-e08692c50a9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -285,6 +288,9 @@
     <ClCompile Include="Game\Mesh\Model.cpp">
       <Filter>Source Files\Game\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\3D\3DCollision\CollisionTest3D.cpp">
+      <Filter>Projects\3D\3DCollision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -436,6 +442,9 @@
     </ClInclude>
     <ClInclude Include="Game\Mesh\Model.h">
       <Filter>Header Files\Game\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\3D\3DCollision\CollisionTest3D.h">
+      <Filter>Projects\3D\3DCollision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

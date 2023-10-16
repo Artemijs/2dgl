@@ -30,8 +30,8 @@ int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();			
 								
-	//g = DevGetGameType();		
-	g = new MeshTest();	
+	g = DevGetGameType();		
+	//g = new MeshTest();	
 	//g = new CollisionTestMain();
 	//TODO:						
 		//add a vao to base class, leave the text vbos and ebos in text
