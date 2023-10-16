@@ -31,8 +31,8 @@ int main() {
 	//g = new Game();			
 								
 	//g = DevGetGameType();		
-	g = new MeshTest();	
-	//g = new CollisionTestMain();
+	//g = new MeshTest();	
+	g = new CollisionTestMain();
 	//TODO:						
 		//add a vao to base class, leave the text vbos and ebos in text
 		//add a base ui material

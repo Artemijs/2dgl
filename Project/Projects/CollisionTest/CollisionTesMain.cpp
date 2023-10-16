@@ -185,7 +185,7 @@ void PhysicsTest::Play(const bool on) {
 //#define + Add
 void CollisionTestMain::CreatePlayerCube(const bool physics) {
 
-	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(rRad * 2, rRad * 2, 1), 0);
+	_myNode = new BaseNode(Vec3(100, 100, 0), Vec3(rRad * 2, rRad * 2, 1), 0);
 	
 	if (physics) {
 		PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
@@ -207,19 +207,19 @@ void CollisionTestMain::CreatePlayerCube(const bool physics) {
 
 
 void CollisionTestMain::CreatePlayerCircle(const bool physics) {
-	_myNode = new BaseNode(Vec3(450, 400, 0), Vec3(rRad * 2, rRad * 2, 1), 0);
+	_myNode = new BaseNode(Vec3(100, 100, 0), Vec3(rRad , rRad , 1), 0);
 
 	if (physics) {
 		PhysicsObject* body = new PhysicsObject(&_myNode->GetTransform());
 		body->SetMass(1);
-		body->SetCoefRestitution(1.0f);
+		body->SetCoefRestitution(0.05f);
 		_myNode->AddComponent<PhysicsObject>(body);
 	}
 
 	Sprite* s = new Sprite("Assets/Textures/Circle.png");
 	s->GetMaterial()->_color = Vec4(0.7f, 0.5f, 0.3f, 1.0f);
 
-	Bounds* bBox = new SphereBounds(_myNode, rRad);
+	Bounds* bBox = new SphereBounds(_myNode, rRad*0.5f);
 
 	_myNode->AddComponent(s);
 	_myNode->AddComponent(bBox);
@@ -243,11 +243,11 @@ void CollisionTestMain::CreateCIRCLES(const unsigned int count) {
 		BaseNode* b = new BaseNode(randPos, Vec3(rRad, rRad, 1), 0);
 		PhysicsObject* body = new PhysicsObject(&b->GetTransform());
 		body->SetPhysData(1);
-		body->SetCoefRestitution(1.0f);
+		body->SetCoefRestitution(0.05f);
 		b->AddComponent(body);
 		b->AddComponent(new Sprite("Assets/Textures/Circle.png"));
 
-		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0.1f), Vec3(1, 1, 1), 0);
+		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0), Vec3(1, 1, 1), 0);
 		b->AddChild(txtNode);
 		txtNode->SetInheritTransform(1, false);
 		txtNode->AddComponent(new Text(std::to_string((int)(body->GetMass())), txtNode, 12));
@@ -281,7 +281,7 @@ void CollisionTestMain::CreateSquares(const unsigned int count) {
 		PhysicsObject* body = new PhysicsObject(&b->GetTransform());
 		body->SetPhysData(1);
 		body->SetCoefRestitution(0.5f);
-		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0.1f), Vec3(1, 1, 1), 0);
+		BaseNode* txtNode = new BaseNode(Vec3(0, 0, 0), Vec3(1, 1, 1), 0);
 		b->AddChild(txtNode);
 		txtNode->SetInheritTransform(1, false);
 		txtNode->AddComponent(new Text(std::to_string((int)(body->GetMass())), txtNode, 12));
@@ -301,12 +301,13 @@ void CollisionTestMain::CreateSquares(const unsigned int count) {
 
 void CollisionTestMain::CreateWall(const float& w, const float& h) {
 	
-	BaseNode* wall = new BaseNode(Vec3(700, 400, 0), Vec3(w, h, 1), 0);
+	BaseNode* wall = new BaseNode(Vec3(400, 400, 0), Vec3(w, h, 1), 0);
 	Sprite* wallSprt = new Sprite();
 	PhysicsObject* wallBod = new PhysicsObject(&wall->GetTransform());
 	Bounds* wallBox = new BoxBounds(wall);
 	
-	wallBod->SetPhysData(100);
+	wallBod->SetPhysData(1);
+	wallBod->SetCoefRestitution(0.05f);
 
 	wall->AddComponent(wallSprt);
 	wall->AddComponent(wallBod);
@@ -323,8 +324,11 @@ CollisionTestMain::CollisionTestMain():Game() {
 	_angVel = 0;
 	_ang = 0;
 	//i have to properly update the collision Bounds to the world
-	CreatePlayerCube(false);
-	CreateWall(50, 400);
+	
+	//CreateWall(rRad, rRad);
+	CreateSquares(10);
+	CreateCIRCLES(10);
+	CreatePlayerCircle(true);
 
 }
 

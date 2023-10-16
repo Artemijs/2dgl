@@ -60,6 +60,8 @@ void Game::Update(float deltaTime) {
 	//CREATE THE MODEL MATRIX FOR EVERY OBJECT
 	_world->MakeModelMatrix(Matrix4x4(1), Matrix4x4(1), Matrix4x4(1));
 	
+	//TRANSLATE COLLISION VOUNDS BYY THEIR BASE NODES MODEL MATRIX
+	CollisionHandler::TranslateByModel();
 	
 	
 	_ang += 5 * deltaTime;

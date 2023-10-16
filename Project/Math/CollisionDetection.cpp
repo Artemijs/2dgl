@@ -146,10 +146,10 @@ const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& 
 		//GEt THE AXIS TO PROJECT ALL VERTICES ONTO
 		axis = GetAxis(b.second[i], b.second[i + 1]);
 		
-		Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i]);
-		Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i + 1]);
+		//Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i]);
+		//Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i + 1]);
 		//PROJECT BOTH SHAPES ONTO THE AXIS
-		float minA, maxA, minB, maxB;
+		float minA = FLT_MAX, maxA = FLT_MIN, minB = FLT_MAX, maxB = -FLT_MAX;
 		
 		//project the circle
 		PeojectCircleOnAxis(minA, maxA, axis, circleCenter, circleRad);
@@ -157,15 +157,30 @@ const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& 
 		//project square
 		ProjectOnAxis(minB, maxB, axis, b);
 		
-		if (minA >= maxB || minB >= maxA) {
+		/*if (minA >= maxB || minB >= maxA) {
+			sd._penetrationDistance = 0;
 			return;
 		}
-
+		//Utility::PrintVector("Overlap on axis : ", axis);
+		//printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n", minA, maxA, minB, maxB);
 		penetrationDepth = std::min(maxB - minA, maxA - minB);
 		if (penetrationDepth < sd._penetrationDistance) {
 			sd._penetrationDistance = penetrationDepth;
 			sd._separationVector.x = axis.x;
 			sd._separationVector.y = axis.y;
+		}*/
+		auto od = CheckOverlap(minA, maxA, minB, maxB);
+		if (od.first == 0) {
+			sd._penetrationDistance = 0;
+			return;
+		}
+
+
+		penetrationDepth = od.first;
+		if (penetrationDepth < sd._penetrationDistance) {
+			sd._penetrationDistance = penetrationDepth;
+			sd._separationVector.x = axis.x * od.second;
+			sd._separationVector.y = axis.y * od.second;
 		}
 	}
 	
@@ -179,20 +194,23 @@ const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& 
 	axis.x = a.x;
 	axis.y = a.y;
 	
-	float minA, maxA, minB, maxB;
+	float minA = FLT_MAX, maxA = FLT_MIN, minB = FLT_MAX, maxB = -FLT_MAX;
 	//project poly on axis 
 	ProjectOnAxis(minB, maxB, axis, b);
 	//project circle
 	PeojectCircleOnAxis(minA, maxA, axis, circleCenter, circleRad);
-	if (minA >= maxB || minB >= maxA) {
+	auto od = CheckOverlap(minA, maxA, minB, maxB);
+	if (od.first == 0) {
+		sd._penetrationDistance = 0;
 		return ;
 	}
-
-	penetrationDepth = std::min(maxB - minA, maxA - minB);
+	
+	
+	penetrationDepth = od.first;
 	if (penetrationDepth < sd._penetrationDistance) {
 		sd._penetrationDistance = penetrationDepth;
-		sd._separationVector.x = axis.x;
-		sd._separationVector.y = axis.y;
+		sd._separationVector.x = axis.x * od.second;
+		sd._separationVector.y = axis.y * od.second;
 	}
 
 }
@@ -372,9 +390,9 @@ const void CollisionDetection::ProjectOnAxis(float& min, float& max, const Vec2 
 }
 
 
-
+#include <cassert>
 const void CollisionDetection::CheckAABBCollision(const shape& a, const shape& b, SeparationData& sd) {
-
+	assert(false , " BEHAVIOUR NOT IMPLEMENTED\n");
 	for (int i = 0; i < a.first; ++i) {
 		
 		const Vec3* v1 = &a.second[i];

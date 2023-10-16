@@ -22,6 +22,7 @@ public :
 	static void CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std::pair<Bounds*, BaseNode*> &b, SeparationData& sd);
 	static void Delete();
 	static bool RayCast(Ray* ray, RayHitData& hitData, const Vec3& plane_origin, const Vec3& plane_normal);
+	static void TranslateByModel();
 	
 };
 

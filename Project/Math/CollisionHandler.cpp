@@ -114,7 +114,16 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 	(*velB) += (j / bodyB->GetMass()) * sd._separationVector;
 }
 
-
+/// <summary>
+/// this can be skipped to ignore static objects
+/// </summary>
+/// <param name="model"></param>
+void CollisionHandler::TranslateByModel() {
+	for (int i = 0; i < _all_bounds->size(); i++) {
+		auto pair = _all_bounds->at(i);
+		pair.first->Translate2World(pair.second->GetModelMatrix());
+	}
+}
 bool CollisionHandler::RayCast(Ray* ray, RayHitData& hitData, const Vec3& plane_origin, const Vec3& plane_normal) {
 																				
 	//find every plane															
