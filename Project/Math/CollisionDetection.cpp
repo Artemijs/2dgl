@@ -30,7 +30,6 @@ void CollisionDetection::CheckCollision( Bounds* a,  Bounds* b, SeparationData& 
 	else {
 		
 		if (a->_type == BoundsType::CIRCLE) {
-			
 
 			float rad = (*a->GetSize());
 			CircleSAT((*a->GetCenterOfMass()), rad, bs, sd);
@@ -39,6 +38,8 @@ void CollisionDetection::CheckCollision( Bounds* a,  Bounds* b, SeparationData& 
 			
 			float rad = (*b->GetSize());
 			CircleSAT((*b->GetCenterOfMass()), rad, as, sd);
+			//this is patching a bug where it gets the wrong sign for the seperation axis, same sign as if it were  (a, b) instead of (b, a)
+			sd._separationVector = sd._separationVector*-1;
 		}
 		else SAT(as, bs, sd);
 
@@ -134,7 +135,7 @@ const float CollisionDetection::CheckPointSAT(const Vec3& p, const shape& s) {
 /// <param name="sd"></param>
 const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& circleRad, const shape& b, SeparationData& sd) {
 	if (_print)
-		printf("\nSTARTING circle SAT SAT\n");
+		printf("\nSTARTING circle SAT SAT\nSTARTING circle SAT SATSTARTING circle SAT SATSTARTING circle SAT SATSTARTING circle SAT SATSTARTING circle SAT SAT\n\n\n\n\n");
 	sd._separationVector = Vec3();
 	sd._penetrationDistance = FLT_MAX;
 	Vec2 axis = Vec2();
@@ -145,9 +146,6 @@ const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& 
 		
 		//GEt THE AXIS TO PROJECT ALL VERTICES ONTO
 		axis = GetAxis(b.second[i], b.second[i + 1]);
-		
-		//Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i]);
-		//Utility::PrintVector((" Vertex " + std::to_string(i) + "    : ").c_str(), b.second[i + 1]);
 		//PROJECT BOTH SHAPES ONTO THE AXIS
 		float minA = FLT_MAX, maxA = FLT_MIN, minB = FLT_MAX, maxB = -FLT_MAX;
 		
@@ -156,20 +154,9 @@ const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& 
 
 		//project square
 		ProjectOnAxis(minB, maxB, axis, b);
-		
-		/*if (minA >= maxB || minB >= maxA) {
-			sd._penetrationDistance = 0;
-			return;
-		}
-		//Utility::PrintVector("Overlap on axis : ", axis);
-		//printf("\nMinA : %.3f, MaxA : %.3f, MinB : %.3f, MaxB : %.3f\n", minA, maxA, minB, maxB);
-		penetrationDepth = std::min(maxB - minA, maxA - minB);
-		if (penetrationDepth < sd._penetrationDistance) {
-			sd._penetrationDistance = penetrationDepth;
-			sd._separationVector.x = axis.x;
-			sd._separationVector.y = axis.y;
-		}*/
+
 		auto od = CheckOverlap(minA, maxA, minB, maxB);
+		//printf("overlap data %.3f, %i\n", od.first, od.second);
 		if (od.first == 0) {
 			sd._penetrationDistance = 0;
 			return;
@@ -205,7 +192,6 @@ const void CollisionDetection::CircleSAT(const Vec3& circleCenter, const float& 
 		return ;
 	}
 	
-	
 	penetrationDepth = od.first;
 	if (penetrationDepth < sd._penetrationDistance) {
 		sd._penetrationDistance = penetrationDepth;
@@ -220,23 +206,23 @@ const void CollisionDetection::PeojectCircleOnAxis(float& min, float& max, const
 
 	Vec3 p1, p2;// = center + (axis * rad);
 	//Vec3 p2 = center - (axis * rad);
-	p1.x = center.x + (axis.x * rad);
-	p1.y = center.y + (axis.y * rad);
+	p1.x = center.x - (axis.x * rad);
+	p1.y = center.y - (axis.y * rad);
 	p1.z = 0;
 
-	p2.x = center.x - (axis.x * rad);
-	p2.y = center.y - (axis.y * rad);
+	p2.x = center.x + (axis.x * rad);
+	p2.y = center.y + (axis.y * rad);
 	p2.z = 0;
 
 	min = Vec2::Dot(p1.x, p1.y, axis.x, axis.y);
 	max = Vec2::Dot(p2.x, p2.y, axis.x, axis.y);
 
 	//in case min is not less than max, flip them
-	if (min > max) {
+	/*if (min > max) {
 		float t = min;
 		min = max;
 		max = t;
-	}
+	}*/
 }
 const unsigned int CollisionDetection::ClosestPointOnPoly(const Vec3& center, const shape& poly) {
 
@@ -326,7 +312,8 @@ const void  CollisionDetection::SAT(const shape &a, const shape &b, SeparationDa
 }
 //IF THE PENETRATION IS TOO DEEP THE OBJECTS WILL EXPLODE IN RANDOM DIRECTIONS
 const std::pair<float, int> CollisionDetection::CheckOverlap(const float x1, const float y1, const float x2, const float y2) {
-	/*x1 += 100000000;
+	
+/*x1 += 100000000;
 	x2 += 100000000;
 	y1 += 100000000;
 	y2 += 100000000;*/

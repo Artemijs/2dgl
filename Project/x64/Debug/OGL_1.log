@@ -10,7 +10,7 @@ C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\Collisi
 C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(274,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(275,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(276,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(432,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(432,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(625,46): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(438,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(438,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(631,46): warning C4305: 'argument': truncation from 'double' to 'float'
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe

@@ -306,7 +306,7 @@ void CollisionTestMain::CreateWall(const float& w, const float& h) {
 	PhysicsObject* wallBod = new PhysicsObject(&wall->GetTransform());
 	Bounds* wallBox = new BoxBounds(wall);
 	
-	wallBod->SetPhysData(1);
+	wallBod->SetPhysData(500);
 	wallBod->SetCoefRestitution(0.05f);
 
 	wall->AddComponent(wallSprt);
@@ -326,11 +326,15 @@ CollisionTestMain::CollisionTestMain():Game() {
 	_angVel = 0;
 	_ang = 0;
 	//i have to properly update the collision Bounds to the world
-	
+	//CreatePlayerCube(false);
 	//CreateWall(rRad, rRad);
+	//CreatePlayerCircle(false);
+	//CreateWall(50, 400);
+	//CreatePlayerCube(false);
+	CreatePlayerCircle(true);
 	CreateSquares(10);
 	CreateCIRCLES(10);
-	CreatePlayerCircle(true);
+	
 
 }
 

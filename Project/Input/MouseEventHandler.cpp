@@ -50,7 +50,6 @@ BaseNode* MouseEventHandler::CheckCollision(BaseNode* node, const Vec3 mousePos)
 		 }
 	 }
 	 if (bb != uwu) {
-		 bb->Translate2World(node->GetModelMatrix());
 		 if(CollisionDetection::CheckPointSAT(mousePos, bb->GetShape()) != 0){
 		 //if (bb->CheckInside(mousePos) ){
 			 if (closest_n == uwu) {

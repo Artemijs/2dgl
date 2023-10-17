@@ -89,10 +89,11 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 		}
 	}
 	else{
-		Transform bt = b.second->GetTransform();
-		b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.6f));
 		Transform at = a.second->GetTransform();
 		a.second->SetPosition(at._position + sd._separationVector * (sd._penetrationDistance * -0.6f));
+		Transform bt = b.second->GetTransform();
+		b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 0.6f));
+		
 	}
 
 	
