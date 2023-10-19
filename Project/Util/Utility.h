@@ -33,7 +33,8 @@ public:
 };
 
 
-Game* DevGetGameType();
+
+Game* DevGetGameType(const unsigned int id = 69696969);
 
 
 #endif

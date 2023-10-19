@@ -332,8 +332,9 @@ CollisionTestMain::CollisionTestMain():Game() {
 	//CreateWall(50, 400);
 	//CreatePlayerCube(false);
 	CreatePlayerCircle(true);
-	CreateSquares(10);
+	CreateSquares(5);
 	CreateCIRCLES(10);
+	CreateSquares(5);
 	
 
 }

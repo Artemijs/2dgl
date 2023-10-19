@@ -190,6 +190,7 @@
     <ClCompile Include="Math\PhysicsObject.cpp" />
     <ClCompile Include="Math\PhysicsWorld.cpp" />
     <ClCompile Include="Math\SphereBounds.cpp" />
+    <ClCompile Include="Projects\2D\TopDownEditor.cpp" />
     <ClCompile Include="Projects\3D\3DCollision\CollisionTest3D.cpp" />
     <ClCompile Include="Projects\3D\MeshTest\MeshTest.cpp" />
     <ClCompile Include="Projects\3D\RayCastingTest\RayCastTest.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="Math\PhysicsWorld.h" />
     <ClInclude Include="Math\SeparationData.h" />
     <ClInclude Include="Math\SphereBounds.h" />
+    <ClInclude Include="Projects\2D\TopDownEditor.h" />
     <ClInclude Include="Projects\3D\3DCollision\CollisionTest3D.h" />
     <ClInclude Include="Projects\3D\MeshTest\MeshTest.h" />
     <ClInclude Include="Projects\3D\RayCastingTest\RayCastTest.h" />

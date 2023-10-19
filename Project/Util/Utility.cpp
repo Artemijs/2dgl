@@ -75,6 +75,7 @@ void Utility::ToLower(std::string& s) {
 #include "../Projects/ShaderTests/ShaterTest.h"
 #include "../Projects/3D/MeshTest/MeshTest.h"
 #include "../Projects/3D/3DCollision/CollisionTest3D.h"
+#include "../Projects/2D/TopDownEditor.h"
 #include <sstream>
 void DevPrintHelp() {
 	std::string msg = 
@@ -89,6 +90,7 @@ void DevPrintHelp() {
 	msg += "7 : PhysicsTest\n";
 	msg += "8 : MeshTest\n";
 	msg += "9 : CollisionTest3D\n";
+	msg += "10 : TopDownEditor\n";
 	msg += "type HELP N n being the number of the game, for a description of that project\n";
 	std::cout << msg;
 }
@@ -134,6 +136,9 @@ void DevPrintDetails(std::string s) {
 		case 9:
 			std::cout << "Trying to figure out THE GEE JEE KAY algorythm.\n";
 			break;
+		case 10:
+			std::cout << "TOP DOWN BACKGROUND EDITOR, WASD TO MOVE CAMERA.\n";
+			break;
 		default:
 			std::cout << "YOu have entered a number out of range\n";
 	}
@@ -141,10 +146,58 @@ void DevPrintDetails(std::string s) {
 
 }
 
+Game* CreateNewGame(const unsigned int id) {
+	Game* g = NULL;
+	switch (id) {
+	case 0:
+		g = new TowerDefenseGame();
+		break;
+	case 1:
+		g = new CollisionTestGame();
+		break;
+	case 2:
+		g = new CollisionTestMain();
+		break;
+	case 3:
+		g = new IneIntersectTest();
+		break;
+	case 4:
+		g = new MaterialTest();
+		break;
+	case 5:
+		g = new RayCastTest();
+		break;
+	case 6:
+		g = new ShaderTest();
+		break;
+	case 7:
+		g = new PhysicsTest();
+		break;
+	case 8:
+		g = new MeshTest();
+		break;
+	case 9:
+		g = new CollisionTest3D();
+		break;
+	case 10:
+		g = new TopDownEditor();
+		break;
+	default:
+		g = new TowerDefenseGame();
+	}
 
-Game* DevGetGameType() {
+	DevPrintDetails("help " + std::to_string(id));
+	return g;
+}
+//		69
+//	
+//69 + 69 * 10^2 + 69 * 10^4 + 69 * 10^6
+Game* DevGetGameType(const unsigned int id) {
 
-	int max = 9;
+	int funnyNumber = 69 + 69 * std::pow(10, 2) + 69 * std::pow(10, 4) + 69 * std::pow(10, 6);
+	if (id != funnyNumber)return CreateNewGame(id);
+
+	int max = 10;
 
 	std::cout << "PLEASE ENTER WHICH GAME YOU WOULD LIKE TO LOAD \n____ a value between 0 and "<<max<<"\n Type HELP for details(no case sens)\n";
 	Game* g = NULL;
@@ -177,43 +230,7 @@ Game* DevGetGameType() {
 
 		std::cout << "Loading game " << input << "\n";
 
-
-
-		switch (gameId) {
-		case 0:
-			g = new TowerDefenseGame();
-			break;
-		case 1:
-			g = new CollisionTestGame();
-			break;
-		case 2:
-			g = new CollisionTestMain();
-			break;
-		case 3:
-			g = new IneIntersectTest();
-			break;
-		case 4:
-			g = new MaterialTest();
-			break;
-		case 5:
-			g = new RayCastTest();
-			break;
-		case 6:
-			g = new ShaderTest();
-			break;
-		case 7:
-			g = new PhysicsTest();
-			break;
-		case 8:
-			g = new MeshTest();
-			break;
-		case 9:
-			g = new CollisionTest3D();
-			break;
-		default:
-			g = new TowerDefenseGame();
-		}
-		DevPrintDetails("help " + std::to_string(gameId));
+		g = CreateNewGame(gameId);
 		
 	}
 	return g;

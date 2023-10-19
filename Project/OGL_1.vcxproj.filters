@@ -127,6 +127,9 @@
     <Filter Include="Projects\3D\3DCollision">
       <UniqueIdentifier>{73bcd94c-f843-41a8-a323-e08692c50a9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\2D">
+      <UniqueIdentifier>{f0d5e438-fc11-4e93-a6af-411465669dca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -291,6 +294,9 @@
     <ClCompile Include="Projects\3D\3DCollision\CollisionTest3D.cpp">
       <Filter>Projects\3D\3DCollision</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\2D\TopDownEditor.cpp">
+      <Filter>Projects\2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -445,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="Projects\3D\3DCollision\CollisionTest3D.h">
       <Filter>Projects\3D\3DCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\2D\TopDownEditor.h">
+      <Filter>Projects\2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
