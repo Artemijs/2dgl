@@ -25,12 +25,14 @@ void button_key_calls(GLFWwindow* window, int key, int scancode, int action, int
 #include "./Projects/3D/RayCastingTest/RayCastTest.h"
 #include "./Projects/ShaderTests/ShaterTest.h"
 #include "./Projects/3D/MeshTest/MeshTest.h"
+#include "./Projects/2D/TopDownEditor.h"
 int main() {					
 	srand(time(NULL));			
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();			
 								
-	g = DevGetGameType(10);		
+	//g = DevGetGameType(10);		
+	g = new GarbageCollectorTest();
 	//g = new MeshTest();	
 	//g = new CollisionTestMain();
 	//TODO:						

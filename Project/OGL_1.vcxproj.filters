@@ -297,6 +297,12 @@
     <ClCompile Include="Projects\2D\TopDownEditor.cpp">
       <Filter>Projects\2D</Filter>
     </ClCompile>
+    <ClCompile Include="Util\MemoryManager.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\DataStructures.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -454,6 +460,12 @@
     </ClInclude>
     <ClInclude Include="Projects\2D\TopDownEditor.h">
       <Filter>Projects\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\MemoryManager.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\DataStructures.h">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

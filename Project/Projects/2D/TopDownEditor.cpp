@@ -64,10 +64,89 @@ void TopDownEditor::CreateNew() {
 	m = MeshLoader::GetPlane(10, 1, 1);
 	//m->SetMaterial(
 	_mainTileMesh = new BaseNode(Vec3(), Vec3(400, 400, 1), 0);
-
-
-
-
 	
-	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TesObject::TesObject() {
+	test = 69;
+	testPtr = new int(67 + 2);
+}
+TesObject::~TesObject() {
+	printf("deleteingn TEST OBJECT\n");
+	delete testPtr;
+}
+
+
+
+GarbageCollectorTest::GarbageCollectorTest() {
+
+	SList<TesObject*>* list = new SList<TesObject*>();
+	TesObject* a = new TesObject();
+	TesObject* b = new TesObject();
+	TesObject* c = new TesObject();
+	TesObject* d = new TesObject();
+	TesObject* e = new TesObject();
+	TesObject* f = new TesObject();
+	/*SList<Memory*>* list = new SList<Memory*>();
+	Memory* a = new Memory();
+	Memory* b = new Memory();
+	Memory* c = new Memory();
+	Memory* d = new Memory();
+	Memory* e = new Memory();
+	Memory* f = new Memory();*/
+
+	list->Add(a);
+	list->Add(b);
+	list->Add(c);
+	list->Add(d);
+	list->Add(e);
+	list->Add(f);
+
+	delete list;
+	MemoryManager::ClearMemory();
+
+
+
+
+}
+
+
+GarbageCollectorTest::~GarbageCollectorTest() {
+
+}
+
+
+void GarbageCollectorTest::Update(float deltaTime) {
+	Game::Update(deltaTime);
+
 }

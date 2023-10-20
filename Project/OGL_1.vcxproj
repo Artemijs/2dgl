@@ -201,6 +201,8 @@
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="UI\Text.cpp" />
     <ClCompile Include="Util\Callback.cpp" />
+    <ClCompile Include="Util\DataStructures.cpp" />
+    <ClCompile Include="Util\MemoryManager.cpp" />
     <ClCompile Include="Util\PseudoCode.cpp" />
     <ClCompile Include="Util\Utility.cpp" />
   </ItemGroup>
@@ -256,6 +258,8 @@
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="UI\Text.h" />
     <ClInclude Include="Util\Callback.h" />
+    <ClInclude Include="Util\DataStructures.h" />
+    <ClInclude Include="Util\MemoryManager.h" />
     <ClInclude Include="Util\Utility.h" />
   </ItemGroup>
   <ItemGroup>
