@@ -6,14 +6,14 @@ private:
 
 public :
 	/// <summary>
-	/// auto generate a flat diffuse lit plane RESOLUTION CHANGES SIZE, PLANE NO CENTERED ON ORIGIN you should fix that
+	/// auto generate a flat diffuse lit plane 
 	/// 
 	/// </summary>
-	/// <param name="resolution"> number of vertices in row and col of the plane</param>
-	/// <param name="width">currently not used local space width of plane</param>
-	/// <param name="height">currently not used local space height of plane</param>
+	/// 
+	/// <param name="width">vertices per row</param>
+	/// <param name="height">vertices per column</param>
 	/// <returns></returns>
-	static Mesh* GetPlane(const float resolution, const float width, const float height);
+	static Mesh* GetPlane( const int width, const int height);
 	static Mesh* GetCube();
 
 };

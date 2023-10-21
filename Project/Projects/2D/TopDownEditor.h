@@ -2,22 +2,7 @@
 #define TOP_DOWN_EDITOR_H
 #include "../../Game/Game.h"
 #include "../../Util/MemoryManager.h"
-class TesObject : public Memory {
-public:
-	int test;
-	int* testPtr;
-	TesObject();
-	~TesObject() override ;
-};
-class GarbageCollectorTest : public Game {
-private:
-	
-public:
-	GarbageCollectorTest();
-	~GarbageCollectorTest();
 
-	void Update(float deltaTime) override;
-};
 
 
 class TopDownEditor : public Game {
@@ -32,7 +17,48 @@ public :
 	~TopDownEditor();
 	
 	void Update(float deltaTime) override;
-	void MoveCamera();
+	void MoveCamera3D(bool rotate = true, bool move = true);
+	void MoveCamera2D();
 
 };
+
+
+
+
+
+
+
+
+
+
+
+class TesObject : public Memory {
+public:
+	int test;
+	int* testPtr;
+	TesObject();
+	~TesObject() override;
+};
+
+
+
+class TesObjecTChild : public TesObject {
+public:
+	TesObjecTChild();
+	~TesObjecTChild() override;
+};
+
+
+
+class GarbageCollectorTest : public Game {
+private:
+
+public:
+	GarbageCollectorTest();
+	~GarbageCollectorTest();
+
+	void Update(float deltaTime) override;
+};
+
+
 #endif 

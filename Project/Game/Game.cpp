@@ -11,7 +11,7 @@
 #include <typeinfo>
 #include "../UI/Text.h"
 #include "../Math/CollisionHandler.h"
-
+#include "../Util/MemoryManager.h"
 Mouse* Game::_mouse = new Mouse();
 PhysicsWorld* Game::_physWorld = new PhysicsWorld();
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
@@ -29,12 +29,20 @@ Game::Game() {
 Game::~Game() {
 	std::cout << "deleting game\n";
 	Keyboard::Delete();
+
 	delete _physWorld;
+
 	delete Renderer::instance();
+
 	delete _world;
+
 	MouseEventHandler::Delete();
-	CollisionHandler::Delete();
 	delete _mouse;
+	CollisionHandler::Delete();
+
+	
+	MemoryManager::ClearMemory();
+	MemoryManager::Clean();
 }
 //remove all ui code
 //add UpdateModelMatrix(parentPos, parentScale, parentRot)

@@ -8,7 +8,7 @@ class Memory {
 
 public :
 	Memory() {};
-	virtual ~Memory() { printf("CALLING DELETE FROM MEMORY \n"); };
+	virtual ~Memory() { };
 
 };
 

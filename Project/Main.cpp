@@ -31,8 +31,8 @@ int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();			
 								
-	//g = DevGetGameType(10);		
-	g = new GarbageCollectorTest();
+	g = DevGetGameType(10);		
+	//g = new GarbageCollectorTest();
 	//g = new MeshTest();	
 	//g = new CollisionTestMain();
 	//TODO:						

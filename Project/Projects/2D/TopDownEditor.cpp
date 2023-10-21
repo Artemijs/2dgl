@@ -1,9 +1,12 @@
 #include "./TopDownEditor.h"
 #include "../../Graphics/Renderer.h";
 #include "../../Game/Mesh/MeshLoader.h"
-
+#include "../../Graphics/Materials/MaterialSprite.h"
 
 TopDownEditor::TopDownEditor(): _heightBTBG(10), _widthBTBG(10) {
+	CreateNew();
+	Renderer* r = Renderer::instance();
+	(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(90), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
 }
 
 
@@ -19,13 +22,61 @@ void TopDownEditor::Update(float deltaTime) {
 	
 	
 
-	MoveCamera();
+	MoveCamera3D();
+	//MoveCamera2D();
+}
+
+
+void TopDownEditor::MoveCamera3D(bool rotate, bool move) {
+
+	const float moveSpeed = 1.2f;
+	Camera* c = Renderer::instance()->GetCamera();
+	Vec3 pos = c->GetPosition();
+	Vec3 moveDir = Vec3();
+	bool update = false;
+
+	if (rotate) {
+		//							rotate camera
+		if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_HELD) {
+			_mouse->SetCursorHidden(true);
+			c->LockCursor(true);
+			c->MouseMove();
+		}
+		if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_UP) {
+			_mouse->SetCursorHidden(false);
+			c->LockCursor(false);
+		}
+	}
+	move = c->GetCursorLockState();
+	//								move camera
+	if (move) {
+		if (Keyboard::GetKey('w')->state == KeyState::KEY_HELD) {
+			moveDir = c->GetOrientation() * -1;
+			update = true;
+		}
+		if (Keyboard::GetKey('a')->state == KeyState::KEY_HELD) {
+			moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0));
+			update = true;
+		}
+		if (Keyboard::GetKey('s')->state == KeyState::KEY_HELD) {
+			moveDir = c->GetOrientation();
+			update = true;
+		}
+		if (Keyboard::GetKey('d')->state == KeyState::KEY_HELD) {
+			moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0)) * -1;
+			update = true;
+		}
+
+		if (update) {
+			moveDir.Normalize();
+			c->SetPosition(pos + (moveDir * moveSpeed));
+		}
+	}
 
 }
 
 
-void TopDownEditor::MoveCamera() {
-
+void TopDownEditor::MoveCamera2D() {
 	const float moveSpeed = 1.2f;
 	Camera* c = Renderer::instance()->GetCamera();
 	Vec3 pos = c->GetPosition();
@@ -49,7 +100,7 @@ void TopDownEditor::MoveCamera() {
 		moveDir.x = 1;
 		update = true;
 	}
-	
+
 	if (update) {
 		moveDir.Normalize();
 		c->SetPosition(pos + (moveDir * moveSpeed));
@@ -59,11 +110,27 @@ void TopDownEditor::MoveCamera() {
 
 
 void TopDownEditor::CreateNew() {
-	//CREATE MAIN TILE MESH
+
+	//							something to orient around 
+	BaseNode* bn1 = new BaseNode(Vec3(0, 0, 0), Vec3(10, 10, 1), 0);
+	//Material* m = new MaterialUiSprite();
+	//bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
+	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite()));
+	_world->AddChild(bn1);
+
+	
+	//							CREATE MAIN TILE MESH
+
+	//initialize base node 
+	_mainTileMesh = new BaseNode(Vec3(0,0,0), Vec3(10, 10, 1), 0);
+	_world->AddChild(_mainTileMesh);
+	
+	//initialize the mesh
 	Mesh* m ;
-	m = MeshLoader::GetPlane(10, 1, 1);
-	//m->SetMaterial(
-	_mainTileMesh = new BaseNode(Vec3(), Vec3(400, 400, 1), 0);
+	m = MeshLoader::GetPlane(2, 2);
+	
+	_mainTileMesh->AddComponent<Mesh>(m);
+	
 	
 }
 
@@ -108,7 +175,22 @@ TesObject::~TesObject() {
 
 
 
+TesObjecTChild::TesObjecTChild() : TesObject() {
+
+}
+TesObjecTChild::~TesObjecTChild() {
+	printf("deleteingn TEST OBJECT CHILD\n");
+	
+}
+
+
+
 GarbageCollectorTest::GarbageCollectorTest() {
+	
+	Memory* m = new TesObjecTChild();
+
+	delete m;
+
 
 	SList<TesObject*>* list = new SList<TesObject*>();
 	TesObject* a = new TesObject();
@@ -134,6 +216,7 @@ GarbageCollectorTest::GarbageCollectorTest() {
 
 	delete list;
 	MemoryManager::ClearMemory();
+	MemoryManager::Clean();
 
 
 

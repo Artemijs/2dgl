@@ -3,25 +3,25 @@
 #include "../../Graphics/Renderer.h"
 
 
-Mesh* MeshLoader::GetPlane(const float resolution, const float width, const float height) {
+Mesh* MeshLoader::GetPlane(const int width, const int height) {
 
-	
+
 	std::vector<Vertex>* verts = new std::vector<Vertex>();
 
 	//									find the vertices per row and column
 
-	int vPerRow = (int)(resolution);
-	int vPerCol = (int)(resolution);
+	int vPerRow = (width);
+	int vPerCol = (height);
 
 	//									create each vertex
-
+	Vec3 starPos = Vec3((float)(width * -0.5f), 0, (float)(width * -0.5f));
 	for (float i = 0; i < vPerRow; i++) {
 		for (float j = 0; j < vPerCol; j++) {
-			Vec3 vPos = Vec3(i, 0, j);
+			starPos += Vec3(i, 0, j);
 			//uv.y is flipped 
 			Vec2 uvPos = Vec2( i / (vPerRow - 1), 1- j / (vPerCol - 1));
 			Vec3 normal = Vec3(0, 1, 0);
-			verts->push_back(Vertex{vPos, normal, uvPos});
+			verts->push_back(Vertex{starPos, normal, uvPos});
 		}
 	}
 	

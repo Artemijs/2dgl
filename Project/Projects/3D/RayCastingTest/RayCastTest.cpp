@@ -40,7 +40,7 @@ RayCastTest::RayCastTest() {
 	//					TERRAIN PLANE
 	BaseNode* terrainNode = new BaseNode(Vec3(0, -10, -1), Vec3(1, 1, 1), 0);
 	//Material* m = new MaterialUiSprite();
-	terrainNode->AddComponent<Mesh>(MeshLoader::GetPlane(1000, 2, 2));
+	terrainNode->AddComponent<Mesh>(MeshLoader::GetPlane(2, 2));
 	_world->AddChild(terrainNode);
 
 	(*Renderer::instance()->GetProjection()) = Matrix4x4::Perspective(_fov, _aspect, _near, _far);
@@ -55,9 +55,9 @@ void RayCastTest::Update(float deltaTime) {
 	Renderer* r = Renderer::instance();
 	Camera* c = r->GetCamera();
 	
-	//if( _mouse->GetMouseKey(0)->_state != MouseKeyState::IDLE)
-	//printf("M1 state : %d \n", _mouse->GetMouseKey(0)->_state);
-	//	printf("L state : %d \n", Keyboard::GetKey('l')->state);
+	//	if( _mouse->GetMouseKey(0)->_state != MouseKeyState::IDLE)
+	//		printf("M1 state : %d \n", _mouse->GetMouseKey(0)->_state);
+	//		printf("L state : %d \n", Keyboard::GetKey('l')->state);
 	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_HELD) {
 		_mouse->SetCursorHidden(true);
 		c->LockCursor(true);
@@ -108,8 +108,6 @@ void RayCastTest::MoveCamera(const unsigned int dir) {
 	Vec3 moveDir;
 	if (dir == 0) { //w
 		moveDir = c->GetOrientation() * -1;
-		//moveDir = Vec3(0, 0, -1);
-		//Utility::PrintVector(" W : ", moveDir);
 	}
 	else if (dir == 1) {//a
 		moveDir = Vec3::Cross(c->GetOrientation(), Vec3(0, 1.0f, 0));
