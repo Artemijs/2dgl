@@ -10,9 +10,9 @@ private:
 
 public :
 	GLuint ID;
-	GLenum type;
+	const char* _type;
 	Vec2Int _size;
-	Texture(const char* image, GLenum textType, GLenum slot, GLenum format, GLenum pixelType);
+	Texture(const char* image, const char* type, GLenum slot);
 	void texUni(const Shader* shader, const char* name, const GLuint unit)const;
 	void Bind()const;
 	void Unbind()const;

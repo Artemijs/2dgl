@@ -8,7 +8,33 @@ Model::Model(const char* file) {
 	_data = GetData();
 }
 
+void Model::LoadMesh(unsigned int indMesh) {
+	unsigned int posAccInd = JSON["meshes"][indMesh]["primitives"][0]["attributes"]["POSITION"];
+	unsigned int normalAccInd = JSON["meshes"][indMesh]["primitives"][0]["attributes"]["NORMAL"];
+	unsigned int uvAccInd = JSON["meshes"][indMesh]["primitives"][0]["attributes"]["TEXCOORD_0"];
+	unsigned int indAccInd = JSON["meshes"][indMesh]["primitives"][0]["attributes"]["indices"];
 
+
+	std::vector<float> posVec = GetFloats(JSON["accessors"][posAccInd]);
+	std::vector<Vec3> positions = GroupFloatsVec3(posVec);
+
+	std::vector<float> normalVec = GetFloats(JSON["accessors"][normalAccInd]);
+	std::vector<Vec3> normals = GroupFloatsVec3(normalVec);
+
+	std::vector<float> uvVec = GetFloats(JSON["accessors"][uvAccInd]);
+	std::vector<Vec2> uvs = GroupFloatsVec2(uvVec);
+
+
+	std::vector<Vertex> vertices = AssembleVertices(positions, normals, uvs);
+	std::vector<GLuint> indices = GetIndices(JSON["accessors"][indAccInd]);
+	std::vector<Texture> textures = GetTextures();
+
+	//_meshes.push_back(Mesh(vertices, indices, textures));
+	//1:42:24
+
+
+
+}
 std::vector<unsigned char> Model::GetData() {
 	std::string bytesText;
 	std::string uri = JSON["buffers"][0]["uri"];
@@ -91,9 +117,60 @@ std::vector<GLuint> Model::GetIndices(json accessor) {
 
 }
 
+
+std::vector<Texture> Model::GetTextures() {
+	std::vector<Texture> textures;
+
+	std::string fileStr = std::string(_filePath);
+	std::string fileDirectory = fileStr.substr(0, fileStr.find_last_of('/') + 1);
+
+	
+	for (unsigned int i = 0; i < JSON["images"].size(); i++) {
+
+		std::string path = JSON["images"][i]["uri"];
+
+		bool skip = false;
+		for (unsigned int j = 0; j < _loadedTexName.size(); j++) {
+			if (_loadedTexName[j] == path) {
+				textures.push_back(_loadedTex[j]);
+				skip = true;
+				break;
+			}
+		}
+		if (!skip) {
+			if (path.find("baseColor") != std::string::npos) {
+				Texture diffuse = Texture((fileDirectory + path).c_str(), "diffuse", _loadedTex.size());
+				textures.push_back(diffuse);
+				_loadedTex.push_back(diffuse);
+				_loadedTexName.push_back(path);
+
+			}
+			else if (path.find("metallicRoughness") != std::string::npos) {
+				Texture specular = Texture((fileDirectory + path).c_str(), "specular", _loadedTex.size());
+				textures.push_back(specular);
+				_loadedTex.push_back(specular);
+				_loadedTexName.push_back(path);
+			}
+		}
+	}
+}
+
 std::vector<Vertex> Model::AssembleVertices(const std::vector<Vec3>& positions, const std::vector<Vec3>& normals, const std::vector<Vec2>& textUvs) {
-	//tutorial time 1:39:33
+	//tutorial time 1:46:33
 	std::vector<Vertex> vertices;
+
+	for (int i = 0; i < positions.size(); i++) {
+		vertices.push_back
+		(
+			Vertex{ 
+				positions[i],
+				normals[i],
+				textUvs[i]
+			}
+		);
+	}
+
+
 	return vertices;
 }
 
