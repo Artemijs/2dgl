@@ -154,11 +154,41 @@ public:
 	static Matrix4x4 GetMatrix(Vec3 pos, Vec3 scale, float ang);
 	static Matrix4x4 GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O);
 	static Matrix4x4 RotationMatrix(const float rotation, const Vec3& axis);
+	static Matrix4x4 RotationMatrix(Quaternion q);
 	//float GetAngle();
 	Vec3 GetPosition() const;
 	Vec3 GetSize() const;
 
 };
+
+
+
+class Quaternion {
+public  :
+	float _x, _y, _z, _w;
+	/// <summary>
+	/// Initializes the quaternion
+	/// </summary>
+	/// <param name="Angle">in radians</param>
+	/// <param name="V">axis</param>
+	Quaternion(float Angle, const Vec3& V);
+	Quaternion(float _x, float _y, float _z, float _w);
+	/// <summary>
+	/// Initialise the quaternion using Euler angles
+	/// </summary>
+	/// <param name="_x"></param>
+	/// <param name="_y"></param>
+	/// <param name="_z"></param>
+	Quaternion(float _x, float _y, float _z);
+	void Normalize();
+	Quaternion Conjugate() const;
+	friend Quaternion operator*(const Quaternion& q, const Vec3& v);
+	friend Quaternion operator*(const Quaternion& l, const Quaternion& r);
+	void FromEulerAngles(const float x, const float y, const float z);
+	Vec3 GetEulerAngles();
+	Vec3 ToDegrees();
+};
+
 
 
 struct RayHitData {

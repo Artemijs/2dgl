@@ -13,11 +13,16 @@ private:
 	json JSON;
 
 	std::vector<Mesh> _meshes;
+	std::vector<Vec3> _translationMeshes;
+	std::vector<Quaternion> _rotationsMeshes;
+	std::vector<Vec3> _scalesMeshes;
+	std::vector<Matrix4x4> _matricesMeshes;
 
 	std::vector<std::string> _loadedTexName;
 	std::vector<Texture> _loadedTex;
 
 	void LoadMesh(unsigned int indMesh);
+	void TraverseNode(unsigned int nextNode, Matrix4x4 matrix = Matrix4x4(1.0f));
 	std::vector<unsigned char> GetData();
 	std::vector<float> GetFloats(json accessor);
 	std::vector<GLuint> GetIndices(json accessor);

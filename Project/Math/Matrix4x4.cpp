@@ -1,6 +1,6 @@
 #include "Matrix4x4.h"
 #include <iostream>
-
+#include "../Util/Utility.h"
 
 Vec2::Vec2() {
 	x = 0; y = 0;
@@ -553,23 +553,6 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 	m.buff[9] = Z.y;
 	m.buff[10] = Z.z; 
 
-	//0 4 8  X
-	/*m.buff[0] = X.x;
-	m.buff[4] = X.y;
-	m.buff[8] = X.z;
-	//1 5 9  y
-	m.buff[1] = Y.x;
-	m.buff[5] = Y.y;
-	m.buff[9] = Y.z;
-	//2 6 10 z
-	m.buff[2] = Z.x;
-	m.buff[6] = Z.y;
-	m.buff[10] = Z.z;*/
-	//3 7 11 O
-	/*m.buff[3] = O.x;
-	m.buff[7] = O.y;
-	m.buff[11] = O.z;
-	*/
 	m.buff[15] = 1.0f;
 	Matrix4x4 m1(1.0f);
 	m1.SetTranslation(O *-1);
@@ -597,10 +580,99 @@ Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
 	return m;
 }
 
+/*
+	matrix equivelant rotation
+*/
+Matrix4x4 Matrix4x4::RotationMatrix(Quaternion q) {
+	Matrix4x4 m = Matrix4x4(1.0f);
+	m.buff[0] = 2 * std::pow(q._w, 2);
+	return m;
+}
+
+
+Quaternion::Quaternion(float Angle, const Vec3& V)
+{
+	float HalfAngleInRadians = Angle / 2;
+
+	float SineHalfAngle = sinf(HalfAngleInRadians);
+	float CosHalfAngle = cosf(HalfAngleInRadians);
+
+	_x = V.x * SineHalfAngle;
+	_y = V.y * SineHalfAngle;
+	_z = V.z * SineHalfAngle;
+	_w = CosHalfAngle;
+}
+
+
+Quaternion::Quaternion(float x, float y, float z, float w)
+{
+	_x = x;
+	_y = y;
+	_z = z;
+	_w = w;
+}
+
+
+void Quaternion::Normalize()
+{
+	float Length = sqrtf(_x * _x + _y * _y + _z * _z + _w * _w);
+
+	_x /= Length;
+	_y /= Length;
+	_z /= Length;
+	_w /= Length;
+}
+
+
+Quaternion Quaternion::Conjugate() const
+{
+	Quaternion ret(-_x, -_y, -_z, _w);
+	return ret;
+}
+
+
+Quaternion operator*(const Quaternion& q, const Vec3& v)
+{
+	float _w = -(q._x * v.x) - (q._y * v.y) - (q._z * v.z);
+	float _x = (q._w * v.x) + (q._y * v.z) - (q._z * v.y);
+	float _y = (q._w * v.y) + (q._z * v.x) - (q._x * v.z);
+	float _z = (q._w * v.z) + (q._x * v.y) - (q._y * v.x);
+
+	Quaternion ret(_x, _y, _z, _w);
+
+	return ret;
+}
+
+
+Quaternion operator*(const Quaternion& l, const Quaternion& r)
+{
+	float _w = (l._w * r._w) - (l._x * r._x) - (l._y * r._y) - (l._z * r._z);
+	float _x = (l._x * r._w) + (l._w * r._x) + (l._y * r._z) - (l._z * r._y);
+	float _y = (l._y * r._w) + (l._w * r._y) + (l._z * r._x) - (l._x * r._z);
+	float _z = (l._z * r._w) + (l._w * r._z) + (l._x * r._y) - (l._y * r._x);
+
+	Quaternion ret(_x, _y, _z, _w);
+
+	return ret;
+}
+
+
+Vec3 Quaternion::ToDegrees()
+{
+	Vec3 v = Vec3();
+
+	v.x = Utility::Rad2Deg( atan2(_x * _z + _y * _w, _x * _w - _y * _z));
+	v.y  = Utility::Rad2Deg(acos(-_x * _x - _y * _y - _z * _z - _w * _w));
+	v.z = Utility::Rad2Deg(atan2(_x * _z - _y * _w, _x * _w + _y * _z));
+
+	return v;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //										RAY
 ///////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 Ray::Ray() :_distance(0), _direction(Vec3()){

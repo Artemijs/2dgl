@@ -195,3 +195,41 @@ std::vector<Vec4> Model::GroupFloatsVec4(const std::vector<float>& floatVec) {
 	}
 	return vectors;
 }
+
+void Model::TraverseNode(unsigned int nextNode, Matrix4x4 matrix) {
+	json node = JSON["nodes"][nextNode];
+
+	Vec3 translation = Vec3();
+	if (node.find("translation") != node.end()) {
+		float transValues[3];
+		for (unsigned int i = 0; i < node["translation"].size(); i++)
+			transValues[i] = (node["translation"][i]);
+		translation = Vec3(transValues[0], transValues[1], transValues[2]);
+	}
+
+	Quaternion rotation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
+	if (node.find("rotation") != node.end()) {
+		rotation = Quaternion(node["rotation"][0], node["rotation"][1], node["rotation"][2], node["rotation"][3]);
+	}
+
+	Vec3 scale = Vec3(1.0f, 1.0f, 1.0f);
+	if (node.find("scale") != node.end()) {
+		scale = Vec3(node["scale"][0], node["scale"][1], node["scale"][2]);
+	}
+
+	Matrix4x4 matNode = Matrix4x4(1.0f);
+	if (node.find("matrix") != node.end()) {
+		//matNode.buff
+		for (unsigned int i = 0; i < node["matrix"].size(); i++) {
+			matNode.buff[i] = (node["matrix"][i]);
+		}
+	}
+
+	Matrix4x4 trans = Matrix4x4(1.0f);
+	Matrix4x4 rot = Matrix4x4(1.0f);
+	Matrix4x4 sca = Matrix4x4(1.0f);
+
+	trans = Matrix4x4::TranslationMatrix(translation);
+	//rot = 1::44::47
+
+}
