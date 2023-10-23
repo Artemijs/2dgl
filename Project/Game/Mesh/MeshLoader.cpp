@@ -2,7 +2,12 @@
 #include "../../Graphics/Materials/MaterialSprite.h"
 #include "../../Graphics/Renderer.h"
 
-
+/// <summary>
+/// Gets a 2d on the z x axis plane with VEC3 UP as normal
+/// </summary>
+/// <param name="width"> vertices  per row</param>
+/// <param name="height">vertices per column</param>
+/// <returns>Mesh* heap memory</returns>
 Mesh* MeshLoader::GetPlane(const int width, const int height) {
 
 
@@ -13,13 +18,17 @@ Mesh* MeshLoader::GetPlane(const int width, const int height) {
 	int vPerRow = (width);
 	int vPerCol = (height);
 
-	//									create each vertex
-	Vec3 starPos = Vec3((float)(width * -0.5f), 0, (float)(width * -0.5f));
+
+	// 0( 0, 0, 0)		1 (1, 0 ,0)
+	//
+	// 2(0, 1, 0)		3 (1, 1, 0)				create each vertex
+	Vec3 starPos = Vec3(0, 0, 0);// Vec3((float)(width * -0.5f), 0, (float)(width * -0.5f));
+	Vec3 offset2Center = Vec3((float)((width - 1) * -0.5f), 0, (float)((width -1)* -0.5f));
 	for (float i = 0; i < vPerRow; i++) {
 		for (float j = 0; j < vPerCol; j++) {
-			starPos += Vec3(i, 0, j);
-			//uv.y is flipped 
-			Vec2 uvPos = Vec2( i / (vPerRow - 1), 1- j / (vPerCol - 1));
+			starPos = Vec3(j, 0, i) + offset2Center;
+			//uv.y is f1lipped 
+			Vec2 uvPos = Vec2(i / (vPerRow - 1), 1- j / (vPerCol - 1));
 			Vec3 normal = Vec3(0, 1, 0);
 			verts->push_back(Vertex{starPos, normal, uvPos});
 		}

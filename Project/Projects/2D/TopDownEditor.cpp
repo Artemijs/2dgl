@@ -29,7 +29,7 @@ void TopDownEditor::Update(float deltaTime) {
 
 void TopDownEditor::MoveCamera3D(bool rotate, bool move) {
 
-	const float moveSpeed = 1.2f;
+	const float moveSpeed = 0.2f;
 	Camera* c = Renderer::instance()->GetCamera();
 	Vec3 pos = c->GetPosition();
 	Vec3 moveDir = Vec3();
@@ -122,12 +122,12 @@ void TopDownEditor::CreateNew() {
 	//							CREATE MAIN TILE MESH
 
 	//initialize base node 
-	_mainTileMesh = new BaseNode(Vec3(0,0,0), Vec3(10, 10, 1), 0);
+	_mainTileMesh = new BaseNode(Vec3(0,0,0), Vec3(10, 10, 10), 0);
 	_world->AddChild(_mainTileMesh);
 	
 	//initialize the mesh
 	Mesh* m ;
-	m = MeshLoader::GetPlane(2, 2);
+	m = MeshLoader::GetPlane(20, 20);
 	
 	_mainTileMesh->AddComponent<Mesh>(m);
 	
@@ -270,7 +270,8 @@ void QuaternionTest::Update(float deltaTime) {
 	//node->GetTransform()._angle = q.GetEulerAngles();
 	Transform& t = node->GetTransform();
 	//t._angle = Vec3(0.0f, Utility::Deg2Rad(45), 0.0f);
-	t._angle = q.GetEulerAngles();;
+	//t._position = t._position * q;
+	t._angle = q.GetEulerAngles();
 	node->SetAngle(Vec3(0.0f, Utility::Deg2Rad(45), 0.0f));
 	MoveCamera3D();
 }
