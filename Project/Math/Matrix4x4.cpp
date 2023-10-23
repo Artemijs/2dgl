@@ -2,61 +2,97 @@
 #include <iostream>
 #include "../Util/Utility.h"
 
+
+
 Vec2::Vec2() {
 	x = 0; y = 0;
 }
+
+
 Vec2::Vec2(float mx, float my) {
 	x = mx;
 	y = my;
 }
+
+
 bool Vec2::operator==(const Vec2& v) const{
 	return (v.x == x && v.y == y);
 }
+
+
 void Vec2::operator=(const Vec2& v) {
 	x = v.x;
 	y = v.y;
 }
+
+
 Vec2 Vec2::operator-(const Vec2& v)const {
 	return Vec2(x - v.x, y - v.y);
 }
+
+
 Vec2 Vec2::operator+(const Vec2& v) const{
 	return Vec2(x + v.x, y + v.y);
 }
+
+
 Vec2 Vec2::operator*(const float f) const{
 	return Vec2(x * f, y * f);
 }
+
+
 Vec2 Vec2::operator/(const float f) const{
 	return Vec2(x/f, y/f);
 }
+
+
 void Vec2::operator+=(const Vec2& v) {
 	x += v.x;
 	y += v.y;
 }
+
+
 const float Vec2::Distance(const Vec2& a, const Vec2& b) {
 	return std::sqrtf(((b.x - a.x) * (b.x - a.x)) + ((b.y - a.y) * (b.y - a.y)));
 }
+
+
 const float Vec2::Distance(const float ax, const float ay, const float bx, const float by) {
 	return std::sqrtf(((bx - ax) * (bx - ax)) + ((by - ay) * (by - ay)));
 }
+
+
 const float Vec2::Lenght(const Vec2& v) {
 	return std::sqrtf((v.x * v.x) + (v.y * v.y));
 }
+
+
 void Vec2::Normalize() {
 	(*this) /= Vec2::Lenght((*this));
 }
+
+
 void Vec2::operator/=(const float f) {
 	x /= f;
 	y /= f;
 }
+
+
 const Vec2 Vec2::Normalize(const Vec2 &v) {
 	return v / Vec2::Lenght(v);
 }
+
+
 const float Vec2::Dot(const Vec2& a, const Vec2& b) {
 	return (a.x * b.x) + (a.y * b.y);
 }
+
+
 const float Vec2::Dot(const float ax, const float ay, const float bx, const float by) {
 	return (ax * bx) + (ay * by);
 }
+
+
 const Vec2 Vec2::LineIntersection(const Vec2& a, const Vec2& b, const Vec2& c, const Vec2& d) {
 	//additive vector form
 	Vec2 r = (b - a);
@@ -77,23 +113,35 @@ const Vec2 Vec2::LineIntersection(const Vec2& a, const Vec2& b, const Vec2& c, c
 Vec2Int::Vec2Int() {
 	x = 0; y = 0;
 }
+
+
 Vec2Int::Vec2Int(int mx, int my) {
 	x = mx;
 	y = my;
 }
+
+
 bool Vec2Int::operator==(const Vec2Int& v)const {
 	return (v.x == x && v.y == y);
 }
+
+
 void Vec2Int::operator=(const Vec2Int& v) {
 	x = v.x;
 	y = v.y;
 }
+
+
 Vec2Int Vec2Int::operator+(const Vec2Int& v) {
 	return Vec2Int(x + v.x, y + v.y);
 }
+
+
 Vec2Int Vec2Int::operator*(int f) {
 	return Vec2Int(x * f, y * f);
 }
+
+
 void Vec2Int::operator+=(const Vec2Int& v) {
 	x += v.x;
 	y += v.y;
@@ -103,57 +151,82 @@ void Vec2Int::operator+=(const Vec2Int& v) {
 Vec3::Vec3() {
 	x = 0; y = 0; z = 0;
 }
+
+
 Vec3::Vec3(float mx, float my, float mz) {
 	x = mx;
 	y = my;
 	z = mz;
 }
+
+
 const Vec3 Vec3::operator+(const Vec3& v) const{
 	return Vec3(x + v.x, y + v.y, z + v.z);
 }
+
+
 const Vec3 Vec3::operator-(const Vec3& v) const {
 	return Vec3(x - v.x, y - v.y, z - v.z);
 }
+
+
 const Vec3 Vec3::operator*(float f) const{
 	return Vec3(x * f, y * f, z * f);
 }
+
 
 void Vec3::operator+=(const float& n) {
 	x += n;
 	y += n;
 	z += n;
 }
+
+
 void Vec3::operator+=(const int& n) {
 	x += n;
 	y += n;
 	z += n;
 }
+
+
 void Vec3::operator+=(const Vec3& v) {
 	x += v.x;
 	y += v.y;
 	z += v.z;
 }
+
+
 void Vec3::operator-=(const Vec3& v) {
 	x -= v.x;
 	y -= v.y;
 	z -= v.z;
 }
+
+
 void Vec3::operator/=(const float& v) {
 	x /= v;
 	y /= v;
 	z /= v;
 }
+
+
 void Vec3::operator=(const Vec3& v) {
 	x = v.x;
 	y = v.y;
 	z = v.z;
 }
+
+
 const Vec3 Vec3::operator/(const float f) const{
 	return Vec3(x / f, y / f, z / f);
 }
+
+
 const bool Vec3::operator==(const Vec3& v) const {
 	return (v.x == x && v.y == y && v.z == z);
 }
+
+
 const float Vec3::Lenght() const {
 	return std::sqrt((x * x + y * y + z * z));
 }
@@ -169,18 +242,28 @@ Vec3 Vec3::operator/(const float& lhs, const Vec3& rhs) {
 void Vec3::Normalize() {
 	(*this) /= Lenght();
 }
+
+
 const Vec3 Vec3::Normalize( const Vec3& vec){
 	return vec/ vec.Lenght();
 }
+
+
 const float Vec3::DistanceTo(const Vec3& other) {
 	return Vec3(x - other.x, y - other.y, z - other.z).Lenght();
 }
+
+
 const float Vec3::Distance(const Vec3& a, const Vec3& b) {
 	return std::sqrtf(((b.x - a.x) * (b.x - a.x)) + ((b.y - a.y) * (b.y - a.y)) + ((b.z - a.z) * (b.z - a.z)));
 }
+
+
 const float Vec3::Distance(const float ax, const float ay, const float az, const float bx, const float by, const float bz) {
 	return std::sqrtf(((bx - ax) * (bx - ax)) + ((by - ay) * (by - ay)) + ((bz - az) * (bz - az)));
 }
+
+
 const float Vec3::Lenght(const Vec3& v) {
 	return std::sqrtf((v.x*v.x)+(v.y*v.y)+(v.z*v.z));
 }
@@ -195,25 +278,35 @@ Vec3 Vec3::Cross(const Vec3& a, const Vec3& b) {
 	return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
 }
 
+
 float Vec3::Dot(const Vec3& a, const Vec3& b) {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
+
 Vec4::Vec4() {
 	x = 0; y = 0; z = 0; a = 1;
 }
+
+
 Vec4::Vec4(float x, float y, float z, float a) {
 	this->x = x; this->y = y; this->z = z; this->a = a;
 }
+
+
 void Vec4::operator+=(const Vec4& v) {
 	x += v.x;
 	y += v.y;
 	z += v.z;
 	a += v.a;
 }
+
+
 Vec4 Vec4::operator+(const Vec4& v) {
 	return Vec4(x + v.x, y + v.y, z + v.z, a + v.a);
 }
+
+
 Vec4 Vec4::operator*(const float f) {
 	return Vec4(x * f, y * f, z * f, a * f);
 }
@@ -227,16 +320,21 @@ float buff[9] = {   0,0,0,
 Matrix3x3::Matrix3x3() {
 
 }
+
+
 Matrix3x3::Matrix3x3(const Matrix3x3& m) {
 	for (int i = 0; i < 9; i++) {
 		buff[i] = m.buff[i];
 	}
 }
+
+
 Matrix3x3::Matrix3x3(float n) {
 	buff[0] = n;
 	buff[4] = n;
 	buff[8] = n;
 }
+
 
 Matrix3x3 Matrix3x3::operator+(const Matrix3x3& m)const {
 	Matrix3x3 rm = Matrix3x3();
@@ -245,6 +343,8 @@ Matrix3x3 Matrix3x3::operator+(const Matrix3x3& m)const {
 	}
 	return rm;
 }
+
+
 Matrix3x3 Matrix3x3::operator-(const Matrix3x3& m)const {
 	Matrix3x3 rm = Matrix3x3();
 	for (int i = 0; i < 16; ++i) {
@@ -252,6 +352,8 @@ Matrix3x3 Matrix3x3::operator-(const Matrix3x3& m)const {
 	}
 	return rm;
 }
+
+
 Matrix3x3 Matrix3x3::operator*(const Matrix3x3& m)const {
 	Matrix3x3 rm = Matrix3x3();
 	/*
@@ -284,6 +386,7 @@ Matrix3x3 Matrix3x3::operator*(const Matrix3x3& m)const {
 	return rm;
 }
 	
+
 Vec3 Matrix3x3::operator*(const Vec3& v) {
 	Vec3 v3 = Vec3();
 	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z;
@@ -294,6 +397,8 @@ Vec3 Matrix3x3::operator*(const Vec3& v) {
 
 	return v3;
 }
+
+
 const Vec3 Matrix3x3::operator*(const Vec3& v)const {
 	Vec3 v3 = Vec3();
 	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z;
@@ -312,17 +417,17 @@ Matrix3x3 Matrix3x3::RotationMatrix(const float rotation, const Vec3& axis) {
 	const float cosA = cosf(rotation);
 	const float sinA = sinf(rotation);
 
-	m.buff[0] = cosA + pow(axis.x, 2) * (1 - cosA);
-	m.buff[1] = axis.x * axis.y * (1 - cosA) - axis.z * sinA;
-	m.buff[2] = axis.x * axis.z * (1 - cosA) + axis.y * sinA;
+	m.buff[0] = cosA + pow(axis.x, 2.0f) * (1.0f - cosA);
+	m.buff[1] = axis.x * axis.y * (1.0f - cosA) - axis.z * sinA;
+	m.buff[2] = axis.x * axis.z * (1.0f - cosA) + axis.y * sinA;
 										
-	m.buff[3] = axis.y * axis.x * (1 - cosA) + axis.z * sinA;
-	m.buff[4] = cosA + pow(axis.y, 2) * (1 - cosA);
-	m.buff[5] = axis.y * axis.z * (1 - cosA) - axis.x * sinA;
+	m.buff[3] = axis.y * axis.x * (1.0f - cosA) + axis.z * sinA;
+	m.buff[4] = cosA + pow(axis.y, 2.0f) * (1.0f - cosA);
+	m.buff[5] = axis.y * axis.z * (1.0f - cosA) - axis.x * sinA;
 
-	m.buff[6] = axis.z * axis.x * (1 - cosA) - axis.y * sinA;
-	m.buff[7] = axis.z * axis.y * (1 - cosA) + axis.x * sinA;
-	m.buff[8] = cosA + pow(axis.z, 2) * (1 - cosA);
+	m.buff[6] = axis.z * axis.x * (1.0f - cosA) - axis.y * sinA;
+	m.buff[7] = axis.z * axis.y * (1.0f - cosA) + axis.x * sinA;
+	m.buff[8] = cosA + pow(axis.z, 2.0f) * (1.0f - cosA);
 
 	return m;
 }
@@ -340,8 +445,12 @@ Matrix4x4::Matrix4x4(const Matrix4x4& m) {
 		buff[i] = m.buff[i];
 	}
 }
+
+
 Matrix4x4::Matrix4x4() {
 }
+
+
 Matrix4x4::Matrix4x4(float n) {
 	buff[0] = n;
 	buff[5] = n;
@@ -353,6 +462,8 @@ Matrix4x4::Matrix4x4(float n) {
 	0 0 0 1
 	*/	
 }
+
+
 Matrix4x4 Matrix4x4::operator+(const Matrix4x4& m)const  {
 	Matrix4x4 rm = Matrix4x4();
 	for (int i = 0; i < 16; ++i) {
@@ -360,6 +471,8 @@ Matrix4x4 Matrix4x4::operator+(const Matrix4x4& m)const  {
 	}
 	return rm;
 }
+
+
 Matrix4x4 Matrix4x4::operator-(const Matrix4x4& m) const {
 	Matrix4x4 rm = Matrix4x4();
 	for (int i = 0; i < 16; ++i) {
@@ -367,6 +480,8 @@ Matrix4x4 Matrix4x4::operator-(const Matrix4x4& m) const {
 	}
 	return rm;
 }
+
+
 Matrix4x4 Matrix4x4::operator*(const Matrix4x4& m) const {
 	Matrix4x4 rm = Matrix4x4();
 	/*
@@ -412,6 +527,8 @@ Matrix4x4 Matrix4x4::operator*(const Matrix4x4& m) const {
 
 	return rm;
 }
+
+
 Vec4 Matrix4x4::operator* (const Vec4& v) {
 	Vec4 v4 = Vec4();
 	v4.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z + buff[3] * v.a;
@@ -425,6 +542,7 @@ Vec4 Matrix4x4::operator* (const Vec4& v) {
 	return v4;
 }
 
+
 Vec3 Matrix4x4::operator* (const Vec3& v) {
 	Vec3 v3 = Vec3();
 	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z + buff[3] * 1;
@@ -435,6 +553,8 @@ Vec3 Matrix4x4::operator* (const Vec3& v) {
 	//r4 x c1
 	return v3;
 }
+
+
 const Vec3 Matrix4x4::operator* (const Vec3& v) const {
 	Vec3 v3 = Vec3();
 	v3.x = buff[0] * v.x + buff[1] * v.y + buff[2] * v.z + buff[3] * 1;
@@ -445,6 +565,7 @@ const Vec3 Matrix4x4::operator* (const Vec3& v) const {
 	//r4 x c1
 	return v3;
 }
+
 
 void Matrix4x4::SetTranslation(Vec3 v) {
 	/*
@@ -457,6 +578,8 @@ void Matrix4x4::SetTranslation(Vec3 v) {
 	buff[7] = v.y;
 	buff[11] = v.z;
 }
+
+
 void Matrix4x4::SetScale(Vec3 s) {
 	/*
 	0  1  2  3
@@ -468,6 +591,8 @@ void Matrix4x4::SetScale(Vec3 s) {
 	buff[5] = s.y;
 	buff[10] = s.z;
 }
+
+
 Matrix4x4 Matrix4x4 ::Ortho(float left, float right, float bot, float top, float near, float far) {
 	Matrix4x4 m;
 	m.buff[0] = 2 / (right - left);
@@ -479,6 +604,8 @@ Matrix4x4 Matrix4x4 ::Ortho(float left, float right, float bot, float top, float
 	m.buff[11] = -(far + near)/(far - near);
 	return m;
 }
+
+
 /// <summary>
 /// this only works for one axis at the moment
 /// </summary>
@@ -489,28 +616,40 @@ void Matrix4x4::SetRotation(float ang) {
 	buff[4] = sin(ang);
 	buff[5] = cos(ang);
 }
+
+
 Matrix4x4 Matrix4x4::RotationMatrix(float ang) {
 	Matrix4x4 m(1.0f);
 	m.SetRotation(ang);
 	return m;
 }
+
+
 Matrix4x4 Matrix4x4::ScaleMatrix(Vec3 scale) {
 	Matrix4x4 m(1.0f);
 	m.SetScale(scale);
 	return m;
 }
+
+
 Matrix4x4 Matrix4x4::TranslationMatrix(Vec3 pos) {
 	Matrix4x4 m(1.0f);
 	m.SetTranslation(pos);
 	return m;
 }
+
+
 //float GetAngle();
 Vec3 Matrix4x4::GetPosition() const {
 	return Vec3(buff[3], buff[7], buff[11]);
 }
+
+
 Vec3 Matrix4x4::GetSize() const {
 	return Vec3(buff[0], buff[5], buff[10]);
 }
+
+
 Matrix4x4 Matrix4x4::GetMatrix(Vec3 pos, Vec3 scale, float ang) {
 	
 	//tsr
@@ -533,6 +672,8 @@ Matrix4x4 Matrix4x4::Perspective(const float fov, const float aspect, const floa
 	m.buff[14] = -1;
 	return m;
 }
+
+
 Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O) {
 	Matrix4x4 m(1.0f);
 	//0  1  2  3
@@ -560,6 +701,7 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 	return m * m1;
 }
 
+
 Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
 	//this needs to be a 3x3 matrix		
 	Matrix4x4 m = Matrix4x4(1.0f);
@@ -584,9 +726,115 @@ Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
 	matrix equivelant rotation
 */
 Matrix4x4 Matrix4x4::RotationMatrix(Quaternion q) {
+	/*
+	* a + bi + cj + dk
+	* w + x  + y  +  z
+	* 
+		2a^2 -1 + 2b^2,		2bc - 2ad,		2bd + 2ac
+
+		2bc + 2ad,		2a^2 - 1 + 2c^2,	2cd - 2ab
+
+		2bd - 2ac,		2cd + 2ab,			2a^2 - 1 + 2d^2
+
+	*/
 	Matrix4x4 m = Matrix4x4(1.0f);
-	m.buff[0] = 2 * std::pow(q._w, 2);
+	
+	m.buff[0] = 2 * std::pow(q._w, 2) - 1 + 2*std::pow(q._x, 2);
+	m.buff[1] = 2 * q._x * q._y + 2 * q._w * q._z;
+	m.buff[2] = 2 * q._x * q._z - 2 * q._w * q._y;
+
+	m.buff[4] = 2 * q._x * q._y - 2 * q._w * q._z;
+	m.buff[5] = 2 * std::pow(q._w, 2) - 1 + 2 * std::pow(q._y, 2);
+	m.buff[6] = 2 * q._y * q._z - 2 * q._w * q._y;
+
+	m.buff[8] = 2 * q._x * q._z - 2 * q._w * q._y;
+	m.buff[9] = 2 * q._y * q._z + 2 * q._w * q._x;
+	m.buff[10] =2 * std::pow(q._w, 2) - 1 + 2 * std::pow(q._z, 2);
 	return m;
+}
+
+
+
+
+
+
+
+
+Quaternion Quaternion::FromEulerAngles(const float x, const float y, const float z) {
+
+	float cr = cos(x * 0.5f);
+	float sr = sin(x * 0.5f);
+	float cp = cos(y * 0.5f);
+	float sp = sin(y * 0.5f);
+	float cy = cos(z * 0.5f);
+	float sy = sin(z * 0.5f);
+
+	//Quaternion q = Quaternion();
+	/*q._w = cr * cp * cy + sr * sp * sy;
+	q._x = sr * cp * cy - cr * sp * sy;
+	q._y = cr * sp * cy + sr * cp * sy;
+	q._z = cr * cp * sy - sr * sp * cy;*/
+	return Quaternion
+	(
+		cr * cp * cy + sr * sp * sy,
+		sr * cp * cy - cr * sp * sy,
+		cr * sp * cy + sr * cp * sy,
+		cr * cp * sy - sr * sp * cy
+
+	);
+}
+
+
+void Quaternion::SetEulerAngles(const float x, const float y, const float z) {
+
+	float cr = cos(x * 0.5f);
+	float sr = sin(x * 0.5f);
+	float cp = cos(y * 0.5f);
+	float sp = sin(y * 0.5f);
+	float cy = cos(z * 0.5f);
+	float sy = sin(z * 0.5f);
+	
+	_w = cr * cp * cy + sr * sp * sy;
+	_x = sr * cp * cy - cr * sp * sy;
+	_y = cr * sp * cy + sr * cp * sy;
+	_z = cr * cp * sy - sr * sp * cy;
+
+}
+
+
+Vec3 Quaternion::GetEulerAngles() {
+	Vec3 v = Vec3();
+	// roll (x-axis rotation)
+	float sinr_cosp = 2 * (_w * _x + _y * _z);
+	float cosr_cosp = 1 - 2 * (_x * _x + _y * _y);
+	v.x = std::atan2(sinr_cosp, cosr_cosp);
+
+	// pitch (y-axis rotation)
+	float sinp = std::sqrt(1 + 2 * (_w * _y - _x * _z));
+	float cosp = std::sqrt(1 - 2 * (_w * _y - _x * _z));
+	v.y = 2 * std::atan2(sinp, cosp) - PI / 2;
+
+	// yaw (z-axis rotation)
+	float siny_cosp = 2 * (_w * _z + _x * _y);
+	float cosy_cosp = 1 - 2 * (_y * _y + _z * _z);
+	v.z = std::atan2(siny_cosp, cosy_cosp);
+
+	return v;
+}
+
+
+Quaternion::Quaternion(float x, float y, float z) {
+	float cr = cos(x * 0.5);
+	float sr = sin(x * 0.5);
+	float cp = cos(y * 0.5);
+	float sp = sin(y * 0.5);
+	float cy = cos(z * 0.5);
+	float sy = sin(z * 0.5);
+
+	_w = cr * cp * cy + sr * sp * sy;
+	_x = sr * cp * cy - cr * sp * sy;
+	_y = cr * sp * cy + sr * cp * sy;
+	_z = cr * cp * sy - sr * sp * cy;
 }
 
 
@@ -626,7 +874,7 @@ void Quaternion::Normalize()
 
 Quaternion Quaternion::Conjugate() const
 {
-	Quaternion ret(-_x, -_y, -_z, _w);
+	Quaternion ret(_w , -_x, -_y, -_z );
 	return ret;
 }
 
@@ -638,7 +886,7 @@ Quaternion operator*(const Quaternion& q, const Vec3& v)
 	float _y = (q._w * v.y) + (q._z * v.x) - (q._x * v.z);
 	float _z = (q._w * v.z) + (q._x * v.y) - (q._y * v.x);
 
-	Quaternion ret(_x, _y, _z, _w);
+	Quaternion ret(_w, _x, _y, _z);
 
 	return ret;
 }
@@ -651,7 +899,7 @@ Quaternion operator*(const Quaternion& l, const Quaternion& r)
 	float _y = (l._y * r._w) + (l._w * r._y) + (l._z * r._x) - (l._x * r._z);
 	float _z = (l._z * r._w) + (l._w * r._z) + (l._x * r._y) - (l._y * r._x);
 
-	Quaternion ret(_x, _y, _z, _w);
+	Quaternion ret(_w, _x, _y, _z);
 
 	return ret;
 }
@@ -682,6 +930,7 @@ Ray::Ray() :_distance(0), _direction(Vec3()){
 Ray::Ray(float dist, Vec3 dir, Vec3 pos) : _distance(dist), _direction(dir), _position(pos) {
 
 }
+
 
 Ray::~Ray() {
 	

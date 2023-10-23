@@ -274,7 +274,7 @@ const Texture* Renderer::LoadTexture(const char* path) {
 		}
 	}
 	//add new if not exists
-	Texture* t = new Texture(path, GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture* t = new Texture(path, "tex", 0); 
 	_all_textures->push_back(std::pair<const char*, Texture*>{path, t});
 	return t;
 }

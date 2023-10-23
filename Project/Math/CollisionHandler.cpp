@@ -81,7 +81,7 @@ void CollisionHandler::CollisionSeparation(std::pair<Bounds*, BaseNode*>& a, std
 		//								seperate objects apart from each other
 		if (movA) {
 			Transform bt = b.second->GetTransform();
-			b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 1.1));
+			b.second->SetPosition(bt._position + sd._separationVector * (sd._penetrationDistance * 1.1f));
 		}
 		else {
 			Transform at = a.second->GetTransform();

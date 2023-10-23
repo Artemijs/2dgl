@@ -36,11 +36,11 @@ Texture::Texture(const char* image, const char* type, GLenum slot) {
 		(
 			GL_TEXTURE_2D,
 			0,
-			GL_RGBA,
+			GL_RGB,
 			_size.x,
 			_size.y,
 			0,
-			GL_RGB,
+			GL_RGBA,
 			GL_UNSIGNED_BYTE,
 			bytes
 		);

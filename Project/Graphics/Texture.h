@@ -12,6 +12,12 @@ public :
 	GLuint ID;
 	const char* _type;
 	Vec2Int _size;
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="image">path to file</param>
+	/// <param name="type">shader uniform name</param>
+	/// <param name="slot">uniform number</param>
 	Texture(const char* image, const char* type, GLenum slot);
 	void texUni(const Shader* shader, const char* name, const GLuint unit)const;
 	void Bind()const;

@@ -153,6 +153,7 @@ std::vector<Texture> Model::GetTextures() {
 			}
 		}
 	}
+	return textures;
 }
 
 std::vector<Vertex> Model::AssembleVertices(const std::vector<Vec3>& positions, const std::vector<Vec3>& normals, const std::vector<Vec2>& textUvs) {
@@ -169,8 +170,6 @@ std::vector<Vertex> Model::AssembleVertices(const std::vector<Vec3>& positions, 
 			}
 		);
 	}
-
-
 	return vertices;
 }
 

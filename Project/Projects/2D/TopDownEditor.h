@@ -61,4 +61,15 @@ public:
 };
 
 
+class QuaternionTest : public Game{
+private:
+	BaseNode* node;
+public:
+	QuaternionTest();
+	~QuaternionTest();
+
+	void Update(float deltaTime) override;
+	void MoveCamera3D(bool rotate = true, bool move = true);
+
+};
 #endif 
