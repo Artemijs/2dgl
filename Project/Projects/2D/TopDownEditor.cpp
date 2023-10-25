@@ -6,7 +6,13 @@
 TopDownEditor::TopDownEditor(): _heightBTBG(10), _widthBTBG(10) {
 	CreateNew();
 	Renderer* r = Renderer::instance();
+	Camera* camera = Renderer::instance()->GetCamera();
+	//set camera perspectie
 	(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(90), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
+
+	//set up camera 
+	camera->SetPosition(Vec3(0.0f, 0.0f, 10.0f));
+	
 }
 
 
@@ -110,19 +116,25 @@ void TopDownEditor::MoveCamera2D() {
 
 
 void TopDownEditor::CreateNew() {
-
+	float ang = Utility::Deg2Rad(45.0f);
 	//							something to orient around 
-	BaseNode* bn1 = new BaseNode(Vec3(0, 0, 0), Vec3(10, 10, 1), 0);
+	BaseNode* bn1 = new BaseNode(Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 1.0f), Vec3(ang, ang*2, 0.0f));
 	//Material* m = new MaterialUiSprite();
 	//bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite()));
 	_world->AddChild(bn1);
+	BaseNode* bn2 = new BaseNode(Vec3(500.0f, 0.0f, 0.0f), Vec3(100.0f, 10.0f, 1.0f), Vec3(0.0f, 0.0f, 0.0f));
+	//Material* m = new MaterialUiSprite();
+	//bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
+	bn2->AddComponent<Sprite>(new Sprite(new MaterialSprite()));
+	_world->AddChild(bn2);
+
 
 	
 	//							CREATE MAIN TILE MESH
 
 	//initialize base node 
-	_mainTileMesh = new BaseNode(Vec3(0,0,0), Vec3(10, 10, 10), 0);
+	_mainTileMesh = new BaseNode(Vec3(0,0,0), Vec3(10, 10, 10), Vec3(0.0f, 0.0f, 0.0f));
 	_world->AddChild(_mainTileMesh);
 	
 	//initialize the mesh
@@ -130,6 +142,7 @@ void TopDownEditor::CreateNew() {
 	m = MeshLoader::GetPlane(20, 20);
 	
 	_mainTileMesh->AddComponent<Mesh>(m);
+	
 	
 	
 }

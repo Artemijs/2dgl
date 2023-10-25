@@ -182,13 +182,16 @@ public:
 	void SetRotation(float ang);
 	static Matrix4x4 Ortho(float left, float right, float bot, float top, float near, float far);
 	static Matrix4x4 Perspective(const float fov, const float aspect, const float near, const float far);
-	static Matrix4x4 RotationMatrix(float ang);
+	static Matrix4x4 RotationMatrixX(float ang);
+	static Matrix4x4 RotationMatrixY(float ang);
+	static Matrix4x4 RotationMatrixZ(float ang);
 	static Matrix4x4 ScaleMatrix(Vec3 scale);
 	static Matrix4x4 TranslationMatrix(Vec3 pos);
-	static Matrix4x4 GetMatrix(Vec3 pos, Vec3 scale, float ang);
+	static Matrix4x4 GetMatrix(Vec3 pos, Vec3 scale, Vec3 angles);
 	static Matrix4x4 GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z, const Vec3& O);
 	static Matrix4x4 RotationMatrix(const float rotation, const Vec3& axis);
 	static Matrix4x4 RotationMatrix(Quaternion q);
+	static Matrix4x4 RotationMatrix(const Vec3& angles);
 	//float GetAngle();
 	Vec3 GetPosition() const;
 	Vec3 GetSize() const;

@@ -32,9 +32,9 @@ void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, c
 		ns = Matrix4x4::ScaleMatrix(_transform._scale);
 
 	if (_inheritTransform[2])
-		nr = Matrix4x4::RotationMatrix(_transform._angle.y) * rot;
+		nr = Matrix4x4::RotationMatrix(_transform._angle) * rot;
 	else
-		nr = Matrix4x4::RotationMatrix(_transform._angle.y);
+		nr = Matrix4x4::RotationMatrix(_transform._angle);
 
 	for (int i = 0; i < _children->size(); ++i) {
 		_children->at(i)->MakeModelMatrix(Matrix4x4(1.0f), Matrix4x4(1.0f), Matrix4x4(1.0f));

@@ -44,10 +44,11 @@ protected:
 	bool _visible;
 	Matrix4x4 _model;
 	void Update(float deltaTime);
-	const unsigned int _size;
+	//const unsigned int _size;
 public:
 	BaseNode();
 	BaseNode(const Vec3 pos, const Vec3 size, const float ang);
+	BaseNode(const Vec3 pos, const Vec3 size, const Vec3 ang);
 	~BaseNode();
 	virtual void SetSize();
 	//updates the object if visible and enabled

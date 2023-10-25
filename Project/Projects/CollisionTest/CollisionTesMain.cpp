@@ -627,7 +627,7 @@ void MaterialTest::TestMaterials() {
 
 
 	//											DIFFUSE MATERIAL
-	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), 0);
+	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), Vec3());
 	BaseMaterial* diffuseMat = new BaseMaterial();
 	diffuseMat->_color = Vec4(0.5f, 0.6, 0.1f, 1);
 	diffuseMat->Bind(&m1);	
@@ -707,10 +707,10 @@ void MaterialTest::Draw() {
 	//if Transparent
 	//		translate by zOff
 	//		zOff+=0.001f
-	Matrix4x4 m = Matrix4x4::GetMatrix(Vec3(400, 400, -3), Vec3(100,100, 1), 0)  ;
-	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(350, 350, -2), Vec3(100, 100, 1), 0);
-	Matrix4x4 m2 = Matrix4x4::GetMatrix(Vec3(400, 350, -1), Vec3(100, 100, 1), 0);
-	Matrix4x4 m3 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), 0);
+	Matrix4x4 m = Matrix4x4::GetMatrix(Vec3(400, 400, -3), Vec3(100,100, 1), Vec3())  ;
+	Matrix4x4 m1 = Matrix4x4::GetMatrix(Vec3(350, 350, -2), Vec3(100, 100, 1), Vec3());
+	Matrix4x4 m2 = Matrix4x4::GetMatrix(Vec3(400, 350, -1), Vec3(100, 100, 1), Vec3());
+	Matrix4x4 m3 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), Vec3());
 	Renderer* r = Renderer::instance();
 	const Texture* t = r->LoadTexture("Assets/Textures/default.png");
 	const Texture* t1 = r->LoadTexture("Assets/Textures/pogcattile.png");

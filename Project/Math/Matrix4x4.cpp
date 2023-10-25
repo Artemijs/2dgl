@@ -615,13 +615,64 @@ void Matrix4x4::SetRotation(float ang) {
 	buff[1] = -sin(ang);
 	buff[4] = sin(ang);
 	buff[5] = cos(ang);
+
+	//r(xAng, yAng, zAng) = m; 
+	//xAng = atan2(r 3-2, r 3-3);
+	//zAng = atan2(r 2-1, r 1-1);
+	//yAng ={
+	//	if(cos(zAng) == 0
+	//			atan2(-r3-1, r2-1/sin(zAng))
+	// else
+	//			atan2(-r3-1, r1-1/sin(zAng))
+	//}
+
+}
+
+Matrix4x4 Matrix4x4::RotationMatrixX(float ang) {
+	/*
+	0  1  2  3
+	4  5  6  7
+	8  9  10 11
+	12 13 14 15
+	*/
+	Matrix4x4 m(1.0f);
+	if (ang == 0) return m;
+
+	m.buff[5] = cos(ang);
+	m.buff[6] = -sin(ang);
+	m.buff[9] = sin(ang);
+	m.buff[10] = cos(ang);
+
+	return m;
 }
 
 
-Matrix4x4 Matrix4x4::RotationMatrix(float ang) {
+Matrix4x4 Matrix4x4::RotationMatrixY(float ang) {
 	Matrix4x4 m(1.0f);
-	m.SetRotation(ang);
+	if (ang == 0) return m;
+	m.buff[0] = cos(ang);
+	m.buff[2] = sin(ang);
+	m.buff[8] = -sin(ang);
+	m.buff[10] = cos(ang);
+
 	return m;
+}
+
+
+Matrix4x4 Matrix4x4::RotationMatrixZ(float ang) {
+	Matrix4x4 m(1.0f);
+	if (ang == 0) return m;
+	m.buff[0] = cos(ang);
+	m.buff[1] = -sin(ang);
+	m.buff[4] = sin(ang);
+	m.buff[5] = cos(ang);
+
+	return m;
+}
+
+
+Matrix4x4 Matrix4x4::RotationMatrix(const Vec3& angles) {
+	return   RotationMatrixZ(angles.z) * RotationMatrixY(angles.y) * RotationMatrixX(angles.x);
 }
 
 
@@ -650,10 +701,10 @@ Vec3 Matrix4x4::GetSize() const {
 }
 
 
-Matrix4x4 Matrix4x4::GetMatrix(Vec3 pos, Vec3 scale, float ang) {
+Matrix4x4 Matrix4x4::GetMatrix(Vec3 pos, Vec3 scale, Vec3 angles) {
 	
 	//tsr
-	return Matrix4x4::TranslationMatrix(pos) * Matrix4x4::ScaleMatrix(scale) * Matrix4x4::RotationMatrix(ang);
+	return Matrix4x4::TranslationMatrix(pos) * Matrix4x4::ScaleMatrix(scale) * Matrix4x4::RotationMatrix(angles);
 }
 /// <summary>
 /// 3d camera perspective
@@ -703,7 +754,7 @@ Matrix4x4 Matrix4x4::GetCameraMatrix(const Vec3& X, const Vec3& Y, const Vec3& Z
 
 
 Matrix4x4 Matrix4x4::RotationMatrix(const float rotation, const Vec3& axis) {
-	//this needs to be a 3x3 matrix		
+	
 	Matrix4x4 m = Matrix4x4(1.0f);
 	const float cosA = cosf(rotation);
 	const float sinA = sinf(rotation);

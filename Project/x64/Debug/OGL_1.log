@@ -1,27 +1,18 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (HotLeadAction.vcxproj, OGL_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  MeshLoader.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Game\Mesh\MeshLoader.cpp(120,57): warning C4267: 'argument': conversion from 'size_t' to 'const unsigned int', possible loss of data
+  Matrix4x4.cpp
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(762,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(767,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(772,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(793,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(798,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(803,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(878,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(879,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(880,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(881,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(882,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\artem\Documents\programming\2dgl\Project\Math\Matrix4x4.cpp(883,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   TopDownEditor.cpp
 C:\Users\artem\Documents\programming\2dgl\Project\Projects\2D\TopDownEditor.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  CollisionTest3D.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\3D\3DCollision\CollisionTest3D.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  MeshTest.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\3D\MeshTest\MeshTest.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  RayCastTest.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\3D\RayCastingTest\RayCastTest.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  CollisionTesMain.cpp
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(234,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(235,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(237,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(238,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(239,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(271,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(272,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(274,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(275,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(276,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(439,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(439,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\artem\Documents\programming\2dgl\Project\Projects\CollisionTest\CollisionTesMain.cpp(632,46): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...
   OGL_1.vcxproj -> C:\Users\artem\Documents\programming\2dgl\Project\x64\Debug\2DGL.exe
