@@ -4,7 +4,9 @@
 SList<Memory*>* MemoryManager::_all_garbage = new SList<Memory*>();
 
 void MemoryManager::AddToGarbage(Memory* mem) {
+	
 	_all_garbage->Add(mem);
+	mem = NULL;
 }
 
 

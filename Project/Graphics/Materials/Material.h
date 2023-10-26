@@ -3,9 +3,9 @@
 #include "../../Math/Matrix4x4.h"
 #include "../ShaderClass.h"
 #include "../Texture.h"
+#include "../../Util/MemoryManager.h"
 
-
-class BaseMaterial {
+class BaseMaterial : public Memory{
 protected:
 	bool _transparent;
 	const Shader* _shader;
@@ -27,6 +27,9 @@ protected:
 
 	const Texture* _texture;
 public :
+	/// <summary>
+	/// Default construcrtor sets the texture to "Assets/Textures/default.png" and the shader to GetShader(1)
+	/// </summary>
 	Material();
 	Material(const Shader* s, const char* texturePath);
 	/// <summary>

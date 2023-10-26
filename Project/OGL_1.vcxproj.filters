@@ -303,6 +303,9 @@
     <ClCompile Include="Util\DataStructures.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\2D\TileMapMaterial.cpp">
+      <Filter>Projects\2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -467,6 +470,9 @@
     <ClInclude Include="Util\DataStructures.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Projects\2D\TileMapMaterial.h">
+      <Filter>Projects\2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\AFX\btn_press.wav">
@@ -527,6 +533,12 @@
     </None>
     <None Include="Assets\Shaders\sprite.vert">
       <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="Projects\2D\TileMapEditorMain.frag">
+      <Filter>Projects\2D</Filter>
+    </None>
+    <None Include="Projects\2D\TileMapEditorMain.vert">
+      <Filter>Projects\2D</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

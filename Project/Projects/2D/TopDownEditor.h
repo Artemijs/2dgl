@@ -10,6 +10,7 @@ class TopDownEditor : public Game {
 private:
 	const unsigned int _widthBTBG;
 	const unsigned int _heightBTBG;
+	float _tileSize;
 	BaseNode* _mainTileMesh;
 	void CreateNew();
 public :

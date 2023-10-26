@@ -190,6 +190,7 @@
     <ClCompile Include="Math\PhysicsObject.cpp" />
     <ClCompile Include="Math\PhysicsWorld.cpp" />
     <ClCompile Include="Math\SphereBounds.cpp" />
+    <ClCompile Include="Projects\2D\TileMapMaterial.cpp" />
     <ClCompile Include="Projects\2D\TopDownEditor.cpp" />
     <ClCompile Include="Projects\3D\3DCollision\CollisionTest3D.cpp" />
     <ClCompile Include="Projects\3D\MeshTest\MeshTest.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="Math\PhysicsWorld.h" />
     <ClInclude Include="Math\SeparationData.h" />
     <ClInclude Include="Math\SphereBounds.h" />
+    <ClInclude Include="Projects\2D\TileMapMaterial.h" />
     <ClInclude Include="Projects\2D\TopDownEditor.h" />
     <ClInclude Include="Projects\3D\3DCollision\CollisionTest3D.h" />
     <ClInclude Include="Projects\3D\MeshTest\MeshTest.h" />
@@ -284,6 +286,8 @@
     <None Include="Assets\Shaders\ui_outlineText.vert" />
     <None Include="Assets\Shaders\ui_text.frag" />
     <None Include="Assets\Shaders\ui_text.vert" />
+    <None Include="Projects\2D\TileMapEditorMain.frag" />
+    <None Include="Projects\2D\TileMapEditorMain.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\btn.png" />

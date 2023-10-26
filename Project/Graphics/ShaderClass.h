@@ -15,6 +15,11 @@ private:
 	void compileErrors(unsigned int shader, const char* type);
 public :
 	GLuint ID;
+	/// <summary>
+	/// throws an error if file not found
+	/// </summary>
+	/// <param name="vertexFile">.vert</param>
+	/// <param name="fragmentFile">.frag</param>
 	Shader(const char* vertexFile, const char* fragmentFile);
 
 	void Activate()const;

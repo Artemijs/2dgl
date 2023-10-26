@@ -2,20 +2,33 @@
 #include "../Renderer.h"
 
 
+
+
 /// <summary>
 /// loads the default shader 0 
 /// </summary>
-BaseMaterial::BaseMaterial():_transparent(false), _shader(Renderer::instance()->GetShader(0)), _color(Vec4(1.0f, 1.0f, 1.0f, 1.0f)) {
+BaseMaterial::BaseMaterial():
+	_transparent(false),
+	_shader(Renderer::instance()->GetShader(0)),
+	_color(Vec4(1.0f, 1.0f, 1.0f, 1.0f)),
+	Memory(){
 	
 }
 
-BaseMaterial::BaseMaterial(const Shader* s) : _transparent(true), _shader(s), _color(Vec4(1.0f, 1.0f, 1.0f, 1.0f)) {
+
+BaseMaterial::BaseMaterial(const Shader* s) :
+	_transparent(true),
+	_shader(s),
+	_color(Vec4(1.0f, 1.0f, 1.0f, 1.0f)),
+	Memory(){
 
 }
+
 
 BaseMaterial::~BaseMaterial() {
 	
 }
+
 
 void BaseMaterial::Bind(const Matrix4x4* model) const {
 
@@ -26,6 +39,7 @@ void BaseMaterial::Bind(const Matrix4x4* model) const {
 
 }
 
+
 void BaseMaterial::Unbind()const {
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -35,21 +49,30 @@ void BaseMaterial::Unbind()const {
 
 
 
-Material::Material() : BaseMaterial(Renderer::instance()->GetShader(1)),
+Material::Material() :
+	BaseMaterial(Renderer::instance()->GetShader(1)),
 _texture(Renderer::instance()->LoadTexture("Assets/Textures/default.png")) {
 	
 }
+
+
 Material::Material(const Shader* s, const char* texturePath) : 
 	BaseMaterial(s), _texture(Renderer::instance()->LoadTexture(texturePath)) {
 
 
 }
+
+
 Material::~Material() {
 	printf("deleting material base\n");
 }
+
+
 const Texture* Material::GetTexture() const {
 	return _texture;
 }
+
+
 /// <summary>
 /// some optimisation can be added here if you have shader variables that dont change they can be bound once only
 /// </summary>
@@ -59,6 +82,8 @@ void Material::Bind(const Matrix4x4* model) const {
 	_texture->Bind();
 	_texture->texUni(_shader, "tex0", 0);
 }
+
+
 void Material::Unbind()const {
 	BaseMaterial::Unbind();
 	

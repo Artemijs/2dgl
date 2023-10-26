@@ -2,6 +2,9 @@
 #include "../../Graphics/Renderer.h";
 #include "../../Game/Mesh/MeshLoader.h"
 #include "../../Graphics/Materials/MaterialSprite.h"
+#include "./TileMapMaterial.h"
+
+
 
 TopDownEditor::TopDownEditor(): _heightBTBG(10), _widthBTBG(10) {
 	CreateNew();
@@ -13,6 +16,12 @@ TopDownEditor::TopDownEditor(): _heightBTBG(10), _widthBTBG(10) {
 	//set up camera 
 	camera->SetPosition(Vec3(0.0f, 0.0f, 10.0f));
 	
+
+
+	//Shader* s = new Shader("Projects/2D/TileMapEditorMain.vert", "Projects/2D/TileMapEditorMain.frag");
+	//delete s;
+
+
 }
 
 
@@ -140,7 +149,26 @@ void TopDownEditor::CreateNew() {
 	//initialize the mesh
 	Mesh* m ;
 	m = MeshLoader::GetPlane(20, 20);
+
+	//initialize tile hsader settings
+	Vec3 outlineColor(1.0f, 1.0f, 1.0f);
+	//in pixels
+	unsigned int outlineSize = 4;
+
+	Vec3 gridLineColor(0.5f, 0.5f, 0.5f);
+	//in pixels 
+	unsigned int gridLineSize = 2;
+
+	//change meshes default material
+	BaseMaterial* mem = m->GetMaterial();
 	
+	//MemoryManager::AddToGarbage(mem);
+	garbage(mem);
+
+	mem = new TileMapMaterial(_tileSize, gridLineColor, gridLineSize, outlineSize, outlineColor);
+	m->SetMaterial(mem);
+
+
 	_mainTileMesh->AddComponent<Mesh>(m);
 	
 	

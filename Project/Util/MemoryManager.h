@@ -23,5 +23,8 @@ public :
 	static void ClearMemory();
 	static void Clean();
 };
+#ifndef garbage 
+#define garbage MemoryManager::AddToGarbage
+#endif
 #include "DataStructures.h"
 #endif // !MEMORY_MANAGER_H
