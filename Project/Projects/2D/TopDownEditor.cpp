@@ -127,7 +127,7 @@ void TopDownEditor::MoveCamera2D() {
 void TopDownEditor::CreateNew() {
 	float ang = Utility::Deg2Rad(45.0f);
 	//							something to orient around 
-	BaseNode* bn1 = new BaseNode(Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 1.0f), Vec3(ang, ang*2, 0.0f));
+	BaseNode* bn1 = new BaseNode(Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 1.0f), Vec3(0.0f, 0.0f, 0.0f));
 	//Material* m = new MaterialUiSprite();
 	//bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite()));
@@ -167,7 +167,7 @@ void TopDownEditor::CreateNew() {
 
 	mem = new TileMapMaterial(_tileSize, gridLineColor, gridLineSize, outlineSize, outlineColor);
 	m->SetMaterial(mem);
-
+	garbage(new Memory());
 
 	_mainTileMesh->AddComponent<Mesh>(m);
 	

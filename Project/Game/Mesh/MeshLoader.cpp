@@ -28,7 +28,7 @@ Mesh* MeshLoader::GetPlane(const int width, const int height) {
 		for (float j = 0; j < vPerCol; j++) {
 			starPos = Vec3(j, 0, i) + offset2Center;
 			//uv.y is f1lipped 
-			Vec2 uvPos = Vec2(i / (vPerRow - 1), 1- j / (vPerCol - 1));
+			Vec2 uvPos = Vec2( 1- j / (vPerCol - 1), 1 - i / (vPerRow - 1));
 			Vec3 normal = Vec3(0, 1, 0);
 			verts->push_back(Vertex{starPos, normal, uvPos});
 		}
