@@ -17,7 +17,7 @@ TileMapMaterial::TileMapMaterial() :
 }
 
 
-TileMapMaterial::TileMapMaterial(float tileSize, float gridSize, Vec3 gridColor, unsigned int gridLineSize, unsigned int outlineSize, Vec3 outlineColor):
+TileMapMaterial::TileMapMaterial(float tileSize, float gridSize, Vec3 gridColor, float gridLineSize, float outlineSize, Vec3 outlineColor):
 	_tileSize(tileSize),
 	_gridSize(gridSize),
 	_gridLineSize(gridLineSize),
@@ -39,7 +39,7 @@ TileMapMaterial::~TileMapMaterial() {
 
 void TileMapMaterial::Bind(const Matrix4x4* model) const {
 	Material::Bind(model);
-	
+	//UpdateShaderValues();
 	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "view"), 1, GL_TRUE,
 		&Renderer::instance()->GetCamera()->GetViewMatrix()->buff[0]);
 }
@@ -51,13 +51,15 @@ void TileMapMaterial::Unbind() const {
 }
 
 
-void TileMapMaterial::UpdateShaderValues() {
+void TileMapMaterial::UpdateShaderValues() const {
 
+	_shader->Activate();
 	auto sId = _shader->ID;
-	glUniform1f (glGetUniformLocation(sId, "_tileSize"), _tileSize/_gridSize );
-	glUniform1ui(glGetUniformLocation(sId, "_gridLineSize"), _gridLineSize);
+	glUniform1f (glGetUniformLocation(sId, "_tileSize"), float(_tileSize / _gridSize));
+	glUniform1f(glGetUniformLocation(sId, "_gridLineSize"), _gridLineSize/ _gridSize);
 	glUniform3f (glGetUniformLocation(sId, "_gridColor"), _gridColor.x, _gridColor.y, _gridColor.z);
-	glUniform1ui(glGetUniformLocation(sId, "_outlineSize"), _outlineSize);
+	glUniform1f(glGetUniformLocation(sId, "_outlineSize"), _outlineSize);
 	glUniform3f (glGetUniformLocation(sId, "_outlineColor"), _outlineColor.x, _outlineColor.y, _outlineColor.z);
+	glUseProgram(0);
 
 }

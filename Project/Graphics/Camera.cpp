@@ -10,6 +10,7 @@ Camera::Camera() {
 	_cursorLocked = false;
 	_position = Vec3();
 	_mouse = Game::GetMouse();
+	CalculateViewMatrix();
 }
 
 Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(width), _height(height), _position(position){
@@ -20,6 +21,7 @@ Camera::Camera(unsigned int height, unsigned int width, Vec3 position) : _width(
 	_cursorLocked = false;			
 	_x = false;			
 	_mouse = Game::GetMouse();
+	CalculateViewMatrix();
 }
 
 void Camera::CalculateViewMatrix() {

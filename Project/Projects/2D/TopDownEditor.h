@@ -20,6 +20,11 @@ public :
 	void Update(float deltaTime) override;
 	void MoveCamera3D(bool rotate = true, bool move = true);
 	void MoveCamera2D();
+	/// <summary>
+	/// higlhlight the tile hovered over
+	/// </summary>
+	void HandleMouseMove();
+	//void HighlighTiles(unsigned int tileId);
 
 };
 

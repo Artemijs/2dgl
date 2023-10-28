@@ -3,20 +3,20 @@
 #include "../../Game/Mesh/MeshLoader.h"
 #include "../../Graphics/Materials/MaterialSprite.h"
 #include "./TileMapMaterial.h"
+#include "../../Math/CollisionHandler.h"
+#include "../../Math/BoxBounds.h"
 
-
-
-TopDownEditor::TopDownEditor(): _heightBTBG(10), _widthBTBG(10) {
+TopDownEditor::TopDownEditor(): _heightBTBG(10.0f), _widthBTBG(10.0f), _tileSize(50.0f){
 	CreateNew();
 	Renderer* r = Renderer::instance();
 	Camera* camera = Renderer::instance()->GetCamera();
 	//set camera perspectie
-	(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(90), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
+	//(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(90), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
 
 	//set up camera 
 	camera->SetPosition(Vec3(0.0f, 0.0f, 10.0f));
-	
-
+	camera->SetOrientation(Vec3(0.0f, 0.0f, 1.0f));
+	camera->CalculateViewMatrix();
 
 	//Shader* s = new Shader("Projects/2D/TileMapEditorMain.vert", "Projects/2D/TileMapEditorMain.frag");
 	//delete s;
@@ -37,14 +37,15 @@ void TopDownEditor::Update(float deltaTime) {
 	
 	
 
-	MoveCamera3D();
-	//MoveCamera2D();
+	//MoveCamera3D();
+	MoveCamera2D();
+	HandleMouseMove();
 }
 
 
 void TopDownEditor::MoveCamera3D(bool rotate, bool move) {
 
-	const float moveSpeed = 0.2f;
+	const float moveSpeed = 0.05f;
 	Camera* c = Renderer::instance()->GetCamera();
 	Vec3 pos = c->GetPosition();
 	Vec3 moveDir = Vec3();
@@ -92,7 +93,7 @@ void TopDownEditor::MoveCamera3D(bool rotate, bool move) {
 
 
 void TopDownEditor::MoveCamera2D() {
-	const float moveSpeed = 1.2f;
+	const float moveSpeed = 0.2f;
 	Camera* c = Renderer::instance()->GetCamera();
 	Vec3 pos = c->GetPosition();
 	Vec3 moveDir = Vec3();
@@ -119,6 +120,7 @@ void TopDownEditor::MoveCamera2D() {
 	if (update) {
 		moveDir.Normalize();
 		c->SetPosition(pos + (moveDir * moveSpeed));
+		c->CalculateViewMatrix();
 	}
 
 }
@@ -127,7 +129,7 @@ void TopDownEditor::MoveCamera2D() {
 void TopDownEditor::CreateNew() {
 	float ang = Utility::Deg2Rad(45.0f);
 	//							something to orient around 
-	BaseNode* bn1 = new BaseNode(Vec3(0.0f, 0.0f, 0.0f), Vec3(10.0f, 10.0f, 1.0f), Vec3(0.0f, 0.0f, 0.0f));
+	BaseNode* bn1 = new BaseNode(Vec3(0.0f, 0.0f, 0.0f), Vec3(1.0f, 1.0f, 1.0f), Vec3(0.0f, 0.0f, 0.0f));
 	//Material* m = new MaterialUiSprite();
 	//bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png")));
 	bn1->AddComponent<Sprite>(new Sprite(new MaterialSprite()));
@@ -142,22 +144,24 @@ void TopDownEditor::CreateNew() {
 	
 	//							CREATE MAIN TILE MESH
 
-	//initialize base node 
-	_mainTileMesh = new BaseNode(Vec3(0,0,0), Vec3(10, 10, 10), Vec3(0.0f, 0.0f, 0.0f));
+	//initialize base node Utility::Deg2Rad(90.0f)
+	
+	_mainTileMesh = new BaseNode(Vec3(400.0f, 400.0f, 0), Vec3(400, 400, 1), Vec3(0.0f, 0.0f, 0.0f));
 	_world->AddChild(_mainTileMesh);
 	
 	//initialize the mesh
 	Mesh* m ;
-	m = MeshLoader::GetPlane(20, 20);
+	m = MeshLoader::GetPlane(2, 2);
 
-	//initialize tile hsader settings
+	//initialize tile shader settings
+	_tileSize = 50.0f;
 	Vec3 outlineColor(1.0f, 1.0f, 1.0f);
 	//in pixels
-	unsigned int outlineSize = 4;
+	float outlineSize = 0.01f;
 
 	Vec3 gridLineColor(0.5f, 0.5f, 0.5f);
 	//in pixels 
-	unsigned int gridLineSize = 2;
+	float gridLineSize = 5.01f;
 
 	//change meshes default material
 	BaseMaterial* mem = m->GetMaterial();
@@ -165,17 +169,25 @@ void TopDownEditor::CreateNew() {
 	//MemoryManager::AddToGarbage(mem);
 	garbage(mem);
 
-	mem = new TileMapMaterial(_tileSize, gridLineColor, gridLineSize, outlineSize, outlineColor);
+	mem = new TileMapMaterial(_tileSize, _mainTileMesh->GetTransform()._scale.x, gridLineColor, gridLineSize, outlineSize, outlineColor);
 	m->SetMaterial(mem);
 	garbage(new Memory());
 
 	_mainTileMesh->AddComponent<Mesh>(m);
+	Bounds* box = new BoxBounds(_mainTileMesh, BoundsType::AABB);
+
 	
 	
 	
 }
 
 
+void TopDownEditor::HandleMouseMove() {
+	Vec3 origin = Vec3();
+	origin = _mainTileMesh->GetTransform()._position;
+	
+
+}
 
 
 
