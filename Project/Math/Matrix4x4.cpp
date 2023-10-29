@@ -567,6 +567,68 @@ const Vec3 Matrix4x4::operator* (const Vec3& v) const {
 }
 
 
+Matrix4x4 Matrix4x4::Inverse()  {
+
+	Matrix4x4 inverse = Matrix4x4();
+	/*
+		pivot elements
+		1000	0
+		0100	5	(4 + 1)	
+		0010	10	(8 + 2)
+		0001	15	(12+ 3)
+		pivot element = rowi + colj
+	*/
+
+	// Loop through each column of the matrix
+	int row = 0;
+	for (int i = 0; i < 4; i++) {
+
+		// Find the pivot element
+		float pivot = buff[i * 5];
+		int pivot_row = i;
+
+		//find the smallest pivot?
+		for (int j = i + 1; j < 4; j++) {
+			//j = next column
+			//buff[j][i] = pivot of the next row
+			if (abs(buff[j * 5]) > abs(pivot)) {
+				pivot = buff[j * 5];
+				pivot_row = j;
+			}
+		}
+
+		// Swap the rows if necessary
+		if (pivot_row != i) {
+			//to swap 2 rows in a 1d array i have to find the start and end of each row
+			//rowA = i*4, len 4
+			//rowB = ( i + 1 ) * 4, len 4
+			Utility::Swap(buff, i * 4, (i + 1) * 4, 4);
+		}
+
+		// Divide the row by the pivot element
+		float divisor = buff[i * 5];
+		for (int j = 0; j < 4; j++) {
+			buff[i*4 + j] /= divisor;
+			inverse.buff[i * 4 + j] /= divisor;
+		}
+
+		// Subtract the row from the other rows to create zeros
+		for (int j = 0; j < 4; j++) {
+			if (j != i) {
+				float factor = matrix[j][i];
+				for (int k = 0; k < 4; k++) {
+					matrix[j][k] -= factor * matrix[i][k];
+					inverse[j][k] -= factor * inverse[i][k];
+				}
+			}
+		}
+		row += 4;
+	}
+
+	return inverse;
+
+}
+
 void Matrix4x4::SetTranslation(Vec3 v) {
 	/*
 	0  1  2  3
@@ -689,6 +751,11 @@ Matrix4x4 Matrix4x4::TranslationMatrix(Vec3 pos) {
 	return m;
 }
 
+
+
+
+//													VEC3
+//-----------------------------------------------------------------------------------------
 
 //float GetAngle();
 Vec3 Matrix4x4::GetPosition() const {

@@ -192,6 +192,7 @@ public:
 	static Matrix4x4 RotationMatrix(const float rotation, const Vec3& axis);
 	static Matrix4x4 RotationMatrix(Quaternion q);
 	static Matrix4x4 RotationMatrix(const Vec3& angles);
+	Matrix4x4 Inverse();
 	//float GetAngle();
 	Vec3 GetPosition() const;
 	Vec3 GetSize() const;

@@ -67,6 +67,34 @@ void Utility::ToLower(std::string& s) {
 	}
 }
 
+
+void Utility::Swap(float* a, float* b, const int start, const int len) {
+
+	for (int i = start; i < start + len; i++) {
+		
+		float temp = *(a + i);
+		*(a + i) = *(b + i);
+		*(b + i) = temp;
+	}
+
+}
+
+
+void Utility::Swap(float* data, const int startA, const int startB, const int len) {
+
+	for (int i = 0; i < len; i++) {
+
+		float temp = *(data + (startA + i));
+		*(data + (startA + i)) = *(data + (startA + i));
+		*(data + (startB + i)) = temp;
+		
+	}
+
+}
+
+//													DEV FUNCTIONS
+//----------------------------------------------------------------------------------------------------------
+
 #include "../Game/Game.h"
 #include "../Projects/TowerDefense/TowerDefenseGame.h"
 #include "../Projects/CollisionTest/ColliisonTestGame.h"

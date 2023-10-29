@@ -29,7 +29,16 @@ public:
 	static void ToLower(std::string& s);
 	static float Deg2Rad(const float deg);
 	static float Rad2Deg(const float rad);
-	
+	/// <summary>
+	/// put elements of b, starting at start into a and a into b
+	/// no index out of bounds check
+	/// </summary>
+	/// <param name="a">float array a</param>
+	/// <param name="b">float array b</param>
+	/// <param name="start">start position of data</param>
+	/// <param name="len">len of data swapped</param>
+	static void Swap(float* a, float* b, const int start, const int len);
+	static void Swap(float* data, const int startA, const int startB, const int len);
 };
 
 
