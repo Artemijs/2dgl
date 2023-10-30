@@ -81,6 +81,91 @@ public :
 class CollisionTest3D : public Game {
 
 private:
+	bool Triangle(Simplex& points, Vec3& direction) {
+		
+		Vec3 a = points[0];
+		Vec3 b = points[1];
+		Vec3 c = points[2];
+
+		Vec3 ab = b - a;
+		Vec3 ac = c - a;
+		Vec3 ao = a * -1;
+
+		Vec3 abc = Vec3::Cross(ab, ac);
+
+		if (SameDirection(Vec3::Cross(abc, ac), ao)) {
+			if (SameDirection(ac, ao)) {
+				points = { a, c };
+				direction = Vec3::Cross(Vec3::Cross(ac, ao), ac);
+			}
+			else {
+				return Line(points = { a, b }, direction);
+			}
+		}
+		else {
+			if ( SameDirection( Vec3::Cross(ab, abc), ao) ) {
+				return Line(points = { a, b }, direction);
+			}
+			else {
+				if (SameDirection(abc, ao) ){
+					direction = abc;
+				}
+				else {
+					points = { a, c, b };
+					direction = abc * -1;
+				}
+				
+			}
+		}
+
+		return false;
+	}
+	bool Line(Simplex& points, Vec3 direction) {
+		Vec3 a = points[0];
+		Vec3 b = points[1];
+
+		Vec3 ab = b - a;
+		Vec3 ao = a*-1;
+
+		if (SameDirection(ab, ao)) {
+			direction = Vec3::Cross(Vec3::Cross(ab, ao), ab);
+		}
+		else {
+			points = { a };
+			direction = ao;
+		}
+
+		return false;
+	}
+
+	bool Tetrahedron(Simplex& points, Vec3& direction) {
+
+		Vec3 a = points[0];
+		Vec3 b = points[1];
+		Vec3 c = points[2];
+		Vec3 d = points[3];
+		
+		Vec3 ab = b - a;
+		Vec3 ac = c - a;
+		Vec3 ad = d - a;
+		Vec3 ao = a * -1;
+
+		Vec3 abc = Vec3::Cross(ab, ac);
+		Vec3 acd = Vec3::Cross(ac, ad);
+		Vec3 adb = Vec3::Cross(ad, ab);
+
+		if (SameDirection(abc, ao)) {
+			return Triangle(points = { a, b, c }, direction);
+		}
+		if (SameDirection(acd, ao)) {
+			return Triangle(points = { a, c, d }, direction);
+		}
+		if (SameDirection(adb, ao)) {
+			return Triangle(points = { a, d, b }, direction);
+		}
+
+		return true;
+	}
 	bool SameDirection(const Vec3& direction, const Vec3& ao) {
 		return Vec3::Dot(direction, ao) > 0;
 	}
