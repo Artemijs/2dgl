@@ -62,7 +62,7 @@ void TileMapMaterial::UpdateShaderValues() const {
 	glUniform1f (glGetUniformLocation(sId, "_tileSize"), float(_tileSize / _gridSize));
 	glUniform1f(glGetUniformLocation(sId, "_gridLineSize"), _gridLineSize/ _gridSize);
 	glUniform3f (glGetUniformLocation(sId, "_gridColor"), _gridColor.x, _gridColor.y, _gridColor.z);
-	glUniform1f(glGetUniformLocation(sId, "_outlineSize"), _outlineSize);
+	//glUniform1f(glGetUniformLocation(sId, "_outlineSize"), _outlineSize);
 	glUniform3f (glGetUniformLocation(sId, "_outlineColor"), _outlineColor.x, _outlineColor.y, _outlineColor.z);
 	glUniform2f(glGetUniformLocation(sId, "_tileId"), _selectedTile.x, _selectedTile.y);
 	glUseProgram(0);

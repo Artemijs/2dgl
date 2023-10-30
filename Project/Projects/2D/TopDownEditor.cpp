@@ -6,6 +6,22 @@
 #include "../../Math/CollisionHandler.h"
 #include "../../Math/BoxBounds.h"
 
+
+
+
+/*
+	the top down level editor has to :
+		- Select Tile
+		- Select texture to paint with
+		- Change tile texture byte data to selexcted byte data
+		- Save Texture
+
+
+*/
+
+
+
+
 TopDownEditor::TopDownEditor(): _heightBTBG(10.0f), _widthBTBG(10.0f), _tileSize(50.0f){
 	CreateNew();
 	Renderer* r = Renderer::instance();
@@ -156,14 +172,14 @@ void TopDownEditor::CreateNew() {
 	m = MeshLoader::GetPlane(2, 2);
 
 	//initialize tile shader settings
-	_tileSize = 50.0f;
-	Vec3 outlineColor(1.0f, 1.0f, 1.0f);
+	_tileSize = 100.0f;
+	Vec3 outlineColor(0.0f, 1.0f, 0.5f);
 	//in pixels
-	float outlineSize = 0.01f;
+	float outlineSize = 5.0f;
 
 	Vec3 gridLineColor(0.5f, 0.5f, 0.5f);
 	//in pixels 
-	float gridLineSize = 5.01f;
+	float gridLineSize = 2.0f;
 
 	//change meshes default material
 	BaseMaterial* mem = m->GetMaterial();
@@ -210,12 +226,13 @@ void TopDownEditor::HandleMouseMove() {
 	Vec3 tMouse = _mouse->GetMousePosV3() - origin;
 	unsigned int maxTiles = meshSize.x / _tileSize;
 	//find the tile i and j (row, col)
-	float col = (int)tMouse.x/_tileSize;
-	float row = (int)tMouse.y/_tileSize;
+	float col = (int)(tMouse.x/_tileSize);
+	float row = (int)(tMouse.y/_tileSize);
 
 	_tileMapMat->HighlightTile(row/maxTiles, col/maxTiles);
-	printf("ON ENTER \n");
+	printf("ON ENTER %.3f, %.3f\n", col, row);
 }
+
 
 void TopDownEditor::OnMouseLeave(const Vec3& mPos) {
 	printf("ON EXIT\n");
