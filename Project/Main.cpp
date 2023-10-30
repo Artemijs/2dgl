@@ -31,7 +31,7 @@ int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();			
 								
-	g = DevGetGameType(10);		
+	g = DevGetGameType(9);		
 	//g = new QuaternionTest();
 	//g = new GarbageCollectorTest();
 	//g = new MeshTest();	
