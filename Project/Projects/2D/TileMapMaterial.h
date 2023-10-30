@@ -5,6 +5,7 @@
 
 class TileMapMaterial : public Material {
 private:
+	Vec2 _selectedTile;
 	float _outlineSize;
 	Vec3 _outlineColor;
 	
@@ -14,6 +15,8 @@ private:
 	float _tileSize;
 	float _gridSize;
 
+	
+
 public :
 	TileMapMaterial();
 	TileMapMaterial(float tileSize, float gridSize, Vec3 gridLineColor, float gridLineSize, float outlineSize, Vec3 outlineColor);
@@ -21,6 +24,7 @@ public :
 	void Bind(const Matrix4x4* model)const override;
 	void Unbind()const override;
 	void UpdateShaderValues() const ;
+	void HighlightTile(const float xId, const float yId);
 };
 
 #endif // !TILE_MAP_MATERIAL_H

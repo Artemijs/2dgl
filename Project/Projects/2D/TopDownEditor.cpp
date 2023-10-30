@@ -17,7 +17,7 @@ TopDownEditor::TopDownEditor(): _heightBTBG(10.0f), _widthBTBG(10.0f), _tileSize
 	camera->SetPosition(Vec3(0.0f, 0.0f, 10.0f));
 	camera->SetOrientation(Vec3(0.0f, 0.0f, 1.0f));
 	camera->CalculateViewMatrix();
-
+	_moveOver = false;
 	//Shader* s = new Shader("Projects/2D/TileMapEditorMain.vert", "Projects/2D/TileMapEditorMain.frag");
 	//delete s;
 
@@ -36,10 +36,12 @@ void TopDownEditor::Update(float deltaTime) {
 	Camera* c = r->GetCamera();
 	
 	
-
+	if (_moveOver) {
+		HandleMouseMove();
+	}
 	//MoveCamera3D();
 	MoveCamera2D();
-	HandleMouseMove();
+	
 }
 
 
@@ -168,13 +170,32 @@ void TopDownEditor::CreateNew() {
 	
 	//MemoryManager::AddToGarbage(mem);
 	garbage(mem);
-
-	mem = new TileMapMaterial(_tileSize, _mainTileMesh->GetTransform()._scale.x, gridLineColor, gridLineSize, outlineSize, outlineColor);
+	_tileMapMat = new TileMapMaterial(_tileSize, _mainTileMesh->GetTransform()._scale.x, gridLineColor, gridLineSize, outlineSize, outlineColor);
+	mem = _tileMapMat;
 	m->SetMaterial(mem);
 	garbage(new Memory());
 
 	_mainTileMesh->AddComponent<Mesh>(m);
+
+	//												add collision event for mouse interaction
 	Bounds* box = new BoxBounds(_mainTileMesh, BoundsType::AABB);
+	MouseEvent* me = new MouseEvent();
+	
+	_mainTileMesh->AddComponent(box); 
+	_mainTileMesh->AddComponent<MouseEvent>(me);
+
+
+	//create a LABUDA DURAIVU function
+	auto mouseE = [&](const Vec3 mousePos) {
+		_moveOver = true;
+	};
+	auto mouseEE = [&](const Vec3 mousePos) {
+		OnMouseLeave(mousePos);
+	};
+	//add an on enter event
+	me->AddEvent(mouseE, BtnEvent::ON_ENTER);
+	//on Exit
+	me->AddEvent(mouseEE, BtnEvent::ON_LEAVE);
 
 	
 	
@@ -183,12 +204,24 @@ void TopDownEditor::CreateNew() {
 
 
 void TopDownEditor::HandleMouseMove() {
-	Vec3 origin = Vec3();
-	origin = _mainTileMesh->GetTransform()._position;
 	
+	Vec3 meshSize = _mainTileMesh->GetTransform()._scale;
+	Vec3 origin = ((*Renderer::instance()->GetCamera()->GetViewMatrix()) * _mainTileMesh->GetTransform()._position) - (meshSize * 0.5f);
+	Vec3 tMouse = _mouse->GetMousePosV3() - origin;
+	unsigned int maxTiles = meshSize.x / _tileSize;
+	//find the tile i and j (row, col)
+	float col = (int)tMouse.x/_tileSize;
+	float row = (int)tMouse.y/_tileSize;
 
+	_tileMapMat->HighlightTile(row/maxTiles, col/maxTiles);
+	printf("ON ENTER \n");
 }
 
+void TopDownEditor::OnMouseLeave(const Vec3& mPos) {
+	printf("ON EXIT\n");
+	_moveOver = false;
+	_tileMapMat->HighlightTile(-1, -1);
+}
 
 
 

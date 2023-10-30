@@ -85,7 +85,7 @@ void Utility::Swap(float* data, const int startA, const int startB, const int le
 	for (int i = 0; i < len; i++) {
 
 		float temp = *(data + (startA + i));
-		*(data + (startA + i)) = *(data + (startA + i));
+		*(data + (startA + i)) = *(data + (startB + i));
 		*(data + (startB + i)) = temp;
 		
 	}

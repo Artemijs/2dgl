@@ -10,9 +10,11 @@ TileMapMaterial::TileMapMaterial() :
 	_gridLineSize(2),
 	_gridColor(Vec3(1.0f, 1.0f, 1.0f)),
 	_outlineSize(4),
-	_outlineColor(Vec3(1.0f, 1.0f, 1.0f)){
+	_outlineColor(Vec3(1.0f, 1.0f, 1.0f)),
+	_selectedTile(Vec2(-1, -1)){
 
 	UpdateShaderValues();
+	HighlightTile(-1, -1);
 
 }
 
@@ -24,9 +26,11 @@ TileMapMaterial::TileMapMaterial(float tileSize, float gridSize, Vec3 gridColor,
 	_gridColor(gridColor),
 	_outlineSize(outlineSize),
 	_outlineColor(outlineColor),
+	_selectedTile(Vec2(-1, -1)),
 	Material(new Shader("Projects/2D/TileMapEditorMain.vert", "Projects/2D/TileMapEditorMain.frag"), "Assets/Textures/default.png")
 {
 	UpdateShaderValues();
+	HighlightTile(-1, -1);
 
 }
 
@@ -60,6 +64,14 @@ void TileMapMaterial::UpdateShaderValues() const {
 	glUniform3f (glGetUniformLocation(sId, "_gridColor"), _gridColor.x, _gridColor.y, _gridColor.z);
 	glUniform1f(glGetUniformLocation(sId, "_outlineSize"), _outlineSize);
 	glUniform3f (glGetUniformLocation(sId, "_outlineColor"), _outlineColor.x, _outlineColor.y, _outlineColor.z);
+	glUniform2f(glGetUniformLocation(sId, "_tileId"), _selectedTile.x, _selectedTile.y);
 	glUseProgram(0);
 
+}
+void TileMapMaterial::HighlightTile(const float xId, const float yId) {
+	//_selectedTile.x = xId;
+	//_selectedTile.x = yId;
+	_shader->Activate();
+	glUniform2f(glGetUniformLocation(_shader->ID, "_tileId"), xId, yId);
+	glUseProgram(0);
 }

@@ -78,7 +78,9 @@ void Game::Update(float deltaTime) {
 	CollisionHandler::Update(deltaTime);
 	
 	//HANDLE UI MOUSE COLLISION AND EVENTS
-	MouseEventHandler::HandleMouseMoving(_mouse->GetMousePosV3(), deltaTime);
+	Vec3 mouseInWorld = Renderer::instance()->GetCamera()->GetViewMatrix()->Inverse() * _mouse->GetMousePosV3();
+
+	MouseEventHandler::HandleMouseMoving(mouseInWorld, deltaTime);
 	MouseEventHandler::Update(deltaTime);
 }
 

@@ -30,7 +30,8 @@ void MemoryManager::ClearMemory() {
 
 
 void MemoryManager::Clean() {
-
+	if (_all_garbage->_head != NULL)
+		printf("MEMORY NOT EMPTY!\n");
 	delete _all_garbage;
 
 }

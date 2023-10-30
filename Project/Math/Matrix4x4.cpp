@@ -569,7 +569,8 @@ const Vec3 Matrix4x4::operator* (const Vec3& v) const {
 
 Matrix4x4 Matrix4x4::Inverse()  {
 
-	Matrix4x4 inverse = Matrix4x4();
+	Matrix4x4 inverse = Matrix4x4(1.0f);
+	Matrix4x4 mat = Matrix4x4((*this));
 	/*
 		pivot elements
 		1000	0
@@ -580,19 +581,18 @@ Matrix4x4 Matrix4x4::Inverse()  {
 	*/
 
 	// Loop through each column of the matrix
-	int row = 0;
 	for (int i = 0; i < 4; i++) {
 
 		// Find the pivot element
-		float pivot = buff[i * 5];
+		float pivot = mat.buff[i * 5];
 		int pivot_row = i;
 
 		//find the smallest pivot?
 		for (int j = i + 1; j < 4; j++) {
 			//j = next column
 			//buff[j][i] = pivot of the next row
-			if (abs(buff[j * 5]) > abs(pivot)) {
-				pivot = buff[j * 5];
+			if (abs(mat.buff[j * 5]) > abs(pivot)) {
+				pivot = mat.buff[j * 5];
 				pivot_row = j;
 			}
 		}
@@ -602,27 +602,34 @@ Matrix4x4 Matrix4x4::Inverse()  {
 			//to swap 2 rows in a 1d array i have to find the start and end of each row
 			//rowA = i*4, len 4
 			//rowB = ( i + 1 ) * 4, len 4
-			Utility::Swap(buff, i * 4, (i + 1) * 4, 4);
+			Utility::Swap(mat.buff, i * 4, (i + 1) * 4, 4);
 		}
 
 		// Divide the row by the pivot element
-		float divisor = buff[i * 5];
+		float divisor = mat.buff[i * 5];
 		for (int j = 0; j < 4; j++) {
-			buff[i*4 + j] /= divisor;
+			mat.buff[i * 4 + j] /= divisor;
 			inverse.buff[i * 4 + j] /= divisor;
 		}
 
 		// Subtract the row from the other rows to create zeros
-		for (int j = 0; j < 4; j++) {
-			if (j != i) {
-				float factor = matrix[j][i];
+		for (int j = 0; j < 4; j++) {//j is the row i is the column
+			//go through each row
+			if (j != i) {//if the row is not equal to the pivot row
+				float factor = mat.buff[j * 4 + i];//[row][col] row = j*4 col = i
+
 				for (int k = 0; k < 4; k++) {
-					matrix[j][k] -= factor * matrix[i][k];
-					inverse[j][k] -= factor * inverse[i][k];
+					//i = 
+					//matrix[i][k] 
+					// 
+					//buff[row][col] -= factor buff[row][col]
+					mat.buff[j * 4 + k] -= factor * mat.buff[i * 4 + k];
+					//inverse[row][col] -= factor inverse[row][col]
+					inverse.buff[j * 4 + k] -= factor * inverse.buff[i * 4 + k];
 				}
 			}
 		}
-		row += 4;
+		
 	}
 
 	return inverse;

@@ -73,6 +73,7 @@ BaseNode* MouseEventHandler::CheckCollision(BaseNode* node, const Vec3 mousePos)
 void MouseEventHandler::HandleMouseMoving(const Vec3 mousePos, const float deltaTime) {
 	//call OnHover 3 25 6 08 59 1 7  iti is real
 	//if(mousePos == (*_prevPos)
+	//Utility::PrintVector("MOUSE IN WORLD \n", mousePos);
 	BaseNode* newCurrent = CheckCollision(Game::_world, mousePos);
 	
 	//if nothing found

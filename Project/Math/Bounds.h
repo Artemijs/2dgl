@@ -28,6 +28,7 @@ protected:
 
 	std::pair < Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd)> >* FindEvent( Bounds* b, const bool enter);
 	void CallEvent(const bool enter,  Bounds* b, SeparationData& sd);
+
 public:
 	static const unsigned int _component_id;
 	bool _solid;
@@ -50,10 +51,14 @@ public:
 	const unsigned int ID() const override;
 	virtual shape GetShape() = 0;
 	const Vec3* GetCenterOfMass();
-	
 	const unsigned int IsColliding( Bounds* b);
-	void AddActiveCollision( Bounds* b, SeparationData& sd);
-	void RemoveActiveCollision( Bounds* b);
+	void AddActiveCollision(Bounds* b, SeparationData& sd);
+	void RemoveActiveCollision(Bounds* b);
+	/// <summary>
+	/// add an event to allEnterEvents or allExitEvents
+	/// </summary>
+	/// <param name="enter">true for enter false for exit</param>
+	/// <param name="e">LABUDA DURAIVUUUUU!</param>
 	void AddEvent(const bool enter, std::pair < Bounds*, std::function<void( Bounds* a, Bounds* b, SeparationData& sd)> >* e);
 	virtual float* GetSize() = 0;
 

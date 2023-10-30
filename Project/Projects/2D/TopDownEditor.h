@@ -2,6 +2,7 @@
 #define TOP_DOWN_EDITOR_H
 #include "../../Game/Game.h"
 #include "../../Util/MemoryManager.h"
+#include "./TileMapMaterial.h"
 
 
 
@@ -12,6 +13,8 @@ private:
 	const unsigned int _heightBTBG;
 	float _tileSize;
 	BaseNode* _mainTileMesh;
+	TileMapMaterial* _tileMapMat;
+	bool _moveOver;
 	void CreateNew();
 public :
 	TopDownEditor();
@@ -24,6 +27,7 @@ public :
 	/// higlhlight the tile hovered over
 	/// </summary>
 	void HandleMouseMove();
+	void OnMouseLeave(const Vec3& mPos);
 	//void HighlighTiles(unsigned int tileId);
 
 };
