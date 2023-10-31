@@ -130,6 +130,9 @@
     <Filter Include="Projects\2D">
       <UniqueIdentifier>{f0d5e438-fc11-4e93-a6af-411465669dca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\RenderNodeTest">
+      <UniqueIdentifier>{47b1b942-ac19-4f18-8b95-3de3c43bbb73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -306,6 +309,9 @@
     <ClCompile Include="Projects\2D\TileMapMaterial.cpp">
       <Filter>Projects\2D</Filter>
     </ClCompile>
+    <ClCompile Include="Projects\RenderNodeTest\RenderNodeTest.cpp">
+      <Filter>Projects\RenderNodeTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -472,6 +478,9 @@
     </ClInclude>
     <ClInclude Include="Projects\2D\TileMapMaterial.h">
       <Filter>Projects\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\RenderNodeTest\RenderNodeTest.h">
+      <Filter>Projects\RenderNodeTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

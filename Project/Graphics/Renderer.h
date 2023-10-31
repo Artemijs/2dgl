@@ -79,6 +79,16 @@ public:
 		_all_graphics->push_back(g);					
 	}													
 	void SetShaderVariables(const unsigned int shaderID);
+	/*
+	"Assets/Shaders/defaultNoTex.vert", "Assets/Shaders/defaultNoTex.frag"));//0
+	"Assets/Shaders/ui_sprite.vert", "Assets/Shaders/ui_sprite.frag"));
+	"Assets/Shaders/ui_animated_sprite.vert", "Assets/Shaders/ui_animated_sprite.frag"));
+	"Assets/Shaders/ui_outlineText.vert", "Assets/Shaders/ui_outlineText.frag"));
+	"Assets/Shaders/final_rect.vert", "Assets/Shaders/final_rect.frag"));//4
+	"Assets/Shaders/diffuse.vert", "Assets/Shaders/diffuse.frag"));
+	"Assets/Shaders/Experimental/eperiment_0.vert", "Assets/Shaders/Experimental/eperiment_0.frag"));
+	"Assets/Shaders/sprite.vert", "Assets/Shaders/sprite.frag"));
+*/
 	Shader* GetShader(int id);							
 	Texture* GetTexture(int id);						
 	const Texture* LoadTexture(const char* path);		

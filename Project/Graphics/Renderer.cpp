@@ -254,6 +254,8 @@ void Renderer::SetShaderVariables(const unsigned int shaderID) {
 	glUniformMatrix4fv(glGetUniformLocation(shaderID, "proj"), 1, GL_TRUE, &_projection.buff[0]);
 
 }
+
+
 Shader* Renderer::GetShader(int id) {
 	return _all_shaders->at(id);
 }

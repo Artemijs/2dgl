@@ -4,35 +4,46 @@
 #include "../../Util/MemoryManager.h"
 #include "./TileMapMaterial.h"
 
+namespace TDP {
+	/*
+	struct Tile {
 
-
-class TopDownEditor : public Game {
-
-private:
-	const unsigned int _widthBTBG;
-	const unsigned int _heightBTBG;
-	float _tileSize;
-	BaseNode* _mainTileMesh;
-	TileMapMaterial* _tileMapMat;
-	bool _moveOver;
-	void CreateNew();
-public :
-	TopDownEditor();
-	~TopDownEditor();
+	};
+	*/
 	
-	void Update(float deltaTime) override;
-	void MoveCamera3D(bool rotate = true, bool move = true);
-	void MoveCamera2D();
-	/// <summary>
-	/// higlhlight the tile hovered over
-	/// </summary>
-	void HandleMouseMove();
-	void OnMouseLeave(const Vec3& mPos);
-	//void HighlighTiles(unsigned int tileId);
+
+	class TopDownEditor : public Game {
+
+	private:
+		const unsigned int _widthBTBG;
+		const unsigned int _heightBTBG;
+		float _tileSize;
+		BaseNode* _mainTileMesh;
+		BaseNode* _filePanel;
+		BaseNode* _detailsPanel;
+		TileMapMaterial* _tileMapMat;
+		bool _moveOver;
+		Vec2Int _currentTile;
+		void CreateNew();
+		void CreateFilePanel();
+		void CreateDetailsPanel();
+	public:
+		TopDownEditor();
+		~TopDownEditor();
+
+		void Update(float deltaTime) override;
+		void MoveCamera3D(bool rotate = true, bool move = true);
+		void MoveCamera2D();
+		/// <summary>
+		/// higlhlight the tile hovered over
+		/// </summary>
+		void HandleMouseMove();
+		void OnMouseLeave(const Vec3& mPos);
+		//void HighlighTiles(unsigned int tileId);
+
+	};
 
 };
-
-
 
 
 

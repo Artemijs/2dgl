@@ -12,7 +12,7 @@ MaterialUiSprite::MaterialUiSprite(const Shader* s, const char* texturePath): Ma
 }
 
 MaterialUiSprite::~MaterialUiSprite() {
-	printf("deleting default material class\n");
+	printf("dewleting MAterial Ui sprite\n");
 }						
 void MaterialUiSprite::Bind(const Matrix4x4* model)const  {
 	MaterialUI::Bind(model);

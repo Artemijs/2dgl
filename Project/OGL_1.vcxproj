@@ -197,6 +197,7 @@
     <ClCompile Include="Projects\3D\RayCastingTest\RayCastTest.cpp" />
     <ClCompile Include="Projects\CollisionTest\ColliisonTestGame.cpp" />
     <ClCompile Include="Projects\CollisionTest\CollisionTesMain.cpp" />
+    <ClCompile Include="Projects\RenderNodeTest\RenderNodeTest.cpp" />
     <ClCompile Include="Projects\ShaderTests\ShaterTest.cpp" />
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp" />
     <ClCompile Include="UI\Button.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="Projects\3D\RayCastingTest\RayCastTest.h" />
     <ClInclude Include="Projects\CollisionTest\ColliisonTestGame.h" />
     <ClInclude Include="Projects\CollisionTest\CollisionTesMain.h" />
+    <ClInclude Include="Projects\RenderNodeTest\RenderNodeTest.h" />
     <ClInclude Include="Projects\ShaderTests\ShaterTest.h" />
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />
     <ClInclude Include="UI\Button.h" />

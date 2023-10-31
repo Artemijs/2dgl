@@ -208,7 +208,7 @@ Game* CreateNewGame(const unsigned int id) {
 		g = new CollisionTest3D();
 		break;
 	case 10:
-		g = new TopDownEditor();
+		g = new TDP::TopDownEditor();
 		break;
 	default:
 		g = new TowerDefenseGame();

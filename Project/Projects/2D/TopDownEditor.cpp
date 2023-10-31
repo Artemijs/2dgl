@@ -5,9 +5,9 @@
 #include "./TileMapMaterial.h"
 #include "../../Math/CollisionHandler.h"
 #include "../../Math/BoxBounds.h"
+#include "../../Game/RenderNode.h"
 
-
-
+using namespace TDP;
 
 /*
 	the top down level editor has to :
@@ -30,14 +30,13 @@ TopDownEditor::TopDownEditor(): _heightBTBG(10.0f), _widthBTBG(10.0f), _tileSize
 	//(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(90), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
 
 	//set up camera 
-	camera->SetPosition(Vec3(0.0f, 0.0f, 10.0f));
+	camera->SetPosition(Vec3(0.0f, 0.0f, 1000.0f));
 	camera->SetOrientation(Vec3(0.0f, 0.0f, 1.0f));
 	camera->CalculateViewMatrix();
 	_moveOver = false;
-	//Shader* s = new Shader("Projects/2D/TileMapEditorMain.vert", "Projects/2D/TileMapEditorMain.frag");
-	//delete s;
-
-
+	_currentTile = Vec2Int(-1, -1);
+	
+	CreateFilePanel();
 }
 
 
@@ -223,14 +222,17 @@ void TopDownEditor::HandleMouseMove() {
 	
 	Vec3 meshSize = _mainTileMesh->GetTransform()._scale;
 	Vec3 origin = ((*Renderer::instance()->GetCamera()->GetViewMatrix()) * _mainTileMesh->GetTransform()._position) - (meshSize * 0.5f);
-	Vec3 tMouse = _mouse->GetMousePosV3() - origin;
-	unsigned int maxTiles = meshSize.x / _tileSize;
-	//find the tile i and j (row, col)
-	float col = (int)(tMouse.x/_tileSize);
-	float row = (int)(tMouse.y/_tileSize);
+	Vec3 tMouse = _mouse->GetMousePosV3() - origin;			
+	unsigned int maxTiles = meshSize.x / _tileSize;			
+	//find the tile i and j (row, col)						
+	float col = (int)(tMouse.x/_tileSize);					
+	float row = (int)(tMouse.y/_tileSize);					
 
-	_tileMapMat->HighlightTile(row/maxTiles, col/maxTiles);
-	printf("ON ENTER %.3f, %.3f\n", col, row);
+	_tileMapMat->HighlightTile(row/maxTiles, col/maxTiles);	
+	printf("ON ENTER %.3f, %.3f\n", col, row);				
+
+	_currentTile.x = col;									
+	_currentTile.y = row;									
 }
 
 
@@ -238,7 +240,66 @@ void TopDownEditor::OnMouseLeave(const Vec3& mPos) {
 	printf("ON EXIT\n");
 	_moveOver = false;
 	_tileMapMat->HighlightTile(-1, -1);
+	_currentTile.x = -1;
+	_currentTile.y = -1;
 }
+
+
+
+
+void TopDownEditor::CreateFilePanel() {
+	Renderer* r = Renderer::instance();
+	Vec2 winSize = r->GetWindowSize();
+	//initialize parent base node
+	_filePanel = new RenderNode(Vec3(0.0f, 0.0f, -1.0f), Vec3(winSize.x, winSize.y, 1.0f), 0);
+	_world->AddChild(_filePanel);
+	
+	//initialize background basenode
+	BaseNode* bgBn = new BaseNode(Vec3(0.0f, 0.0f, -1.0f), Vec3(1000.0f, 1000.0f, 1.0f), Vec3(0.0f, 0.0f, 0.0f));
+	
+
+	MaterialUiSprite* bgMat = new MaterialUiSprite();//"Assets/Textures/default_win.png");
+	Sprite* bg = new Sprite(bgMat);
+	bgBn->AddComponent<Sprite>(bg);
+	_filePanel->AddChild(bgBn);
+	
+	
+	
+
+
+}
+
+
+void TopDownEditor::CreateDetailsPanel() {
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//														GARBA COLLECTOR
+//---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 

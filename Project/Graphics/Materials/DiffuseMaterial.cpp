@@ -1,4 +1,5 @@
 #include "DiffuseMaterial.h"
+#include "../Renderer.h"
 DiffuseMaterial::DiffuseMaterial() {
 
 
@@ -13,7 +14,7 @@ DiffuseMaterial::~DiffuseMaterial() {
 }
 
 void DiffuseMaterial::Bind(const Matrix4x4* model) const {
-	
+	Renderer::instance()->SetShaderVariables(_shader->ID);
 
 }
 void DiffuseMaterial::Unbind()const {
