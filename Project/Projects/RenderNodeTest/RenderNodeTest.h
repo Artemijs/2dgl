@@ -1,17 +1,17 @@
-#ifndef TOP_DOWN_EDITOR_H
-#define TOP_DOWN_EDITOR_H
+#ifndef RENDER_NODE_TEST
+#define RENDER_NODE_TEST
 #include "../../Game/Game.h"
 #include "../../Util/MemoryManager.h"
 
 
-namespace RNT {
 
-	
+
+namespace RNT {
 
 	class RenderNodeTest : public Game {
 
 	private:
-		
+		void SetUp();
 	public:
 		RenderNodeTest();
 		~RenderNodeTest();

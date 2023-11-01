@@ -3,8 +3,11 @@
 #include "Renderer.h"
 #include "../Util/Utility.h"
 #include "Renderer.h"
+
+
 const unsigned int Sprite::_component_id = Utility::GetID();
 //9months of no fap
+
 Sprite::Sprite() : Graphic(new MaterialUiSprite()){
 
 }

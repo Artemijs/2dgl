@@ -8,6 +8,10 @@ private:
 		
 public:
 	static const unsigned int _component_id;
+
+	/// <summary>
+	/// default material constructor uses a UI shader which has to have basenode position z to be -1
+	/// </summary>
 	Sprite();
 	Sprite(const char* path);
 	Sprite( BaseMaterial* m);

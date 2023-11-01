@@ -31,7 +31,7 @@ int main() {
 	GLFWwindow* window = Renderer::instance()->GetWindow();
 	//g = new Game();			
 								
-	g = DevGetGameType(10);		
+	g = DevGetGameType(11);		
 	// 9 gjk
 	// 10 TopDownEditor
 	// 

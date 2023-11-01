@@ -104,6 +104,7 @@ void Utility::Swap(float* data, const int startA, const int startB, const int le
 #include "../Projects/3D/MeshTest/MeshTest.h"
 #include "../Projects/3D/3DCollision/CollisionTest3D.h"
 #include "../Projects/2D/TopDownEditor.h"
+#include "../Projects/RenderNodeTest/RenderNodeTest.h"
 #include <sstream>
 void DevPrintHelp() {
 	std::string msg = 
@@ -119,6 +120,7 @@ void DevPrintHelp() {
 	msg += "8 : MeshTest\n";
 	msg += "9 : CollisionTest3D\n";
 	msg += "10 : TopDownEditor\n";
+	msg += "11 : RenderNodeTest\n";
 	msg += "type HELP N n being the number of the game, for a description of that project\n";
 	std::cout << msg;
 }
@@ -167,6 +169,9 @@ void DevPrintDetails(std::string s) {
 		case 10:
 			std::cout << "TOP DOWN BACKGROUND EDITOR, WASD TO MOVE CAMERA.\n";
 			break;
+		case 11:
+			std::cout << "RenderNode Test wasd camera\n";
+			break;
 		default:
 			std::cout << "YOu have entered a number out of range\n";
 	}
@@ -209,6 +214,9 @@ Game* CreateNewGame(const unsigned int id) {
 		break;
 	case 10:
 		g = new TDP::TopDownEditor();
+		break;
+	case 11:
+		g = new RNT::RenderNodeTest();
 		break;
 	default:
 		g = new TowerDefenseGame();

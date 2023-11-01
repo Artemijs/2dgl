@@ -17,26 +17,22 @@
 #include "../BackEnd/FinalRect.h"
 #include "../Game/BaseNode.h"
 #include "Camera.h"
+#include "../Game/FBOComponent.h"
+
+
+
 class Renderer {
 
 private:
 	GLFWwindow* _window;
 	Vec2 _windowSize;
+
+	FBO* _fbo;
+	FinalRect* _fRect;
+
 	VAO* _vao;
 	VBO* _vbo;
 	EBO* _ebo;
-	FBO* _fbo;
-	/*/GLfloat _vertices[32] = {
-		//verices						//uvs
-		-0.5f,  -0.5f,  -1.0f,			0.0f, 0.0f, //lower left
-
-		-0.5f,   0.5f,	-1.0f,			0.0f, 1.0f,//upper left 
-
-		0.5f,	 0.5f,	-1.0f,			1.0f, 1.0f, //upper right
-
-		0.5f,	-0.5f,	-1.0f,			1.0f, 0.0f //lower right
-		
-	};*/
 	std::vector<Vertex> _vertices = 
 	{
 		//positions							//normals			//uv
@@ -53,18 +49,22 @@ private:
 	
 	Matrix4x4 _projection;
 	Matrix4x4 _uiProjection;
+
 	std::vector<Shader*>* _all_shaders;
-	FinalRect* _fRect;
-	void CreateWindow();
-	void CreateGeometry();
 	std::vector<Graphic*>* _all_graphics;
 	std::vector<std::pair<const char*, Texture*>>* _all_textures;
-	Renderer();
-	static Renderer* _instance;
+	
 	Camera* _camera;
+	
+	static Renderer* _instance;
+	
+	Renderer();
+	void CreateWindow();
+	void CreateGeometry();
 
-	//Graphic* _testG;
-	//const unsigned int fb
+	void TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo, bool isRoot);
+	void DrawRenderNode(const BaseNode* parent, const BaseNode* node);
+	void DrawFinalRect(const BaseNode* node, const FBOComponent* fbo);
 
 public:
 	~Renderer();
@@ -73,7 +73,7 @@ public:
 	const Vec3 WindowSizeVec3();
 	GLFWwindow* GetWindow();
 	void Draw(const BaseNode* n);
-	void DrawNodes(BaseNode* node, BaseNode* last);
+	void DrawNodes(BaseNode* node, BaseNode* lastFbo);
 	VAO* GetVAO();
 	void AddGraphic(Graphic* g) {						
 		_all_graphics->push_back(g);					

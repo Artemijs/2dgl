@@ -4,6 +4,11 @@
 //#include "../UI/RenderNode.h"
 #include "../Graphics/Sprite.h"
 #include "../Game/Game.h"
+#include "../Util/Utility.h"
+
+
+
+
 
 Renderer* Renderer::_instance = 0x0;
 Renderer* Renderer::instance() {
@@ -68,11 +73,6 @@ Renderer::~Renderer() {
 	glfwTerminate();
 	delete _fRect;
 	delete _camera;
-	//delete _g;
-	//edelete _testG;
-	//glDeleteFramebuffers(1, &_fbo);
-	//glDeleteTextures(1, &_fboTex);
-	//glDeleteRenderbuffers(1, _
 }
 
 void Renderer::CreateGeometry() {
@@ -281,83 +281,37 @@ const Texture* Renderer::LoadTexture(const char* path) {
 	return t;
 }
 
+ 
+void Renderer::DrawNodes(BaseNode* node, BaseNode* lastFbo) {
 
-
-/*
-	root{
-			sprite
-			rn1{
-				sprite
-				sprtie
-			}
-			rn2{
-				sprite
-				sprite
-
-				rn3{
-					sprite
-				}
-			}
-		}
-
-*/
-
-#include "../Util/Utility.h"
-#include "../Game/FBOComponent.h"
-void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 	bool renderNode = Utility::IsRenderNode(node);
 	bool isRoot = (node->GetParent() == NULL);
-	//RenderNode* rn = NULL;
 	const FBOComponent* fbo = NULL;
 
 
 	if (renderNode) {
-		//unbind prev fbo
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		//bind node fbo
-		//rn = node->GetComponent<RenderNode>();
-		fbo = node->GetComponent<FBOComponent>(FBOComponent::_component_id);
-		glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
-		if (isRoot) {
-			glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glEnable(GL_DEPTH_TEST);
-		}
-		else {
-			glClearColor(0.2f, 0.13f, 0.17f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glEnable(GL_DEPTH_TEST);
-		}
+		//TURN ON RENDER NODES FBO
+		TurnRenderNodeOn(node, fbo, isRoot);
+		lastFbo = node;
 	}
 
+	//DRAW ALL THE CHILDREN TO THE CURRENTLY BOUND FBO
 	const std::vector<BaseNode*>* children = node->GetAllChildren();
 	if (children != NULL) {
 		for (int i = 0; i < children->size(); ++i) {
-			//WHAT IF A CHILD IS A RENDER NODE ?????????????????????????
-			//children->at(i)->GetComponent<Graphic>()->TryDraw();
-			DrawNodes(children->at(i), node);
+			//send child and last currently active fbo node
+			DrawNodes(children->at(i), lastFbo);
+			//THE ALGORYTHM DRAWS ON ITS WAY OUT OF THE FUNCTION
 		}
 	}
 
 	if (isRoot) {
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-		//DRAW ROOT TO FINLal RECT
-
-		_fRect->Bind();
-		glDisable(GL_DEPTH_TEST);
-		glBindTexture(GL_TEXTURE_2D, fbo->_fboTexture);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-		_fRect->Unbind();
-		glBindTexture(GL_TEXTURE_2D, 0);
+		DrawFinalRect(node, fbo);
 	}
 	else {
 
-		//check if it is a drawable type 
-		//check if node has a graphic component 
-		//if (node->GetNodeType() == 1) {
 		if (!renderNode) {
-
+			//ACTUALLY DRAW THE NODE OT THE FBO ON THE WAY OUT OF THE FUNCTION
 			auto  comps = node->Components();
 			for (int i = 0; i < comps->size(); ++i) {
 				if (comps->at(i)->second->IsGraphic()) {
@@ -367,39 +321,88 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* parent) {
 
 		}
 		else if (renderNode) {
-			//unbind prev FBO
-			glBindFramebuffer(GL_FRAMEBUFFER, 0);
-			//ifi t is a render node but not the root node bind the FBO of the last FBO node
-			glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fbo);
-			//bind vao 
-			_vao->Bind();
-			//activate shader	USING DEFAULT FOR NOW
-			Shader* s = _all_shaders->at(0);
-			s->Activate();
-			//set shader vars
-				//model projecttion texture
-			Renderer::SetShaderVariables(s->ID);
-			glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
-			//bind texture from FBO
-			unsigned int tId = node->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fboTexture;
-			//unsigned int tId = Game::_testG->GetTexture()->ID;
-			glBindTexture(GL_TEXTURE_2D, tId);
-			//maybe this part is optioNAL because in the example above he doesnt use this
-			//glUniform1i(glGetUniformLocation(s->ID, "tex0"), rn->GetFBO()->_fboTex); //maybe this part is optioNAL
-			//glUniform1i(glGetUniformLocation(s->ID, "tex0"), tId); //maybe this part is optioNAL
-
-			//draw triangles
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-			//unbind vao
-			_vao->Unbind();
-			//deactivate shader
-			glUseProgram(0);
-			//unbind texture
-			glBindTexture(GL_TEXTURE_2D, 0);
+			//DRAW THE NODE OF THE CURRENTLY BOUND FBO TO ITS PARENT FBO which may or may not be final rect
+			DrawRenderNode(lastFbo, node);
 		}
 	}
 }
+
+
+void Renderer::TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo, bool isRoot) {
+	//unbind prev fbo
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//bind node fbo
+	fbo = node->GetComponent<FBOComponent>(FBOComponent::_component_id);
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
+	if (isRoot) {
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
+	}
+	else {
+		glClearColor(0.2f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
+	}
+
+}
+
+
+void Renderer::DrawRenderNode(const BaseNode* parent, const BaseNode* node) {
+	
+	//												SET UP FBO
+	//unbind prev FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//ifi t is a render node but not the root node bind the FBO of the last FBO node
+	glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fbo);
+	
+	//												DRAW 
+	//bind vao 
+	_vao->Bind();
+	//activate shader	USING DEFAULT FOR NOW
+	Shader* s = _all_shaders->at(0);
+	s->Activate();
+	//set shader vars
+		//model projecttion texture
+	Renderer::SetShaderVariables(s->ID);
+	glUniformMatrix4fv(glGetUniformLocation(s->ID, "model"), 1, GL_TRUE, node->GetModelMatrix()->buff);
+	//bind texture from FBO
+	unsigned int tId = node->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fboTexture;
+	//unsigned int tId = Game::_testG->GetTexture()->ID;
+	glBindTexture(GL_TEXTURE_2D, tId);
+	//maybe this part is optioNAL because in the example above he doesnt use this
+	//glUniform1i(glGetUniformLocation(s->ID, "tex0"), rn->GetFBO()->_fboTex); //maybe this part is optioNAL
+	//glUniform1i(glGetUniformLocation(s->ID, "tex0"), tId); //maybe this part is optioNAL
+
+	//draw triangles
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	//												CLEAN UP
+	//unbind vao
+	_vao->Unbind();
+	//deactivate shader
+	glUseProgram(0);
+	//unbind texture
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+}
+
+
+void Renderer::DrawFinalRect(const BaseNode* node, const FBOComponent* fbo) {
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	//DRAW ROOT TO FINLal RECT
+
+	_fRect->Bind();
+	glDisable(GL_DEPTH_TEST);
+	glBindTexture(GL_TEXTURE_2D, fbo->_fboTexture);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	_fRect->Unbind();
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+
+
 
 Matrix4x4* Renderer::GetUIProjection() {
 	return &_uiProjection;
