@@ -87,15 +87,19 @@ void Game::Update(float deltaTime) {
 void Game::Draw() {
 	//return; //WHO DID THIS?
 
-	Renderer::instance()->DrawNodes(_world, _world);
+	//Renderer::instance()->DrawNodes(_world, _world);
+	if (Keyboard::GetKey(' ')->state == KeyState::KEY_DOWN) {
+		_switch = !_switch;
+	}
+	
 	//Renderer::instance()->Draw(_world);
-	/*if (!_switch) {
+	if (!_switch) {
 		Renderer::instance()->Draw(_world);
 	}
 	else {
 		//v1_5::Renderer::instance()->DrawNodes(_world, _world);
 		Renderer::instance()->DrawNodes(_world, _world);
-	}*/
+	}
 	glfwSwapBuffers(Renderer::instance()->GetWindow());
 	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 	

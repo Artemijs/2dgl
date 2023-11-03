@@ -9,7 +9,9 @@ private:
 	unsigned int _rbo;
 public :
 	static const unsigned int _component_id;
+	//frame buffer id
 	unsigned int _fbo;
+	//frame buffer texture id
 	unsigned int _fboTexture;
 	FBOComponent();
 	FBOComponent(const unsigned int width, const unsigned int height);

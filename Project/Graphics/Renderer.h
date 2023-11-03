@@ -18,7 +18,7 @@
 #include "../Game/BaseNode.h"
 #include "Camera.h"
 #include "../Game/FBOComponent.h"
-
+#include "Materials/MaterialUiSprite.h"
 
 
 class Renderer {
@@ -29,6 +29,8 @@ private:
 
 	FBO* _fbo;
 	FinalRect* _fRect;
+	MaterialUiNoTex* _fboMat;
+
 
 	VAO* _vao;
 	VBO* _vbo;
@@ -63,7 +65,7 @@ private:
 	void CreateGeometry();
 
 	void TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo, bool isRoot);
-	void DrawRenderNode(const BaseNode* parent, const BaseNode* node);
+	void DrawRenderNode(const BaseNode* parent, const BaseNode* node, const FBOComponent* fbo);
 	void DrawFinalRect(const BaseNode* node, const FBOComponent* fbo);
 
 public:

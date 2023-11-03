@@ -17,7 +17,11 @@ public :
 	BaseMaterial(const Shader* s);
 	~BaseMaterial();
 	virtual void Bind(const Matrix4x4* model) const;
+	/// <summary>
+	/// unbinds the VAO , TEXTURE and SHADER
+	/// </summary>
 	virtual void Unbind() const;
+	const Shader* GetShader()const ;
 };
 
 
@@ -37,6 +41,7 @@ public :
 	/// </summary>
 	virtual ~Material();
 	void Bind(const Matrix4x4* model) const override;
+
 	void Unbind() const override;
 	const Texture* GetTexture()const;
 	
@@ -63,4 +68,17 @@ public:
 };
 
 
+class MaterialUiNoTex : public BaseMaterial {
+protected:
+
+public:
+	MaterialUiNoTex();
+	MaterialUiNoTex(const Shader* s);
+	/// <summary>
+	/// shaders and textures get deleted in renderer
+	/// </summary>
+	virtual ~MaterialUiNoTex();
+	void Bind(const Matrix4x4* model) const override;
+	void Unbind() const override;
+};
 #endif

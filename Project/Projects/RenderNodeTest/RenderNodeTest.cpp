@@ -11,7 +11,7 @@ RenderNodeTest::RenderNodeTest(){
 	Renderer* r = Renderer::instance();
 	Camera* camera = Renderer::instance()->GetCamera();
 	//set camera perspectie
-	(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(100), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
+	(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(45), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
 
 	//set up camera 
 	//camera->SetPosition(Vec3(0.0f, 0.0f, 10.0f));
@@ -127,7 +127,7 @@ void RenderNodeTest::MoveCamera2D() {
 /// <summary>
 /// world	-- s1
 ///			-- rn1
-///				--s1
+///				||--s1
 ///			--s2
 /// </summary>
 void RenderNodeTest::SetUp() {
@@ -138,16 +138,54 @@ void RenderNodeTest::SetUp() {
 	_world->AddChild(s1);
 
 	//r1
-	RenderNode* rn1 = new RenderNode(Vec3(10, 10, 0), Vec3(100, 100, 1), 0.0f);
+	RenderNode* rn1 = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	_world->AddChild(rn1);
 
 	//r1 -- s1
 	BaseNode* r1s1 = new BaseNode(Vec3(0, 0, -1), Vec3(1, 2, 1), Vec3(0.0, 0, 0));
 	r1s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/default.png")));
 	rn1->AddChild(r1s1);
+	
+	//s2
+	BaseNode* s2 = new BaseNode(Vec3(-1, 0, -1), Vec3(1, 1, 1), Vec3(0.0, 0, 0));
+	s2->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/default.png")));
+	_world->AddChild(s2);
+}
+
+/// <summary>
+/// world	
+///			-- rn1
+///				||	--s1
+///					--s2
+///			--s1
+///			--s2
+/// </summary>
+void RenderNodeTest::SetUpB() {
+	Renderer* r = Renderer::instance();
+	
+	//r1
+	Vec3 fboSize = Vec3(400, 400, 0);
+	Vec3 fboSize2 = Renderer::instance()->WindowSizeVec3();
+	RenderNode* rn1 = new RenderNode(Vec3(200, 400, -1), fboSize, 0);// Renderer::instance()->WindowSizeVec3(), 0);
+	_world->AddChild(rn1);
+
+	//r1 -- s1
+	BaseNode* r1s1 = new BaseNode(Vec3(0, 0, -1), Vec3(1, 2, 1), Vec3(0.0f, 0.0f, 0.0f));
+	r1s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/temp.png")));
+	rn1->AddChild(r1s1);
+	
+	//r1 -- s2
+	BaseNode* r1s2 = new BaseNode(Vec3(55, 110, -1), Vec3(100, 200, 1), Vec3(0.0f, 0.0f, 0.0f));
+	r1s2->AddComponent<Sprite>(new Sprite(new MaterialUiSprite(r->GetShader(2), "Assets/Textures/sliderPinDefault.png")));
+	rn1->AddChild(r1s2);
+
+	//s1
+	BaseNode* s1 = new BaseNode(Vec3(0, 0, -1), Vec3(1, 1, 1), Vec3(0.0, 0, 0));
+	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/default.png")));
+	_world->AddChild(s1);
 
 	//s2
-	BaseNode* s2 = new BaseNode(Vec3(2, 0, -1), Vec3(1, 1, 1), Vec3(0.0, 0, 0));
+	BaseNode* s2 = new BaseNode(Vec3(-1, 0, -1), Vec3(1, 1, 1), Vec3(0.0, 0, 0));
 	s2->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(s2);
 }

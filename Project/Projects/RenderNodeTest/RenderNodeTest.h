@@ -12,6 +12,7 @@ namespace RNT {
 
 	private:
 		void SetUp();
+		void SetUpB();
 	public:
 		RenderNodeTest();
 		~RenderNodeTest();

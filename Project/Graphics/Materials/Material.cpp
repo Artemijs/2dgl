@@ -47,6 +47,9 @@ void BaseMaterial::Unbind()const {
 }
 
 
+const Shader* BaseMaterial::GetShader() const { return _shader; }
+
+
 
 Material::Material() :
 	BaseMaterial(Renderer::instance()->GetShader(1)),
@@ -90,6 +93,15 @@ void Material::Unbind()const {
 }
 
 
+
+
+
+//										MATERIAL UI NO TEXTURE
+//------------------------------------------------------------------------------
+
+
+
+
 MaterialUI::MaterialUI():  BaseMaterial(Renderer::instance()->GetShader(1)),
 _texture(Renderer::instance()->LoadTexture("Assets/Textures/default.png")) {
 
@@ -124,6 +136,43 @@ void MaterialUI::Unbind()const {
 }
 
 
-const Texture* MaterialUI::GetTexture()const {
+const Texture* MaterialUI::GetTexture() const {
 	return _texture;
 }
+
+
+//										MATERIAL UI NO TEXTURE
+//------------------------------------------------------------------------------
+
+
+
+MaterialUiNoTex::MaterialUiNoTex() : BaseMaterial(Renderer::instance()->GetShader(1)) {
+
+}
+
+
+MaterialUiNoTex::MaterialUiNoTex(const Shader* s) :
+	BaseMaterial(s) {
+
+}
+
+
+MaterialUiNoTex::~MaterialUiNoTex() {
+
+	printf("deleting material base\n");
+
+}
+
+
+void MaterialUiNoTex::Bind(const Matrix4x4* model) const {
+	BaseMaterial::Bind(model);
+	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "proj"), 1, GL_TRUE, &Renderer::instance()->GetUIProjection()->buff[0]);
+
+}
+
+
+void MaterialUiNoTex::Unbind()const {
+	BaseMaterial::Unbind();
+}
+
+
