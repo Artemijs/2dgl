@@ -70,9 +70,9 @@ Texture::Texture(const char* image, const char* type, GLenum slot) {
 	
 	stbi_image_free(bytes);
 }
-void Texture::texUni(const Shader* shader, const char* name, const GLuint unit) const {
+void Texture::texUni(const Shader* shader, const GLuint unit) const {
 	shader->Activate();
-	GLuint tex0Uni = glGetUniformLocation(shader->ID, name);
+	GLuint tex0Uni = glGetUniformLocation(shader->ID, _type);
 	glUniform1i(tex0Uni, unit);
 }
 void Texture::Bind()const {

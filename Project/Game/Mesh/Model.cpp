@@ -29,6 +29,9 @@ void Model::LoadMesh(unsigned int indMesh) {
 	std::vector<GLuint> indices = GetIndices(JSON["accessors"][indAccInd]);
 	std::vector<Texture> textures = GetTextures();
 
+
+	//in order to make this work i have to create a material that stores these textures adnd does the draw call
+
 	//_meshes.push_back(Mesh(vertices, indices, textures));
 	//1:42:24
 

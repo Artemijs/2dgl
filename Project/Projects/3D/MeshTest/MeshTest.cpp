@@ -7,6 +7,8 @@
 
 
 MeshTest::MeshTest() {
+	
+	MeshLoader::LoadModel("IDONT HAVE A PARTH", _model);
 
 }
 

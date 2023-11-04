@@ -4,7 +4,20 @@
 #include "../ShaderClass.h"
 #include "../Texture.h"
 #include "../../Util/MemoryManager.h"
+/*
+	to do:
+	Add camera bind to MAterial and remove Material Sprite
 
+
+*/
+
+
+
+
+
+/// <summary>
+/// Has color and shader, binds color and model matrix
+/// </summary>
 class BaseMaterial : public Memory{
 protected:
 	bool _transparent;
@@ -24,12 +37,16 @@ public :
 	const Shader* GetShader()const ;
 };
 
-
+/// <summary>
+/// has BaseMaterial and texture array, models use multiple textures, 2d sprites just use 1
+/// Binds textures and Projection matrix 
+/// </summary>
 class Material : public BaseMaterial{
 
 protected:
 
-	const Texture* _texture;
+	//const Texture* _texture;
+	std::vector<const Texture*>* _textures;
 public :
 	/// <summary>
 	/// Default construcrtor sets the texture to "Assets/Textures/default.png" and the shader to GetShader(1)
@@ -40,15 +57,23 @@ public :
 	/// shaders and textures get deleted in renderer
 	/// </summary>
 	virtual ~Material();
+	/// <summary>
+	/// binds Textures andd perspective projection matrix, Base binds color and model
+	/// </summary>
+	/// <param name="model"></param>
 	void Bind(const Matrix4x4* model) const override;
 
 	void Unbind() const override;
-	const Texture* GetTexture()const;
+	std::vector<const Texture*>* GetTexture() const;
 	
+	void AddTexture(const char* name, const char* filePath);
 
 
 };
 
+/// <summary>
+/// has 1 texture and binds texture, ortho projection, no camera bind
+/// </summary>
 class MaterialUI : public BaseMaterial {
 
 protected:
@@ -67,7 +92,9 @@ public:
 
 };
 
-
+/// <summary>
+/// PROBABLY DOESNT WORK
+/// </summary>
 class MaterialUiNoTex : public BaseMaterial {
 protected:
 

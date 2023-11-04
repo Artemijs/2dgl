@@ -172,40 +172,49 @@ private:
 	bool NextSimplex(Simplex& points, Vec3& direction) {
 		switch (points.size())
 		{
-		case 2: return Line			(points, direction);
-		case 3: return Triangle		(points, direction);
-		case 4: return Tetrahedron	(points, direction);
-		default:
+			case 2: return Line			(points, direction);
+			case 3: return Triangle		(points, direction);
+			case 4: return Tetrahedron	(points, direction);
+			default:
 			break;
 		}
 		//never should be 
 		return false;
 	}
-
+	/// instead of creating the machowskie difference you calculate it every time 
 	Vec3 Support(const Collider* colliderA, const Collider* colliderB, Vec3 direction) {
 		return colliderA->FindFurthestPoint(direction) - colliderB->FindFurthestPoint(direction * -1.0f);
 	}
 	bool GJK(const Collider* colliderA, const Collider* colliderB) {
 		//get initial support point in any direction
 		Vec3 support = Support(colliderA, colliderB, Vec3(1.0f, 0.0f, 0.0f));
-
+		//Whats a supprt point in GJK
+		//The support points are the points of the simples that make up a shape inside of the machowskie difference
+		
 
 		//simplex is an array of points, max count is 4
 		Simplex points;
+		//Add the first support point to the simplex
 		points.push_front(support);
 
 		//new direction is towards the origin
 		Vec3 direction = support * -1;
-
+		//use this direction to find the next point for the simple whoch is 
+		//the furthest point in the machowskie difference in that direction
 		while (true) {
+			//What does the support function do?
 			support = Support(colliderA, colliderB, direction);
 
+			//What does this do?
 			if (Vec3::Dot(support, direction) <= 0) {
 				return false;//no collision
 			}
-			
+
+			//add another point to the simplex
 			points.push_front(support);
 
+			//This checks what number of points the simples is currently at and
+			//uses corresponding logic to find the next one
 			if (NextSimplex(points, direction)) {
 				return true;
 			}

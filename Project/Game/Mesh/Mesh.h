@@ -7,7 +7,12 @@
 #include "../../Graphics/Graphic.h"
 
 
+class MeshMaterial : public Material {
+private:
 
+public :  
+
+};
 class Mesh : public Graphic {
 
 private:
@@ -22,6 +27,7 @@ public:
 	static const unsigned int _component_id;
 	Mesh();
 	Mesh(std::vector<Vertex>* verts, std::vector<GLuint>* indices, BaseMaterial* mat, const unsigned int indexCount);
+	//Mesh(std::vector<Vertex> vertices, std::vector<);
 	void InitGLData(VAO* vao, VBO* vbo, EBO* ebo);
 	Mesh(const unsigned int indexCount, VAO* vao, Material* mat);
 	~Mesh();

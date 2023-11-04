@@ -10,6 +10,9 @@ class MeshTest : public Game {
 
 
 private:
+
+	Model* _model;
+
 public:
 	MeshTest();
 	~MeshTest();

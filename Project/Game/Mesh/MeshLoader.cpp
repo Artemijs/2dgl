@@ -279,3 +279,7 @@ GLuint lightIndices[] =
 };
 
 */
+
+void MeshLoader::LoadModel(const char* filePath, Model*& model) {
+	
+}

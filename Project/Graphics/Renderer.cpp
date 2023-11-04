@@ -165,7 +165,7 @@ Shader* Renderer::GetShader(int id) {
 Texture* Renderer::GetTexture(int id) {
 	return _all_textures->at(id).second;
 }
-const Texture* Renderer::LoadTexture(const char* path) {
+const Texture* Renderer::LoadTexture(const char* type, const char* path) {
 	//check if exissts
 	for (int i = 0; i < _all_textures->size(); ++i) {
 		const char* p = _all_textures->at(i).first;
@@ -179,7 +179,7 @@ const Texture* Renderer::LoadTexture(const char* path) {
 		}
 	}
 	//add new if not exists
-	Texture* t = new Texture(path, "tex", 0); 
+	Texture* t = new Texture(path, type, 0);
 	_all_textures->push_back(std::pair<const char*, Texture*>{path, t});
 	return t;
 }

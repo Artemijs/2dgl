@@ -93,7 +93,13 @@ public:
 */
 	Shader* GetShader(int id);							
 	Texture* GetTexture(int id);						
-	const Texture* LoadTexture(const char* path);		
+	/// <summary>
+	/// loads a textures and stores it, if it exists returns an existing one
+	/// </summary>
+	/// <param name="type">textures name in the shader it is used in</param>
+	/// <param name="path"></param>
+	/// <returns></returns>
+	const Texture* LoadTexture(const char* type, const char* path);		
 	Matrix4x4* GetProjection();
 	Matrix4x4* GetUIProjection();
 	Camera* GetCamera();

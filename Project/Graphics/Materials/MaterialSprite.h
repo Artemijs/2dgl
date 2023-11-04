@@ -4,6 +4,10 @@
 #include "Material.h"
 
 
+
+/// <summary>
+/// binds the camera
+/// </summary>
 class MaterialSprite: public Material {
 
 private:

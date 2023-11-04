@@ -51,27 +51,34 @@ const Shader* BaseMaterial::GetShader() const { return _shader; }
 
 
 
+//														MATERIAL
+//---------------------------------------------------------------------------------------------------
+
+
+
 Material::Material() :
 	BaseMaterial(Renderer::instance()->GetShader(1)),
-_texture(Renderer::instance()->LoadTexture("Assets/Textures/default.png")) {
+	_textures( new std::vector<const Texture*>()){
+	_textures->push_back(Renderer::instance()->LoadTexture("tex0", "Assets/Textures/default.png"));
 	
 }
 
 
 Material::Material(const Shader* s, const char* texturePath) : 
-	BaseMaterial(s), _texture(Renderer::instance()->LoadTexture(texturePath)) {
-
+	BaseMaterial(s), _textures(new std::vector<const Texture*>()) {
+	_textures->push_back(Renderer::instance()->LoadTexture("tex0", texturePath));
 
 }
 
 
 Material::~Material() {
 	printf("deleting material base\n");
+	delete _textures;
 }
 
 
-const Texture* Material::GetTexture() const {
-	return _texture;
+std::vector<const Texture*>* Material::GetTexture() const {
+	return _textures;
 }
 
 
@@ -82,8 +89,12 @@ const Texture* Material::GetTexture() const {
 void Material::Bind(const Matrix4x4* model) const {
 	BaseMaterial::Bind(model);
 	Renderer::instance()->SetShaderVariables(_shader->ID);
-	_texture->Bind();
-	_texture->texUni(_shader, "tex0", 0);
+	for (int i = 0; i < _textures->size(); i++) {
+		const Texture* t = _textures->at(i);
+		t->Bind();
+		t->texUni(_shader, 0);
+	}
+
 }
 
 
@@ -92,7 +103,9 @@ void Material::Unbind()const {
 	
 }
 
-
+void Material::AddTexture(const char* name, const char* filePath) {
+	_textures->push_back(Renderer::instance()->LoadTexture(name, filePath));
+}
 
 
 
@@ -103,13 +116,13 @@ void Material::Unbind()const {
 
 
 MaterialUI::MaterialUI():  BaseMaterial(Renderer::instance()->GetShader(1)),
-_texture(Renderer::instance()->LoadTexture("Assets/Textures/default.png")) {
+_texture(Renderer::instance()->LoadTexture("text0", "Assets/Textures/default.png")) {
 
 }
 
 
 MaterialUI::MaterialUI(const Shader* s, const char* texturePath) :
-	BaseMaterial(s), _texture(Renderer::instance()->LoadTexture(texturePath)) {
+	BaseMaterial(s), _texture(Renderer::instance()->LoadTexture("text0", texturePath)) {
 	
 }
 
@@ -125,7 +138,7 @@ void MaterialUI::Bind(const Matrix4x4* model) const {
 	BaseMaterial::Bind(model);
 
 	_texture->Bind();
-	_texture->texUni(_shader, "tex0", 0);
+	_texture->texUni(_shader, 0);
 	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "proj"), 1, GL_TRUE, &Renderer::instance()->GetUIProjection()->buff[0]);
 
 }

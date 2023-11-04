@@ -4,6 +4,12 @@
 #include "../ShaderClass.h"
 #include "../Texture.h"
 #include "Material.h"
+
+
+
+/// <summary>
+/// probably doesnt even work
+/// </summary>
 class DiffuseMaterial: public Material{
 
 protected:
