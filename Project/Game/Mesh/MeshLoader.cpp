@@ -281,5 +281,177 @@ GLuint lightIndices[] =
 */
 
 void MeshLoader::LoadModel(const char* filePath, Model*& model) {
+	//check if exists
+	for (int i = 0; i < _models->size(); i++) {
+		auto val = _models->at(i);
+		if (val.first.compare( filePath) == 0) {
+			model = val.second;
+		}
+	}
+
+
+}
+
+
+void MeshLoader::TraverseNode(unsigned int nextNode, Matrix4x4 matrix = Matrix4x4(1.0f)) {
+	/*
+	// Current node
+	json node = JSON["nodes"][nextNode];
+
+	// Get translation if it exists
+	glm::vec3 translation = glm::vec3(0.0f, 0.0f, 0.0f);
+	if (node.find("translation") != node.end())
+	{
+		float transValues[3];
+		for (unsigned int i = 0; i < node["translation"].size(); i++)
+			transValues[i] = (node["translation"][i]);
+		translation = glm::make_vec3(transValues);
+	}
+	// Get quaternion if it exists
+	glm::quat rotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
+	if (node.find("rotation") != node.end())
+	{
+		float rotValues[4] =
+		{
+			node["rotation"][3],
+			node["rotation"][0],
+			node["rotation"][1],
+			node["rotation"][2]
+		};
+		rotation = glm::make_quat(rotValues);
+	}
+	// Get scale if it exists
+	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	if (node.find("scale") != node.end())
+	{
+		float scaleValues[3];
+		for (unsigned int i = 0; i < node["scale"].size(); i++)
+			scaleValues[i] = (node["scale"][i]);
+		scale = glm::make_vec3(scaleValues);
+	}
+	// Get matrix if it exists
+	glm::mat4 matNode = glm::mat4(1.0f);
+	if (node.find("matrix") != node.end())
+	{
+		float matValues[16];
+		for (unsigned int i = 0; i < node["matrix"].size(); i++)
+			matValues[i] = (node["matrix"][i]);
+		matNode = glm::make_mat4(matValues);
+	}
+
+	// Initialize matrices
+	glm::mat4 trans = glm::mat4(1.0f);
+	glm::mat4 rot = glm::mat4(1.0f);
+	glm::mat4 sca = glm::mat4(1.0f);
+
+	// Use translation, rotation, and scale to change the initialized matrices
+	trans = glm::translate(trans, translation);
+	rot = glm::mat4_cast(rotation);
+	sca = glm::scale(sca, scale);
+
+	// Multiply all matrices together
+	glm::mat4 matNextNode = matrix * matNode * trans * rot * sca;
+
+	// Check if the node contains a mesh and if it does load it
+	if (node.find("mesh") != node.end())
+	{
+		translationsMeshes.push_back(translation);
+		rotationsMeshes.push_back(rotation);
+		scalesMeshes.push_back(scale);
+		matricesMeshes.push_back(matNextNode);
+
+		loadMesh(node["mesh"]);
+	}
+
+	// Check if the node has children, and if it does, apply this function to them with the matNextNode
+	if (node.find("children") != node.end())
+	{
+		for (unsigned int i = 0; i < node["children"].size(); i++)
+			traverseNode(node["children"][i], matNextNode);
+	}*/
+
+}
+
+void MeshLoader::GetData(std::vector<unsigned char>& data) {
+
+}
+
+
+void MeshLoader::GetFloats(json accessor, std::vector<float>& floats) {
+
+}
+
+
+void MeshLoader::GetIndices(json accessor, std::vector<GLuint>& indices) {
+
+	/*std::vector<GLuint> indices;
+
+	unsigned int buffViewInd = accessor.value("bufferView", 0);
+	unsigned int count = accessor["count"];
+	unsigned int accByteOffset = accessor.value("byteOffset", 0);
+	unsigned int componentType = accessor["componentType"];
+
+	json bufferView = JSON["bufferViews"][buffViewInd];
+	unsigned int byteOffset = bufferView["byteOffset"];
+
+	unsigned int beginingOfData = byteOffset + accByteOffset;
+	if (componentType == 5125) {
+		for (unsigned int i = beginingOfData; i < byteOffset + accByteOffset + count * 4; ) {
+			unsigned char bytes[] = { _data[i++], _data[i++], _data[i++], _data[i++] };
+			unsigned int value;
+			std::memcpy(&value, bytes, sizeof(unsigned int));
+			indices.push_back((GLuint)value);
+		}
+	}
+	else if (componentType == 5123) {
+		for (unsigned int i = beginingOfData; i < byteOffset + accByteOffset + count * 2; ) {
+			unsigned char bytes[] = { _data[i++], _data[i++] };
+			unsigned short value;
+			std::memcpy(&value, bytes, sizeof(unsigned short));
+			indices.push_back((GLuint)value);
+		}
+	}
+	else if (componentType == 5122) {
+		for (unsigned int i = beginingOfData; i < byteOffset + accByteOffset + count * 2; ) {
+			unsigned char bytes[] = { _data[i++], _data[i++] };
+			unsigned short value;
+			std::memcpy(&value, bytes, sizeof(short));
+			indices.push_back((GLuint)value);
+		}
+	}*/
+
+}
+
+
+void MeshLoader::GetTextures(std::vector<Texture>& textures) {
+
+}
+
+
+void MeshLoader::AssembleVertices(std::vector<Vertex>& vertices, const std::vector<Vec3>& positions, const std::vector<Vec3>& normals, const std::vector<Vec2>& textUvs) {
+	
 	
 }
+
+
+
+void MeshLoader::GroupFloatsVec2(const std::vector<float>& floatVec, std::vector<Vec2>& outVec) {
+	for (int i = 0; i < floatVec.size(); i) {
+		outVec.push_back(Vec2(floatVec[i++], floatVec[i++]));
+	}
+}
+
+void MeshLoader::GroupFloatsVec3(const std::vector<float>& floatVec, std::vector<Vec3>& outVec) {
+	for (int i = 0; i < floatVec.size(); i) {
+		outVec.push_back(Vec3(floatVec[i++], floatVec[i++], floatVec[i++]));
+	}
+}
+
+
+void MeshLoader::GroupFloatsVec4(const std::vector<float>& floatVec, std::vector<Vec4>& outVec) {
+	for (int i = 0; i < floatVec.size(); i) {
+		outVec.push_back(Vec4(floatVec[i++], floatVec[i++], floatVec[i++], floatVec[i++]));
+	}
+}
+
+

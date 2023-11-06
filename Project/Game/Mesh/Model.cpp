@@ -1,6 +1,6 @@
 #include "Model.h"
 
-
+#include "../../Graphics/Renderer.h"
 Model::Model(const char* file) {
 	std::string text = get_file_contents(file);
 	JSON = json::parse(text);
@@ -122,18 +122,37 @@ std::vector<GLuint> Model::GetIndices(json accessor) {
 
 
 std::vector<Texture> Model::GetTextures() {
+
+	Renderer * r = Renderer::instance();
 	std::vector<Texture> textures;
 
 	std::string fileStr = std::string(_filePath);
 	std::string fileDirectory = fileStr.substr(0, fileStr.find_last_of('/') + 1);
 
-	
+	//for every texture used in the model
+	unsigned int diffCount = 0;
+	unsigned int specCount = 0;
 	for (unsigned int i = 0; i < JSON["images"].size(); i++) {
 
+		//get file path
 		std::string path = JSON["images"][i]["uri"];
 
-		bool skip = false;
+		std::string  texName;
+		if (path.find("baseColor") != std::string::npos) {
+			texName = "diffuse" + std::to_string(diffCount);
+			diffCount++;
+		}
+		else if (path.find("metallicRoughness") != std::string::npos) {
+			texName = "specular" + std::to_string(specCount);
+			specCount++;
+		}
+
+		const Texture* tex = r->LoadTexture(texName.c_str(), (fileDirectory + path).c_str());
+
+		//check if texture already loaded
+		/*bool skip = false;
 		for (unsigned int j = 0; j < _loadedTexName.size(); j++) {
+
 			if (_loadedTexName[j] == path) {
 				textures.push_back(_loadedTex[j]);
 				skip = true;
@@ -141,6 +160,7 @@ std::vector<Texture> Model::GetTextures() {
 			}
 		}
 		if (!skip) {
+			//find texture name
 			if (path.find("baseColor") != std::string::npos) {
 				Texture diffuse = Texture((fileDirectory + path).c_str(), "diffuse", _loadedTex.size());
 				textures.push_back(diffuse);
@@ -150,11 +170,12 @@ std::vector<Texture> Model::GetTextures() {
 			}
 			else if (path.find("metallicRoughness") != std::string::npos) {
 				Texture specular = Texture((fileDirectory + path).c_str(), "specular", _loadedTex.size());
+				
 				textures.push_back(specular);
 				_loadedTex.push_back(specular);
 				_loadedTexName.push_back(path);
 			}
-		}
+		}*/
 	}
 	return textures;
 }
@@ -174,28 +195,6 @@ std::vector<Vertex> Model::AssembleVertices(const std::vector<Vec3>& positions, 
 		);
 	}
 	return vertices;
-}
-
-std::vector<Vec2> Model::GroupFloatsVec2(const std::vector<float>& floatVec) {
-	std::vector<Vec2> vectors;
-	for (int i = 0; i < floatVec.size(); i) {
-		vectors.push_back(Vec2(floatVec[i++], floatVec[i++]));
-	}
-	return vectors;
-}
-std::vector<Vec3> Model::GroupFloatsVec3(const std::vector<float>& floatVec) {
-	std::vector<Vec3> vectors;
-	for (int i = 0; i < floatVec.size(); i) {
-		vectors.push_back(Vec3(floatVec[i++], floatVec[i++], floatVec[i++]));
-	}
-	return vectors;
-}
-std::vector<Vec4> Model::GroupFloatsVec4(const std::vector<float>& floatVec) {
-	std::vector<Vec4> vectors;
-	for (int i = 0; i < floatVec.size(); i) {
-		vectors.push_back(Vec4(floatVec[i++], floatVec[i++], floatVec[i++], floatVec[i++]));
-	}
-	return vectors;
 }
 
 void Model::TraverseNode(unsigned int nextNode, Matrix4x4 matrix) {

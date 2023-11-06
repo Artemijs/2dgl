@@ -165,6 +165,8 @@ Shader* Renderer::GetShader(int id) {
 Texture* Renderer::GetTexture(int id) {
 	return _all_textures->at(id).second;
 }
+
+
 const Texture* Renderer::LoadTexture(const char* type, const char* path) {
 	//check if exissts
 	for (int i = 0; i < _all_textures->size(); ++i) {
@@ -184,6 +186,25 @@ const Texture* Renderer::LoadTexture(const char* type, const char* path) {
 	return t;
 }
 
+
+const Texture* Renderer::LoadTexture(const char* type, const char* path, unsigned int gl_slot) {
+	//check if exissts
+	for (int i = 0; i < _all_textures->size(); ++i) {
+		const char* p = _all_textures->at(i).first;
+
+		for (int j = 0; p[j] == path[j]; j++) {
+			//if strings are identical
+			if (p[j] == '\0' && path[j] == '\0') {
+				//dont need to add it because it already exists
+				return _all_textures->at(i).second;
+			}
+		}
+	}
+	//add new if not exists
+	Texture* t = new Texture(path, type, gl_slot);
+	_all_textures->push_back(std::pair<const char*, Texture*>{path, t});
+	return t;
+}
  
 void Renderer::DrawNodes(BaseNode* node, BaseNode* lastFbo) {
 

@@ -100,6 +100,7 @@ public:
 	/// <param name="path"></param>
 	/// <returns></returns>
 	const Texture* LoadTexture(const char* type, const char* path);		
+	const Texture* LoadTexture(const char* type, const char* path, unsigned int gl_slot);
 	Matrix4x4* GetProjection();
 	Matrix4x4* GetUIProjection();
 	Camera* GetCamera();

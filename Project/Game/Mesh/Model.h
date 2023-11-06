@@ -18,20 +18,12 @@ private:
 	std::vector<Vec3> _scalesMeshes;
 	std::vector<Matrix4x4> _matricesMeshes;
 
-	std::vector<std::string> _loadedTexName;
-	std::vector<Texture> _loadedTex;
+	//std::vector<std::string> _loadedTexName;
+	//std::vector<Texture> _loadedTex;
 
 	void LoadMesh(unsigned int indMesh);
-	void TraverseNode(unsigned int nextNode, Matrix4x4 matrix = Matrix4x4(1.0f));
-	std::vector<unsigned char> GetData();
-	std::vector<float> GetFloats(json accessor);
-	std::vector<GLuint> GetIndices(json accessor);
-	std::vector<Texture> GetTextures();
-	std::vector<Vertex> AssembleVertices(const std::vector<Vec3>& positions, const std::vector<Vec3>& normals, const std::vector<Vec2> & textUvs);
-
-	std::vector<Vec2> GroupFloatsVec2(const std::vector<float> &floatVec);
-	std::vector<Vec3> GroupFloatsVec3(const std::vector<float>& floatVec);
-	std::vector<Vec4> GroupFloatsVec4(const std::vector<float>& floatVec);
+	
+	
 
 public :
 	Model(const char* file);
