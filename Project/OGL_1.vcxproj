@@ -200,6 +200,8 @@
     <ClCompile Include="Projects\RenderNodeTest\RenderNodeTest.cpp" />
     <ClCompile Include="Projects\ShaderTests\ShaterTest.cpp" />
     <ClCompile Include="Projects\TowerDefense\TowerDefenseGame.cpp" />
+    <ClCompile Include="Projects\UI\BasePanelTest\BasePanelTest.cpp" />
+    <ClCompile Include="UI\BasePanel.cpp" />
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="UI\Text.cpp" />
     <ClCompile Include="Util\Callback.cpp" />
@@ -259,6 +261,8 @@
     <ClInclude Include="Projects\RenderNodeTest\RenderNodeTest.h" />
     <ClInclude Include="Projects\ShaderTests\ShaterTest.h" />
     <ClInclude Include="Projects\TowerDefense\TowerDefenseGame.h" />
+    <ClInclude Include="Projects\UI\BasePanelTest\BasePanelTest.h" />
+    <ClInclude Include="UI\BasePanel.h" />
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="UI\Text.h" />
     <ClInclude Include="Util\Callback.h" />

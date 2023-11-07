@@ -99,7 +99,7 @@ void Text::GetCd(char c, CharData* cd) {
 }
 
 const Texture* Text::GetTexture() {
-	return _material->GetTexture();// Renderer::instance()->GetTexture(_texId);
+	return _material->GetTexture()->at(0);// Renderer::instance()->GetTexture(_texId);
 }
 void Text::Init() {
 	std::ifstream input("Assets/Fonts/arial.fnt");

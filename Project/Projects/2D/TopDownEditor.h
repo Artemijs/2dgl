@@ -63,24 +63,6 @@ namespace TDP {
 
 	*/
 
-	//do i need to call destructor override or is it called automatically
-	class BasePanel :public Memory{
-	private:
-
-		RenderNode* _parent;
-		const char* _name;
-		//0: Left , 1: top , 2: rright, 3: bottom
-		std::vector<std::vector<BasePanel*>*>* _neighbours;
-	public:	
-		BasePanel();
-		BasePanel(const char* name, RenderNode* parentOfparent, Vec3 pos, Vec3 size);
-		~BasePanel();
-		//0: Left , 1: top , 2: rright, 3: bottom
-		void AddNeighbour(BasePanel* bp, unsigned int direction);
-
-	};
-
-
 
 
 	class TopDownEditor : public Game {

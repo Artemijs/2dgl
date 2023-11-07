@@ -1,6 +1,7 @@
 #include "Model.h"
 
 #include "../../Graphics/Renderer.h"
+/*
 Model::Model(const char* file) {
 	std::string text = get_file_contents(file);
 	JSON = json::parse(text);
@@ -149,33 +150,7 @@ std::vector<Texture> Model::GetTextures() {
 
 		const Texture* tex = r->LoadTexture(texName.c_str(), (fileDirectory + path).c_str());
 
-		//check if texture already loaded
-		/*bool skip = false;
-		for (unsigned int j = 0; j < _loadedTexName.size(); j++) {
-
-			if (_loadedTexName[j] == path) {
-				textures.push_back(_loadedTex[j]);
-				skip = true;
-				break;
-			}
-		}
-		if (!skip) {
-			//find texture name
-			if (path.find("baseColor") != std::string::npos) {
-				Texture diffuse = Texture((fileDirectory + path).c_str(), "diffuse", _loadedTex.size());
-				textures.push_back(diffuse);
-				_loadedTex.push_back(diffuse);
-				_loadedTexName.push_back(path);
-
-			}
-			else if (path.find("metallicRoughness") != std::string::npos) {
-				Texture specular = Texture((fileDirectory + path).c_str(), "specular", _loadedTex.size());
-				
-				textures.push_back(specular);
-				_loadedTex.push_back(specular);
-				_loadedTexName.push_back(path);
-			}
-		}*/
+		
 	}
 	return textures;
 }
@@ -233,4 +208,4 @@ void Model::TraverseNode(unsigned int nextNode, Matrix4x4 matrix) {
 	trans = Matrix4x4::TranslationMatrix(translation);
 	//rot = 1::44::47
 
-}
+}*/

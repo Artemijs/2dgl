@@ -12,12 +12,18 @@ RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	BaseNode(pos, size, ang){
 	AddFBO();
 }
+
+
 void RenderNode::AddFBO() {
 	AddComponent<FBOComponent>( new FBOComponent(_transform._scale.x, _transform._scale.y));
 }
+
+
 RenderNode::~RenderNode() {
 	std::cout << "RENDER NODE DELETED\n";
 }
+
+
 void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot) {
 	//std::cout << "MMM from render node\n";
 	Matrix4x4 nt, ns, nr;

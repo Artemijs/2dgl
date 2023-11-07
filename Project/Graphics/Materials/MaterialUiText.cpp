@@ -28,8 +28,8 @@ void MaterialUiText::Bind(const Matrix4x4* model)const  {
 	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &model->buff[0]);
 	Renderer::instance()->SetShaderVariables(_shader->ID);
 	
-	_texture->Bind();
-	_texture->texUni(_shader, "tex0", 0);
+	_textures->at(0)->Bind();
+	_textures->at(0)->texUni(_shader, 0);
 
 	//Material::Bind(model);
 

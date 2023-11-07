@@ -712,9 +712,9 @@ void MaterialTest::Draw() {
 	Matrix4x4 m2 = Matrix4x4::GetMatrix(Vec3(400, 350, -1), Vec3(100, 100, 1), Vec3());
 	Matrix4x4 m3 = Matrix4x4::GetMatrix(Vec3(200, 150, -1), Vec3(100, 100, 1), Vec3());
 	Renderer* r = Renderer::instance();
-	const Texture* t = r->LoadTexture("Assets/Textures/default.png");
-	const Texture* t1 = r->LoadTexture("Assets/Textures/pogcattile.png");
-	const Texture* t2 = r->LoadTexture("Assets/Textures/temp.png");
+	const Texture* t = r->LoadTexture("tex0", "Assets/Textures/default.png");
+	const Texture* t1 = r->LoadTexture("tex0", "Assets/Textures/pogcattile.png");
+	const Texture* t2 = r->LoadTexture("tex0", "Assets/Textures/temp.png");
 	Shader* s = new Shader("Assets/Shaders/defaultNoTex.vert", "Assets/Shaders/defaultNoTex.frag");
 	//Shader* s2 = Renderer::instance()->GetShader(1);
 	

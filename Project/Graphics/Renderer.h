@@ -64,7 +64,7 @@ private:
 	void CreateWindow();
 	void CreateGeometry();
 
-	void TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo, bool isRoot);
+	void TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo);
 	void DrawRenderNode(const BaseNode* parent, const BaseNode* node, const FBOComponent* fbo);
 	void DrawFinalRect(const BaseNode* node, const FBOComponent* fbo);
 

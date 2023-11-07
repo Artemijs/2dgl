@@ -3,10 +3,12 @@
 #include <vector>
 #include <glad/glad.h>
 #include "BaseComponent.h"
+#include "../Math/Matrix4x4.h"
 class FBOComponent: public BaseComponent{
 private:
 	
 	unsigned int _rbo;
+	Vec3 _clearColor;
 public :
 	static const unsigned int _component_id;
 	//frame buffer id
@@ -17,6 +19,8 @@ public :
 	FBOComponent(const unsigned int width, const unsigned int height);
 	~FBOComponent();
 	const unsigned int ID() const override;
+	void Clear()const;
+	void SetClearColor(Vec3 col) ;
 };
 
 #endif

@@ -2,7 +2,7 @@
 #define FBO_H
 #include <glad/glad.h>
 
-
+#include "../Math/Matrix4x4.h"
 class FBO {
 private:
 
@@ -10,13 +10,13 @@ private:
 	void CreateTexture(int width, int height);
 	void CreateRenderBuffer(int width, int height);
 	void AttachFboAttachments();
+
 public :
 	unsigned int _fbo;
 	unsigned int _fboTex;
 	FBO();
 	FBO(int width, int height);
 	~FBO();
-	//void Bind();
-	//void Unbind();
+
 };
 #endif

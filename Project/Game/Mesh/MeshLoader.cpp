@@ -3,7 +3,9 @@
 #include "../../Graphics/Renderer.h"
 
 
-
+ std::vector<std::pair<const std::string, Model*>>* MeshLoader::_models;
+ std::vector<unsigned char> MeshLoader::_data;
+ json MeshLoader::JSON;
 
 
 /// <summary>
@@ -293,7 +295,7 @@ void MeshLoader::LoadModel(const char* filePath, Model*& model) {
 }
 
 
-void MeshLoader::TraverseNode(unsigned int nextNode, Matrix4x4 matrix = Matrix4x4(1.0f)) {
+void MeshLoader::TraverseNode(unsigned int nextNode, Matrix4x4 matrix ) {
 	/*
 	// Current node
 	json node = JSON["nodes"][nextNode];

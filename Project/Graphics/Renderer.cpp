@@ -215,7 +215,7 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* lastFbo) {
 
 	if (renderNode) {
 		//TURN ON RENDER NODES FBO
-		TurnRenderNodeOn(node, fbo, isRoot);
+		TurnRenderNodeOn(node, fbo);
 		//lastFbo = node;
 	}
 
@@ -253,25 +253,11 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* lastFbo) {
 }
 
 
-void Renderer::TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo, bool isRoot) {
-	//unbind prev fbo
-	//
-	//bind node fbo
-	//FBOComponent* f = Game::_world->GetAllChildren()->at(0)->GetComponent<FBOComponent>();
+void Renderer::TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo) {
+
 	fbo = node->GetComponent<FBOComponent>(FBOComponent::_component_id);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
-
-	if (isRoot) {
-		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_DEPTH_TEST);
-	}
-	else {
-		glClearColor(0.2f, 0.13f, 0.17f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_DEPTH_TEST);
-	}
-
+	fbo->Clear();
 }
 
 

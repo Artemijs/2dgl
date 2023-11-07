@@ -12,8 +12,8 @@ using json = nlohmann::json;
 class MeshLoader {
 private:
 	static std::vector<std::pair<const std::string, Model*>>*  _models;
-	std::vector<unsigned char> _data;
-	json JSON;
+	static std::vector<unsigned char> _data;
+	static json JSON;
 public :
 
 	static Mesh* GetTerrain( const int width, const int height);

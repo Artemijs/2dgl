@@ -76,9 +76,5 @@ void FBO::AttachFboAttachments() {
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _rbo);
 
 }
-/*void FBO::Bind() {
 
-}
-void FBO::Unbind() {
 
-}*/

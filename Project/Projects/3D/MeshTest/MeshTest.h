@@ -11,7 +11,7 @@ class MeshTest : public Game {
 
 private:
 
-	Model* _model;
+	//Model* _model;
 
 public:
 	MeshTest();

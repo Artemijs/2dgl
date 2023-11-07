@@ -133,6 +133,12 @@
     <Filter Include="Projects\RenderNodeTest">
       <UniqueIdentifier>{47b1b942-ac19-4f18-8b95-3de3c43bbb73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Projects\UI">
+      <UniqueIdentifier>{52352b00-ff36-47a7-aea0-adf4a1e7a9b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Projects\UI\BasePanelTest">
+      <UniqueIdentifier>{06ec01ab-b9c1-4491-9e0a-e38d1f5069c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -312,6 +318,12 @@
     <ClCompile Include="Projects\RenderNodeTest\RenderNodeTest.cpp">
       <Filter>Projects\RenderNodeTest</Filter>
     </ClCompile>
+    <ClCompile Include="UI\BasePanel.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Projects\UI\BasePanelTest\BasePanelTest.cpp">
+      <Filter>Projects\UI\BasePanelTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -481,6 +493,12 @@
     </ClInclude>
     <ClInclude Include="Projects\RenderNodeTest\RenderNodeTest.h">
       <Filter>Projects\RenderNodeTest</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\BasePanel.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Projects\UI\BasePanelTest\BasePanelTest.h">
+      <Filter>Projects\UI\BasePanelTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

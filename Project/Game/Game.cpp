@@ -23,7 +23,7 @@ Game::Game() {
 	//_world->AddChild(new Button("LOL", Vec3(400, 400, 0), Vec3(100, 50, 1), 0));
 	_ang = 0.0f;
 	_isRunning = true;
-	//_physWorld = new PhysicsWorld();
+	_world->GetComponent<FBOComponent>()->SetClearColor(Vec3(0.07f, 0.13f, 0.17f));
 	
 }
 Game::~Game() {
