@@ -92,14 +92,15 @@ void Game::Draw() {
 		_switch = !_switch;
 	}
 	
-	//Renderer::instance()->Draw(_world);
-	if (!_switch) {
+	Renderer::instance()->DrawNodes(_world, _world);
+	//DEBUG DRAW
+	/*if (!_switch) {
 		Renderer::instance()->Draw(_world);
 	}
 	else {
 		//v1_5::Renderer::instance()->DrawNodes(_world, _world);
 		Renderer::instance()->DrawNodes(_world, _world);
-	}
+	}*/
 	glfwSwapBuffers(Renderer::instance()->GetWindow());
 	glfwPollEvents();//<------------- THIS SHOULD BE IN MAIN ?
 	

@@ -150,6 +150,8 @@ void RenderNodeTest::SetUp() {
 	BaseNode* s2 = new BaseNode(Vec3(-1, 0, -1), Vec3(1, 1, 1), Vec3(0.0, 0, 0));
 	s2->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(s2);
+
+	_world->GetComponent<FBOComponent>()->SetClearColor(Vec3(1.0f, 1.0f, 1.0f));
 }
 
 /// <summary>

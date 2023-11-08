@@ -270,7 +270,6 @@ void Renderer::DrawRenderNode(const BaseNode* parent, const BaseNode* node, cons
 	glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fbo);
 	
 	//												DRAW 
-	Texture* t = GetTexture(0);
 	_fboMat->Bind(node->GetModelMatrix());
 	//bind texture from FBO
 	unsigned int tId = fbo->_fboTexture;

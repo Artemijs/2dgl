@@ -1,8 +1,21 @@
 #include "BasePanel.h"
 #include "../Game/Game.h"
+#include "../Game/FBOComponent.h"
+
+/*
+	EDGE BORDER OUTLINE THICKNESS SHADER
+	POINT LINE COLLISION
+	CHANGE CURSOR IMAGE
+	CREATE A NEW PANEL
+	TABS
+	SELECT TABS
+	MOVE TABS
+	CLOSE TABS
+	MOVE TABS TO DIFFERENT PANELS
+	DOCK TABS INTO NEW PANELS
 
 
-
+*/
 BasePanel::BasePanel() {
 
 	_parent = new RenderNode(Vec3(), Vec3(), 0);
@@ -61,5 +74,7 @@ void BasePanel::AddNeighbour(BasePanel* bp, unsigned int direction) {
 }
 
 
-
-
+void BasePanel::SetBackgroundColor(const Vec3& col) {
+	
+	_parent->GetComponent<FBOComponent>()->SetClearColor(col);
+}
