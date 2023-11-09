@@ -1,11 +1,16 @@
 #ifndef RENDERNODE_H
 #define RENDERNODE_H
 #include "./BaseNode.h"
-//#include "../BackEnd/FBO.h"
+#include "../Game/FBOComponent.h"
+
+
+
+
 class RenderNode : public BaseNode {
 private:
 
-	//const FBO _fbo;
+	FBOComponent* _fboComp;
+	BaseMaterial* _nodeMat;
 	void AddFBO() ;
 public:
 	RenderNode();
@@ -13,7 +18,9 @@ public:
 	
 	~RenderNode();
 	void MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, const Matrix4x4 rot) override;
-	//const FBO GetFBO() const;
+	const FBOComponent* GetFBOComp() const;
+	void SetNodeMat(BaseMaterial* bm);
+	BaseMaterial* GetMaterial()const ;
 
 };
 #endif

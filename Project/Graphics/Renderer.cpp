@@ -205,26 +205,36 @@ const Texture* Renderer::LoadTexture(const char* type, const char* path, unsigne
 	_all_textures->push_back(std::pair<const char*, Texture*>{path, t});
 	return t;
 }
- 
-void Renderer::DrawNodes(BaseNode* node, BaseNode* lastFbo) {
+
+/// <summary>
+/// what happens when your rendern ode has a basenode chld with its own children
+/// </summary>
+/// <param name="node"></param>
+/// <param name="lastFbo"></param>
+void Renderer::DrawNodes(BaseNode* node, RenderNode* lastFbo) {
 
 	bool renderNode = Utility::IsRenderNode(node);
 	bool isRoot = (node->GetParent() == NULL);
 	const FBOComponent* fbo = NULL;
-
+	RenderNode* nodeRn = NULL;
 
 	if (renderNode) {
 		//TURN ON RENDER NODES FBO
-		TurnRenderNodeOn(node, fbo);
+		TurnRenderNodeOn(nodeRn, node, fbo);
 		//lastFbo = node;
 	}
 
 	//DRAW ALL THE CHILDREN TO THE CURRENTLY BOUND FBO
 	const std::vector<BaseNode*>* children = node->GetAllChildren();
+	RenderNode* rn = lastFbo;
+	if (renderNode)
+		rn = nodeRn;
 	if (children != NULL) {
 		for (int i = 0; i < children->size(); ++i) {
+			
 			//send child and last currently active fbo node
-			DrawNodes(children->at(i), node);
+			DrawNodes(children->at(i), rn);
+
 			//THE ALGORYTHM DRAWS ON ITS WAY OUT OF THE FUNCTION
 		}
 	}
@@ -253,24 +263,28 @@ void Renderer::DrawNodes(BaseNode* node, BaseNode* lastFbo) {
 }
 
 
-void Renderer::TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo) {
+void Renderer::TurnRenderNodeOn(RenderNode*& rn, BaseNode* node, const FBOComponent*& fbo) {
 
-	fbo = node->GetComponent<FBOComponent>(FBOComponent::_component_id);
+	//fbo = node->GetComponent<FBOComponent>(FBOComponent::_component_id);
+	//fbo = dynamic_cast<FBOComponent*>(node->GetAllChildren()->at(0));
+	rn = dynamic_cast<RenderNode*>(node);
+	fbo = rn->GetFBOComp();
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo->_fbo);
 	fbo->Clear();
 }
 
 
-void Renderer::DrawRenderNode(const BaseNode* parent, const BaseNode* node, const FBOComponent* fbo) {
+void Renderer::DrawRenderNode(const RenderNode* parent, const BaseNode* node, const FBOComponent* fbo) {
 	
 	//												SET UP FBO
 	//unbind prev FBO
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	//ifi t is a render node but not the root node bind the FBO of the last FBO node
-	glBindFramebuffer(GL_FRAMEBUFFER, parent->GetComponent<FBOComponent>(FBOComponent::_component_id)->_fbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, parent->GetFBOComp()->_fbo);
 	
 	//												DRAW 
-	_fboMat->Bind(node->GetModelMatrix());
+	//_fboMat->Bind(node->GetModelMatrix());
+	parent->GetMaterial()->Bind(parent->GetModelMatrix());
 	//bind texture from FBO
 	unsigned int tId = fbo->_fboTexture;
 
@@ -285,7 +299,7 @@ void Renderer::DrawRenderNode(const BaseNode* parent, const BaseNode* node, cons
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 	//												CLEAN
-	_fboMat->Unbind();
+	parent->GetMaterial()->Unbind();
 }
 
 

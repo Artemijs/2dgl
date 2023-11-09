@@ -2,13 +2,18 @@
 #include "../Game/FBOComponent.h"
 
 
+
+
 unsigned int Utility::_idCount = 0;
+
+
 bool Utility::IsRenderNode(const BaseNode* node) {
 	const unsigned int fboCompSize = FBOComponent::_component_id;
 	auto components = node->Components();
 	if (components->size() != 1) return false;
 	return (components->at(0)->first == fboCompSize);
 }
+
 
 const unsigned int Utility::GetID() 
 {
@@ -17,6 +22,8 @@ const unsigned int Utility::GetID()
 	return _idCount;
 	
 }
+
+
 const float Utility::Dist2CLosest(const float min, const float max, const float p) {
 	const float min_m_p = min - ((p - min) * 2);
 	const float max_m_p = max - p;
@@ -27,9 +34,12 @@ const float Utility::Dist2CLosest(const float min, const float max, const float 
 		return max_m_p;
 }
 
+
 float Utility::Deg2Rad(const float deg) {
 	return deg * 0.0174533f;
 }
+
+
 float Utility::Rad2Deg(const float rad) {
 	return  rad / 0.0174533f;
 }

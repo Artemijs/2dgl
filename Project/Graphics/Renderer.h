@@ -19,7 +19,7 @@
 #include "Camera.h"
 #include "../Game/FBOComponent.h"
 #include "Materials/MaterialUiSprite.h"
-
+#include "../Game/RenderNode.h"
 
 class Renderer {
 
@@ -64,8 +64,8 @@ private:
 	void CreateWindow();
 	void CreateGeometry();
 
-	void TurnRenderNodeOn(const BaseNode* node, const FBOComponent*& fbo);
-	void DrawRenderNode(const BaseNode* parent, const BaseNode* node, const FBOComponent* fbo);
+	void TurnRenderNodeOn(RenderNode*& rn, BaseNode* node, const FBOComponent*& fbo);
+	void DrawRenderNode(const RenderNode* parent, const BaseNode* node, const FBOComponent* fbo);
 	void DrawFinalRect(const BaseNode* node, const FBOComponent* fbo);
 
 public:
@@ -75,7 +75,9 @@ public:
 	const Vec3 WindowSizeVec3();
 	GLFWwindow* GetWindow();
 	void Draw(const BaseNode* n);
-	void DrawNodes(BaseNode* node, BaseNode* lastFbo);
+
+	void DrawNodes(BaseNode* node, RenderNode* lastFbo);
+	
 	VAO* GetVAO();
 	void AddGraphic(Graphic* g) {						
 		_all_graphics->push_back(g);					

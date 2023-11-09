@@ -4,6 +4,7 @@
 RenderNode::RenderNode() :
 	BaseNode( Vec3(),  Renderer::instance()->WindowSizeVec3(), 0) {
 	AddFBO();
+	_nodeMat = new MaterialUiNoTex(Renderer::instance()->GetShader(1));
 
 }
 
@@ -11,11 +12,14 @@ RenderNode::RenderNode() :
 RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	BaseNode(pos, size, ang){
 	AddFBO();
+	_nodeMat = new MaterialUiNoTex(Renderer::instance()->GetShader(1));
+	//_nodeMat->_color = Vec4(0.5f, 0.5f, 0.7f,1.0f);
 }
 
 
 void RenderNode::AddFBO() {
-	AddComponent<FBOComponent>( new FBOComponent(_transform._scale.x, _transform._scale.y));
+	_fboComp = new FBOComponent(_transform._scale.x, _transform._scale.y);
+	AddComponent<FBOComponent>(_fboComp);
 }
 
 
@@ -47,4 +51,19 @@ void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, c
 	}
 
 	_model = nt * nr * ns;
+}
+
+
+const FBOComponent* RenderNode::GetFBOComp() const {
+	return _fboComp;
+}
+
+
+void RenderNode::SetNodeMat(BaseMaterial* bm) {
+	_nodeMat = bm;
+}
+
+
+BaseMaterial* RenderNode::GetMaterial()const  {
+	return _nodeMat;
 }

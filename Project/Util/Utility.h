@@ -20,6 +20,11 @@ public:
 	}
 	static const unsigned int GetID();
 	static const unsigned int GetMouseEventID();
+	/// <summary>
+	/// checks if the first component of the object is an FBOComponent since it is always the first and usually only component that a render node has
+	/// </summary>
+	/// <param name="node"></param>
+	/// <returns></returns>
 	static bool IsRenderNode(const BaseNode* node) ;
 
 

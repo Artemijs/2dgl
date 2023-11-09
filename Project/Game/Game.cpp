@@ -2,7 +2,7 @@
 #include "../Graphics/Renderer.h"
 #include "../Graphics/Sprite.h"
 #include "../Input/MouseEventHandler.h"
-//#include "../UI/RenderNode.h"
+#include "./RenderNode.h"
 #include <iostream>
 #include "../Math/BoxBounds.h"
 #include "FBOComponent.h"
@@ -92,7 +92,7 @@ void Game::Draw() {
 		_switch = !_switch;
 	}
 	
-	Renderer::instance()->DrawNodes(_world, _world);
+	Renderer::instance()->DrawNodes(_world, dynamic_cast<RenderNode*>(_world));
 	//DEBUG DRAW
 	/*if (!_switch) {
 		Renderer::instance()->Draw(_world);

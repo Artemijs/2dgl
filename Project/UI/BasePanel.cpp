@@ -22,10 +22,10 @@ BasePanel::BasePanel() {
 	Game::_world->AddChild(_parent);
 
 	_neighbours = new std::vector<std::vector<BasePanel*>*>{
-		new std::vector<BasePanel*>(),//left
-		new std::vector<BasePanel*>(),//top
-		new std::vector<BasePanel*>(),//right
-		new std::vector<BasePanel*>(),//bot
+		new std::vector<BasePanel*>(),		//left
+		new std::vector<BasePanel*>(),		//top
+		new std::vector<BasePanel*>(),		//right
+		new std::vector<BasePanel*>(),		//bot
 	};
 	_name = "Empty";
 	//MemoryManager::CacheGarbage(this);
