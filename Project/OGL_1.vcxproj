@@ -278,6 +278,8 @@
     <None Include="Assets\Shaders\sprite.vert" />
     <None Include="Assets\Shaders\ui_animated_sprite.frag" />
     <None Include="Assets\Shaders\ui_animated_sprite.vert" />
+    <None Include="Assets\Shaders\ui_renderNode.frag" />
+    <None Include="Assets\Shaders\ui_renderNode.vert" />
     <None Include="Assets\Shaders\ui_sprite.frag" />
     <None Include="Assets\Shaders\ui_sprite.vert" />
     <None Include="Assets\Shaders\defaultNoTex.frag" />

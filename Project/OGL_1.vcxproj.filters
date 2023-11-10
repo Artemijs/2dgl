@@ -567,6 +567,12 @@
     <None Include="Projects\2D\TileMapEditorMain.vert">
       <Filter>Projects\2D</Filter>
     </None>
+    <None Include="Assets\Shaders\ui_renderNode.vert">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
+    <None Include="Assets\Shaders\ui_renderNode.frag">
+      <Filter>Resource Files\Assets\Shaders\2D</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\btn.png">

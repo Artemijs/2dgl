@@ -1,10 +1,15 @@
 #include "RenderNode.h"
 #include "../Graphics/Renderer.h"
 #include "FBOComponent.h"
+#include "../UI/BasePanel.h"
 RenderNode::RenderNode() :
 	BaseNode( Vec3(),  Renderer::instance()->WindowSizeVec3(), 0) {
 	AddFBO();
-	_nodeMat = new MaterialUiNoTex(Renderer::instance()->GetShader(1));
+	RenderNodeMat* rnMat = new RenderNodeMat(Renderer::instance()->GetShader(8));
+	rnMat->_borderColor = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	rnMat->_borderSize = 10.0f;
+	rnMat->_textureSize = Vec2(100, 100);
+	_nodeMat = rnMat;
 
 }
 
@@ -12,19 +17,29 @@ RenderNode::RenderNode() :
 RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	BaseNode(pos, size, ang){
 	AddFBO();
-	_nodeMat = new MaterialUiNoTex(Renderer::instance()->GetShader(1));
-	//_nodeMat->_color = Vec4(0.5f, 0.5f, 0.7f,1.0f);
+	_nodeMat = new RenderNodeMat(Renderer::instance()->GetShader(8));
+
+	RenderNodeMat* rnMat = new RenderNodeMat(Renderer::instance()->GetShader(8));
+	
+	rnMat->_borderColor = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	rnMat->_borderSize = 10.0f;
+	rnMat->_textureSize = Vec2(size.x, size.y);
+
+	_nodeMat = rnMat;
+	
 }
 
 
 void RenderNode::AddFBO() {
 	_fboComp = new FBOComponent(_transform._scale.x, _transform._scale.y);
 	AddComponent<FBOComponent>(_fboComp);
+	//_fboComp->SetClearColor(Vec3(0.1, 0.1, 0.1));
 }
 
 
 RenderNode::~RenderNode() {
 	std::cout << "RENDER NODE DELETED\n";
+	delete _nodeMat;
 }
 
 

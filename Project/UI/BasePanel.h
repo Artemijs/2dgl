@@ -3,11 +3,25 @@
 #include "../Util/MemoryManager.h"
 #include "../Game/RenderNode.h"
 #include <vector>
+#include "../Graphics/Materials/MaterialUiSprite.h"
 
+class RenderNodeMat : public MaterialUiNoTex {
+private:
+public:
+	Vec4 _borderColor;
+	float _borderSize;
+	Vec2 _textureSize;
+	RenderNodeMat();
+	RenderNodeMat(const Shader* s);
+	/// <summary>
+	/// shaders and textures get deleted in renderer
+	/// </summary>
+	virtual ~RenderNodeMat();
+	void Bind(const Matrix4x4* model) const override;
+	void Unbind() const override;
+};
 
-
-
-class BasePanel :public Memory {
+class BasePanel : public Memory {
 private:
 
 	RenderNode* _parent;

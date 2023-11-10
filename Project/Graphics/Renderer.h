@@ -92,6 +92,7 @@ public:
 	"Assets/Shaders/diffuse.vert", "Assets/Shaders/diffuse.frag"));
 	"Assets/Shaders/Experimental/eperiment_0.vert", "Assets/Shaders/Experimental/eperiment_0.frag"));
 	"Assets/Shaders/sprite.vert", "Assets/Shaders/sprite.frag"));
+	"Assets/Shaders/ui_renderNode.vert", "Assets/Shaders/ui_renderNode.frag"));//8
 */
 	Shader* GetShader(int id);							
 	Texture* GetTexture(int id);						

@@ -16,6 +16,42 @@
 
 
 */
+
+
+RenderNodeMat::RenderNodeMat() {
+
+}
+
+
+RenderNodeMat::RenderNodeMat(const Shader* s) {
+
+}
+
+
+/// <summary>
+/// shaders and textures get deleted in renderer
+/// </summary>
+RenderNodeMat::~RenderNodeMat() {
+
+}
+
+
+void RenderNodeMat::Bind(const Matrix4x4* model) const {
+	MaterialUiNoTex::Bind(model);
+
+	glUniform4f(glGetUniformLocation(_shader->ID,"borderColor"), _borderColor.x, _borderColor.y, _borderColor.z, _borderColor.a);
+	glUniform2f(glGetUniformLocation(_shader->ID, "size"), _textureSize.x, _textureSize.y);
+	glUniform1f(glGetUniformLocation(_shader->ID, "borderSize"), _borderSize);
+}
+
+
+void RenderNodeMat::Unbind() const {
+	MaterialUiNoTex::Unbind();
+
+}
+
+
+
 BasePanel::BasePanel() {
 
 	_parent = new RenderNode(Vec3(), Vec3(), 0);
