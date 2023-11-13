@@ -6,6 +6,11 @@
 #include "Mesh.h"
 using json = nlohmann::json;
 
+/*
+	MAYBE THIS NEEDSS TO INHERIT FROM GRAPHIC SO THAT THE RENDERING ALGORYTHM CALLS THE DRAW FUNCTION
+*/
+
+
 class Model {
 private:
 	const char* _filePath;

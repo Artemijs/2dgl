@@ -19,7 +19,7 @@ RenderNodeTest::RenderNodeTest(){
 	camera->CalculateViewMatrix();
 
 	//				set up render nodes
-	SetUp();
+	SetUpB();
 
 }
 
@@ -133,12 +133,12 @@ void RenderNodeTest::MoveCamera2D() {
 void RenderNodeTest::SetUp() {
 	Renderer* r = Renderer::instance();
 	//s1
-	BaseNode* s1 = new BaseNode(Vec3(0,0,-1), Vec3(1,1, 1), Vec3(0.0,0,0));
+	BaseNode* s1 = new BaseNode(Vec3(0,0,-1), Vec3(1, 1, 1), Vec3(0.0f, 0.0f, 0.0f));
 	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7),"Assets/Textures/default.png")));
 	_world->AddChild(s1);
 
 	//r1
-	RenderNode* rn1 = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
+	RenderNode* rn1 = new RenderNode(Vec3(100, 100, -10), Renderer::instance()->WindowSizeVec3(), 0);
 	_world->AddChild(rn1);
 
 	//r1 -- s1

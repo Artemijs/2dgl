@@ -284,13 +284,28 @@ GLuint lightIndices[] =
 
 void MeshLoader::LoadModel(const char* filePath, Model*& model) {
 	//check if exists
-	for (int i = 0; i < _models->size(); i++) {
+	/*for (int i = 0; i < _models->size(); i++) {
 		auto val = _models->at(i);
 		if (val.first.compare( filePath) == 0) {
+
 			model = val.second;
+			return;
+
 		}
 	}
+	_models->push_back(std::pair<const std::string, Model*>{filePath, new Model()});
 
+	// Make a JSON object
+	std::string text = get_file_contents(filePath);
+	JSON = json::parse(text);
+
+	// Get the binary data
+	Model::file = file;
+	_data = GetData();
+
+	// Traverse all nodes
+	traverseNode(0);
+	*/
 
 }
 
@@ -370,23 +385,55 @@ void MeshLoader::TraverseNode(unsigned int nextNode, Matrix4x4 matrix ) {
 	{
 		for (unsigned int i = 0; i < node["children"].size(); i++)
 			traverseNode(node["children"][i], matNextNode);
-	}*/
-
+	}
+	*/
 }
 
 void MeshLoader::GetData(std::vector<unsigned char>& data) {
+/*	std::string bytesText;
+	std::string uri = JSON["buffers"][0]["uri"];
 
+	std::string fileStr = std::string(_filePath);
+	std::string fileDir = fileStr.substr(0, fileStr.find_last_of('/') + 1);
+	bytesText = get_file_contents((fileDir + fileDir).c_str());
+	data = std::vector<unsigned char >(bytesText.begin(), bytesText.end());
+	*/
 }
 
 
 void MeshLoader::GetFloats(json accessor, std::vector<float>& floats) {
 
+	unsigned int buffViewInd = accessor.value("bufferView", 1);
+	unsigned int count = accessor["count"];
+	unsigned int accByteOffset = accessor.value("byteOffset", 0);
+	std::string type = accessor["type"];
+
+	json bufferView = JSON["bufferViews"][buffViewInd];
+	unsigned int byteOffset = bufferView["byteOffset"];
+
+	unsigned int numPerVert;
+
+	if (type == "SCALAR") numPerVert = 1;
+	else if (type == "VEC2") numPerVert = 2;
+	else if (type == "VEC3") numPerVert = 3;
+	else if (type == "VEC4") numPerVert = 4;
+	else throw std::invalid_argument("Type is invalid ( not SCALAR, VEC2, VEC3 OR VEC4)");
+
+	unsigned int beginingOfData = byteOffset + accByteOffset;
+	unsigned int lenghtOfData = count * 4 * numPerVert;
+
+	for (unsigned int i = beginingOfData; i < beginingOfData + lenghtOfData;) {
+		unsigned char bytes[] = { _data[i++], _data[i++], _data[i++], _data[i++] };
+		float value;
+		std::memcpy(&value, bytes, sizeof(float));
+		floats.push_back(value);
+	}
 }
 
 
 void MeshLoader::GetIndices(json accessor, std::vector<GLuint>& indices) {
 
-	/*std::vector<GLuint> indices;
+	//std::vector<GLuint> indices;
 
 	unsigned int buffViewInd = accessor.value("bufferView", 0);
 	unsigned int count = accessor["count"];
@@ -420,19 +467,56 @@ void MeshLoader::GetIndices(json accessor, std::vector<GLuint>& indices) {
 			std::memcpy(&value, bytes, sizeof(short));
 			indices.push_back((GLuint)value);
 		}
-	}*/
+	}
 
 }
 
 
-void MeshLoader::GetTextures(std::vector<Texture>& textures) {
+void MeshLoader::GetTextures(std::vector<const Texture*>& textures) {
+	/*Renderer* r = Renderer::instance();
+	std::vector<Texture> textures;
 
+	std::string fileStr = std::string(_filePath);
+	std::string fileDirectory = fileStr.substr(0, fileStr.find_last_of('/') + 1);
+
+	//for every texture used in the model
+	unsigned int diffCount = 0;
+	unsigned int specCount = 0;
+	for (unsigned int i = 0; i < JSON["images"].size(); i++) {
+
+		//get file path
+		std::string path = JSON["images"][i]["uri"];
+
+		std::string  texName;
+		if (path.find("baseColor") != std::string::npos) {
+			texName = "diffuse" + std::to_string(diffCount);
+			diffCount++;
+		}
+		else if (path.find("metallicRoughness") != std::string::npos) {
+			texName = "specular" + std::to_string(specCount);
+			specCount++;
+		}
+
+		textures.push_back( r->LoadTexture(texName.c_str(), (fileDirectory + path).c_str()));
+
+
+	}*/
 }
 
 
 void MeshLoader::AssembleVertices(std::vector<Vertex>& vertices, const std::vector<Vec3>& positions, const std::vector<Vec3>& normals, const std::vector<Vec2>& textUvs) {
 	
-	
+	//tutorial time 1:46:33
+	for (int i = 0; i < positions.size(); i++) {
+		vertices.push_back
+		(
+			Vertex{
+				positions[i],
+				normals[i],
+				textUvs[i]
+			}
+		);
+	}
 }
 
 

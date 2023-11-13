@@ -37,7 +37,7 @@ void BasePanelTest::Update(float deltaTime) {
 	
 
 
-	MoveCamera3D();
+	//MoveCamera3D(false);
 
 }
 
@@ -94,7 +94,7 @@ void BasePanelTest::MoveCamera3D(bool rotate, bool move) {
 void BasePanelTest::CreateTopPanel() {
 
 	Vec2 winSize = _r->GetWindowSize();
-	_topPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5, winSize.y -51.0f, -1.0f), Vec3(winSize.x, 100.0f, 1.0f));
+	_topPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5, winSize.y -50.0f, -1.0f), Vec3(winSize.x, 100.0f, 1.0f));
 	_topPanel->AddNeighbour(_mainPanel, 3);
 	_topPanel->SetBackgroundColor(Vec3(0.1f, 0.01f, 0.012f));
 }
@@ -103,7 +103,7 @@ void BasePanelTest::CreateTopPanel() {
 void BasePanelTest::CreateBotPanel() {
 
 	Vec2 winSize = _r->GetWindowSize();
-	_botPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5, 52.0f, -1.0f), Vec3(winSize.x, 100.0f, 1.0f));
+	_botPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5, 20.0f, -1.0f), Vec3(winSize.x, 40.0f, 1.0f));
 	_botPanel->AddNeighbour(_mainPanel, 1);
 	_botPanel->SetBackgroundColor(Vec3(0.17f, 0.14f, 0.178f));
 }
@@ -112,7 +112,7 @@ void BasePanelTest::CreateBotPanel() {
 void BasePanelTest::CreateMainPanel() {
 
 	Vec2 winSize = _r->GetWindowSize();
-	_mainPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5f, winSize.y *0.5f, -1.0f), Vec3(winSize.x, winSize.y - 210.0f, 1.0f));
+	_mainPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5f, winSize.y *0.5f - 30.0f , -1.0f), Vec3(winSize.x, winSize.y - 140.0f, 1.0f));
 	_mainPanel->AddNeighbour(_topPanel, 1);
 	_mainPanel->AddNeighbour(_botPanel, 3);
 	_mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));

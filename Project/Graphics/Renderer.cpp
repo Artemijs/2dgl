@@ -257,7 +257,7 @@ void Renderer::DrawNodes(BaseNode* node, RenderNode* lastFbo) {
 		else if (renderNode) {
 			//here it should turn itself off and the last parent render node in the hierarchy on
 			//DRAW THE NODE OF THE CURRENTLY BOUND FBO TO ITS PARENT FBO which may or may not be final rect
-			DrawRenderNode(lastFbo, node, fbo);
+			DrawRenderNode(lastFbo, nodeRn, fbo);
 		}
 	}
 }
@@ -274,7 +274,7 @@ void Renderer::TurnRenderNodeOn(RenderNode*& rn, BaseNode* node, const FBOCompon
 }
 
 
-void Renderer::DrawRenderNode(const RenderNode* parent, const BaseNode* node, const FBOComponent* fbo) {
+void Renderer::DrawRenderNode(const RenderNode* parent, const RenderNode* node, const FBOComponent* fbo) {
 	
 	//												SET UP FBO
 	//unbind prev FBO
@@ -284,7 +284,7 @@ void Renderer::DrawRenderNode(const RenderNode* parent, const BaseNode* node, co
 	
 	//												DRAW 
 	//_fboMat->Bind(node->GetModelMatrix());
-	parent->GetMaterial()->Bind(parent->GetModelMatrix());
+	node->GetMaterial()->Bind(node->GetModelMatrix());
 	//bind texture from FBO
 	unsigned int tId = fbo->_fboTexture;
 

@@ -25,6 +25,7 @@ class BasePanel : public Memory {
 private:
 
 	RenderNode* _parent;
+	RenderNodeMat* _panelMaterial;
 	const char* _name;
 	//0: Left , 1: top , 2: rright, 3: bottom
 	std::vector<std::vector<BasePanel*>*>* _neighbours;
@@ -42,6 +43,7 @@ public:
 	//0: Left , 1: top , 2: rright, 3: bottom
 	void AddNeighbour(BasePanel* bp, unsigned int direction);
 	void SetBackgroundColor(const Vec3& col);
+	RenderNodeMat* GetMaterial();
 
 };
 
