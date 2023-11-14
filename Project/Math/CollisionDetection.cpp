@@ -442,6 +442,33 @@ const void CollisionDetection::CircleCircleCollision(const shape& a, const shape
 
 
 bool CollisionDetection::LineObjectIntersection(Ray* ray, RayHitData& hitData) {
-
+	//i thought i did this... somewhere...
 	return false;
+}
+
+/// <summary>
+/// check a dot product between 2 points in 2d used for ui
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <param name="thickness"></param>
+/// <returns></returns>
+bool LinePointCollision2D(const Vec3& a, const Vec3& b, const float thickness, const Vec3& point) {
+
+	//						get the axis to project onto
+	Vec3 dir = Vec3::Normalize(b - a);
+	float temp = dir.x;
+	dir.x = dir.y;
+	dir.y = -temp;
+
+	//							prject onto axis
+	//only project one point because it is a line and a nad b are directly on top of each other
+	float linePrj = Vec2::Dot(dir.x, dir.y, a.x, a.y);
+	float pointPrj = Vec2::Dot(dir.x, dir.y, point.x, point.y);
+
+	//							check overlap
+	float halfThick = thickness* 0.5f;
+	return (pointPrj >= linePrj - halfThick && pointPrj <= linePrj + halfThick);
+
+
 }

@@ -67,6 +67,8 @@ public :
 	/// <param name="hitData">The return data variable that is filled here</param>
 	/// <returns>collided/not collided</returns>
 	static bool LineObjectIntersection(Ray* ray, RayHitData& hitData);
+
+	static bool LinePointCollision2D(const Vec3& a, const Vec3& b, const float thickness, const Vec3& point);
 	
 };
 #endif

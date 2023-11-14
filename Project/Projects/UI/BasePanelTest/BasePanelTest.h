@@ -7,19 +7,17 @@
 
 class BasePanelTest : public Game {
 private:
-	BasePanel* _topPanel;
+	/*BasePanel* _topPanel;
 	BasePanel* _mainPanel;
-	BasePanel* _botPanel;
+	BasePanel* _botPanel;*/
 	Renderer* _r;
 public :
 	BasePanelTest();
 	~BasePanelTest();
 	void Update(float deltaTime) override;
 	void MoveCamera3D(bool rotate = true, bool move = true);
-	void CreateTopPanel();
-	void CreateBotPanel();
-	void CreateMainPanel();
-	//void CreateLeftPanel();
+	void CreatePanels();
+	
 
 };
 #endif

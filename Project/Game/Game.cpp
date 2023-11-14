@@ -12,6 +12,7 @@
 #include "../UI/Text.h"
 #include "../Math/CollisionHandler.h"
 #include "../Util/MemoryManager.h"
+#include "../UI/UIHandler.h"
 Mouse* Game::_mouse = new Mouse();
 PhysicsWorld* Game::_physWorld = new PhysicsWorld();
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
@@ -40,7 +41,8 @@ Game::~Game() {
 	delete _mouse;
 	CollisionHandler::Delete();
 
-	
+	UIHandler::Clean();
+
 	MemoryManager::ClearMemory();
 	MemoryManager::Clean();
 }
@@ -82,6 +84,8 @@ void Game::Update(float deltaTime) {
 
 	MouseEventHandler::HandleMouseMoving(mouseInWorld, deltaTime);
 	MouseEventHandler::Update(deltaTime);
+	
+	UIHandler::Update(deltaTime);
 }
 
 void Game::Draw() {

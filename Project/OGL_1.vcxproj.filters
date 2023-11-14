@@ -324,6 +324,9 @@
     <ClCompile Include="Projects\UI\BasePanelTest\BasePanelTest.cpp">
       <Filter>Projects\UI\BasePanelTest</Filter>
     </ClCompile>
+    <ClCompile Include="UI\UIHandler.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4x4.h">
@@ -499,6 +502,9 @@
     </ClInclude>
     <ClInclude Include="Projects\UI\BasePanelTest\BasePanelTest.h">
       <Filter>Projects\UI\BasePanelTest</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UIHandler.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

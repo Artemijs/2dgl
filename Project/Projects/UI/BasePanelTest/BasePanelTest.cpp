@@ -16,18 +16,14 @@ BasePanelTest::BasePanelTest(){
 	BaseNode* s1 = new BaseNode(Vec3(0, 0, -1), Vec3(100, 100, 1), Vec3(0.0, 0, 0));
 	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(_r->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(s1);
-	CreateTopPanel();
-	CreateMainPanel();
-	CreateBotPanel();
+	CreatePanels();
 	
 
 }
 
 
 BasePanelTest::~BasePanelTest() {
-	delete _topPanel;
-	delete _botPanel;
-	delete _mainPanel;
+	
 }
 
 
@@ -90,31 +86,22 @@ void BasePanelTest::MoveCamera3D(bool rotate, bool move) {
 
 }
 
-
-void BasePanelTest::CreateTopPanel() {
-
-	Vec2 winSize = _r->GetWindowSize();
-	_topPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5, winSize.y -50.0f, -1.0f), Vec3(winSize.x, 100.0f, 1.0f));
-	_topPanel->AddNeighbour(_mainPanel, 3);
-	_topPanel->SetBackgroundColor(Vec3(0.1f, 0.01f, 0.012f));
-}
-
-
-void BasePanelTest::CreateBotPanel() {
+#include "../../../UI/UIHandler.h"
+void BasePanelTest::CreatePanels() {
 
 	Vec2 winSize = _r->GetWindowSize();
-	_botPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5, 20.0f, -1.0f), Vec3(winSize.x, 40.0f, 1.0f));
-	_botPanel->AddNeighbour(_mainPanel, 1);
-	_botPanel->SetBackgroundColor(Vec3(0.17f, 0.14f, 0.178f));
-}
+	BasePanel* topPanel = UIHandler::GetPanel("Empty", _world, Vec3(winSize.x * 0.5, winSize.y - 50.0f, -1.0f), Vec3(winSize.x, 100.0f, 1.0f));
+	BasePanel* botPanel = UIHandler::GetPanel("Empty", _world, Vec3(winSize.x * 0.5, 20.0f, -1.0f), Vec3(winSize.x, 40.0f, 1.0f));
+	BasePanel* mainPanel = UIHandler::GetPanel("Empty", _world, Vec3(winSize.x * 0.5f, winSize.y * 0.5f - 30.0f, -1.0f), Vec3(winSize.x, winSize.y - 140.0f, 1.0f));
 
+	topPanel->AddNeighbour(mainPanel, 3);
+	topPanel->SetBackgroundColor(Vec3(0.1f, 0.01f, 0.012f));
+	
+	botPanel->AddNeighbour(mainPanel, 1);
+	botPanel->SetBackgroundColor(Vec3(0.17f, 0.14f, 0.178f));
 
-void BasePanelTest::CreateMainPanel() {
-
-	Vec2 winSize = _r->GetWindowSize();
-	_mainPanel = new BasePanel("Empty", _world, Vec3(winSize.x * 0.5f, winSize.y *0.5f - 30.0f , -1.0f), Vec3(winSize.x, winSize.y - 140.0f, 1.0f));
-	_mainPanel->AddNeighbour(_topPanel, 1);
-	_mainPanel->AddNeighbour(_botPanel, 3);
-	_mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));
+	mainPanel->AddNeighbour(topPanel, 1);
+	mainPanel->AddNeighbour(botPanel, 3);
+	mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));
 
 }

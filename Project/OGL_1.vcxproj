@@ -204,6 +204,7 @@
     <ClCompile Include="UI\BasePanel.cpp" />
     <ClCompile Include="UI\Button.cpp" />
     <ClCompile Include="UI\Text.cpp" />
+    <ClCompile Include="UI\UIHandler.cpp" />
     <ClCompile Include="Util\Callback.cpp" />
     <ClCompile Include="Util\DataStructures.cpp" />
     <ClCompile Include="Util\MemoryManager.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="UI\BasePanel.h" />
     <ClInclude Include="UI\Button.h" />
     <ClInclude Include="UI\Text.h" />
+    <ClInclude Include="UI\UIHandler.h" />
     <ClInclude Include="Util\Callback.h" />
     <ClInclude Include="Util\DataStructures.h" />
     <ClInclude Include="Util\MemoryManager.h" />
