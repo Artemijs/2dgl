@@ -7,9 +7,6 @@
 
 class BasePanelTest : public Game {
 private:
-	/*BasePanel* _topPanel;
-	BasePanel* _mainPanel;
-	BasePanel* _botPanel;*/
 	Renderer* _r;
 public :
 	BasePanelTest();

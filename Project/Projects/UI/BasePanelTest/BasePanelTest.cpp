@@ -104,4 +104,8 @@ void BasePanelTest::CreatePanels() {
 	mainPanel->AddNeighbour(botPanel, 3);
 	mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));
 
+	BaseNode* btn = new BaseNode(Vec3(), Vec3(), Vec3());
+	BaseNode* mainBn = mainPanel->GetNode();
+	
+
 }

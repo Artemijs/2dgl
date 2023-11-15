@@ -453,7 +453,7 @@ bool CollisionDetection::LineObjectIntersection(Ray* ray, RayHitData& hitData) {
 /// <param name="b"></param>
 /// <param name="thickness"></param>
 /// <returns></returns>
-bool LinePointCollision2D(const Vec3& a, const Vec3& b, const float thickness, const Vec3& point) {
+bool CollisionDetection::LinePointCollision2D(const Vec3& a, const Vec3& b, const float thickness, const Vec3& point) {
 
 	//						get the axis to project onto
 	Vec3 dir = Vec3::Normalize(b - a);

@@ -72,6 +72,7 @@ public:
 	void operator-=(const  Vec3& v);
 	void operator/=(const  float& v);
 	const bool operator==(const Vec3& v) const;
+	const bool operator!=(const Vec3& v) const;
 	void operator=(const Vec3& v) ;
 	const float Lenght()const;
 	void Normalize();

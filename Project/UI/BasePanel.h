@@ -44,6 +44,7 @@ public:
 	void AddNeighbour(BasePanel* bp, unsigned int direction);
 	void SetBackgroundColor(const Vec3& col);
 	RenderNodeMat* GetMaterial();
+	BaseNode* GetNode();
 
 };
 

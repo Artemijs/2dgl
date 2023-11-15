@@ -5,6 +5,10 @@
 #include "../Util/Utility.h"
 #include "../Math/Matrix4x4.h"
 #define fpointer std::function<void(const Vec3)>
+
+
+
+
 //#define fptr void(T::* method)()
 enum class BtnEvent {
 	ON_PRESS = 0,
@@ -17,6 +21,8 @@ enum class BtnEvent {
 	ON_END_HOVER,
 	end
 };
+
+
 class MouseEvent : public BaseComponent {
 private:
 	std::vector<std::vector<fpointer>*>* _callbacks;

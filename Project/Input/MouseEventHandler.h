@@ -38,6 +38,7 @@ public:
 	static const Vec3 GetMousePosition();
 
 	static BaseNode* CheckCollision(BaseNode* n, const Vec3 mousePos);
+	static void HandleEdgeEvents(BaseNode* node, const Vec3& mousePos);
 
 };
 #endif

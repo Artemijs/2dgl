@@ -226,6 +226,10 @@ const bool Vec3::operator==(const Vec3& v) const {
 	return (v.x == x && v.y == y && v.z == z);
 }
 
+const bool Vec3::operator!=(const Vec3& v) const {
+	return (x != v.x || y != v.y || z != v.z);
+}
+
 
 const float Vec3::Lenght() const {
 	return std::sqrt((x * x + y * y + z * z));

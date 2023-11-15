@@ -134,3 +134,7 @@ RenderNodeMat* BasePanel::GetMaterial() {
 	return _panelMaterial;
 
 }
+
+BaseNode* BasePanel::GetNode() {
+	return _parent;
+}
