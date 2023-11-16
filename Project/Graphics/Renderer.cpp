@@ -44,7 +44,7 @@ Renderer::Renderer() {
 
 	_fRect = new FinalRect();
 
-	_camera = new Camera(_windowSize.x, _windowSize.y, Vec3(0, 0, 0));
+	_camera = new Camera(_windowSize.x, _windowSize.y, Vec3(0, 0, 100));
 
 	_fboMat = new MaterialUiNoTex(_all_shaders->at(1));
 }

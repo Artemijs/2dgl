@@ -40,6 +40,7 @@ protected:
 	std::vector< std::pair< const unsigned int, BaseComponent*>*>* _components;
 	BaseNode* _parent;
 	std::vector<BaseNode*>* _children;
+	//0 position, 1 scale, 2 angle
 	bool _inheritTransform[3]{ true, true, true };
 	bool _visible;
 	Matrix4x4 _model;

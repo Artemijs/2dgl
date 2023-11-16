@@ -83,6 +83,14 @@ void Game::Update(float deltaTime) {
 	Vec3 mouseInWorld = Renderer::instance()->GetCamera()->GetViewMatrix()->Inverse() * _mouse->GetMousePosV3();
 
 	MouseEventHandler::HandleMouseMoving(mouseInWorld, deltaTime);
+
+	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_DOWN) {
+		MouseEventHandler::HandleMouseClick(true);
+	}
+	else if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_UP) {
+		MouseEventHandler::HandleMouseClick(false);
+	}
+
 	MouseEventHandler::Update(deltaTime);
 	
 	UIHandler::Update(deltaTime);

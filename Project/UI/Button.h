@@ -3,6 +3,9 @@
 
 #include "../Game/BaseNode.h"
 #include "../Graphics/Materials/MaterialUiButton.h"
+/// <summary>
+/// inherits base node
+/// </summary>
 class Button : public BaseNode {
 private:
 	MaterialUiButton* _material;

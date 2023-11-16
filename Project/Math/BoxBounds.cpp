@@ -6,19 +6,21 @@
 
 BoxBounds::BoxBounds(BaseNode* owner):Bounds(BoundsType::BB, owner) {
 
-	_localRect[0] = Vec3(-0.5f, 0.5f, 0.0f);//top left 
-	_localRect[1] = Vec3(0.5f, 0.5f, 0.0f);//top right
-	_localRect[2] = Vec3(0.5f, -0.5f, 0.0f);// bot right
+	_localRect[0] = Vec3(-0.5f, 0.5f, 0.0f); //top left 
+	_localRect[1] = Vec3(0.5f, 0.5f, 0.0f);  //top right
+	_localRect[2] = Vec3(0.5f, -0.5f, 0.0f); //bot right
 	_localRect[3] = Vec3(-0.5f, -0.5f, 0.0f);//bot left
+	_centerOfMass = Vec3();
 }
 
 
 //use this to create an AABB
 BoxBounds::BoxBounds(BaseNode* owner, BoundsType type) :Bounds(type, owner) {
-	_localRect[0] = Vec3(-0.5f, 0.5f, 0.0f);//top left 
-	_localRect[1] = Vec3(0.5f, 0.5f, 0.0f);//top right
-	_localRect[2] = Vec3(0.5f, -0.5f, 0.0f);// bot right
+	_localRect[0] = Vec3(-0.5f, 0.5f, 0.0f); //top left 
+	_localRect[1] = Vec3(0.5f, 0.5f, 0.0f);  //top right
+	_localRect[2] = Vec3(0.5f, -0.5f, 0.0f); //bot right
 	_localRect[3] = Vec3(-0.5f, -0.5f, 0.0f);//bot left
+	_centerOfMass = Vec3();
 }
 
 
@@ -28,18 +30,22 @@ BoxBounds::BoxBounds(BaseNode* owner, const Vec3 topLeft, const Vec3 topRight, c
 	_localRect[1] = topRight;	
 	_localRect[2] = botLeft;	
 	_localRect[3] = botRight;	
+	_centerOfMass = Vec3();
 }
 
-
+#include "../Util/Utility.h"
 /*
 todo I DONT THINK THIS NEEDS TO BE VIRTUAL
 */
 void BoxBounds::Translate2World(const Matrix4x4* model)  {
 	const int a = 0;
 	int b = a;
+	printf("\n");
 	for (int i = 0; i < 4; ++i) {
 		_worldRect[i] = (*model )* _localRect[i];
+		Utility::PrintVector("BoxBounds Positions : ", _worldRect[i]);
 	}
+	printf("\n");
 	_centerOfMass = (*model) * Vec3(0, 0, 0);
 }
 

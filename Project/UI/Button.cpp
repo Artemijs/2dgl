@@ -12,6 +12,9 @@ Button::Button():
 	_pressedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnPress.wav")),
 	_releasedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnRelease.wav")),
 	_enterSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/enterBtn.wav")) {
+
+	_inheritTransform[0] = true;
+
 	//set up mouse events
 	MouseEvent* mouse_e = new MouseEvent();												
 	Button* b = this;																	
@@ -72,16 +75,19 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 	mouse_e->AddEvent([&, b](const Vec3 v) {b->OnEndHover(); }, BtnEvent::ON_END_HOVER);	
 	AddComponent<MouseEvent>(mouse_e);				
 													
-	_material = new MaterialUiButton();				
+	_material = new MaterialUiButton();	
+
 	Sprite* btton_bg = new Sprite(_material);		
 	AddComponent<Sprite>(btton_bg);					
 													
 	AddComponent<BoxBounds>(new BoxBounds(this));	
-	BaseNode* bm = new BaseNode(Vec3(0, 0, 0.10f), Vec3(1,1,1), 0);
+
+	BaseNode* textNode = new BaseNode(Vec3(0.0f, 0.0f, 1.0f), Vec3(1.0f, 1.0f, 1.0f), 0);
+
 	bool bools[3] = { true, false, true};
-	bm->SetInheritTransform(bools);		
-	AddChild(bm);						
-	bm->AddComponent<Text>(new Text(txt, bm, 15));
+	textNode->SetInheritTransform(bools);
+	AddChild(textNode);
+	textNode->AddComponent<Text>(new Text(txt, textNode, 15));
 										
 	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
 									

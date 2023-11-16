@@ -1,6 +1,7 @@
 #include "./BasePanelTest.h"
 #include "../../../Graphics/Renderer.h"
 #include "../../../Graphics/Materials/MaterialSprite.h"
+#include "../../../UI/Button.h"
 
 
 
@@ -13,7 +14,7 @@ BasePanelTest::BasePanelTest(){
 
 	_world->GetComponent<FBOComponent>()->SetClearColor(Vec3(1.0f, 1.0f, 1.0f));
 	//something to orient around
-	BaseNode* s1 = new BaseNode(Vec3(0, 0, -1), Vec3(100, 100, 1), Vec3(0.0, 0, 0));
+	BaseNode* s1 = new BaseNode(Vec3(0, 0, -1), Vec3(10, 10, 1), Vec3(0.0, 0, 0));
 	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(_r->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(s1);
 	CreatePanels();
@@ -103,9 +104,15 @@ void BasePanelTest::CreatePanels() {
 	mainPanel->AddNeighbour(topPanel, 1);
 	mainPanel->AddNeighbour(botPanel, 3);
 	mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));
-
-	BaseNode* btn = new BaseNode(Vec3(), Vec3(), Vec3());
-	BaseNode* mainBn = mainPanel->GetNode();
 	
+	BaseNode* btn = new Button("LOL", Vec3(400.0f, 400.0f, -10.0f), Vec3(100.0f, 100.0f, 0), 0.0f);
+	BaseNode* mainBn = mainPanel->GetNode();
+	_world->AddChild(btn);
 
 }
+/*
+350 450
+450 450
+450 350
+350 350
+*/
