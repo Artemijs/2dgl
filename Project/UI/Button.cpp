@@ -13,7 +13,7 @@ Button::Button():
 	_releasedSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/btnRelease.wav")),
 	_enterSfx(SoundCtrl::GetInstance()->LoadSFX("Assets/AFX/enterBtn.wav")) {
 
-	_inheritTransform[0] = true;
+	//_inheritTransform[0] = true;
 
 	//set up mouse events
 	MouseEvent* mouse_e = new MouseEvent();												
@@ -82,13 +82,13 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 													
 	AddComponent<BoxBounds>(new BoxBounds(this));	
 
-	BaseNode* textNode = new BaseNode(Vec3(0.0f, 0.0f, 1.0f), Vec3(1.0f, 1.0f, 1.0f), 0);
+	BaseNode* textNode = new BaseNode(Vec3(0.0f, 0.0f,  1.0f), Vec3(1.0f, 1.0f, 1.0f), 0);
 
 	bool bools[3] = { true, false, true};
 	textNode->SetInheritTransform(bools);
 	AddChild(textNode);
 	textNode->AddComponent<Text>(new Text(txt, textNode, 15));
-										
+								
 	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
 									
 }

@@ -7,7 +7,7 @@ RenderNode::RenderNode() :
 	AddFBO();
 	RenderNodeMat* rnMat = new RenderNodeMat(Renderer::instance()->GetShader(8));
 	rnMat->_borderColor = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	rnMat->_borderSize = 10.0f;
+	rnMat->_borderSize = 1.0f;
 	rnMat->_textureSize = Vec2(100, 100);
 	_nodeMat = rnMat;
 
@@ -22,7 +22,7 @@ RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	RenderNodeMat* rnMat = new RenderNodeMat(Renderer::instance()->GetShader(8));
 	
 	rnMat->_borderColor = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	rnMat->_borderSize = 10.0f;
+	rnMat->_borderSize = 1.0f;
 	rnMat->_textureSize = Vec2(size.x, size.y);
 
 	_nodeMat = rnMat;

@@ -61,6 +61,7 @@ public:
 	/// <param name="id"> int, 0 : position, 1 : scale, 2 : ang</param>
 	/// <param name="on">true/false</param>
 	void SetInheritTransform(int id, bool on);
+	void SetInheritTransform(bool pos = true, bool scale = true, bool angle = true);
 	//expects and array of 3 bools, 0 : position, 1 : scale, 2 : ang
 	void SetInheritTransform(const bool* three);
 

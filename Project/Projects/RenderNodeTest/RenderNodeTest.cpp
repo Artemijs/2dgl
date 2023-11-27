@@ -1,7 +1,8 @@
 #include "RenderNodeTest.h"
-#include "../../Graphics/Renderer.h"
+
 #include "../../Graphics/Materials/MaterialSprite.h"
 #include "../../Game/RenderNode.h"
+#include "../../UI/Text.h"
 using namespace RNT;
 
 
@@ -10,6 +11,7 @@ RenderNodeTest::RenderNodeTest(){
 	
 	Renderer* r = Renderer::instance();
 	Camera* camera = Renderer::instance()->GetCamera();
+	_rn1 = NULL;
 	//set camera perspectie
 	(*r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(45), r->GetWindowSize().x / r->GetWindowSize().y, 0.1f, 1000.0f);
 
@@ -19,7 +21,9 @@ RenderNodeTest::RenderNodeTest(){
 	camera->CalculateViewMatrix();
 
 	//				set up render nodes
-	SetUpB();
+	//SetUpB();
+	ButtonInNode();
+	
 
 }
 
@@ -34,8 +38,8 @@ void RenderNodeTest::Update(float deltaTime) {
 	Renderer* r = Renderer::instance();
 	Camera* c = r->GetCamera();
 
-
-	
+	if(_rn1 != NULL)
+		_rn1->SetPosition(_mouse->GetMousePosV3() - Vec3(0,0 , 1.0f));
 	MoveCamera3D();
 	//MoveCamera2D();
 
@@ -190,4 +194,72 @@ void RenderNodeTest::SetUpB() {
 	BaseNode* s2 = new BaseNode(Vec3(-1, 0, -1), Vec3(1, 1, 1), Vec3(0.0, 0, 0));
 	s2->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/default.png")));
 	_world->AddChild(s2);
+}
+
+
+
+#include "../../UI/Button.h"
+/// <summary>
+/// world	
+///			-- bn1
+///					--s1
+///			-- rn1
+///					--r1b1
+///					--r1s1
+/// </summary>
+void RenderNodeTest::ButtonInNode() { 
+
+	Renderer* r = Renderer::instance();
+	
+	//								sprite parented to a blank node 
+	BaseNode* bn1 = new BaseNode(Vec3(0, 0, 0), Vec3(0, 0, 0), 0);
+	_world->AddChild(bn1);
+
+	
+	BaseNode* s1 = new BaseNode(Vec3(50, 50, -1), Vec3(100.0f, 100.0f, 1.0f), 0.0f);
+	s1->SetInheritTransform(false, false, false);
+	bn1->AddChild(s1);
+	s1->AddComponent<Sprite>(new Sprite(new MaterialUiButton()));
+	
+
+	//								text 
+	BaseNode* t1 = new BaseNode(Vec3(50, 150, -10), Vec3(0, 0, 1.0f), 0.0f);
+	_world->AddChild(t1);
+	t1->AddComponent<Text>(new Text("h!", t1));
+
+
+	//								btn1
+	BaseNode* btn1 = new Button("btn1" ,Vec3(400, 400, -1.0f), Vec3(100, 100, 1.0f), 0.0f);
+	_world->AddChild(btn1);
+	
+
+
+	
+	//								RN!
+	Vec3 fboSize = Vec3(400, 400, 0);
+	Vec3 fboSize2 = r->WindowSizeVec3();
+
+	_rn1 = new RenderNode(Vec3(0, 0, -1), fboSize, 0);
+	
+	
+	_world->AddChild(_rn1);
+	//_rn1->AddChild(s1);
+	
+	//	I NEED A PROJECTION MATRIX THAT CREATES A NEW CO ORDINATE SYSTEM
+	//	FIX TEXT
+	
+
+	//								r1 -- b1
+	Button* r1b1 = new Button("BTN", Vec3( 150, 150, -2.0f), Vec3(100.0f, 100.0f, 1.0f), 0);
+	bool args[3] = { false, false, false };
+	r1b1->SetInheritTransform(args);
+	//r1b1->AddComponent<Sprite>(new Sprite(new MaterialSprite(r->GetShader(7), "Assets/Textures/temp.png")));
+
+	_rn1->AddChild(r1b1);
+	
+	BaseNode* r1s1 = new BaseNode(Vec3(50, 50, -1), Vec3(100, 100, 1), Vec3(0.0f, 0.0f, 0.0f));
+	r1s1->AddComponent<Sprite>(new Sprite(new MaterialUiSprite( "Assets/Textures/default.png")));
+	r1s1->SetInheritTransform(0, true);
+	_rn1->AddChild(r1s1);
+	
 }

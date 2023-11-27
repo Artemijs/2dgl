@@ -8,7 +8,7 @@ std::vector<CharData>* Text::_allData = new std::vector<CharData>();
 const unsigned int Text::_component_id = Utility::GetID();
 //"Assets/Fonts/arial.png"
 Text::Text( std::string txt,  BaseNode* owner, int fontSize, int maxCharPerLine) :
-	Graphic( new MaterialUiText(Renderer::instance()->GetShader(2), "Assets/Fonts/arial.png", &_vao)),
+	Graphic( new MaterialUiText(Renderer::instance()->GetShader(3), "Assets/Fonts/arial.png", &_vao)),
 	_text(txt),
 	_maxCharsPerLine(maxCharPerLine), 
 	_fontSize(fontSize),
@@ -337,6 +337,7 @@ void Text::SetFontSize(int size) {
 	s.x = _maxCharsPerLine * _fontSize;
 	s.y = (_fontSize * 15.0f) + (_lineCount*0.1f);
 	_owner->SetScale(s);
+	
 
 }
 void Text::SetColor(const Vec3 col) { _material->_color = col; }

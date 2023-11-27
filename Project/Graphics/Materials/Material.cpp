@@ -122,7 +122,7 @@ _texture(Renderer::instance()->LoadTexture("text0", "Assets/Textures/default.png
 
 
 MaterialUI::MaterialUI(const Shader* s, const char* texturePath) :
-	BaseMaterial(s), _texture(Renderer::instance()->LoadTexture("text0", texturePath)) {
+	BaseMaterial(s), _texture(Renderer::instance()->LoadTexture("tex0", texturePath)) {
 	
 }
 

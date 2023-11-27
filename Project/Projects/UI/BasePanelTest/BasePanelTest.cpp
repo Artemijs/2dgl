@@ -93,7 +93,10 @@ void BasePanelTest::CreatePanels() {
 	Vec2 winSize = _r->GetWindowSize();
 	BasePanel* topPanel = UIHandler::GetPanel("Empty", _world, Vec3(winSize.x * 0.5, winSize.y - 50.0f, -1.0f), Vec3(winSize.x, 100.0f, 1.0f));
 	BasePanel* botPanel = UIHandler::GetPanel("Empty", _world, Vec3(winSize.x * 0.5, 20.0f, -1.0f), Vec3(winSize.x, 40.0f, 1.0f));
-	BasePanel* mainPanel = UIHandler::GetPanel("Empty", _world, Vec3(winSize.x * 0.5f, winSize.y * 0.5f - 30.0f, -1.0f), Vec3(winSize.x, winSize.y - 140.0f, 1.0f));
+	Vec3 mainPanelPos = Vec3(winSize.x * 0.5f, winSize.y * 0.5f - 30.0f, -1.0f);
+	//Vec3 mainPanelSize = Vec3(winSize.x, winSize.y - 140.0f, 1.0f);
+	Vec3 mainPanelSize = Vec3(winSize.x, winSize.y, 1.0f);
+	BasePanel* mainPanel = UIHandler::GetPanel("Empty", _world, mainPanelPos, mainPanelSize);
 
 	topPanel->AddNeighbour(mainPanel, 3);
 	topPanel->SetBackgroundColor(Vec3(0.1f, 0.01f, 0.012f));
@@ -105,11 +108,16 @@ void BasePanelTest::CreatePanels() {
 	mainPanel->AddNeighbour(botPanel, 3);
 	mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));
 	
-	BaseNode* btn = new Button("LOL", Vec3(400.0f, 400.0f, -10.0f), Vec3(100.0f, 100.0f, 0), 0.0f);
+	BaseNode* btn = new Button("LOL", Vec3(10, 0, -10.0f), Vec3(100.0f, 100.0f, 0), 0.0f);
 	BaseNode* mainBn = mainPanel->GetNode();
-	_world->AddChild(btn);
+	mainBn->AddChild(btn);
 
 }
+
+//AM I CREATIN A NEW CO ORDINATE SYS?TEM WITH MY MATRICES 
+//or
+//IS THE TEXTURE POSITION OF A SMALLER FRAME TEXTURE SIZE SCREWING ME OVER?
+// maybe i have to use a different projection matrxi for each of these
 /*
 350 450
 450 450

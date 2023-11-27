@@ -80,6 +80,12 @@ void BaseNode::SetInheritTransform(int id, bool on) {
 }
 
 
+void BaseNode::SetInheritTransform(bool pos, bool scale, bool angle) {
+	_inheritTransform[0] = pos;
+	_inheritTransform[1] = scale;
+	_inheritTransform[2] = angle;
+}
+
 void BaseNode::SetInheritTransform(const bool* three) {
 	_inheritTransform[0] = three[0];
 	_inheritTransform[1] = three[1];
@@ -109,9 +115,6 @@ void BaseNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, con
 	}
 
 	_model = nt * nr * ns;
-	/*for (int i = 0; i < _onMakeModelCalls->size(); ++i) {
-		_onMakeModelCalls->at(i)->Execute();
-	}*/
 }
 
 

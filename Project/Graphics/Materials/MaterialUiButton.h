@@ -4,7 +4,7 @@
 #include "Material.h"
 
 
-class MaterialUiButton: public Material {
+class MaterialUiButton: public MaterialUI {
 
 private:
 	const Vec2 _texScale;

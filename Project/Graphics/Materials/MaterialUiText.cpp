@@ -24,9 +24,13 @@ MaterialUiText::~MaterialUiText() {
 }
 #include "../Renderer.h"
 void MaterialUiText::Bind(const Matrix4x4* model)const  {
+	Renderer* r = Renderer::instance();
 	_shader->Activate();
-	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, &model->buff[0]);
-	Renderer::instance()->SetShaderVariables(_shader->ID);
+	
+	
+	auto proj = r->GetUIProjection();
+	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "proj"), 1, GL_TRUE, proj->buff);
+	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "model"), 1, GL_TRUE, model->buff);
 	
 	_textures->at(0)->Bind();
 	_textures->at(0)->texUni(_shader, 0);
@@ -38,6 +42,7 @@ void MaterialUiText::Bind(const Matrix4x4* model)const  {
 	glUniform3f(glGetUniformLocation(_shader->ID, "color"), _color.x, _color.y, _color.z);
 	glUniform3f(glGetUniformLocation(_shader->ID, "outlineColor"), _outlineColor.x, _outlineColor.y, _outlineColor.z);
 	(*_vao)->Bind();
+	//r->GetVAO()->Bind();
 }
 
 void MaterialUiText::Unbind()const {
