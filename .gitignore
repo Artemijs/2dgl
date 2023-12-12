@@ -350,4 +350,4 @@ MigrationBackup/
 .ionide/
 
 #build folder for cmake
-./out
+out/
