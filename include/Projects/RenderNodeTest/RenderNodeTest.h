@@ -22,6 +22,8 @@ namespace RNT {
 			Vec3 _imgSize;
 			bool _floating;
 			BaseMaterial* _mat;
+			const Texture* _texture;
+			float right;
 
 		public:
 			RenderNodeTest();

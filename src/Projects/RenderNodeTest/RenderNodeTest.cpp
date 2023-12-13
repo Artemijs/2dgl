@@ -24,8 +24,9 @@ RenderNodeTest::RenderNodeTest(){
 	//				set up render nodes
 	//SetUpB();
 	ButtonInNode();
-	_mat = new MaterialUiSprite();
-	
+	_mat = new MaterialUiSprite(ASSETS"Textures/debug.png");
+	_texture = Renderer::instance()->LoadTexture("tex0", ASSETS"Textures/debug.png");
+	right = 0;
 
 }
 
@@ -44,6 +45,7 @@ void RenderNodeTest::Update(float deltaTime) {
 	}
 	
 	if (Keyboard::GetKey(' ')->state == KeyState::KEY_DOWN) {
+		right += 5 * deltaTime;
 		if (_rn1 != NULL) {
 			_rn1->SetPosition(_mouse->GetMousePosV3() - Vec3(0, 0, 1.0f));
 			_floating = true;
@@ -295,7 +297,7 @@ void RenderNodeTest::ButtonInNode() {
 	Renderer* r = Renderer::instance();
 
 	//								s1
-	BaseNode* s1 = new BaseNode(Vec3(150, 150, -2.0f), Vec3(100.0f, 100.0f, 1.0f), 0);
+	BaseNode* s1 = new BaseNode(Vec3(150, 150, -20.0f), Vec3(100.0f, 100.0f, 1.0f), 0);
 	s1->AddComponent<Sprite>(new Sprite(new MaterialUiSprite()));
 	_world->AddChild(s1);
 
@@ -330,12 +332,40 @@ void RenderNodeTest::ButtonInNode() {
 	Matrix4x4 mat = (Matrix4x4::TranslationMatrix(Vec3(150.0f, 750.0f, -1.0f)) * Matrix4x4::ScaleMatrix(Vec3(100.0f, 100.0f, 1.0f)));
 	
 	auto f1 = new std::function <void()> ([&]() {
-		Utility::DrawSpriteManually(Vec3(50.0f, 750.0f, -1.0f), Vec3(100.0f, 100.0f, 1.0f), _mat);
+		Utility::DrawSpriteManually(Vec3(50.0f, 750.0f, -1.0f), Vec3(50.0f, 50.0f, 1.0f), _mat);
 	});
 
 	auto f2 = new std::function <void()>([&]() {
-		Matrix4x4 mat = (Matrix4x4::TranslationMatrix(Vec3(150.0f, 750.0f, -1.0f)) * Matrix4x4::ScaleMatrix(Vec3(100.0f, 100.0f, 1.0f)));
-		Utility::DrawSpriteManually(mat, _mat);
+		Matrix4x4 model = (Matrix4x4::TranslationMatrix(Vec3(150.0f, 150.0f, -1.0f)) * Matrix4x4::ScaleMatrix(Vec3(100.0f, 100.0f, 1.0f)));
+		//Matrix4x4 proj = Matrix4x4::Ortho(200.0f, 600.0f, 200.0f, 600.0f, 0.1f, 1000.0f);
+		//Matrix4x4 tr = Matrix4x4::TranslationMatrix(_rn1->GetTransform()._position);
+
+
+
+		//												center - size*0.5f
+		Matrix4x4 tr = Matrix4x4::TranslationMatrix(Vec3(200, 200,0));
+		Utility::DrawSpriteManually(tr * model, _mat);
+		
+
+
+		/*Matrix4x4 proj = Matrix4x4::Ortho(0.0f, 800.0f, 0.0f, 800.0f, 0.1f, 1000.0f);
+		auto shader = Renderer::instance()->GetShader(1);
+		
+		shader->Activate();
+		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "model"), 1.0f, GL_TRUE, model.buff);
+		glUniform4f(glGetUniformLocation(shader->ID, "color"), 1.0f, 1.0f, 1.0f, 1.0f);
+		_texture->Bind();
+		_texture->texUni(shader, 0);
+		//glUniformMatrix4fv(glGetUniformLocation(shader->ID, "proj"), 1, GL_TRUE, &Renderer::instance()->GetUIProjection()->buff[0]);
+		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "proj"), 1, GL_TRUE, proj.buff);
+		Renderer::instance()->GetVAO()->Bind();
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+		glBindVertexArray(0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glUseProgram(0);*/
+
 	});
 
 	r->AddDrawCall(f1);
@@ -350,7 +380,13 @@ void RenderNodeTest::ButtonInNode() {
 
 }
 
+
+
+
 /*
 	when base panel is moed the collision box remains unchanged, its model matrix is un affected by the panel transform
+
+
+	I NEED TO ONLY TRANSLATE THE BOUNDS INSTEAD OF THE BOUNDS+ SPRITE ( MODEL MATRIX )
 	
 */

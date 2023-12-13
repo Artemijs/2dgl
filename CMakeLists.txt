@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(GLFW)
+project(2dgl)
 
 
 set(GLAD C:/Dev/glad/)

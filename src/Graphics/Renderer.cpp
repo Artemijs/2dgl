@@ -247,7 +247,7 @@ void Renderer::DrawNodes(BaseNode* node, RenderNode* lastFbo) {
 		}
 	}
 	if (isRoot) {
-
+		//						draw any debug items to final rect
 		for (int i = 0; i < _extraDrawCalls->size(); i++) {
 			(*_extraDrawCalls->at(i))();
 		}
