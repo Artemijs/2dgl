@@ -15,6 +15,7 @@ Bounds::Bounds(BoundsType bt, BaseNode* bn ):
 	_centerOfMass = Vec3(1, 1, 1);
 	_isFixed = false;
 	CollisionHandler::RegisterBounds(this, bn);
+	_offset = Matrix4x4(1.0f);
 	
 }
 

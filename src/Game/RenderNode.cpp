@@ -2,6 +2,11 @@
 #include "Graphics/Renderer.h"
 #include "Game/FBOComponent.h"
 #include "UI/BasePanel.h"
+#include "Math/Bounds.h"
+
+
+
+
 RenderNode::RenderNode() :
 	BaseNode( Vec3(),  Renderer::instance()->WindowSizeVec3(), 0) {
 	AddFBO();
@@ -71,6 +76,26 @@ void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, c
 	}
 
 	_model = nt * nr * ns;
+
+	// CHECK TO SEE IF THE CHILDREN HAVE COLLISION BOXES AND MOVE THEM BY
+	//		pos - size/2
+	//_children
+	//check if children have bounds
+	for (int i = 0; i < _children->size(); i++) {
+		auto child = _children->at(i);
+		Bounds* box = child->GetComponent<Bounds>(Bounds::_component_id);
+		if (box != NULL) {
+			//translate childrens bounds
+			//OPTIMISATION NEEDED
+			box->SetOffset(
+				Matrix4x4::TranslationMatrix(Vec3(
+					_transform._position.x - _transform._scale.x * 0.5f,
+					_transform._position.y - _transform._scale.y * 0.5f,
+					0.0f
+				))
+			);
+		}
+	}
 }
 
 

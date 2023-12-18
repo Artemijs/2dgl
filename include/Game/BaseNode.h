@@ -119,6 +119,7 @@ public:
 		}
 		return false;
 	}
+	//returns null if nothing found
 	template<class T> T* GetComponent() const {
 		const unsigned int id = T::_component_id;
 		T* comp = NULL;
@@ -134,6 +135,7 @@ public:
 
 	//pass the type it needs for it to cast base comp to the obj you want
 	//id is the static id every component has MouseEvent::_id
+	//returns null if nothing found
 	template<class T> T* GetComponent(const  unsigned int id) const {
 		T* comp = NULL;
 		for (int i = 0; i < _components->size(); ++i) {

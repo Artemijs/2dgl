@@ -304,7 +304,7 @@ void RenderNodeTest::ButtonInNode() {
 	//								RN!
 	Vec3 fboSize = Vec3(400, 400, 0);
 	Vec3 fboSize2 = r->WindowSizeVec3();
-	_fboPos = Vec3(400, 400, -1);
+	_fboPos = Vec3(200, 200, -1);
 	_rn1 = new RenderNode(_fboPos, fboSize, 0);
 
 	_world->AddChild(_rn1);
@@ -341,9 +341,9 @@ void RenderNodeTest::ButtonInNode() {
 		//Matrix4x4 tr = Matrix4x4::TranslationMatrix(_rn1->GetTransform()._position);
 
 
-
+		Transform t = _rn1->GetTransform();
 		//												center - size*0.5f
-		Matrix4x4 tr = Matrix4x4::TranslationMatrix(Vec3(200, 200,0));
+		Matrix4x4 tr = Matrix4x4::TranslationMatrix(t._position - t._scale/2);
 		Utility::DrawSpriteManually(tr * model, _mat);
 		
 
@@ -380,7 +380,9 @@ void RenderNodeTest::ButtonInNode() {
 
 }
 
-
+/*
+	25 14  7 6 1 8
+*/
 
 
 /*

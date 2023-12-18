@@ -351,6 +351,3 @@ MigrationBackup/
 
 #build folder for cmake
 out/
-
-#viduL ATUDIO GENERATED FILE
-.vs/

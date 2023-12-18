@@ -28,7 +28,7 @@ protected:
 
 	std::pair < Bounds*, std::function<void( Bounds* a,  Bounds* b, SeparationData& sd)> >* FindEvent( Bounds* b, const bool enter);
 	void CallEvent(const bool enter,  Bounds* b, SeparationData& sd);
-
+	Matrix4x4 _offset;
 public:
 	static const unsigned int _component_id;
 	bool _solid;
@@ -61,7 +61,9 @@ public:
 	/// <param name="e">LABUDA DURAIVUUUUU!</param>
 	void AddEvent(const bool enter, std::pair < Bounds*, std::function<void( Bounds* a, Bounds* b, SeparationData& sd)> >* e);
 	virtual float* GetSize() = 0;
-
+	void SetOffset(const Matrix4x4& mat) {
+		_offset = mat;
+	}
 
 	
 };

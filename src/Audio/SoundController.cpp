@@ -17,7 +17,10 @@ SoundCtrl::SoundCtrl() {
 	_allSFX = new std::vector<std::pair<const char*, Mix_Chunk*>>();
 }
 SoundCtrl::~SoundCtrl() {
-
+	//MixFreeChunk
+	for (int i = 0; i < _allSFX->size(); ++i) {
+		Mix_FreeChunk(_allSFX->at(i).second);
+	}
 }
 void SoundCtrl::CleanUp() {
 

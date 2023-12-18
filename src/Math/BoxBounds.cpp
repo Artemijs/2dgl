@@ -40,13 +40,11 @@ todo I DONT THINK THIS NEEDS TO BE VIRTUAL
 void BoxBounds::Translate2World(const Matrix4x4* model)  {
 	const int a = 0;
 	int b = a;
-	printf("\n");
 	for (int i = 0; i < 4; ++i) {
-		_worldRect[i] = (*model )* _localRect[i];
-		Utility::PrintVector("BoxBounds Positions : ", _worldRect[i]);
+		_worldRect[i] = _offset * (*model ) * _localRect[i];
+		//Utility::PrintVector("BoxBounds Positions : ", _worldRect[i]);
 	}
-	printf("\n");
-	_centerOfMass = (*model) * Vec3(0, 0, 0);
+	_centerOfMass = _offset * (*model) * Vec3(0, 0, 0);
 }
 
 
