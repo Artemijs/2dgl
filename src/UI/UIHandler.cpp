@@ -15,7 +15,7 @@ BasePanel* UIHandler::GetPanel(const char* name, BaseNode* parent, Vec3 pos, Vec
 void UIHandler::Update(const float deltaTime) {
 	//check mouse intersection with every edge of every panel
 	for (unsigned int i = 0; i < _panels->size(); i++) {
-		
+		_panels->at(i)->Update(deltaTime);
 	}
 
 }

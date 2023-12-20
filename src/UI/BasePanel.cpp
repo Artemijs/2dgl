@@ -59,9 +59,15 @@ void RenderNodeMat::Unbind() const {
 
 
 
+
+//										BASE PANEL
+//----------------------------------------------------------------------------------------
+
+const float BasePanel::BORDER_INTERSECTION_WIDTH = 2.50f;
+
 BasePanel::BasePanel() {
 
-	_parent = new RenderNode(Vec3(), Vec3(), 0);
+	_parent = new RenderNode(Vec3(100, 100, -1), Vec3(100, 100, 1), 0);
 	Game::_world->AddChild(_parent);
 
 	_neighbours = new std::vector<std::vector<BasePanel*>*>{
@@ -75,7 +81,7 @@ BasePanel::BasePanel() {
 	_panelMaterial = dynamic_cast<RenderNodeMat*> (_parent->GetMaterial());
 	_panelMaterial->_borderColor = Vec4(0.1f, 0.1f, 0.1f, 1.0f);
 	_panelMaterial->_borderSize = 1.0f;
-	
+	CalculateCorners(Vec3(100, 100, -1), Vec3(100, 100, 1));
 }
 
 
@@ -94,9 +100,30 @@ BasePanel::BasePanel(const char* name, BaseNode* parentOfparent, Vec3 pos, Vec3 
 	_panelMaterial = dynamic_cast<RenderNodeMat*> (_parent->GetMaterial());
 	_panelMaterial->_borderColor = Vec4(0.5f, 0.5f, 0.5f, 1.0f);
 	_panelMaterial->_borderSize = 2.0f;
+	CalculateCorners(pos, size);
 
 }
 
+
+void BasePanel::CalculateCorners(const Vec3& pos, const Vec3& size) {
+	
+	_corners = new Vec2[4];
+
+	//0: topLeft , 1: topright  , 2: bot rright, 3: bottom left
+	//origin bottom left
+	
+	//top left
+	_corners[0] = Vec2(pos.x - size.x * 0.5f, pos.y + size.y * 0.5f);
+	
+	//top right
+	_corners[1] = Vec2(pos.x + size.x * 0.5f, pos.y + size.y * 0.5f);
+
+	//bot rigth
+	_corners[2] = Vec2(pos.x + size.x * 0.5f, pos.y - size.y * 0.5f);
+
+	//bot left
+	_corners[3] = Vec2(pos.x - size.x * 0.5f, pos.y - size.y * 0.5f);
+}
 
 /// <summary>
 /// all panels are deleted by MemoryManager
@@ -110,6 +137,7 @@ BasePanel::~BasePanel() {
 	}
 	delete _neighbours;
 	printf("deleting PANELS %s \n", _name);
+	delete[] _corners;
 
 }
 
@@ -135,6 +163,54 @@ RenderNodeMat* BasePanel::GetMaterial() {
 
 }
 
-BaseNode* BasePanel::GetNode() {
+BaseNode* BasePanel::GetParentAsNode() {
 	return _parent;
+}
+
+
+RenderNode* BasePanel::GetParentRenderNode() {
+	return _parent;
+}
+
+
+void BasePanel::Update(const float deltaTime) {
+	MouseEdgeInterection(Game::GetMouse()->GetPosition());
+}
+
+
+void BasePanel::MouseEdgeInterection(const Vec2& mousePos) {
+	
+	//0: topLeft , 1: topright  , 2: bot rright, 3: bottom left
+	
+	//top edge
+
+	Vec2 axis(0, 1);
+	Vec2 point = _corners[0];
+	float mouseProj = Vec2::Dot(axis, mousePos);
+	float pointProj = Vec2::Dot(axis, point);
+	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
+		std::cout << "COllided with TOP edge\n";
+	}
+	//bottom
+	point = _corners[2];
+	pointProj = Vec2::Dot(axis, point);
+	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
+		std::cout << "COllided with BOT edge\n";
+	}
+	//left
+	axis = Vec2(1, 0);
+	point = _corners[0];
+	mouseProj = Vec2::Dot(axis, mousePos);
+	pointProj = Vec2::Dot(axis, point);
+	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
+		std::cout << "COllided with LEFT edge\n";
+	}
+	//right
+	point = _corners[2];
+	mouseProj = Vec2::Dot(axis, mousePos);
+	pointProj = Vec2::Dot(axis, point);
+	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
+		std::cout << "COllided with RIGHT edge\n";
+	}
+	
 }

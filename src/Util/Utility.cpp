@@ -151,7 +151,7 @@ void DevPrintHelp() {
 	msg += "9 : CollisionTest3D\n";
 	msg += "10 : TopDownEditor\n";
 	msg += "11 : RenderNodeTest\n";
-	msg += "12 : RenderNodeTest\n";
+	msg += "12 : BasePanelTest\n";
 	msg += "type HELP N n being the number of the game, for a description of that project\n";
 	std::cout << msg;
 }

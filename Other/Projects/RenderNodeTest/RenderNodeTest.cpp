@@ -189,6 +189,7 @@ void RenderNodeTest::SetUp() {
 ///			--s2
 /// </summary>
 void RenderNodeTest::SetUpB() {
+
 	Renderer* r = Renderer::instance();
 	
 	//r1

@@ -23,12 +23,19 @@ public:
 
 class BasePanel : public Memory {
 private:
-
+	const static float BORDER_INTERSECTION_WIDTH;
+	/// <summary>
+	/// the render node that ui is parented to
+	/// </summary>
 	RenderNode* _parent;
 	RenderNodeMat* _panelMaterial;
 	const char* _name;
 	//0: Left , 1: top , 2: rright, 3: bottom
 	std::vector<std::vector<BasePanel*>*>* _neighbours;
+	//0: topLeft , 1: topright  , 2: bot rright, 3: bottom left
+	Vec2* _corners;
+	void MouseEdgeInterection(const Vec2& mousePos);
+	void CalculateCorners(const Vec3& pos, const Vec3& size);
 public:
 	BasePanel();
 	/// <summary>
@@ -44,7 +51,10 @@ public:
 	void AddNeighbour(BasePanel* bp, unsigned int direction);
 	void SetBackgroundColor(const Vec3& col);
 	RenderNodeMat* GetMaterial();
-	BaseNode* GetNode();
+	BaseNode* GetParentAsNode();
+	RenderNode* GetParentRenderNode();
+	void Update(const float deltaTime);
+
 
 };
 

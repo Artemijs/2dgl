@@ -67,7 +67,7 @@ Mesh* MeshLoader::GetTerrain(const int width, const int height) {
 		}
 	}
 
-	BaseMaterial* bm = new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png");
+	BaseMaterial* bm = new MaterialSprite(Renderer::instance()->GetShader(7), ASSETS"Textures/default.png");
 	VAO* vao = new VAO();
 	Mesh* m = new Mesh(verts, indices, bm, indexCount);
 
@@ -149,7 +149,7 @@ Mesh* MeshLoader::GetPlane(const int width, const int height) {
 		}
 	}
 
-	BaseMaterial* bm = new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png");
+	BaseMaterial* bm = new MaterialSprite(Renderer::instance()->GetShader(7), ASSETS"Textures/default.png");
 	VAO* vao = new VAO();
 	Mesh* m = new Mesh(verts, indices, bm, indexCount);
 
@@ -208,7 +208,7 @@ Mesh* MeshLoader::GetCube() {
 
 	};
 
-	BaseMaterial* bm = new MaterialSprite(Renderer::instance()->GetShader(7), "Assets/Textures/default.png");
+	BaseMaterial* bm = new MaterialSprite(Renderer::instance()->GetShader(7), ASSETS"Textures/default.png");
 	VAO* vao = new VAO();
 	Mesh* m = new Mesh(verts, indices, bm, indices->size());
 

@@ -8,6 +8,7 @@
 class BasePanelTest : public Game {
 private:
 	Renderer* _r;
+
 public :
 	BasePanelTest();
 	~BasePanelTest();

@@ -41,7 +41,7 @@ TopDownEditor::TopDownEditor(): _heightBTBG(10.0f), _widthBTBG(10.0f), _tileSize
 	_moveOver = false;
 	_currentTile = Vec2Int(-1, -1);
 	
-	CreateFilePanel();
+	//CreateFilePanel();
 }
 
 

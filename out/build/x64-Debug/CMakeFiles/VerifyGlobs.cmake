@@ -3,6 +3,26 @@
 cmake_policy(SET CMP0009 NEW)
 
 # SRC at CMakeLists.txt:14 (file)
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/*.cpp")
+set(OLD_GLOB
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/2D/TileMapMaterial.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/2D/TopDownEditor.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/3D/3DCollision/CollisionTest3D.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/3D/MeshTest/MeshTest.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/3D/RayCastingTest/RayCastTest.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/CollisionTest/ColliisonTestGame.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/CollisionTest/CollisionTesMain.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/RenderNodeTest/RenderNodeTest.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/ShaderTests/ShaterTest.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/TowerDefense/TowerDefenseGame.cpp"
+  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/UI/BasePanelTest/BasePanelTest.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
+endif()
+
+# SRC at CMakeLists.txt:14 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/*.cpp")
 set(OLD_GLOB
   "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Audio/SoundController.cpp"
@@ -45,17 +65,6 @@ set(OLD_GLOB
   "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Math/PhysicsObject.cpp"
   "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Math/PhysicsWorld.cpp"
   "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Math/SphereBounds.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/2D/TileMapMaterial.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/2D/TopDownEditor.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/3D/3DCollision/CollisionTest3D.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/3D/MeshTest/MeshTest.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/3D/RayCastingTest/RayCastTest.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/CollisionTest/ColliisonTestGame.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/CollisionTest/CollisionTesMain.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/RenderNodeTest/RenderNodeTest.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/ShaderTests/ShaterTest.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/TowerDefense/TowerDefenseGame.cpp"
-  "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/Projects/UI/BasePanelTest/BasePanelTest.cpp"
   "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/UI/BasePanel.cpp"
   "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/UI/Button.cpp"
   "C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/src/UI/Text.cpp"

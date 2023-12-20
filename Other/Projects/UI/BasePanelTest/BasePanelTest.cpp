@@ -4,7 +4,18 @@
 #include "UI/Button.h"
 
 
-
+/*
+*
+*	ui_panel
+*		- dock it
+*		- tab it
+*		- sclae it
+	the top down level editor has to :
+		- Select Tile
+		- Select texture to paint with
+		- Change tile texture byte data to selexcted byte data
+		- Save Texture
+*/
 
 BasePanelTest::BasePanelTest(){
 	_r = Renderer::instance();
@@ -16,8 +27,9 @@ BasePanelTest::BasePanelTest(){
 	_world->GetComponent<FBOComponent>()->SetClearColor(Vec3(1.0f, 1.0f, 1.0f));
 	//something to orient around
 	BaseNode* s1 = new BaseNode(Vec3(0, 0, -1), Vec3(10, 10, 1), Vec3(0.0, 0, 0));
-	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(_r->GetShader(7), "Assets/Textures/default.png")));
+	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(_r->GetShader(7), ASSETS"Textures/default.png")));
 	_world->AddChild(s1);
+	
 	CreatePanels();
 	
 
@@ -31,10 +43,6 @@ BasePanelTest::~BasePanelTest() {
 
 void BasePanelTest::Update(float deltaTime) {
 	Game::Update(deltaTime);
-	
-	
-
-
 	//MoveCamera3D(false);
 
 }
@@ -98,6 +106,8 @@ void BasePanelTest::CreatePanels() {
 	//Vec3 mainPanelSize = Vec3(winSize.x, winSize.y - 140.0f, 1.0f);
 	Vec3 mainPanelSize = Vec3(winSize.x, winSize.y, 1.0f);
 	BasePanel* mainPanel = UIHandler::GetPanel("Empty", _world, mainPanelPos, mainPanelSize);
+	
+	
 
 	topPanel->AddNeighbour(mainPanel, 3);
 	topPanel->SetBackgroundColor(Vec3(0.1f, 0.01f, 0.012f));
@@ -110,7 +120,7 @@ void BasePanelTest::CreatePanels() {
 	mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));
 	
 	BaseNode* btn = new Button("LOL", Vec3(10, 0, -10.0f), Vec3(100.0f, 100.0f, 0), 0.0f);
-	BaseNode* mainBn = mainPanel->GetNode();
+	BaseNode* mainBn = mainPanel->GetParentAsNode();
 	mainBn->AddChild(btn);
 
 }

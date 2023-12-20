@@ -19,7 +19,6 @@ TileMapMaterial::TileMapMaterial() :
 
 }
 
-
 TileMapMaterial::TileMapMaterial(float tileSize, float gridSize, Vec3 gridColor, float gridLineSize, float outlineSize, Vec3 outlineColor):
 	_tileSize(tileSize),
 	_gridSize(gridSize),
@@ -28,7 +27,7 @@ TileMapMaterial::TileMapMaterial(float tileSize, float gridSize, Vec3 gridColor,
 	_outlineSize(outlineSize),
 	_outlineColor(outlineColor),
 	_selectedTile(Vec2(-1, -1)),
-	Material(new Shader("Projects/2D/TileMapEditorMain.vert", "Projects/2D/TileMapEditorMain.frag"), "Assets/Textures/default.png")
+	Material(new Shader(PROJECTS"2D/TileMapEditorMain.vert", PROJECTS"2D/TileMapEditorMain.frag"), ASSETS"Textures/default.png")
 {
 	UpdateShaderValues();
 	HighlightTile(-1, -1);

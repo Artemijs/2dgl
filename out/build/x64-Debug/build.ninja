@@ -50,558 +50,558 @@ cmake_ninja_workdir = C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\
 build cmake_object_order_depends_target_2dgl: phony || CMakeFiles\2dgl.dir
 
 build CMakeFiles\2dgl.dir\Main.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Main.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
-build CMakeFiles\2dgl.dir\src\Audio\SoundController.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Audio\SoundController.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+build CMakeFiles\2dgl.dir\Other\Projects\2D\TileMapMaterial.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\2D\TileMapMaterial.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\2D
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\2D\TopDownEditor.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\2D\TopDownEditor.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\2D
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\3D\3DCollision\CollisionTest3D.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\3D\3DCollision\CollisionTest3D.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\3D\3DCollision
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\3D\MeshTest\MeshTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\3D\MeshTest\MeshTest.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\3D\MeshTest
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\3D\RayCastingTest\RayCastTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\3D\RayCastingTest\RayCastTest.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\3D\RayCastingTest
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\CollisionTest\ColliisonTestGame.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\CollisionTest\ColliisonTestGame.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\CollisionTest
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\CollisionTest\CollisionTesMain.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\CollisionTest\CollisionTesMain.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\CollisionTest
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\RenderNodeTest\RenderNodeTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\RenderNodeTest\RenderNodeTest.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\RenderNodeTest
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\ShaderTests\ShaterTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\ShaderTests\ShaterTest.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\ShaderTests
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\TowerDefense\TowerDefenseGame.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\TowerDefense\TowerDefenseGame.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\TowerDefense
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\Other\Projects\UI\BasePanelTest\BasePanelTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other\Projects\UI\BasePanelTest\BasePanelTest.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  OBJECT_DIR = CMakeFiles\2dgl.dir
+  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\Other\Projects\UI\BasePanelTest
+  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
+  TARGET_PDB = 2dgl.pdb
+
+build CMakeFiles\2dgl.dir\src\Audio\SoundController.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Audio\SoundController.cpp || cmake_object_order_depends_target_2dgl
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Audio
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\BackEnd\EBO.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\BackEnd\EBO.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\BackEnd
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\BackEnd\FBO.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\BackEnd\FBO.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\BackEnd
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\BackEnd\FinalRect.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\BackEnd\FinalRect.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\BackEnd
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\BackEnd\VAO.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\BackEnd\VAO.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\BackEnd
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\BackEnd\VBO.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\BackEnd\VBO.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\BackEnd
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\BackEnd\stb.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\BackEnd\stb.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\BackEnd
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\BaseComponent.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\BaseComponent.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\BaseNode.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\BaseNode.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\FBOComponent.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\FBOComponent.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\Game.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\Game.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\Mesh\Mesh.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\Mesh\Mesh.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game\Mesh
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\Mesh\MeshLoader.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\Mesh\MeshLoader.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game\Mesh
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\Mesh\Model.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\Mesh\Model.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game\Mesh
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\MouseEventComponent.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\MouseEventComponent.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Game\RenderNode.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Game\RenderNode.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Game
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Camera.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Camera.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Graphic.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Graphic.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Materials\DiffuseMaterial.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Materials\DiffuseMaterial.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics\Materials
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Materials\Material.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Materials\Material.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics\Materials
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialSprite.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Materials\MaterialSprite.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics\Materials
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiButton.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Materials\MaterialUiButton.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics\Materials
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiSprite.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Materials\MaterialUiSprite.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics\Materials
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiText.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Materials\MaterialUiText.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics\Materials
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Renderer.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Renderer.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\ShaderClass.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\ShaderClass.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Sprite.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Sprite.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Graphics\Texture.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Graphics\Texture.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Graphics
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Input\Keyboard.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Input\Keyboard.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Input
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Input\Mouse.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Input\Mouse.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Input
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Input\MouseEventHandler.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Input\MouseEventHandler.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Input
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\AABoxBounds.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\AABoxBounds.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\Bounds.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\Bounds.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\BoxBounds.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\BoxBounds.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\CollisionDetection.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\CollisionDetection.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\CollisionHandler.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\CollisionHandler.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\Matrix4x4.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\Matrix4x4.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\PhysicsObject.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\PhysicsObject.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\PhysicsWorld.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\PhysicsWorld.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Math\SphereBounds.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Math\SphereBounds.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Math
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
-build CMakeFiles\2dgl.dir\src\Projects\2D\TileMapMaterial.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\2D\TileMapMaterial.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\2D
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\2D\TopDownEditor.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\2D\TopDownEditor.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\2D
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\3D\3DCollision\CollisionTest3D.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\3D\3DCollision\CollisionTest3D.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\3D\3DCollision
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\3D\MeshTest\MeshTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\3D\MeshTest\MeshTest.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\3D\MeshTest
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\3D\RayCastingTest\RayCastTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\3D\RayCastingTest\RayCastTest.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\3D\RayCastingTest
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\CollisionTest\ColliisonTestGame.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\CollisionTest\ColliisonTestGame.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\CollisionTest
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\CollisionTest\CollisionTesMain.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\CollisionTest\CollisionTesMain.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\CollisionTest
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\RenderNodeTest\RenderNodeTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\RenderNodeTest\RenderNodeTest.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\RenderNodeTest
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\ShaderTests\ShaterTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\ShaderTests\ShaterTest.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\ShaderTests
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\TowerDefense\TowerDefenseGame.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\TowerDefense\TowerDefenseGame.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\TowerDefense
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
-build CMakeFiles\2dgl.dir\src\Projects\UI\BasePanelTest\BasePanelTest.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Projects\UI\BasePanelTest\BasePanelTest.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
-  OBJECT_DIR = CMakeFiles\2dgl.dir
-  OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Projects\UI\BasePanelTest
-  TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
-  TARGET_PDB = 2dgl.pdb
-
 build CMakeFiles\2dgl.dir\src\UI\BasePanel.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\UI\BasePanel.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\UI
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\UI\Button.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\UI\Button.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\UI
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\UI\Text.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\UI\Text.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\UI
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\UI\UIHandler.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\UI\UIHandler.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\UI
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Util\Callback.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Util\Callback.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Util
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Util\DataStructures.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Util\DataStructures.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Util
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Util\MemoryManager.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Util\MemoryManager.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Util
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Util\PseudoCode.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Util\PseudoCode.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Util
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\src\Util\Utility.cpp.obj: CXX_COMPILER__2dgl_Debug C$:\Users\artem\Documents\_programming\CMakeProjects\2dgl\src\Util\Utility.cpp || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\src\Util
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
   TARGET_PDB = 2dgl.pdb
 
 build CMakeFiles\2dgl.dir\C_\Dev\glad\src\glad.c.obj: C_COMPILER__2dgl_Debug C$:\Dev\glad\src\glad.c || cmake_object_order_depends_target_2dgl
-  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\"
+  DEFINES = -DASSETS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Assets/\" -DPROJECTS=\"C:/Users/artem/Documents/_programming/CMakeProjects/2dgl/Other/Projects/\"
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\.\include -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
+  INCLUDES = -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\include -IC:\Users\artem\Documents\_programming\CMakeProjects\2dgl\Other -IC:\Dev\glad\include -IC:\Dev\stb -IC:\Dev\glfw-3.3.7.bin.WIN64\include -IC:\Dev\SDL2\include -IC:\Dev\SDL2_mixer-2.0.0\include -IC:\Dev\json
   OBJECT_DIR = CMakeFiles\2dgl.dir
   OBJECT_FILE_DIR = CMakeFiles\2dgl.dir\C_\Dev\glad\src
   TARGET_COMPILE_PDB = CMakeFiles\2dgl.dir\
@@ -615,7 +615,7 @@ build CMakeFiles\2dgl.dir\C_\Dev\glad\src\glad.c.obj: C_COMPILER__2dgl_Debug C$:
 #############################################
 # Link the executable 2dgl.exe
 
-build 2dgl.exe: CXX_EXECUTABLE_LINKER__2dgl_Debug CMakeFiles\2dgl.dir\Main.cpp.obj CMakeFiles\2dgl.dir\src\Audio\SoundController.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\EBO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\FBO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\FinalRect.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\VAO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\VBO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\stb.cpp.obj CMakeFiles\2dgl.dir\src\Game\BaseComponent.cpp.obj CMakeFiles\2dgl.dir\src\Game\BaseNode.cpp.obj CMakeFiles\2dgl.dir\src\Game\FBOComponent.cpp.obj CMakeFiles\2dgl.dir\src\Game\Game.cpp.obj CMakeFiles\2dgl.dir\src\Game\Mesh\Mesh.cpp.obj CMakeFiles\2dgl.dir\src\Game\Mesh\MeshLoader.cpp.obj CMakeFiles\2dgl.dir\src\Game\Mesh\Model.cpp.obj CMakeFiles\2dgl.dir\src\Game\MouseEventComponent.cpp.obj CMakeFiles\2dgl.dir\src\Game\RenderNode.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Camera.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Graphic.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\DiffuseMaterial.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\Material.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialSprite.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiButton.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiSprite.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiText.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Renderer.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\ShaderClass.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Sprite.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Texture.cpp.obj CMakeFiles\2dgl.dir\src\Input\Keyboard.cpp.obj CMakeFiles\2dgl.dir\src\Input\Mouse.cpp.obj CMakeFiles\2dgl.dir\src\Input\MouseEventHandler.cpp.obj CMakeFiles\2dgl.dir\src\Math\AABoxBounds.cpp.obj CMakeFiles\2dgl.dir\src\Math\Bounds.cpp.obj CMakeFiles\2dgl.dir\src\Math\BoxBounds.cpp.obj CMakeFiles\2dgl.dir\src\Math\CollisionDetection.cpp.obj CMakeFiles\2dgl.dir\src\Math\CollisionHandler.cpp.obj CMakeFiles\2dgl.dir\src\Math\Matrix4x4.cpp.obj CMakeFiles\2dgl.dir\src\Math\PhysicsObject.cpp.obj CMakeFiles\2dgl.dir\src\Math\PhysicsWorld.cpp.obj CMakeFiles\2dgl.dir\src\Math\SphereBounds.cpp.obj CMakeFiles\2dgl.dir\src\Projects\2D\TileMapMaterial.cpp.obj CMakeFiles\2dgl.dir\src\Projects\2D\TopDownEditor.cpp.obj CMakeFiles\2dgl.dir\src\Projects\3D\3DCollision\CollisionTest3D.cpp.obj CMakeFiles\2dgl.dir\src\Projects\3D\MeshTest\MeshTest.cpp.obj CMakeFiles\2dgl.dir\src\Projects\3D\RayCastingTest\RayCastTest.cpp.obj CMakeFiles\2dgl.dir\src\Projects\CollisionTest\ColliisonTestGame.cpp.obj CMakeFiles\2dgl.dir\src\Projects\CollisionTest\CollisionTesMain.cpp.obj CMakeFiles\2dgl.dir\src\Projects\RenderNodeTest\RenderNodeTest.cpp.obj CMakeFiles\2dgl.dir\src\Projects\ShaderTests\ShaterTest.cpp.obj CMakeFiles\2dgl.dir\src\Projects\TowerDefense\TowerDefenseGame.cpp.obj CMakeFiles\2dgl.dir\src\Projects\UI\BasePanelTest\BasePanelTest.cpp.obj CMakeFiles\2dgl.dir\src\UI\BasePanel.cpp.obj CMakeFiles\2dgl.dir\src\UI\Button.cpp.obj CMakeFiles\2dgl.dir\src\UI\Text.cpp.obj CMakeFiles\2dgl.dir\src\UI\UIHandler.cpp.obj CMakeFiles\2dgl.dir\src\Util\Callback.cpp.obj CMakeFiles\2dgl.dir\src\Util\DataStructures.cpp.obj CMakeFiles\2dgl.dir\src\Util\MemoryManager.cpp.obj CMakeFiles\2dgl.dir\src\Util\PseudoCode.cpp.obj CMakeFiles\2dgl.dir\src\Util\Utility.cpp.obj CMakeFiles\2dgl.dir\C_\Dev\glad\src\glad.c.obj | C$:\Dev\glfw-3.3.7.bin.WIN64\lib-vc2022\glfw3.lib C$:\Dev\SDL2\\lib\x64\SDL2.lib C$:\Dev\SDL2\\lib\x64\SDL2main.lib C$:\Dev\SDL2_mixer-2.0.0\lib\x64\SDL2_mixer.lib
+build 2dgl.exe: CXX_EXECUTABLE_LINKER__2dgl_Debug CMakeFiles\2dgl.dir\Main.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\2D\TileMapMaterial.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\2D\TopDownEditor.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\3D\3DCollision\CollisionTest3D.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\3D\MeshTest\MeshTest.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\3D\RayCastingTest\RayCastTest.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\CollisionTest\ColliisonTestGame.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\CollisionTest\CollisionTesMain.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\RenderNodeTest\RenderNodeTest.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\ShaderTests\ShaterTest.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\TowerDefense\TowerDefenseGame.cpp.obj CMakeFiles\2dgl.dir\Other\Projects\UI\BasePanelTest\BasePanelTest.cpp.obj CMakeFiles\2dgl.dir\src\Audio\SoundController.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\EBO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\FBO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\FinalRect.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\VAO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\VBO.cpp.obj CMakeFiles\2dgl.dir\src\BackEnd\stb.cpp.obj CMakeFiles\2dgl.dir\src\Game\BaseComponent.cpp.obj CMakeFiles\2dgl.dir\src\Game\BaseNode.cpp.obj CMakeFiles\2dgl.dir\src\Game\FBOComponent.cpp.obj CMakeFiles\2dgl.dir\src\Game\Game.cpp.obj CMakeFiles\2dgl.dir\src\Game\Mesh\Mesh.cpp.obj CMakeFiles\2dgl.dir\src\Game\Mesh\MeshLoader.cpp.obj CMakeFiles\2dgl.dir\src\Game\Mesh\Model.cpp.obj CMakeFiles\2dgl.dir\src\Game\MouseEventComponent.cpp.obj CMakeFiles\2dgl.dir\src\Game\RenderNode.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Camera.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Graphic.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\DiffuseMaterial.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\Material.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialSprite.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiButton.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiSprite.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Materials\MaterialUiText.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Renderer.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\ShaderClass.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Sprite.cpp.obj CMakeFiles\2dgl.dir\src\Graphics\Texture.cpp.obj CMakeFiles\2dgl.dir\src\Input\Keyboard.cpp.obj CMakeFiles\2dgl.dir\src\Input\Mouse.cpp.obj CMakeFiles\2dgl.dir\src\Input\MouseEventHandler.cpp.obj CMakeFiles\2dgl.dir\src\Math\AABoxBounds.cpp.obj CMakeFiles\2dgl.dir\src\Math\Bounds.cpp.obj CMakeFiles\2dgl.dir\src\Math\BoxBounds.cpp.obj CMakeFiles\2dgl.dir\src\Math\CollisionDetection.cpp.obj CMakeFiles\2dgl.dir\src\Math\CollisionHandler.cpp.obj CMakeFiles\2dgl.dir\src\Math\Matrix4x4.cpp.obj CMakeFiles\2dgl.dir\src\Math\PhysicsObject.cpp.obj CMakeFiles\2dgl.dir\src\Math\PhysicsWorld.cpp.obj CMakeFiles\2dgl.dir\src\Math\SphereBounds.cpp.obj CMakeFiles\2dgl.dir\src\UI\BasePanel.cpp.obj CMakeFiles\2dgl.dir\src\UI\Button.cpp.obj CMakeFiles\2dgl.dir\src\UI\Text.cpp.obj CMakeFiles\2dgl.dir\src\UI\UIHandler.cpp.obj CMakeFiles\2dgl.dir\src\Util\Callback.cpp.obj CMakeFiles\2dgl.dir\src\Util\DataStructures.cpp.obj CMakeFiles\2dgl.dir\src\Util\MemoryManager.cpp.obj CMakeFiles\2dgl.dir\src\Util\PseudoCode.cpp.obj CMakeFiles\2dgl.dir\src\Util\Utility.cpp.obj CMakeFiles\2dgl.dir\C_\Dev\glad\src\glad.c.obj | C$:\Dev\glfw-3.3.7.bin.WIN64\lib-vc2022\glfw3.lib C$:\Dev\SDL2\\lib\x64\SDL2.lib C$:\Dev\SDL2\\lib\x64\SDL2main.lib C$:\Dev\SDL2_mixer-2.0.0\lib\x64\SDL2_mixer.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = C:\Dev\glfw-3.3.7.bin.WIN64\lib-vc2022\glfw3.lib  C:\Dev\SDL2\\lib\x64\SDL2.lib  C:\Dev\SDL2\\lib\x64\SDL2main.lib  C:\Dev\SDL2_mixer-2.0.0\lib\x64\SDL2_mixer.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

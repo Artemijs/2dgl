@@ -11,20 +11,22 @@ set(SDL_DIR C:/Dev/SDL2/)
 set(SDLMIX_DIR C:/Dev/SDL2_mixer-2.0.0/)
 
 
-file(GLOB_RECURSE SRC CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB_RECURSE SRC CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/Other/*.cpp")
 
 
 add_executable(${PROJECT_NAME} Main.cpp ${SRC} ${GLAD}/src/glad.c)
 
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC ASSETS="${CMAKE_CURRENT_SOURCE_DIR}/Assets/")
+target_compile_definitions(${PROJECT_NAME} PUBLIC PROJECTS="${CMAKE_CURRENT_SOURCE_DIR}/Other/Projects/")
 
 
 find_package(OpenGL REQUIRED)
 
 
 include_directories(
-	./include 
+	${CMAKE_CURRENT_SOURCE_DIR}/include 
+	${CMAKE_CURRENT_SOURCE_DIR}/Other
 	${GLAD}include/
 	${STB_DIR}
 )
