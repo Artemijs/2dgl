@@ -101,7 +101,24 @@ BasePanel::BasePanel(const char* name, BaseNode* parentOfparent, Vec3 pos, Vec3 
 	_panelMaterial->_borderColor = Vec4(0.5f, 0.5f, 0.5f, 1.0f);
 	_panelMaterial->_borderSize = 2.0f;
 	CalculateCorners(pos, size);
+	SetMouseCallBacks();
 
+}
+
+
+void BasePanel::SetMouseCallBacks() {
+	
+	Mouse* m = Game::GetMouse();
+	
+	m->AddCallback(0, std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
+		std::cout << "HELLO FROM MOUSE CALLBACK ONLY ONCE \n";
+		return true; }));
+	m->AddCallback(0, std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
+		std::cout << "HELLO FROM MOUSE CALLBACK EVERY TIME\n";
+		return false; }));
+	m->AddCallback(0, std::pair<const unsigned int, mouse_call>(1, [&](const Vec2& mousePos) {
+		std::cout << "HELLO FROM MOUSE CALLBACK DIFFERENT BUTTON\n";
+		return false; }));
 }
 
 

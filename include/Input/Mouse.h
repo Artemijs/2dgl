@@ -2,8 +2,8 @@
 #define MOUSE_H
 #include "Math/Matrix4x4.h"
 #include <vector>
-
-
+#include <utility>///for pair
+#include <functional>
 
 enum class MouseKeyState{
 
@@ -21,6 +21,8 @@ struct MouseKey {
 };
 
 #define mkeyPress std::pair<bool, MouseKey*>
+#define mouse_call std::function<bool(const Vec2& mousePos)>
+
 /// <summary>
 /// GLFW only allows for 8 mouse buttons
 /// </summary>
@@ -35,6 +37,13 @@ private:
 	std::vector<mkeyPress>* _keysUp;
 	const unsigned int _maxKeys;
 	//					all keys
+	std::vector<std::pair<const unsigned int, mouse_call>>* _mDownCalls;
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="type">0 : mDown, 1: mUp</param>
+	/// <param name="mk"></param>
+	void CallCalls(const unsigned int type, const MouseKey* mk);
 
 public :
 
@@ -54,6 +63,12 @@ public :
 	bool IsHidden();
 	MouseKey* GetMouseKey(const unsigned int key);
 	Vec3 GetMousePosV3();
+	/// <summary>
+	/// set callbacks for mouse button press events
+	/// </summary>
+	/// <param name="type">0 : mDown, 1: mUp</param>
+	/// <param name="call">pass by copy pair of int(mouse btn) and LAMBUDDA DURAIVU void(const Vec2& mousePos)</param>
+	void AddCallback(const unsigned int type, std::pair<const unsigned int, mouse_call> call);
 };
 
 #endif // !MOUSE_H

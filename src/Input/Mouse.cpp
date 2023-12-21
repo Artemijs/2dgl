@@ -14,6 +14,7 @@ Mouse::Mouse() :_maxKeys(8){
 		MouseKey mk{ i, MouseKeyState::IDLE };
 		_allKeys->push_back(mk);
 	}
+	_mDownCalls = new std::vector<std::pair<const unsigned int, mouse_call>>();
 }
 
 
@@ -21,6 +22,7 @@ Mouse::~Mouse() {
 	delete _allKeys;
 	delete _keysPressed;
 	delete _keysUp;
+	delete _mDownCalls;
 }
 
 /// <summary>
@@ -69,6 +71,34 @@ void Mouse::Update(const float deltaTime) {
 }
 
 
+void Mouse::AddCallback(const unsigned int type, std::pair<const unsigned int, mouse_call> call) {
+
+	if (type == 0) {
+		_mDownCalls->push_back(call);
+	}
+
+}
+
+
+void Mouse::CallCalls(const unsigned int type, const MouseKey* mk) {
+	if (type == 0) {
+		//mouse down callbacks
+
+		//check if there is a callback for this key
+		for (int i = 0; i < _mDownCalls->size(); i++) {
+			auto call = _mDownCalls->at(i);
+			if (call.first == mk->_id) {
+				bool remove = call.second(_position);
+			}
+			if (remove) {
+				_mDownCalls->erase(_mDownCalls->begin() + i);
+				i--;
+			}
+		}
+		
+	}
+}
+
 void Mouse::SetCursorPos(const float& x, const float& y) {
 
 	_position.x = x;
@@ -112,11 +142,16 @@ void Mouse::ButtonInput(const unsigned int btn, const unsigned int action) {
 		MouseKey* mk = &_allKeys->at(btn);	
 		mk->_state = MouseKeyState::KEY_DOWN;
 		_keysPressed->push_back(mkeyPress(false, mk));
+		//CALL EVENTS ON THIS KEY IF IT EXISTS
+		CallCalls(0, mk);
+		
 	}
 	else if (action == GLFW_RELEASE) {
 		
 		//			CHANGE THE STATE
 		MouseKey* mk = &_allKeys->at(btn);
+		//CALL EVENTS ON THIS KEY IF IT EXISTS
+		CallCalls(1, mk);
 		mk->_state = MouseKeyState::KEY_RELEASE;
 		
 		//			ADD IT TO A LIST OF KEYS TO THAT CHANGE THE STATE NEXT FRAME

@@ -36,6 +36,7 @@ private:
 	Vec2* _corners;
 	void MouseEdgeInterection(const Vec2& mousePos);
 	void CalculateCorners(const Vec3& pos, const Vec3& size);
+	void SetMouseCallBacks();
 public:
 	BasePanel();
 	/// <summary>
