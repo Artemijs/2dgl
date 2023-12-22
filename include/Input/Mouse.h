@@ -4,6 +4,7 @@
 #include <vector>
 #include <utility>///for pair
 #include <functional>
+#include "Util/Utility.h"
 
 enum class MouseKeyState{
 
@@ -23,6 +24,11 @@ struct MouseKey {
 #define mkeyPress std::pair<bool, MouseKey*>
 #define mouse_call std::function<bool(const Vec2& mousePos)>
 
+
+
+
+
+
 /// <summary>
 /// GLFW only allows for 8 mouse buttons
 /// </summary>
@@ -35,9 +41,11 @@ private:
 	std::vector<MouseKey> * _allKeys;
 	std::vector<mkeyPress>* _keysPressed;
 	std::vector<mkeyPress>* _keysUp;
+	SList<std::pair<const unsigned int, mouse_call>*>* _mDownCalls;
 	const unsigned int _maxKeys;
 	//					all keys
-	std::vector<std::pair<const unsigned int, mouse_call>>* _mDownCalls;
+	//std::vector<std::pair<const unsigned int, mouse_call>>* _mDownCalls;
+	
 	/// <summary>
 	/// 
 	/// </summary>
@@ -68,7 +76,7 @@ public :
 	/// </summary>
 	/// <param name="type">0 : mDown, 1: mUp</param>
 	/// <param name="call">pass by copy pair of int(mouse btn) and LAMBUDDA DURAIVU void(const Vec2& mousePos)</param>
-	void AddCallback(const unsigned int type, std::pair<const unsigned int, mouse_call> call);
+	void AddCallback(const unsigned int type, std::pair<const unsigned int, mouse_call>* call);
 };
 
 #endif // !MOUSE_H

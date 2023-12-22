@@ -1,15 +1,20 @@
 #ifndef DATA_STRUCTS_H
 #define DATA_STRUCTS_H
+#include <iostream>
 #include "Util/MemoryManager.h"
+
+
+
 
 template <typename T> class SLNode : public Memory{
 public:
-
-	SLNode<T>* _next;
 	T _value;
+	SLNode<T>* _next;
+	
 	SLNode() :_next(NULL), _value(NULL) {}
 	SLNode(T value = NULL, SLNode<T>* next = NULL) : _next(next), _value(value) { }
 	~SLNode() override  {
+		std::cout << "DELETING node from list\n";
 		delete _value;
 		//delete _next;
 	}
@@ -30,9 +35,14 @@ public:
 		_tail = NULL;
 		_length = 0;
 	}
-
+	
 	~SList() { 
-		//DeleteEverything();
+		//i should be able to call this in a destructor and not worry about it
+		auto next = _head->_next;
+		while (next != NULL) {
+			delete _head;
+			_head = next;
+		}
 	}
 	void Add(T value) {
 

@@ -14,7 +14,7 @@ Mouse::Mouse() :_maxKeys(8){
 		MouseKey mk{ i, MouseKeyState::IDLE };
 		_allKeys->push_back(mk);
 	}
-	_mDownCalls = new std::vector<std::pair<const unsigned int, mouse_call>>();
+	_mDownCalls = new SList<std::pair<const unsigned int, mouse_call>*>();
 }
 
 
@@ -23,6 +23,7 @@ Mouse::~Mouse() {
 	delete _keysPressed;
 	delete _keysUp;
 	delete _mDownCalls;
+	
 }
 
 /// <summary>
@@ -71,10 +72,10 @@ void Mouse::Update(const float deltaTime) {
 }
 
 
-void Mouse::AddCallback(const unsigned int type, std::pair<const unsigned int, mouse_call> call) {
+void Mouse::AddCallback(const unsigned int type, std::pair<const unsigned int, mouse_call>* call) {
 
 	if (type == 0) {
-		_mDownCalls->push_back(call);
+		_mDownCalls->Add(call);
 	}
 
 }
@@ -85,17 +86,42 @@ void Mouse::CallCalls(const unsigned int type, const MouseKey* mk) {
 		//mouse down callbacks
 
 		//check if there is a callback for this key
-		for (int i = 0; i < _mDownCalls->size(); i++) {
-			auto call = _mDownCalls->at(i);
-			if (call.first == mk->_id) {
-				bool remove = call.second(_position);
+		auto node = _mDownCalls->_head;
+		auto prevNode = node;
+		prevNode = NULL;
+		while (true) {
+			auto call = node->_value;
+			if (call->first == mk->_id) {
+				bool remove = call->second(_position);
+				if (remove) {
+					if (prevNode != NULL) {
+						if (node == _mDownCalls->_tail) {
+							MemoryManager::AddToGarbage(node);
+							_mDownCalls->_tail = NULL;
+							prevNode->_next = NULL;
+
+						}
+						else {
+							prevNode->_next = node->_next;
+							MemoryManager::AddToGarbage(node);
+							node = prevNode;
+						}
+						
+					}
+					else {
+						auto tmp = node->_next;
+						MemoryManager::AddToGarbage(node);
+						node = tmp;
+						_mDownCalls->_head = node;
+					}
+				}
 			}
-			if (remove) {
-				_mDownCalls->erase(_mDownCalls->begin() + i);
-				i--;
-			}
+
+			if (node->_next == NULL)
+				break;
+			prevNode = node;
+			node = node->_next;
 		}
-		
 	}
 }
 

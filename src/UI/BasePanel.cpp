@@ -110,15 +110,15 @@ void BasePanel::SetMouseCallBacks() {
 	
 	Mouse* m = Game::GetMouse();
 	
-	m->AddCallback(0, std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
+	m->AddCallback(0, new std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
 		std::cout << "HELLO FROM MOUSE CALLBACK ONLY ONCE \n";
 		return true; }));
-	m->AddCallback(0, std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
+	/*m->AddCallback(0, std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
 		std::cout << "HELLO FROM MOUSE CALLBACK EVERY TIME\n";
 		return false; }));
 	m->AddCallback(0, std::pair<const unsigned int, mouse_call>(1, [&](const Vec2& mousePos) {
 		std::cout << "HELLO FROM MOUSE CALLBACK DIFFERENT BUTTON\n";
-		return false; }));
+		return false; }));*/
 }
 
 
