@@ -82,47 +82,29 @@ void Mouse::AddCallback(const unsigned int type, std::pair<const unsigned int, m
 
 
 void Mouse::CallCalls(const unsigned int type, const MouseKey* mk) {
+
 	if (type == 0) {
 		//mouse down callbacks
 
 		//check if there is a callback for this key
-		auto node = _mDownCalls->_head;
-		auto prevNode = node;
-		prevNode = NULL;
-		while (true) {
-			auto call = node->_value;
-			if (call->first == mk->_id) {
-				bool remove = call->second(_position);
-				if (remove) {
-					if (prevNode != NULL) {
-						if (node == _mDownCalls->_tail) {
-							MemoryManager::AddToGarbage(node);
-							_mDownCalls->_tail = NULL;
-							prevNode->_next = NULL;
+		auto current = _mDownCalls->_current;
+		bool end = (current == NULL);
 
-						}
-						else {
-							prevNode->_next = node->_next;
-							MemoryManager::AddToGarbage(node);
-							node = prevNode;
-						}
-						
-					}
-					else {
-						auto tmp = node->_next;
-						MemoryManager::AddToGarbage(node);
-						node = tmp;
-						_mDownCalls->_head = node;
-					}
+		while (!end && _mDownCalls->_current != NULL) {
+
+			bool rem = false;
+			if (mk->_id == current->_value->first) {
+				rem = current->_value->second(_position);
+				if (rem) {
+					_mDownCalls->Pop();
 				}
 			}
-
-			if (node->_next == NULL)
-				break;
-			prevNode = node;
-			node = node->_next;
+			if(!rem)
+				end = _mDownCalls->Traverse();
+			current = _mDownCalls->_current;
 		}
 	}
+
 }
 
 void Mouse::SetCursorPos(const float& x, const float& y) {

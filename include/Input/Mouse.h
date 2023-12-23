@@ -41,6 +41,7 @@ private:
 	std::vector<MouseKey> * _allKeys;
 	std::vector<mkeyPress>* _keysPressed;
 	std::vector<mkeyPress>* _keysUp;
+	//key id, lambuda duraivu
 	SList<std::pair<const unsigned int, mouse_call>*>* _mDownCalls;
 	const unsigned int _maxKeys;
 	//					all keys
