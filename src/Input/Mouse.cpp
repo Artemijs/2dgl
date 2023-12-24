@@ -15,6 +15,32 @@ Mouse::Mouse() :_maxKeys(8){
 		_allKeys->push_back(mk);
 	}
 	_mDownCalls = new SList<std::pair<const unsigned int, mouse_call>*>();
+	
+	/*unsigned char pixels[16 * 16 * 4];
+	memset(pixels, 0xff, sizeof(pixels));
+
+	GLFWimage image;
+	image.width = 16;
+	image.height = 16;
+	image.pixels = pixels;
+
+	//GLFWcursor* cursor = glfwCreateCursor(&image, 0, 0);
+	//_cursor = glfwCreateCursor(&image, 0, 0);
+	_cursorDefault = glfwCreateStandardCursor(GLFW_CURSOR_NORMAL);
+	
+	if (_cursorDefault == NULL)
+		std::cout << "FAILED TO CREATE CURSOR\n";*/
+	
+	 
+
+	_cursorDefault = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
+	_cursorHr = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
+	_cursorVr = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
+	_cursorCross = glfwCreateStandardCursor(GLFW_CROSSHAIR_CURSOR);
+
+	if (_cursorDefault == NULL)
+		std::cout << "FAILED TO CREATE CURSOR\n";
+	glfwSetCursor(Renderer::instance()->GetWindow(), _cursorDefault);
 }
 
 
@@ -23,7 +49,12 @@ Mouse::~Mouse() {
 	delete _keysPressed;
 	delete _keysUp;
 	delete _mDownCalls;
-	
+	glfwDestroyCursor(_cursorDefault);
+	glfwDestroyCursor(_cursorHr);
+	glfwDestroyCursor(_cursorVr);
+	glfwDestroyCursor(_cursorCross);
+
+
 }
 
 /// <summary>
@@ -112,7 +143,7 @@ void Mouse::SetCursorPos(const float& x, const float& y) {
 	_position.x = x;
 	_position.y = y;
 	glfwSetCursorPos(Renderer::instance()->GetWindow(), x, y);
-
+	
 }
 
 
@@ -188,6 +219,33 @@ MouseKey* Mouse::GetMouseKey(const unsigned int key) {
 	return &_allKeys->at(key);
 }
 
+
+void Mouse::SetCursorImg(const unsigned int type) {
+	
+	GLFWcursor* c;
+	switch (type)
+	{
+		case 0:
+			c = _cursorDefault;
+			break;
+		case 1:
+			c = _cursorHr;
+			break;
+		case 2:
+			c = _cursorVr;
+			break;
+		case 3:
+			c = _cursorCross;
+			break;
+		case 4:
+			c = _cursorCross;
+			break;
+		default:
+			c = _cursorDefault;
+			break;
+	}
+	glfwSetCursor(Renderer::instance()->GetWindow(), c);
+}
 
 Vec2 Mouse::GetPosition() {return _position;}
 bool Mouse::IsHidden() {return _hidden;}

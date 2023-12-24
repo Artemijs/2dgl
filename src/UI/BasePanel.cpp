@@ -82,6 +82,7 @@ BasePanel::BasePanel() {
 	_panelMaterial->_borderColor = Vec4(0.1f, 0.1f, 0.1f, 1.0f);
 	_panelMaterial->_borderSize = 1.0f;
 	CalculateCorners(Vec3(100, 100, -1), Vec3(100, 100, 1));
+	_pointerAction = 0;
 }
 
 
@@ -102,6 +103,7 @@ BasePanel::BasePanel(const char* name, BaseNode* parentOfparent, Vec3 pos, Vec3 
 	_panelMaterial->_borderSize = 2.0f;
 	CalculateCorners(pos, size);
 	SetMouseCallBacks();
+	_pointerAction = 0;
 
 }
 
@@ -205,14 +207,21 @@ void BasePanel::MouseEdgeInterection(const Vec2& mousePos) {
 	Vec2 point = _corners[0];
 	float mouseProj = Vec2::Dot(axis, mousePos);
 	float pointProj = Vec2::Dot(axis, point);
+	bool noCollision = true;
 	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
 		std::cout << "COllided with TOP edge\n";
+		Game::GetMouse()->SetCursorImg(2);
+		_pointerAction = 2;
+		noCollision = false;
 	}
 	//bottom
 	point = _corners[2];
 	pointProj = Vec2::Dot(axis, point);
 	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
 		std::cout << "COllided with BOT edge\n";
+		Game::GetMouse()->SetCursorImg(2);
+		_pointerAction = 2;
+		noCollision = false;
 	}
 	//left
 	axis = Vec2(1, 0);
@@ -221,6 +230,9 @@ void BasePanel::MouseEdgeInterection(const Vec2& mousePos) {
 	pointProj = Vec2::Dot(axis, point);
 	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
 		std::cout << "COllided with LEFT edge\n";
+		Game::GetMouse()->SetCursorImg(1);
+		_pointerAction = 1;
+		noCollision = false;
 	}
 	//right
 	point = _corners[2];
@@ -228,6 +240,14 @@ void BasePanel::MouseEdgeInterection(const Vec2& mousePos) {
 	pointProj = Vec2::Dot(axis, point);
 	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
 		std::cout << "COllided with RIGHT edge\n";
+		Game::GetMouse()->SetCursorImg(1);
+		_pointerAction = 1;
+		noCollision = false;
 	}
 	
+
+	if (noCollision && _pointerAction != 0) {
+		_pointerAction = 0;
+		Game::GetMouse()->SetCursorImg(0);
+	}
 }

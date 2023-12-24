@@ -31,17 +31,21 @@ void MemoryManager::ClearMemory() {
 		head = tempNode;
 
 	}
+	_all_garbage->_head = NULL;
+	_all_garbage->_tail = NULL;
 }
 
 
 void MemoryManager::Clean() {
-	if (_all_garbage->_head != NULL)
+/*	if (_all_garbage->_head != NULL)
 		printf("MEMORY NOT EMPTY!\n");
 	delete _all_garbage;
 
 	for (int i = 0; i < _garbageCache->size(); i++) {
 		delete _garbageCache->at(i);
 	}
+	delete _garbageCache;*/
+	delete _all_garbage;
 	delete _garbageCache;
 
 }

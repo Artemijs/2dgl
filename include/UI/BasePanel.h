@@ -23,6 +23,7 @@ public:
 
 class BasePanel : public Memory {
 private:
+	unsigned int _pointerAction;;
 	const static float BORDER_INTERSECTION_WIDTH;
 	/// <summary>
 	/// the render node that ui is parented to

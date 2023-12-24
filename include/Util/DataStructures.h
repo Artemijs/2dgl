@@ -42,8 +42,9 @@ public:
 
 	~SList() { 
 		//i should be able to call this in a destructor and not worry about it
-		auto next = _head->_next;
+		auto next = _head;
 		while (next != NULL) {
+			next = next->_next;
 			delete _head;
 			_head = next;
 		}
@@ -77,21 +78,6 @@ public:
 			2024 jan 8th and we have won the lotto
 			
 		*/
-		/*//		traversal finished
-		if (_current == NULL) {
-			//reset to begining of the list
-			_current = _head;
-			_previous = NULL;
-			//signal end of traversal
-			return true;
-		}
-		else {
-			//traverse to the next node
-			_previous = _current;
-			_current = _current->_next;
-			//signal that the traversal has not yet finished
-			return false;
-		}*/
 	}
 
 
@@ -102,6 +88,7 @@ public:
 		//					delete head
 		if (_current == _head) {
 			MemoryManager::AddToGarbage(_current);
+			_length--;
 			//set new head value
 			if (_head->_next != NULL) {
 				_head = _head->_next;
@@ -118,6 +105,7 @@ public:
 
 			//							delete tail
 			MemoryManager::AddToGarbage(_current);
+			_length--;
 			//
 			_tail = _previous;
 			_current = _head;
@@ -128,6 +116,7 @@ public:
 			_previous->_next = _current->_next;
 			//							delete tail
 			MemoryManager::AddToGarbage(_current);
+			_length--;
 			_current = _previous->_next;
 		}
 

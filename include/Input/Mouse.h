@@ -5,6 +5,7 @@
 #include <utility>///for pair
 #include <functional>
 #include "Util/Utility.h"
+#include "GLFW/glfw3.h"
 
 enum class MouseKeyState{
 
@@ -35,6 +36,11 @@ struct MouseKey {
 class Mouse {
 
 private:
+
+	GLFWcursor* _cursorDefault;
+	GLFWcursor* _cursorHr;
+	GLFWcursor* _cursorVr;
+	GLFWcursor* _cursorCross;
 
 	Vec2 _position;
 	bool _hidden;
@@ -78,6 +84,11 @@ public :
 	/// <param name="type">0 : mDown, 1: mUp</param>
 	/// <param name="call">pass by copy pair of int(mouse btn) and LAMBUDDA DURAIVU void(const Vec2& mousePos)</param>
 	void AddCallback(const unsigned int type, std::pair<const unsigned int, mouse_call>* call);
+	/// <summary>
+	/// 0 normal, 1 H, 2 V, 3, 4
+	/// </summary>
+	/// <param name="type"></param>
+	void SetCursorImg(const unsigned int type);
 };
 
 #endif // !MOUSE_H
