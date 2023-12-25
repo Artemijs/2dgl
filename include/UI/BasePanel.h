@@ -23,7 +23,8 @@ public:
 
 class BasePanel : public Memory {
 private:
-	unsigned int _pointerAction;;
+	unsigned int _pointerAction;
+	bool _resizing;
 	const static float BORDER_INTERSECTION_WIDTH;
 	/// <summary>
 	/// the render node that ui is parented to
@@ -38,6 +39,7 @@ private:
 	void MouseEdgeInterection(const Vec2& mousePos);
 	void CalculateCorners(const Vec3& pos, const Vec3& size);
 	void SetMouseCallBacks();
+	void ResizeBorder();
 public:
 	BasePanel();
 	/// <summary>

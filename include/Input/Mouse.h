@@ -43,12 +43,15 @@ private:
 	GLFWcursor* _cursorCross;
 
 	Vec2 _position;
+	//how much a mouse has moved this frame
+	Vec2 _mouseDelta;
 	bool _hidden;
 	std::vector<MouseKey> * _allKeys;
 	std::vector<mkeyPress>* _keysPressed;
 	std::vector<mkeyPress>* _keysUp;
 	//key id, lambuda duraivu
 	SList<std::pair<const unsigned int, mouse_call>*>* _mDownCalls;
+	SList<std::pair<const unsigned int, mouse_call>*>* _mUpCalls;
 	const unsigned int _maxKeys;
 	//					all keys
 	//std::vector<std::pair<const unsigned int, mouse_call>>* _mDownCalls;
@@ -78,6 +81,8 @@ public :
 	bool IsHidden();
 	MouseKey* GetMouseKey(const unsigned int key);
 	Vec3 GetMousePosV3();
+
+
 	/// <summary>
 	/// set callbacks for mouse button press events
 	/// </summary>

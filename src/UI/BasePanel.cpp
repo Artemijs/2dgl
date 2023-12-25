@@ -83,6 +83,8 @@ BasePanel::BasePanel() {
 	_panelMaterial->_borderSize = 1.0f;
 	CalculateCorners(Vec3(100, 100, -1), Vec3(100, 100, 1));
 	_pointerAction = 0;
+	_resizing = false;
+
 }
 
 
@@ -104,6 +106,7 @@ BasePanel::BasePanel(const char* name, BaseNode* parentOfparent, Vec3 pos, Vec3 
 	CalculateCorners(pos, size);
 	SetMouseCallBacks();
 	_pointerAction = 0;
+	_resizing = false;
 
 }
 
@@ -113,14 +116,18 @@ void BasePanel::SetMouseCallBacks() {
 	Mouse* m = Game::GetMouse();
 	
 	m->AddCallback(0, new std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
-		std::cout << "HELLO FROM MOUSE CALLBACK ONLY ONCE \n";
-		return true; }));
-	/*m->AddCallback(0, std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
-		std::cout << "HELLO FROM MOUSE CALLBACK EVERY TIME\n";
-		return false; }));
-	m->AddCallback(0, std::pair<const unsigned int, mouse_call>(1, [&](const Vec2& mousePos) {
-		std::cout << "HELLO FROM MOUSE CALLBACK DIFFERENT BUTTON\n";
-		return false; }));*/
+			
+			_resizing = true;
+			return false; 
+		
+		}));
+
+	m->AddCallback(1, new std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
+	
+			_resizing = false;
+			return false;
+
+		}));
 }
 
 
@@ -194,6 +201,59 @@ RenderNode* BasePanel::GetParentRenderNode() {
 
 void BasePanel::Update(const float deltaTime) {
 	MouseEdgeInterection(Game::GetMouse()->GetPosition());
+	if (_pointerAction != 0 && _resizing == true) {
+		ResizeBorder();
+	}
+}
+
+
+void BasePanel::ResizeBorder() {
+	
+	Vec3 size = _parent->GetTransform()._scale;
+	Vec3 pos = _parent->GetTransform()._position;
+	Vec2 mousePos = Game::GetMouse()->GetPosition();
+
+
+	//1 = left 2 = right 3 = top 4 = bot
+
+	if (_pointerAction == 1) {
+		//chnage position of left edge
+		float sizeDelta = (pos.x - size.x * 0.5f) - mousePos.x;
+		pos.x -= sizeDelta * 0.5;
+		size.x += sizeDelta;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+
+	}
+	else if (_pointerAction == 2) {
+		//chnage position of right edge
+		float sizeDelta = (pos.x + size.x * 0.5f) - mousePos.x;
+		pos.x -= sizeDelta * 0.5;
+		size.x -= sizeDelta;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+
+	}
+	else if (_pointerAction == 3) {
+		//chnage position of top edge
+		float sizeDelta = (pos.y + size.y * 0.5f) - mousePos.y;
+		pos.y -= sizeDelta * 0.5;
+		size.y -= sizeDelta;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+	}
+	else if (_pointerAction == 4) {
+		//chnage position of bot edge
+		float sizeDelta = (pos.y - size.y * 0.5f) - mousePos.y;
+		pos.y -= sizeDelta * 0.5;
+		size.y += sizeDelta;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+	}
 }
 
 
@@ -201,53 +261,74 @@ void BasePanel::MouseEdgeInterection(const Vec2& mousePos) {
 	
 	//0: topLeft , 1: topright  , 2: bot rright, 3: bottom left
 	
-	//top edge
+	
+	bool noCollision = true;
+	bool collisionData[4]{ false, false, false, false };
 
 	Vec2 axis(0, 1);
 	Vec2 point = _corners[0];
 	float mouseProj = Vec2::Dot(axis, mousePos);
 	float pointProj = Vec2::Dot(axis, point);
-	bool noCollision = true;
-	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
-		std::cout << "COllided with TOP edge\n";
-		Game::GetMouse()->SetCursorImg(2);
-		_pointerAction = 2;
-		noCollision = false;
-	}
+	
+	//top edge
+	collisionData[0] = (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH);
+	
+	
 	//bottom
 	point = _corners[2];
 	pointProj = Vec2::Dot(axis, point);
-	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
-		std::cout << "COllided with BOT edge\n";
-		Game::GetMouse()->SetCursorImg(2);
-		_pointerAction = 2;
-		noCollision = false;
-	}
+	
+	collisionData[1] = (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH);
+
 	//left
 	axis = Vec2(1, 0);
 	point = _corners[0];
 	mouseProj = Vec2::Dot(axis, mousePos);
 	pointProj = Vec2::Dot(axis, point);
-	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
-		std::cout << "COllided with LEFT edge\n";
-		Game::GetMouse()->SetCursorImg(1);
-		_pointerAction = 1;
-		noCollision = false;
-	}
+
+	collisionData[2] = (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH);
+
+	
 	//right
-	point = _corners[2];
+	point = _corners[1];
 	mouseProj = Vec2::Dot(axis, mousePos);
 	pointProj = Vec2::Dot(axis, point);
-	if (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH) {
-		std::cout << "COllided with RIGHT edge\n";
+
+	collisionData[3] = (mouseProj >= pointProj - BORDER_INTERSECTION_WIDTH && mouseProj <= pointProj + BORDER_INTERSECTION_WIDTH);
+
+	
+	
+	//top
+	if (collisionData[0]) {
+		//top left
+		//top right
+		//just top
+		Game::GetMouse()->SetCursorImg(2);
+		_pointerAction = 3;
+
+	}
+	//bot
+	else if (collisionData[1]) {
+		Game::GetMouse()->SetCursorImg(2);
+		_pointerAction = 4;
+	}
+	//left
+	else if (collisionData[2]) {
 		Game::GetMouse()->SetCursorImg(1);
 		_pointerAction = 1;
-		noCollision = false;
 	}
-	
+	//right
+	else if (collisionData[3]) {
+		Game::GetMouse()->SetCursorImg(1);
+		_pointerAction = 2;
+	}
 
-	if (noCollision && _pointerAction != 0) {
-		_pointerAction = 0;
-		Game::GetMouse()->SetCursorImg(0);
+
+
+	if (!_resizing) {
+		if (!collisionData[0] && !collisionData[1] && !collisionData[2] && !collisionData[3] && _pointerAction != 0) {
+			_pointerAction = 0;
+			Game::GetMouse()->SetCursorImg(0);
+		}
 	}
 }

@@ -39,7 +39,7 @@ BaseNode::BaseNode(const Vec3 pos, const Vec3 size, const Vec3 ang):
 }
 
 
-//use set scale function instead
+//use set scale function instead printf("function not implementeedd and should be deleted\n");
 void BaseNode::SetSize() {
 	printf("function not implementeedd and should be deleted\n");
 

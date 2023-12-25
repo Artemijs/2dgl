@@ -15,7 +15,8 @@ Mouse::Mouse() :_maxKeys(8){
 		_allKeys->push_back(mk);
 	}
 	_mDownCalls = new SList<std::pair<const unsigned int, mouse_call>*>();
-	
+	_mUpCalls = new SList<std::pair<const unsigned int, mouse_call>*>();
+
 	/*unsigned char pixels[16 * 16 * 4];
 	memset(pixels, 0xff, sizeof(pixels));
 
@@ -49,6 +50,7 @@ Mouse::~Mouse() {
 	delete _keysPressed;
 	delete _keysUp;
 	delete _mDownCalls;
+	delete _mUpCalls;
 	glfwDestroyCursor(_cursorDefault);
 	glfwDestroyCursor(_cursorHr);
 	glfwDestroyCursor(_cursorVr);
@@ -95,6 +97,7 @@ void Mouse::Update(const float deltaTime) {
 
 	//					GET MOUSE POSITION
 	double x, y;
+
 	glfwGetCursorPos(Renderer::instance()->GetWindow(), &x, &y);
 
 	y = Renderer::instance()->GetWindowSize().y - y;
@@ -107,6 +110,9 @@ void Mouse::AddCallback(const unsigned int type, std::pair<const unsigned int, m
 
 	if (type == 0) {
 		_mDownCalls->Add(call);
+	}
+	else if (type == 1) {
+		_mUpCalls->Add(call);
 	}
 
 }
@@ -133,6 +139,27 @@ void Mouse::CallCalls(const unsigned int type, const MouseKey* mk) {
 			if(!rem)
 				end = _mDownCalls->Traverse();
 			current = _mDownCalls->_current;
+		}
+	}
+	if (type == 1) {
+		//mouse down callbacks
+
+		//check if there is a callback for this key
+		auto current = _mUpCalls->_current;
+		bool end = (current == NULL);
+
+		while (!end && _mUpCalls->_current != NULL) {
+
+			bool rem = false;
+			if (mk->_id == current->_value->first) {
+				rem = current->_value->second(_position);
+				if (rem) {
+					_mUpCalls->Pop();
+				}
+			}
+			if (!rem)
+				end = _mUpCalls->Traverse();
+			current = _mUpCalls->_current;
 		}
 	}
 

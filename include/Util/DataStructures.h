@@ -39,7 +39,10 @@ public:
 		_length = 0;
 	}
 	
-
+	/// <summary>
+	/// calls delete for every node aswell
+	/// </summary>
+	/// <returns></returns>
 	~SList() { 
 		//i should be able to call this in a destructor and not worry about it
 		auto next = _head;
