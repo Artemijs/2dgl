@@ -11,6 +11,9 @@ private:
 
 	FBOComponent* _fboComp;
 	BaseMaterial* _nodeMat;
+	/// <summary>
+	/// creates a full screen fbo and then uses shaders to zoom in on it for scale
+	/// </summary>
 	void AddFBO() ;
 public:
 	RenderNode();

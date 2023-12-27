@@ -63,7 +63,7 @@ void RenderNodeMat::Unbind() const {
 //										BASE PANEL
 //----------------------------------------------------------------------------------------
 
-const float BasePanel::BORDER_INTERSECTION_WIDTH = 2.50f;
+const float BasePanel::BORDER_INTERSECTION_WIDTH = 3.50f;
 
 BasePanel::BasePanel() {
 
@@ -254,6 +254,55 @@ void BasePanel::ResizeBorder() {
 		_parent->SetScale(size);
 		CalculateCorners(pos, size);
 	}
+	//				diagonals
+	else if (_pointerAction == 5) {
+		//chnage position of top left edge
+		float sizeDeltaX = (pos.x - size.x * 0.5f) - mousePos.x;
+		float sizeDeltaY = (pos.y + size.y * 0.5f) - mousePos.y;
+		pos.y -= sizeDeltaY * 0.5;
+		size.y -= sizeDeltaY;
+		pos.x -= sizeDeltaX * 0.5;
+		size.x += sizeDeltaX;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+	}
+	else if (_pointerAction == 6) {
+		//chnage position of top right edge
+		float sizeDeltaX = (pos.x + size.x * 0.5f) - mousePos.x;
+		float sizeDeltaY = (pos.y + size.y * 0.5f) - mousePos.y;
+		pos.y -= sizeDeltaY * 0.5;
+		size.y -= sizeDeltaY;
+		pos.x -= sizeDeltaX * 0.5;
+		size.x -= sizeDeltaX;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+	}
+	else if (_pointerAction == 7) {
+		//chnage position of bot left edge
+		float sizeDeltaX = (pos.x - size.x * 0.5f) - mousePos.x;
+		float sizeDeltaY = (pos.y - size.y * 0.5f) - mousePos.y;
+		pos.y -= sizeDeltaY * 0.5;
+		size.y += sizeDeltaY;
+		pos.x -= sizeDeltaX * 0.5;
+		size.x += sizeDeltaX;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+	}
+	else if (_pointerAction == 8) {
+		//chnage position of bot right edge
+		float sizeDeltaX = (pos.x + size.x * 0.5f) - mousePos.x;
+		float sizeDeltaY = (pos.y - size.y * 0.5f) - mousePos.y;
+		pos.y -= sizeDeltaY * 0.5;
+		size.y += sizeDeltaY;
+		pos.x -= sizeDeltaX * 0.5;
+		size.x -= sizeDeltaX;
+		_parent->SetPosition(pos);
+		_parent->SetScale(size);
+		CalculateCorners(pos, size);
+	}
 }
 
 
@@ -299,36 +348,81 @@ void BasePanel::MouseEdgeInterection(const Vec2& mousePos) {
 	
 	
 	//top
-	if (collisionData[0]) {
-		//top left
-		//top right
-		//just top
-		Game::GetMouse()->SetCursorImg(2);
-		_pointerAction = 3;
+		if (collisionData[0]) {
+			//top left
+			if (collisionData[2]) {
+				Game::GetMouse()->SetCursorImg(3);
+				SetPointerAction(5);
+				//_pointerAction = 5;
+			}
+			//top right
+			else if (collisionData[3]) {
+				Game::GetMouse()->SetCursorImg(3);
+				SetPointerAction(6);
+				//_pointerAction = 6;
+			}
+			//just top
+			else {
+				Game::GetMouse()->SetCursorImg(2);
+				SetPointerAction(3);
+				//_pointerAction = 3;
+			}
+		}
+		//bot
+		else if (collisionData[1]) {
+			//bot left
+			if (collisionData[2]) {
+				Game::GetMouse()->SetCursorImg(3);
+				SetPointerAction(7);
+				//_pointerAction = 7;
+			}
+			//bot right
+			else if (collisionData[3]) {
+				Game::GetMouse()->SetCursorImg(3);
+				//_pointerAction = 8;
+				SetPointerAction(8);
+			}
+			//just bot
+			else {
+				Game::GetMouse()->SetCursorImg(2);
+				//_pointerAction = 4;
+				SetPointerAction(4);
+			}
 
-	}
-	//bot
-	else if (collisionData[1]) {
-		Game::GetMouse()->SetCursorImg(2);
-		_pointerAction = 4;
-	}
-	//left
-	else if (collisionData[2]) {
-		Game::GetMouse()->SetCursorImg(1);
-		_pointerAction = 1;
-	}
-	//right
-	else if (collisionData[3]) {
-		Game::GetMouse()->SetCursorImg(1);
-		_pointerAction = 2;
-	}
-
+		}
+		//left
+		else if (collisionData[2]) {
+			Game::GetMouse()->SetCursorImg(1);
+			//_pointerAction = 1;
+			SetPointerAction(1);
+		}
+		//right
+		else if (collisionData[3]) {
+			Game::GetMouse()->SetCursorImg(1);
+			//_pointerAction = 2;
+			SetPointerAction(2);
+		}
+	
 
 
 	if (!_resizing) {
 		if (!collisionData[0] && !collisionData[1] && !collisionData[2] && !collisionData[3] && _pointerAction != 0) {
-			_pointerAction = 0;
+			//_pointerAction = 0;
+			SetPointerAction(0);
 			Game::GetMouse()->SetCursorImg(0);
 		}
+	}
+}
+
+
+void BasePanel::SetPointerAction(const unsigned int newAction) {
+	/*if( _pointerAction == 0 || _pointerAction >4 || newAction == 0)
+		_pointerAction = newAction;*/
+	if (_pointerAction == 0 || newAction == 0) {
+		//allowed to change everything
+		_pointerAction = newAction;
+	}
+	else if (newAction > 4) {
+		_pointerAction = newAction;
 	}
 }

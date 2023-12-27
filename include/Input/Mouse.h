@@ -62,7 +62,6 @@ private:
 	/// <param name="type">0 : mDown, 1: mUp</param>
 	/// <param name="mk"></param>
 	void CallCalls(const unsigned int type, const MouseKey* mk);
-
 public :
 
 	Mouse();

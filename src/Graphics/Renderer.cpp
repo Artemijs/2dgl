@@ -311,7 +311,7 @@ void Renderer::DrawRenderNode(const RenderNode* parent, const RenderNode* node, 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 	//												CLEAN
-	parent->GetMaterial()->Unbind();
+	node->GetMaterial()->Unbind();
 }
 
 

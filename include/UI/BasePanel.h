@@ -40,6 +40,7 @@ private:
 	void CalculateCorners(const Vec3& pos, const Vec3& size);
 	void SetMouseCallBacks();
 	void ResizeBorder();
+	void SetPointerAction(const unsigned int newAction);
 public:
 	BasePanel();
 	/// <summary>

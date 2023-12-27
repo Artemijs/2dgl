@@ -20,7 +20,8 @@ public :
 	~FBOComponent();
 	const unsigned int ID() const override;
 	void Clear()const;
-	void SetClearColor(Vec3 col) ;
+	void SetClearColor(Vec3 col);
+	void SetTextSize(const unsigned int width, const unsigned int height);
 };
 
 #endif

@@ -36,7 +36,8 @@ RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 
 
 void RenderNode::AddFBO() {
-	_fboComp = new FBOComponent(_transform._scale.x, _transform._scale.y);
+	//_fboComp = new FBOComponent(_transform._scale.x, _transform._scale.y);
+	_fboComp = new FBOComponent();
 	AddComponent<FBOComponent>(_fboComp);
 	//_fboComp->SetClearColor(Vec3(0.1, 0.1, 0.1));
 }
