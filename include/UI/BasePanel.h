@@ -11,6 +11,8 @@ public:
 	Vec4 _borderColor;
 	float _borderSize;
 	Vec2 _textureSize;
+	Vec2 _uv_offset;
+	Vec2 _uv_scale;
 	RenderNodeMat();
 	RenderNodeMat(const Shader* s);
 	/// <summary>
@@ -19,7 +21,17 @@ public:
 	virtual ~RenderNodeMat();
 	void Bind(const Matrix4x4* model) const override;
 	void Unbind() const override;
+	void RecalcUV(const Transform& t);
 };
+
+
+
+
+//									BASE PANEL
+//----------------------------------------------------------------------------
+
+
+
 
 class BasePanel : public Memory {
 private:

@@ -22,14 +22,18 @@ RenderNode::RenderNode() :
 RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	BaseNode(pos, size, ang){
 	AddFBO();
-	_nodeMat = new RenderNodeMat(Renderer::instance()->GetShader(8));
+	Renderer* r = Renderer::instance();
+	_nodeMat = new RenderNodeMat(r->GetShader(8));
 
-	RenderNodeMat* rnMat = new RenderNodeMat(Renderer::instance()->GetShader(8));
+	RenderNodeMat* rnMat = new RenderNodeMat(r->GetShader(8));
+
+	//Vec2 uvScale(size.x/r->GetWindowSize().x, size.y/r->GetWindowSize().y);
 	
+	//Vec2 uvScale(1,1);
 	rnMat->_borderColor = Vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	rnMat->_borderSize = 1.0f;
 	rnMat->_textureSize = Vec2(size.x, size.y);
-
+	rnMat->RecalcUV(_transform);
 	_nodeMat = rnMat;
 	
 }

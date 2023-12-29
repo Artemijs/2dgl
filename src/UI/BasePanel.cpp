@@ -1,7 +1,7 @@
 #include "UI/BasePanel.h"
 #include "Game/Game.h"
 #include "Game/FBOComponent.h"
-
+#include "Graphics/Renderer.h"
 /*
 
 
@@ -48,6 +48,8 @@ void RenderNodeMat::Bind(const Matrix4x4* model) const {
 
 	glUniform4f(glGetUniformLocation(_shader->ID,"borderColor"), _borderColor.x, _borderColor.y, _borderColor.z, _borderColor.a);
 	glUniform2f(glGetUniformLocation(_shader->ID, "size"), _textureSize.x, _textureSize.y);
+	glUniform2f(glGetUniformLocation(_shader->ID, "uv_offset"), _uv_offset.x, _uv_offset.y);
+	glUniform2f(glGetUniformLocation(_shader->ID, "uv_scale"), _uv_scale.x, _uv_scale.y);
 	glUniform1f(glGetUniformLocation(_shader->ID, "borderSize"), _borderSize);
 }
 
@@ -58,6 +60,12 @@ void RenderNodeMat::Unbind() const {
 }
 
 
+void RenderNodeMat::RecalcUV(const Transform& t) {
+	Renderer* r = Renderer::instance();
+	_uv_scale = Vec2(t._scale.x / r->GetWindowSize().x, t._scale.y / r->GetWindowSize().y);
+	//_uv_offset = Vec2(t._position.x / r->GetWindowSize().x, t._position.y / r->GetWindowSize().y);
+
+}
 
 
 //										BASE PANEL
@@ -303,6 +311,8 @@ void BasePanel::ResizeBorder() {
 		_parent->SetScale(size);
 		CalculateCorners(pos, size);
 	}
+
+	_panelMaterial->RecalcUV(_parent->GetTransform());
 }
 
 

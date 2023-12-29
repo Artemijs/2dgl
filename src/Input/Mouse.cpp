@@ -206,7 +206,7 @@ void Mouse::ButtonInput(const unsigned int btn, const unsigned int action) {
 	
 	if (action == GLFW_PRESS) {				
 		MouseKey* mk = &_allKeys->at(btn);	
-		mk->_state = MouseKeyState::KEY_DOWN;
+		mk->_state = MouseKeyState::KEY_PRESS;
 		_keysPressed->push_back(mkeyPress(false, mk));
 		//CALL EVENTS ON THIS KEY IF IT EXISTS
 		CallCalls(0, mk);
@@ -238,7 +238,7 @@ void Mouse::ButtonInput(const unsigned int btn, const unsigned int action) {
 }
 
 
-MouseKey* Mouse::GetMouseKey(const unsigned int key) {
+MouseKey* Mouse::GetMouseKey(const unsigned int key) const {
 	if (key > _allKeys->size()) {
 		printf("MOUSE KEY NOR FOUND \n");
 		return NULL;
@@ -274,7 +274,7 @@ void Mouse::SetCursorImg(const unsigned int type) {
 	glfwSetCursor(Renderer::instance()->GetWindow(), c);
 }
 
-Vec2 Mouse::GetPosition() {return _position;}
-bool Mouse::IsHidden() {return _hidden;}
+Vec2 Mouse::GetPosition() const {return _position;}
+bool Mouse::IsHidden() const {return _hidden;}
 //MOUSE POS IN vec format for conveniece
 Vec3 Mouse::GetMousePosV3() { return Vec3(_position.x, _position.y, 0); }

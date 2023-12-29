@@ -121,6 +121,26 @@ void Utility::DrawSpriteManually(const Vec3& pos, const Vec3& scale, const BaseM
 	bm->Unbind();
 
 }
+
+
+void Utility::PrintMouseState(const Mouse* m) {
+	const char* state;
+	if (m->GetMouseKey(0)->_state == MouseKeyState::IDLE) { 
+		state = "IDLE"; 
+	}
+	else if (m->GetMouseKey(0)->_state == MouseKeyState::KEY_DOWN) {
+		state = "DOWN"; 
+	}
+	else if (m->GetMouseKey(0)->_state == MouseKeyState::KEY_PRESS) {
+		state = "PRESS"; 
+	}
+	else if (m->GetMouseKey(0)->_state == MouseKeyState::KEY_RELEASE) {
+		state = "RELEASE"; 
+	}
+	std::cout << " MOSUE STATE OF BTN 0 IS " << state << "\n";
+
+}
+
 //													DEV FUNCTIONS
 //----------------------------------------------------------------------------------------------------------
 

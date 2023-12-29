@@ -1,7 +1,8 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 #include "Game/BaseNode.h"
-
+//#include "Input/Mouse.h"
+class Mouse;
 class Game;
 class Utility {
 public:
@@ -45,6 +46,8 @@ public:
 	/// <param name="len">len of data swapped</param>
 	static void Swap(float* a, float* b, const int start, const int len);
 	static void Swap(float* data, const int startA, const int startB, const int len);
+	static void PrintMouseState(const Mouse* m);
+
 };
 
 

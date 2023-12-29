@@ -21,7 +21,7 @@ struct MouseKey {
 	const unsigned int _id;
 	MouseKeyState _state;
 };
-
+//the bool is a delete this variable flag
 #define mkeyPress std::pair<bool, MouseKey*>
 #define mouse_call std::function<bool(const Vec2& mousePos)>
 
@@ -71,14 +71,14 @@ public :
 	void ButtonInput(const unsigned int btn, const unsigned int action);
 	void SetCursorPos(const float &x, const float &y);
 	void SetCursorPos(const Vec2& cursorpos);
-	Vec2 GetPosition();
+	Vec2 GetPosition() const ;
 	/// <summary>
 	/// hides the cursor
 	/// </summary>
 	/// <param name="hidden"></param>
 	void SetCursorHidden(const bool hidden);
-	bool IsHidden();
-	MouseKey* GetMouseKey(const unsigned int key);
+	bool IsHidden() const;
+	MouseKey* GetMouseKey(const unsigned int key)const ;
 	Vec3 GetMousePosV3();
 
 

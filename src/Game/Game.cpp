@@ -27,6 +27,14 @@ Game::Game() {
 	_ang = 0.0f;
 	_isRunning = true;
 	_world->GetComponent<FBOComponent>()->SetClearColor(Vec3(0.07f, 0.13f, 0.17f));
+	_mouse->AddCallback(0, new std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
+		MouseEventHandler::HandleMouseClick(true);
+			return false; 	
+	}));
+	_mouse->AddCallback(1, new std::pair<const unsigned int, mouse_call>(0, [&](const Vec2& mousePos) {
+		MouseEventHandler::HandleMouseClick(false);
+		return false;	
+	}));
 	
 }
 Game::~Game() {
@@ -85,13 +93,6 @@ void Game::Update(float deltaTime) {
 	Vec3 mouseInWorld = Renderer::instance()->GetCamera()->GetViewMatrix()->Inverse() * _mouse->GetMousePosV3();
 
 	MouseEventHandler::HandleMouseMoving(mouseInWorld, deltaTime);
-
-	if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_PRESS) {
-		MouseEventHandler::HandleMouseClick(true);
-	}
-	else if (_mouse->GetMouseKey(0)->_state == MouseKeyState::KEY_RELEASE) {
-		MouseEventHandler::HandleMouseClick(false);
-	}
 
 	MouseEventHandler::Update(deltaTime);
 	
