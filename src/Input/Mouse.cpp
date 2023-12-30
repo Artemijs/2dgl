@@ -34,14 +34,7 @@ Mouse::Mouse() :_maxKeys(8){
 	
 	 
 
-	_cursorDefault = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
-	_cursorHr = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
-	_cursorVr = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
-	_cursorCross = glfwCreateStandardCursor(GLFW_CROSSHAIR_CURSOR);
-
-	if (_cursorDefault == NULL)
-		std::cout << "FAILED TO CREATE CURSOR\n";
-	glfwSetCursor(Renderer::instance()->GetWindow(), _cursorDefault);
+	
 }
 
 
@@ -58,6 +51,19 @@ Mouse::~Mouse() {
 
 
 }
+
+
+void Mouse::InitCursors() {
+	_cursorDefault = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
+	_cursorHr = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
+	_cursorVr = glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);
+	_cursorCross = glfwCreateStandardCursor(GLFW_CROSSHAIR_CURSOR);
+
+	if (_cursorDefault == NULL)
+		std::cout << "FAILED TO CREATE CURSOR\n";
+	glfwSetCursor(Renderer::instance()->GetWindow(), _cursorDefault);
+}
+
 
 /// <summary>
 /// right so the reason why i did it this way was to have an easy structure to shove

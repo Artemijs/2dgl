@@ -84,9 +84,8 @@ void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, c
 
 	// CHECK TO SEE IF THE CHILDREN HAVE COLLISION BOXES AND MOVE THEM BY
 	//		pos - size/2
-	//_children
 	//check if children have bounds
-	for (int i = 0; i < _children->size(); i++) {
+	/*for (int i = 0; i < _children->size(); i++) {
 		auto child = _children->at(i);
 		Bounds* box = child->GetComponent<Bounds>(Bounds::_component_id);
 		if (box != NULL) {
@@ -100,7 +99,7 @@ void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, c
 				))
 			);
 		}
-	}
+	}*/
 }
 
 

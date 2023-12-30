@@ -12,16 +12,19 @@ uniform vec2 uv_scale;
 uniform mat4 model;
 uniform mat4 proj;
 
+//this is for the offset and scale of ui elements inside the render node
 out vec2 uv;
-
+//this is for the border
+out vec2 oldUV;
 
 void main(){
 	gl_Position =   proj * (model) * vec4(vertPos, 1.0);
 
 	uv = vec2(0.0f, 0.0f);
-	uv.x = (in_uv.x ) * uv_scale.x;
-	uv.y = (in_uv.y ) * uv_scale.y;
-	//uv.y = (in_uv.y );
+	uv.x = (in_uv.x ) * uv_scale.x + uv_offset.x;
+	uv.y = (in_uv.y ) * uv_scale.y + uv_offset.y;
+
+	oldUV = in_uv;
 
 
 

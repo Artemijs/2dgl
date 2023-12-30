@@ -5,7 +5,7 @@
 out vec4 FragColor;
 
 in vec2 uv;
-
+in vec2 oldUV;
 
 uniform sampler2D tex0;
 uniform vec4 color;
@@ -21,10 +21,10 @@ void main(){
 	float brdrH = borderSize/size.y;
 	
 	int on = 0;
-	if(uv.x <= brdrW || uv.x >= 1.0f - brdrW){
+	if(oldUV.x <= brdrW || oldUV.x >= 1.0f - brdrW){
 		 on = 1;
 	}
-	if(uv.y <= brdrH || uv.y >= 1.0f - brdrH){
+	if(oldUV.y <= brdrH || oldUV.y >= 1.0f - brdrH){
 		 on = 1;
 	}
 	FragColor = (texCol * color) * (1 - on) + borderColor * on;

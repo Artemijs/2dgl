@@ -14,14 +14,19 @@
 #include "Util/MemoryManager.h"
 #include "UI/UIHandler.h"
 
-Mouse* Game::_mouse;// = new Mouse();
+
+
+
+
+Mouse* Game::_mouse = new Mouse();
 PhysicsWorld* Game::_physWorld = new PhysicsWorld();
 BaseNode* Game::_world = new RenderNode(Vec3(0, 0, -10), Renderer::instance()->WindowSizeVec3(), 0);
 
 Game::Game() {
-	_mouse = new Mouse();
+	//_mouse = new Mouse();
 	Keyboard::Init();
 	Text::Init();	
+	_mouse->InitCursors();
 	_switch = false;
 	//_world->AddChild(new Button("LOL", Vec3(400, 400, 0), Vec3(100, 50, 1), 0));
 	_ang = 0.0f;

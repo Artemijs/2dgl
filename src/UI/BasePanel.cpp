@@ -9,7 +9,9 @@
 	EDGE BORDER OUTLINE THICKNESS SHADER
 	POINT LINE COLLISION
 	CHANGE CURSOR IMAGE
+
 	CREATE A NEW PANEL
+	
 	TABS
 	SELECT TABS
 	MOVE TABS
@@ -63,7 +65,8 @@ void RenderNodeMat::Unbind() const {
 void RenderNodeMat::RecalcUV(const Transform& t) {
 	Renderer* r = Renderer::instance();
 	_uv_scale = Vec2(t._scale.x / r->GetWindowSize().x, t._scale.y / r->GetWindowSize().y);
-	//_uv_offset = Vec2(t._position.x / r->GetWindowSize().x, t._position.y / r->GetWindowSize().y);
+	Vec2 botLeft = Vec2(t._position.x - t._scale.x * 0.5f, t._position.y - t._scale.y * 0.5f);
+	_uv_offset = Vec2(botLeft.x/ r->GetWindowSize().x, botLeft.y/ r->GetWindowSize().y);
 
 }
 
@@ -88,7 +91,7 @@ BasePanel::BasePanel() {
 	//MemoryManager::CacheGarbage(this);
 	_panelMaterial = dynamic_cast<RenderNodeMat*> (_parent->GetMaterial());
 	_panelMaterial->_borderColor = Vec4(0.1f, 0.1f, 0.1f, 1.0f);
-	_panelMaterial->_borderSize = 1.0f;
+	_panelMaterial->_borderSize = BORDER_INTERSECTION_WIDTH;
 	CalculateCorners(Vec3(100, 100, -1), Vec3(100, 100, 1));
 	_pointerAction = 0;
 	_resizing = false;
@@ -109,8 +112,8 @@ BasePanel::BasePanel(const char* name, BaseNode* parentOfparent, Vec3 pos, Vec3 
 	_name = name;
 	//MemoryManager::CacheGarbage(this);
 	_panelMaterial = dynamic_cast<RenderNodeMat*> (_parent->GetMaterial());
-	_panelMaterial->_borderColor = Vec4(0.5f, 0.5f, 0.5f, 1.0f);
-	_panelMaterial->_borderSize = 2.0f;
+	_panelMaterial->_borderColor = Vec4(245.0f/255.0f, 233.0f/255.0f, 66.0f/255.0f, 1.0f);//Vec4(0.5f, 0.5f, 0.5f, 1.0f);
+	_panelMaterial->_borderSize = BORDER_INTERSECTION_WIDTH;
 	CalculateCorners(pos, size);
 	SetMouseCallBacks();
 	_pointerAction = 0;
@@ -398,7 +401,6 @@ void BasePanel::MouseEdgeInterection(const Vec2& mousePos) {
 				//_pointerAction = 4;
 				SetPointerAction(4);
 			}
-
 		}
 		//left
 		else if (collisionData[2]) {

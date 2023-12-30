@@ -93,6 +93,7 @@ public :
 	/// </summary>
 	/// <param name="type"></param>
 	void SetCursorImg(const unsigned int type);
+	void InitCursors();
 };
 
 #endif // !MOUSE_H

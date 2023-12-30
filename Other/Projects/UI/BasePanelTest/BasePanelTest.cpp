@@ -24,7 +24,7 @@ BasePanelTest::BasePanelTest(){
 	//this should be in camera
 	//(*_r->GetProjection()) = Matrix4x4::Perspective(Utility::Deg2Rad(45), _r->GetWindowSize().x / _r->GetWindowSize().y, 0.1f, 1000.0f);
 
-	_world->GetComponent<FBOComponent>()->SetClearColor(Vec3(1.0f, 1.0f, 1.0f));
+	
 	//something to orient around
 	BaseNode* s1 = new BaseNode(Vec3(0, 0, -1), Vec3(10, 10, 1), Vec3(0.0, 0, 0));
 	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(_r->GetShader(7), ASSETS"Textures/default.png")));
