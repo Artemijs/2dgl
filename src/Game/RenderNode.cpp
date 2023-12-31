@@ -35,6 +35,7 @@ RenderNode::RenderNode(const Vec3 pos, const Vec3 size, const float ang) :
 	rnMat->_textureSize = Vec2(size.x, size.y);
 	rnMat->RecalcUV(_transform);
 	_nodeMat = rnMat;
+	SetInheritTransform(false, false, false);
 	
 }
 
@@ -77,7 +78,8 @@ void RenderNode::MakeModelMatrix(const Matrix4x4 trans, const Matrix4x4 scale, c
 		nr = Matrix4x4::RotationMatrix(_transform._angle);
 
 	for (int i = 0; i < _children->size(); ++i) {
-		_children->at(i)->MakeModelMatrix(Matrix4x4(1.0f), Matrix4x4(1.0f), Matrix4x4(1.0f));
+		//_children->at(i)->MakeModelMatrix(Matrix4x4(1.0f), Matrix4x4(1.0f), Matrix4x4(1.0f));
+		_children->at(i)->MakeModelMatrix(nt, ns, nr);
 	}
 
 	_model = nt * nr * ns;

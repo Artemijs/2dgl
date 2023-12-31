@@ -2,7 +2,7 @@
 #include "Graphics/Renderer.h"
 #include "Graphics/Materials/MaterialSprite.h"
 #include "UI/Button.h"
-
+#include "UI/Text.h"
 
 /*
 *
@@ -15,6 +15,10 @@
 		- Select texture to paint with
 		- Change tile texture byte data to selexcted byte data
 		- Save Texture
+
+
+	GENERAL UI SHIT
+		- for convinience you can add a MAkeElementList(newTiem, position offset, alignment) and it will position ui elements for you a bit like html
 */
 
 BasePanelTest::BasePanelTest(){
@@ -104,9 +108,9 @@ void BasePanelTest::CreatePanels() {
 	//BasePanel* botPanel = UIHandler::GetPanel("Empty", _world, Vec3(winSize.x * 0.5, 20.0f, -1.0f), Vec3(winSize.x, 40.0f, 1.0f));
 	Vec3 mainPanelPos = Vec3(winSize.x * 0.5f, winSize.y * 0.5f - 30.0f, -1.0f);
 	//Vec3 mainPanelSize = Vec3(winSize.x, winSize.y - 140.0f, 1.0f);
-	Vec3 mainPanelSize = Vec3(winSize.x*0.75f, winSize.y*0.75f, 1.0f);
+	Vec3 mainPanelSize = Vec3(winSize.x*0.5f, 700, 1.0f);
 	BasePanel* mainPanel = UIHandler::GetPanel("Empty", _world, mainPanelPos, mainPanelSize);
-	
+	//BaseNode* bn = new BaseNode(Vec3(0, 0, 0), Vec3(1,1,1), 0);
 	
 
 	//topPanel->AddNeighbour(mainPanel, 3);
@@ -119,9 +123,30 @@ void BasePanelTest::CreatePanels() {
 	//mainPanel->AddNeighbour(botPanel, 3);
 	mainPanel->SetBackgroundColor(Vec3(0.1f, 0.1f, 0.1f));
 	
-	BaseNode* btn = new Button("LOL", Vec3(10, 0, -10.0f), Vec3(100.0f, 100.0f, 0), 0.0f);
+	//											BUTTON
+	BaseNode* btn = new Button("Close", Vec3(0.0f, -325.0f, -10.0f), Vec3(100.0f, 50.0f, 0), 0.0f);
+	btn->SetInheritTransform(true, false, false);
 	BaseNode* mainBn = mainPanel->GetParentAsNode();
 	mainBn->AddChild(btn);
+	//											TITLE
+	BaseNode* txtNode = new BaseNode( Vec3(0, 300, 0), Vec3(0, 0, 0), 0);
+	txtNode->SetInheritTransform(true, false, false);
+	mainBn->AddChild(txtNode);
+	txtNode->AddComponent<Text>(new Text("Inventory", txtNode, 20));
+
+	//											inventory items
+	Vec3 pos = Vec3(0, 250, 0);
+	Vec3 size = Vec3(1, 1, 1);
+	for (int i = 0; i < 10; i++) {
+		BaseNode* itmNode = new BaseNode(pos, size, 0);
+		itmNode->SetInheritTransform(true, false, false);
+		mainBn->AddChild(itmNode);
+		itmNode->AddComponent<Text>(new Text("Item "+ std::to_string(i), itmNode, 15));
+		pos.y -= 25;
+	}
+	
+
+	//bn->AddChild(btn);
 
 }
 

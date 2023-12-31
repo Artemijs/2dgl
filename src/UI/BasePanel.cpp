@@ -10,12 +10,14 @@
 	POINT LINE COLLISION
 	CHANGE CURSOR IMAGE
 
-	CREATE A NEW PANEL
-	
 	TABS
 	SELECT TABS
 	MOVE TABS
 	CLOSE TABS
+
+	CREATE A NEW PANEL
+	
+	
 	MOVE TABS TO DIFFERENT PANELS
 	DOCK TABS INTO NEW PANELS
 
@@ -438,3 +440,47 @@ void BasePanel::SetPointerAction(const unsigned int newAction) {
 		_pointerAction = newAction;
 	}
 }
+
+
+
+/*
+	TABS 
+	What are they, who do they think they are lining up so neatly at the top of a window. 
+	What do they do and what motivates them in the morning to do that which they do. Do they ever stop to think what would the world look like if tabs simply didnt tab? If they decided to take a dtour at st peters st, went straght to a pug and had a nice cold one.
+	
+	Square, 
+	Have letters in them, names if you will,
+	they can be moved,
+	closed and
+	clicked on.
+
+	tab area at the top of the base panel
+	outline to be below the tab area
+	a tab list
+	current tab
+	
+	tab is a :
+		mouse on hover:
+			
+			show close button, highlight
+			
+			click :
+				hide current page
+				show page
+				change tab color to selected
+				change previously selected tab color to idle
+			
+			click and drag:
+					ILL COME BAC TO THIS
+							
+
+			close button click:
+				remove tab
+				select next tab
+				hide old page contents
+				show new page contents
+
+
+
+
+*/
