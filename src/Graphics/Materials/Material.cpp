@@ -180,6 +180,7 @@ MaterialUiNoTex::~MaterialUiNoTex() {
 void MaterialUiNoTex::Bind(const Matrix4x4* model) const {
 	BaseMaterial::Bind(model);
 	glUniformMatrix4fv(glGetUniformLocation(_shader->ID, "proj"), 1, GL_TRUE, &Renderer::instance()->GetUIProjection()->buff[0]);
+	Renderer::instance()->GetVAO()->Bind();
 
 }
 

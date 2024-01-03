@@ -33,6 +33,7 @@ public :
 	void OnLeave();
 	void OnHover();
 	void OnEndHover();
+	void ResizeToFitText(const float margin);
 	
 };
 

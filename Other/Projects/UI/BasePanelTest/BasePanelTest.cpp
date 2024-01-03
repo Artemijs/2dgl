@@ -33,7 +33,7 @@ BasePanelTest::BasePanelTest(){
 	BaseNode* s1 = new BaseNode(Vec3(0, 0, -1), Vec3(10, 10, 1), Vec3(0.0, 0, 0));
 	s1->AddComponent<Sprite>(new Sprite(new MaterialSprite(_r->GetShader(7), ASSETS"Textures/default.png")));
 	_world->AddChild(s1);
-	
+	s1->SetInheritTransform(false, false, false);
 	CreatePanels();
 	
 

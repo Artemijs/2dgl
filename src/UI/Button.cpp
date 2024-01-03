@@ -17,6 +17,8 @@ Button::Button():
 	_releasedSfx(SoundCtrl::GetInstance()->LoadSFX(ASSETS"AFX/btnRelease.wav")),
 	_enterSfx(SoundCtrl::GetInstance()->LoadSFX(ASSETS"AFX/enterBtn.wav")) {
 
+
+
 	//_inheritTransform[0] = true;
 
 	//set up mouse events
@@ -53,6 +55,8 @@ Button::Button():
 	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
 
 }
+
+
 /// <summary>
 /// USES SPRITE COMPONENT and a default btn image,
 /// </summary>
@@ -96,39 +100,60 @@ Button::Button(const char * txt, const Vec3 pos, const Vec3 size, const float an
 	SoundCtrl::GetInstance()->SetSFXVolume(_enterSfx, 25);
 									
 }
+
+
 void Button::OnPress() {							
 	//printf("CALLING OnPress \n");					
 	_material->_uvOffset = Vec2(0, 1);
 	SoundCtrl::GetInstance()->PlaySfx(_pressedSfx);
-}													
+}
+
+
 void Button::OnRelease() {							
 	//printf("CALLING OnRelease \n");	
 	_material->_uvOffset = Vec2(0, 2);
 	SoundCtrl::GetInstance()->PlaySfx(_releasedSfx);;
-}													
+}	
+
+
 void Button::OnClick() {
 	//printf("CALLING OnClick \n");
 	//printf("and does this have a destructor?\n");
 }
+
+
 void Button::OnDoublClick() {
 	//printf("CALLING OnDoublClick \n");
 	//printf("and does this have a destructor?\n");
 }
+
+
 void Button::OnEnter() {
 	//printf("CALLING OnEnter \n");
 	_material->_uvOffset = Vec2(0, 2);
 	SoundCtrl::GetInstance()->PlaySfx(_enterSfx);
 }
+
+
 void Button::OnLeave() {
 	//printf("CALLING OnLeave \n");
 	_material->_uvOffset = Vec2(0, 3);
 	//printf("and does this have a destructor?\n");
 }
+
+
 void Button::OnHover() {
 	//printf("CALLING OnHover \n");
 	//printf("and does this have a destructor?\n");
 }
+
+
 void Button::OnEndHover() {
 	//printf("CALLING OnEndHover \n");
 	//printf("and does this have a destructor?\n");
+}
+
+
+void Button::ResizeToFitText(float margin) {
+	
 }

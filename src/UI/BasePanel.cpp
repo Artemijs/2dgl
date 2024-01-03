@@ -2,6 +2,8 @@
 #include "Game/Game.h"
 #include "Game/FBOComponent.h"
 #include "Graphics/Renderer.h"
+#include "UI/Button.h"
+
 /*
 
 
@@ -73,12 +75,52 @@ void RenderNodeMat::RecalcUV(const Transform& t) {
 }
 
 
+
+
+//									TAB
+//-----------------------------------------------------------------------
+
+
+Tab::Tab() {
+
+}
+
+
+Tab::Tab(const char* name, BaseNode* data, float tabHeight) :
+	_name(name), 
+	_tabData(data), 
+	_tabUI( new Button(name, Vec3(0,0,0), Vec3(0, tabHeight, 0), 0)){
+	_tabUI->ResizeToFitText(0);
+}
+
+
+//nothing to delete, the buton node and data node are deleted by tree destructor
+Tab::~Tab() {
+	
+
+
+}
+
+
+void Tab::Select() {}
+
+
+void Tab::Deselect() {}
+
+
+void Tab::Drag(const Vec2& mousePos) {}
+
+
+
+
 //										BASE PANEL
 //----------------------------------------------------------------------------------------
 
 const float BasePanel::BORDER_INTERSECTION_WIDTH = 3.50f;
 
 BasePanel::BasePanel() {
+
+	_tabs = new SList<Tab*>();
 
 	_parent = new RenderNode(Vec3(100, 100, -1), Vec3(100, 100, 1), 0);
 	Game::_world->AddChild(_parent);
@@ -105,6 +147,21 @@ BasePanel::BasePanel(const char* name, BaseNode* parentOfparent, Vec3 pos, Vec3 
 
 	_parent = new RenderNode(pos, size, 0);
 	parentOfparent->AddChild(_parent);
+
+	_tabs = new SList<Tab*>();
+
+	_tabParent = new BaseNode(Vec3(0.0f, size.y * 0.475f, 0.0f), Vec3(1.0f, 0.05f, 1.0f), 0);
+	_dataParent = new BaseNode(Vec3(0.0f, size.y * -0.025f, 0.0f), Vec3(1.0f, 0.95f, 1.0f), 0);
+	_tabParent->SetInheritTransform(true, true, false);
+	_dataParent->SetInheritTransform(true, true, false);
+	_parent->AddChild(_tabParent);
+	_parent->AddChild(_dataParent);
+
+	_tabParent->AddComponent<Sprite>(new Sprite(new MaterialUiNoTex()));
+	_dataParent->AddComponent<Sprite>(new Sprite(new MaterialUiNoTex()));
+	_tabParent->GetComponent<Sprite>()->GetMaterial()->_color = Vec4(0.67f, 0.5f, 0.5f, 1.0f);
+	_dataParent->GetComponent<Sprite>()->GetMaterial()->_color = Vec4(0.37f, 0.05f, 0.25f, 1.0f);
+	
 	_neighbours = new std::vector<std::vector<BasePanel*>*>{
 		new std::vector<BasePanel*>(),//left
 		new std::vector<BasePanel*>(),//top
@@ -177,6 +234,7 @@ BasePanel::~BasePanel() {
 	delete _neighbours;
 	printf("deleting PANELS %s \n", _name);
 	delete[] _corners;
+	delete _tabs;
 
 }
 
@@ -442,6 +500,11 @@ void BasePanel::SetPointerAction(const unsigned int newAction) {
 }
 
 
+void BasePanel::AddTab(Tab* tab) {
+	
+	_tabs->Add(tab);
+
+}
 
 /*
 	TABS 
